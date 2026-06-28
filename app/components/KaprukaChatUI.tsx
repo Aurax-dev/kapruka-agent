@@ -7,7 +7,7 @@ import { useSession, signIn } from 'next-auth/react';
 // Types
 // ─────────────────────────────────────────────
 
-type AvatarKey = 'idle' | 'greeting' | 'search' | 'show' | 'detail' | 'cart' | 'delivery' | 'done';
+type AvatarKey = 'idle' | 'greeting' | 'thinking' | 'search' | 'show' | 'detail' | 'cart' | 'delivery' | 'done';
 
 interface RealProduct {
   id: string;
@@ -110,6 +110,7 @@ interface ConversationRow {
 const AV: Record<AvatarKey, string> = {
   idle:     '/avatar/video/optimized/idle.mp4',
   greeting: '/avatar/video/optimized/greeting.mp4',
+  thinking: '/avatar/video/optimized/thinking.mp4',
   search:   '/avatar/video/optimized/searching-products.mp4',
   show:     '/avatar/video/optimized/show-products.mp4',
   detail:   '/avatar/video/optimized/details-on-product.mp4',
@@ -121,6 +122,7 @@ const AV: Record<AvatarKey, string> = {
 const AVP: Record<AvatarKey, string> = {
   idle:     '/avatar/images/idle.png',
   greeting: '/avatar/images/greeting.png',
+  thinking: '/avatar/images/thinking.png',
   search:   '/avatar/images/searching-products.png',
   show:     '/avatar/images/show-products.png',
   detail:   '/avatar/images/details-on-product.png',
@@ -406,6 +408,9 @@ export default function KaprukaChatUI() {
   const createStreamingMsg = () => {
     const id = String(++uidRef.current);
     streamingMsgIdRef.current = id;
+    // Start each turn fresh — otherwise this turn's products merge into a previous
+    // turn's (now off-screen / removed) card and nothing appears.
+    streamingProductsMsgIdRef.current = null;
     setState(prev => ({
       ...prev,
       messages: [...prev.messages, { id, role: 'bot', kind: 'text', text: '', streaming: true }],
@@ -1601,7 +1606,7 @@ export default function KaprukaChatUI() {
   );
 
   let composerToolbar: React.ReactNode = null;
-  if (state.started && !state.streaming) {
+  if (state.started) {
     const last = [...state.messages].reverse().find(m => m.role === 'bot');
     const contextual: React.ReactNode[] = [];
     if (last) {
