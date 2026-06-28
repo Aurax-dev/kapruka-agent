@@ -1,0 +1,218 @@
+{
+  "best_sellers": [
+    "COMBOCKFL64",
+    "CUSTOMGIFT00199",
+    "CUSTOMGREE00215",
+    "CUSTOMGREE00222",
+    "CUSTOMGREE00212",
+    "CUSTOMGREE00210",
+    "CUSTOMGREE00208",
+    "CUSTOMGREE00213",
+    "CUSTOMGIFT00275",
+    "CUSTOMGIFT0051",
+    "GROCERY002512",
+    "COSMETICS001753",
+    "CUSTOMGREE00219",
+    "GIFTSET00500",
+    "CUSTOMGIFT00268",
+    "CUSTOMGIFT00186",
+    "CUSTOMGIFT00249",
+    "CUSTOMGIFT0095",
+    "CUSTOMGIFT0054",
+    "CUSTOMGIFT00164",
+    "GREETING00Z2973",
+    "GREETING00Z2895",
+    "GREETING00Z2736",
+    "GREETING00Z2860",
+    "GREETING00Z2942",
+    "GREETING00Z2859",
+    "GREETING00Z2726",
+    "FRUITS00168",
+    "COSMETICS001739",
+    "GIFTSET00601"
+  ],
+  "promotions": [
+    {
+      "id": "PERFUME00850",
+      "compare_price": 30000
+    },
+    {
+      "id": "KIDSTOY0Z1560",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A3258",
+      "compare_price": null
+    },
+    {
+      "id": "ORNAMENTS00868",
+      "compare_price": 11900
+    },
+    {
+      "id": "ORNAMENTS00858",
+      "compare_price": 23800
+    },
+    {
+      "id": "ELEC00A5638",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A5881",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A5995",
+      "compare_price": null
+    },
+    {
+      "id": "HOUSEHOLD001091",
+      "compare_price": 990
+    },
+    {
+      "id": "HOUSEHOLD00359",
+      "compare_price": 700
+    },
+    {
+      "id": "HOUSEHOLD00358",
+      "compare_price": 490
+    },
+    {
+      "id": "HOUSEHOLD00357",
+      "compare_price": 560
+    },
+    {
+      "id": "SOFTTOY00979",
+      "compare_price": 2800
+    },
+    {
+      "id": "KIDSTOY0Z1649",
+      "compare_price": null
+    },
+    {
+      "id": "COSMETICS001670",
+      "compare_price": 3900
+    },
+    {
+      "id": "ELEC00A6031",
+      "compare_price": null
+    },
+    {
+      "id": "GROCERY003236",
+      "compare_price": 17072
+    },
+    {
+      "id": "GROCERY003234",
+      "compare_price": 15960
+    },
+    {
+      "id": "HOUSEHOLD001008",
+      "compare_price": 3490
+    },
+    {
+      "id": "PHARMACY00791",
+      "compare_price": 14850
+    },
+    {
+      "id": "ELEC00A5637",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A2182",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A5694",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A5689",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A2502",
+      "compare_price": null
+    },
+    {
+      "id": "CHILDRENP01122",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A6007",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A6003",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A6002",
+      "compare_price": null
+    },
+    {
+      "id": "ELEC00A5998",
+      "compare_price": null
+    }
+  ],
+  "same_day": [
+    "CAKE00KA001536",
+    "CAKE00KA001903",
+    "CAKE00KA002136",
+    "CAKE00KA002137",
+    "FLOWERS00T1603",
+    "FLOWERS00T2089",
+    "COMBOCKFL21",
+    "SOFTTOY001153",
+    "SOFTTOY001154",
+    "SOFTTOY001161",
+    "COMBOCHG1996",
+    "FASHION0010750",
+    "FASHION0010784",
+    "FASHION0010785",
+    "FASHION0010787",
+    "FRUITS00222",
+    "COMBOGICK17",
+    "GIFTSET00494",
+    "FASHION0010567",
+    "FASHION0010586",
+    "FASHION0010588",
+    "FASHION0010590",
+    "FASHION0010592",
+    "FASHION0010593",
+    "FASHION0010595",
+    "FASHION0010606",
+    "FASHION0010608",
+    "FASHION0010637",
+    "FASHION0010646",
+    "FASHION0010651",
+    "FASHION0010669",
+    "FASHION0010703",
+    "FASHION0010708",
+    "HOUSEHOLD001471",
+    "HOUSEHOLD001453",
+    "HOUSEHOLD001454",
+    "HOUSEHOLD001475",
+    "HOUSEHOLD001476",
+    "HOUSEHOLD001482",
+    "HOUSEHOLD001485",
+    "SOFTTOY001042",
+    "SOFTTOY001075",
+    "HOUSEHOLD001002",
+    "EF_PC_CLOT0V18POD00024P",
+    "EF_PC_ELEC0V18POD00212P",
+    "EF_PC_ELEC0V18POD00363P",
+    "EF_PC_ELEC0V18POD00376P",
+    "EF_PC_ELEC0V18POD00417P",
+    "EF_PC_FASHION0V18POD00114P",
+    "EF_PC_HOME0V18POD00051P",
+    "EF_PC_HOME0V18POD00260P",
+    "EF_PC_HOME0V18POD00444P",
+    "EF_PC_HOME0V18POD00496P",
+    "EF_PC_KIDS0V18POD00004P",
+    "EF_PC_SPOR0V18POD00081P",
+    "BOOK002013",
+    "BOOK002015",
+    "BOOK002017",
+    "BOOK002018",
+    "BOOK002027"
+  ]
+}

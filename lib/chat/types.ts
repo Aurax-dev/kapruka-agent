@@ -9,6 +9,7 @@ export interface ProductSummarySnippet {
   id: string;
   name: string;
   price: { amount: number | null; currency: string };
+  compare_at_price?: { amount: number | null; currency: string } | null;
   image_url: string | null;
   images?: string[];
   in_stock: boolean;

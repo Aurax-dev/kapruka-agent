@@ -13,6 +13,7 @@ interface RealProduct {
   id: string;
   name: string;
   price: { amount: number | null; currency: string };
+  comparePrice?: number | null;
   image_url: string | null;
   in_stock: boolean;
   url: string;
@@ -418,6 +419,7 @@ export default function KaprukaChatUI() {
         const incoming = event.products as Array<{
           id: string; name: string;
           price: { amount: number | null; currency: string };
+          compare_at_price?: { amount: number | null; currency: string } | null;
           image_url: string | null;
           in_stock: boolean; url: string; summary: string;
         }>;
@@ -426,7 +428,12 @@ export default function KaprukaChatUI() {
 
         const newProducts: Record<string, RealProduct> = {};
         incoming.forEach((p, i) => {
-          newProducts[p.id] = { ...p, tone: TONES[i % TONES.length], glyph: 'gift' };
+          newProducts[p.id] = {
+            ...p,
+            comparePrice: p.compare_at_price?.amount ?? null,
+            tone: TONES[i % TONES.length],
+            glyph: 'gift',
+          };
         });
 
         const existingId = streamingProductsMsgIdRef.current;
@@ -812,9 +819,19 @@ export default function KaprukaChatUI() {
         </div>
         <div style={{ padding: '11px 12px 13px', display: 'flex', flexDirection: 'column', gap: 7, flex: 1 }}>
           <div style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A', lineHeight: 1.25 }}>{p.name}</div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 7, marginTop: 'auto', flexWrap: 'wrap' }}>
-            <span style={{ fontWeight: 800, fontSize: 15, color: '#402970', whiteSpace: 'nowrap' }}>{p.price.amount ? money(p.price.amount) : 'View price'}</span>
-            <span style={{ fontSize: 11, fontWeight: 700, color: p.in_stock ? '#1F9D6B' : '#D98818', background: p.in_stock ? '#E4F6EE' : '#FCF1DD', padding: '2px 6px', borderRadius: 5 }}>{p.in_stock ? 'In stock' : 'Limited'}</span>
+          <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 3 }}>
+            {p.comparePrice && p.price.amount && p.comparePrice > p.price.amount && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                <span style={{ fontSize: 11, color: '#9389AE', textDecoration: 'line-through' }}>{money(p.comparePrice)}</span>
+                <span style={{ fontSize: 10, fontWeight: 800, color: '#C0392B', background: '#FDECEA', padding: '2px 5px', borderRadius: 4 }}>
+                  -{Math.round((1 - p.price.amount / p.comparePrice) * 100)}%
+                </span>
+              </div>
+            )}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 7, flexWrap: 'wrap' }}>
+              <span style={{ fontWeight: 800, fontSize: 15, color: '#402970', whiteSpace: 'nowrap' }}>{p.price.amount ? money(p.price.amount) : 'View price'}</span>
+              <span style={{ fontSize: 11, fontWeight: 700, color: p.in_stock ? '#1F9D6B' : '#D98818', background: p.in_stock ? '#E4F6EE' : '#FCF1DD', padding: '2px 6px', borderRadius: 5 }}>{p.in_stock ? 'In stock' : 'Limited'}</span>
+            </div>
           </div>
           <div style={{ display: 'flex', gap: 7, marginTop: 4 }}>
             <button onClick={() => openDetail(id)} style={{ flex: 1, padding: 9, borderRadius: 10, border: '1.5px solid #E2D9F3', background: '#fff', color: '#5C3FB0', fontWeight: 700, fontSize: 12.5, cursor: 'pointer' }}>Details</button>
@@ -863,7 +880,7 @@ export default function KaprukaChatUI() {
 
         {/* ── tab strip (only when 2+ labelled searches) ── */}
         {hasTabs && (
-          <div style={{ display: 'flex', gap: 6, padding: '8px 18px 2px', overflowX: 'auto', scrollbarWidth: 'none' }}>
+          <div style={{ display: 'flex', gap: 6, margin: '0 18px', padding: '8px 0 2px', overflowX: 'auto', scrollbarWidth: 'none' }}>
             {m.tabs!.map((tab, i) => {
               const active = i === activeTabIdx;
               const cnt = tab.ids.filter(id => !!getProduct(id)).length;
@@ -1256,31 +1273,61 @@ export default function KaprukaChatUI() {
     );
   };
 
-  // ── suggestion chips ──
-  let chips: React.ReactNode = null;
-  if (state.started && !state.streaming) {
+  // ── composer toolbar (quick actions + price filter + contextual chips) ──
+  const PRICE_STEPS = [3000, 5000, 8000, 15000, 25000, 50000];
+  const QUICK_ACTIONS = [
+    { label: '⭐  Best sellers', msg: 'Show me your best sellers' },
+    { label: '🏷️  Promotions',  msg: "Show me today's deals and promotions" },
+    { label: '⚡  Same day',    msg: 'What can I get delivered today?' },
+  ];
+
+  const chipBtn = (label: string, onClick: () => void, delay = 0) => (
+    <button key={label} onClick={onClick}
+      style={{ flex: '0 0 auto', border: '1.5px solid rgba(64,41,112,.13)', background: '#fff', borderRadius: 20, padding: '7px 13px', cursor: 'pointer', fontSize: 12.5, fontWeight: 600, color: '#5C3FB0', whiteSpace: 'nowrap', animation: 'chipIn .4s both', animationDelay: delay + 'ms', transition: 'background .15s, border-color .15s', boxShadow: '0 2px 6px rgba(64,41,112,.06)' }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#F5F1FE'; (e.currentTarget as HTMLElement).style.borderColor = '#C9B8ED'; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#fff'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(64,41,112,.13)'; }}>
+      {label}
+    </button>
+  );
+
+  let composerToolbar: React.ReactNode = null;
+  if (state.started) {
     const last = [...state.messages].reverse().find(m => m.role === 'bot');
-    let opts: [string, () => void][] = [];
-    if (last) {
-      if (last.kind === 'products') opts = [['Birthday gift for dad', () => { pushUser('Birthday gift for dad'); sendMessage('Birthday gift for dad'); }], ['Under Rs 8,000', () => { pushUser('Gifts under Rs 8,000'); sendMessage('Gifts under Rs 8,000'); }], ['🛒 View cart', () => openDrawer('cart')]];
-      else if (last.kind === 'detail') opts = [['See more options', () => { pushUser('Show me more gift options'); sendMessage('Show me more gift options'); }], ['🛒 View cart', () => openDrawer('cart')]];
-      else if (last.kind === 'cartconfirm') opts = [['Keep shopping', () => { pushUser('Show me more gifts'); sendMessage('Show me more gifts'); }], ['Checkout now', beginCheckout]];
-      else if (last.kind === 'pay_url') opts = [['Track my order', () => { pushUser('Track my order'); sendMessage('Track my order'); }]];
+    const contextualChips: React.ReactNode[] = [];
+    if (!state.streaming && last) {
+      if (last.kind === 'detail')      contextualChips.push(chipBtn('See more options', () => { pushUser('Show me more gift options'); sendMessage('Show me more gift options'); }, 0));
+      if (last.kind === 'cartconfirm') contextualChips.push(chipBtn('Keep shopping', () => { pushUser('Show me more gifts'); sendMessage('Show me more gifts'); }, 0), chipBtn('Checkout now', beginCheckout, 60));
+      if (last.kind === 'pay_url')     contextualChips.push(chipBtn('Track my order', () => { pushUser('Track my order'); sendMessage('Track my order'); }, 0));
+      contextualChips.push(chipBtn('🛒 Cart', () => openDrawer('cart'), contextualChips.length * 60));
     }
-    if (opts.length > 0) {
-      chips = (
-        <div style={{ margin: '5px 0 10px', paddingLeft: 92, display: 'flex', gap: 9, flexWrap: 'wrap' }}>
-          {opts.map((o, i) => (
-            <button key={i} onClick={o[1]}
-              style={{ border: '1.5px solid rgba(64,41,112,.14)', background: '#fff', borderRadius: 20, padding: '9px 15px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: '#5C3FB0', boxShadow: '0 2px 8px rgba(64,41,112,.06)', animation: 'chipIn .4s both', animationDelay: (i * 60) + 'ms', transition: 'all .15s' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#F5F1FE'; (e.currentTarget as HTMLElement).style.borderColor = '#C9B8ED'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#fff'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(64,41,112,.14)'; }}>
-              {o[0]}
-            </button>
-          ))}
-        </div>
-      );
-    }
+
+    composerToolbar = (
+      <div style={{ marginBottom: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {/* Quick-access row */}
+        {!state.streaming && (
+          <div style={{ display: 'flex', gap: 7, overflowX: 'auto', scrollbarWidth: 'none' }}>
+            {QUICK_ACTIONS.map((a, i) => chipBtn(a.label, () => { pushUser(a.msg); sendMessage(a.msg); }, i * 55))}
+          </div>
+        )}
+
+        {/* Price filter row */}
+        {!state.streaming && (
+          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', scrollbarWidth: 'none', alignItems: 'center' }}>
+            <span style={{ flex: '0 0 auto', fontSize: 11, fontWeight: 600, color: '#9389AE' }}>Under</span>
+            {PRICE_STEPS.map((p, i) => {
+              const label = p >= 1000 ? `Rs ${p / 1000}K` : `Rs ${p}`;
+              const msg = `Show me gifts under Rs ${p.toLocaleString()}`;
+              return chipBtn(label, () => { pushUser(msg); sendMessage(msg); }, 180 + i * 45);
+            })}
+          </div>
+        )}
+
+        {/* Contextual chips */}
+        {contextualChips.length > 0 && (
+          <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>{contextualChips}</div>
+        )}
+      </div>
+    );
   }
 
   // ── drawer ──
@@ -1604,7 +1651,7 @@ export default function KaprukaChatUI() {
         <div style={{ flex: '0 0 auto', padding: '0 26px 22px', background: 'linear-gradient(180deg, rgba(236,231,246,0) 0%, #ECE7F6 38%)', position: 'relative', zIndex: 10 }}>
           <div style={{ position: 'absolute', left: 0, right: 0, top: -40, height: 54, pointerEvents: 'none', backdropFilter: 'blur(7px)', WebkitBackdropFilter: 'blur(7px)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, #000 100%)', maskImage: 'linear-gradient(to bottom, transparent 0%, #000 100%)' }} />
           <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative' }}>
-            {chips}
+            {composerToolbar}
             {/* Ruki avatar (appears once chat starts) */}
             {state.started && (
               <div style={{ position: 'absolute', left: -66, bottom: -4, zIndex: 30, width: 128, height: 128, pointerEvents: 'none' }}>
