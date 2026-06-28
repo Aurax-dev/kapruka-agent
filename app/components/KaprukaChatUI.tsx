@@ -108,6 +108,8 @@ interface AppState {
   avSeq: number;
   products: Record<string, RealProduct>;
   selectedTabs: Record<string, number>;
+  productDetails: Record<string, { bullets: string[]; images: string[] } | 'error'>;
+  detailImageIdx: Record<string, number>;
   conversationId: string | null;
   savedAddrs: SavedAddress[];
   conversations: ConversationRow[];
@@ -167,6 +169,29 @@ const TONE_COLORS: Record<string, string[]> = {
   peach:  ['#FCE2CF', '#F7C39A', '#E89A5E'],
   violet: ['#E4D8FA', '#C3A9F2', '#8B6FE8'],
 };
+
+// Dummy data shown to every user for now — replaced by real records once the
+// backend has them (see the /api/addresses load effect).
+const DUMMY_ADDRESSES: SavedAddress[] = [
+  { id: 'demo-home',    label: 'Home',           recipientName: 'Sahan Perera', city: 'Colombo 05', phone: '077 123 4567', address: '42 Flower Road, Colombo 05', isDefault: true },
+  { id: 'demo-office',  label: 'Office',          recipientName: 'Sahan Perera', city: 'Colombo 03', phone: '071 987 6543', address: '8 Galle Face Terrace, Colombo 03', isDefault: false },
+  { id: 'demo-parents', label: "Parents' Home",  recipientName: 'Nimal Perera', city: 'Kandy',      phone: '081 222 3344', address: '15 Temple Lane, Kandy', isDefault: false },
+];
+
+interface DemoOrder {
+  id: string;
+  date: string;
+  status: string;
+  statusLabel: string;
+  total: number;
+  items: string[];
+}
+
+const DUMMY_ORDERS: DemoOrder[] = [
+  { id: 'KPR-2026-11035', date: 'Jun 27, 2026', status: 'confirmed',        statusLabel: 'Confirmed',        total: 5600,  items: ['Ceylon Tea Gift Box'] },
+  { id: 'KPR-2026-10921', date: 'Jun 24, 2026', status: 'out_for_delivery', statusLabel: 'Out for delivery', total: 12900, items: ['Red Roses Bouquet (12)', 'Birthday Greeting Card'] },
+  { id: 'KPR-2026-10482', date: 'Jun 18, 2026', status: 'delivered',        statusLabel: 'Delivered',        total: 8450,  items: ['Premium Chocolate Hamper'] },
+];
 
 // ─────────────────────────────────────────────
 // Icons
@@ -294,8 +319,10 @@ export default function KaprukaChatUI() {
     avSeq: 0,
     products: {},
     selectedTabs: {},
+    productDetails: {},
+    detailImageIdx: {},
     conversationId: null,
-    savedAddrs: [],
+    savedAddrs: DUMMY_ADDRESSES,
     conversations: [],
     loadingDrawers: {},
   });
@@ -386,7 +413,12 @@ export default function KaprukaChatUI() {
 
     fetch('/api/addresses').then(r => r.json()).then(d => {
       if (!Array.isArray(d.addresses)) return;
-      setState(prev => ({ ...prev, savedAddrs: d.addresses, loadingDrawers: { ...prev.loadingDrawers, saved: false } }));
+      // Keep the demo addresses visible until the backend actually has records.
+      setState(prev => ({
+        ...prev,
+        savedAddrs: d.addresses.length ? d.addresses : prev.savedAddrs,
+        loadingDrawers: { ...prev.loadingDrawers, saved: false },
+      }));
     }).catch(() => setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, saved: false } })));
   }, [sessionStatus]);
 
@@ -738,13 +770,33 @@ export default function KaprukaChatUI() {
   };
 
   // ── product actions ──
+  // Fetch the AI summary bullets + full image list for a product's detail card.
+  const loadProductDetails = useCallback(async (id: string) => {
+    try {
+      const r = await fetch('/api/product-details', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product_id: id }),
+      });
+      const d = await r.json() as { bullets?: string[]; images?: string[] };
+      setState(prev => ({
+        ...prev,
+        productDetails: { ...prev.productDetails, [id]: { bullets: d.bullets ?? [], images: d.images ?? [] } },
+      }));
+    } catch {
+      setState(prev => ({ ...prev, productDetails: { ...prev.productDetails, [id]: 'error' } }));
+    }
+  }, []);
+
   const openDetail = (id: string) => {
     const p = getProduct(id);
     if (!p) return;
     pushUser(`Tell me more about the ${p.name}`);
     pushBot({ kind: 'detail', productId: id });
     pushBot({ kind: 'text', text: `Here are the full details for ${p.name}! Add it to your cart, or ask me anything about it. 🛍️` });
+    setState(prev => ({ ...prev, detailImageIdx: { ...prev.detailImageIdx, [id]: 0 } }));
     setAvatar('detail');
+    if (!state.productDetails[id]) loadProductDetails(id);
   };
 
   const toggleWish = (id: string) => {
@@ -830,9 +882,42 @@ export default function KaprukaChatUI() {
     const f = state.forms['rc_' + mid] || {};
     if (!f.name || !f.phone || !f.address) { showToast('Fill all recipient fields', 'user'); return; }
     completeMsg(mid);
+    if (f.save) {
+      const addr: SavedAddress = {
+        id: 'local-' + (++uidRef.current),
+        label: 'Saved address',
+        recipientName: String(f.name),
+        city: String(f.address),
+        phone: String(f.phone),
+        address: String(f.address),
+        isDefault: false,
+      };
+      setState(prev => ({ ...prev, savedAddrs: [...prev.savedAddrs, addr] }));
+      if (sessionStatus === 'authenticated') {
+        fetch('/api/addresses', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ label: addr.label, recipient_name: addr.recipientName, city: addr.city, phone: addr.phone }),
+        }).catch(() => {});
+      }
+      showToast('Address saved', 'pin');
+    }
     const text = `Recipient: ${String(f.name)} | ${String(f.phone)} | ${String(f.address)}`;
     pushUser(text);
     sendMessage(text);
+  };
+
+  // Mark a saved address as the default (used in the Settings drawer).
+  const setDefaultAddress = (id: string) => {
+    setState(prev => ({ ...prev, savedAddrs: prev.savedAddrs.map(a => ({ ...a, isDefault: a.id === id })) }));
+    if (sessionStatus === 'authenticated' && !id.startsWith('demo-') && !id.startsWith('local-')) {
+      fetch(`/api/addresses/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ is_default: true }),
+      }).catch(() => {});
+    }
+    showToast('Default address updated', 'pin');
   };
 
   const submitSender = (mid: string) => {
@@ -886,6 +971,7 @@ export default function KaprukaChatUI() {
   const newChat = () => {
     abortRef.current?.abort();
     convIdRef.current = null;
+    setAdminView(false);
     setState(prev => ({
       ...prev,
       started: false, messages: [], streaming: false, status: null,
@@ -933,12 +1019,13 @@ export default function KaprukaChatUI() {
 
   // ── sub-renders ──
 
-  const ProductImage = ({ p, height = 120, glyphSize = 48 }: { p: RealProduct; height?: number; glyphSize?: number }) => {
-    if (p.image_url) {
+  const ProductImage = ({ p, height = 120, glyphSize = 48, src }: { p: RealProduct; height?: number; glyphSize?: number; src?: string }) => {
+    const url = src ?? p.image_url;
+    if (url) {
       return (
         <div style={{ position: 'relative', width: '100%', height, borderRadius: 14, overflow: 'hidden' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={p.image_url} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src={url} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       );
     }
@@ -1120,30 +1207,50 @@ export default function KaprukaChatUI() {
     const p = getProduct(m.productId as string);
     if (!p) return null;
     const inW = state.wishlist.includes(p.id);
-    const summaryLines = p.summary ? p.summary.split('. ').filter(Boolean).slice(0, 4) : [];
+
+    const det = state.productDetails[p.id];
+    const loadingAi = det === undefined;
+    const aiData = det && det !== 'error' ? det : null;
+
+    // Images: prefer the full list from the details endpoint; fall back to the card image.
+    const imgs = aiData?.images.length ? aiData.images : (p.image_url ? [p.image_url] : []);
+    const activeImg = Math.min(state.detailImageIdx[p.id] ?? 0, Math.max(0, imgs.length - 1));
+
+    // Bullets: AI summary if available, else split the raw snippet summary.
+    const fallbackLines = p.summary ? p.summary.split('. ').filter(Boolean).slice(0, 4) : [];
+    const bullets = aiData?.bullets.length ? aiData.bullets : fallbackLines;
     return (
       <Card>
         <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap' }}>
-          <div style={{ flex: '0 0 230px', padding: 16 }}>
-            <ProductImage p={p} height={210} glyphSize={72} />
-            <div style={{ display: 'flex', gap: 7, marginTop: 10 }}>
-              {[0, 1, 2].map(i => (
-                <div key={i} style={{ flex: 1, height: 48, borderRadius: 9, border: i === 0 ? '2px solid #5C3FB0' : '1px solid rgba(64,41,112,.12)', opacity: i === 0 ? 1 : 0.55, overflow: 'hidden' }}>
-                  <ProductImage p={p} height={46} glyphSize={18} />
-                </div>
-              ))}
-            </div>
+          <div style={{ flex: isMobile ? '1 1 100%' : '0 0 230px', padding: isMobile ? '16px 16px 4px' : 16 }}>
+            <ProductImage p={p} height={210} glyphSize={72} src={imgs[activeImg]} />
+            {imgs.length > 1 && (
+              <div style={{ display: 'flex', gap: 7, marginTop: 10 }}>
+                {imgs.slice(0, 4).map((url, i) => (
+                  <button key={i} onClick={() => setState(prev => ({ ...prev, detailImageIdx: { ...prev.detailImageIdx, [p.id]: i } }))}
+                    style={{ flex: 1, height: 48, padding: 0, borderRadius: 9, cursor: 'pointer', border: i === activeImg ? '2px solid #5C3FB0' : '1px solid rgba(64,41,112,.12)', opacity: i === activeImg ? 1 : 0.55, overflow: 'hidden', background: '#fff', transition: 'opacity .15s, border-color .15s' }}>
+                    <ProductImage p={p} height={46} glyphSize={18} src={url} />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-          <div style={{ flex: '1 1 280px', padding: '18px 20px 18px 6px', display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
+          <div style={{ flex: isMobile ? '1 1 100%' : '1 1 280px', padding: isMobile ? '4px 16px 18px' : '18px 20px 18px 6px', display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
             <Stars />
             <div style={{ fontFamily: "var(--font-baloo2), 'Baloo 2', sans-serif", fontWeight: 700, fontSize: 21, color: '#2A1E4A', lineHeight: 1.15 }}>{p.name}</div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 9 }}>
               <span style={{ fontWeight: 800, fontSize: 24, color: '#402970' }}>{p.price.amount ? money(p.price.amount) : '—'}</span>
               <span style={{ fontSize: 11, fontWeight: 700, color: p.in_stock ? '#1F9D6B' : '#D98818', background: p.in_stock ? '#E4F6EE' : '#FCF1DD', padding: '4px 9px', borderRadius: 7 }}>{p.in_stock ? 'In stock' : 'Low stock'}</span>
             </div>
-            {summaryLines.length > 0 ? (
+            {loadingAi ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '4px 0' }}>
+                {['85%', '72%', '78%'].map((w, i) => (
+                  <div key={i} style={{ height: 11, width: w, borderRadius: 6, background: 'linear-gradient(90deg,#EEE7FB 25%,#F7F3FE 50%,#EEE7FB 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.3s ease-in-out infinite' }} />
+                ))}
+              </div>
+            ) : bullets.length > 0 ? (
               <ul style={{ margin: '2px 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {summaryLines.map((d, i) => (
+                {bullets.map((d, i) => (
                   <li key={i} style={{ display: 'flex', gap: 8, fontSize: 13, color: '#5C5276', alignItems: 'flex-start' }}>
                     <span style={{ color: '#7B5BD6', marginTop: 1, flex: '0 0 auto' }}><Icon name="check" size={14} color="#7B5BD6" /></span>{d.trim()}
                   </li>
@@ -1304,6 +1411,7 @@ export default function KaprukaChatUI() {
 
   const WRecipient = ({ m }: { m: Message }) => {
     const k = 'rc_' + m.id;
+    const saveChecked = Boolean(state.forms[k]?.save);
     return (
       <Card>
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
@@ -1313,6 +1421,13 @@ export default function KaprukaChatUI() {
             <Field label="Phone" fieldKey="phone" formKey={k} type="tel" ph="07X XXX XXXX" />
             <Field label="Street address" fieldKey="address" formKey={k} ph="House no, street, area" />
           </div>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 9, marginTop: 14, cursor: 'pointer', userSelect: 'none' }}>
+            <span style={{ width: 20, height: 20, borderRadius: 6, flex: '0 0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1.5px solid ' + (saveChecked ? '#5C3FB0' : '#D8CEEC'), background: saveChecked ? 'linear-gradient(135deg,#402970,#5C3FB0)' : '#fff', transition: 'all .15s' }}>
+              {saveChecked && <Icon name="check" size={13} color="#fff" />}
+            </span>
+            <input type="checkbox" checked={saveChecked} onChange={e => setForm(k, { save: e.target.checked })} style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#5C5276' }}>Save this address for next time</span>
+          </label>
           <button onClick={() => submitRecipient(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Saved' : 'Continue'}</button>
         </div>
       </Card>
@@ -1821,6 +1936,80 @@ export default function KaprukaChatUI() {
           {state.savedAddrs.length === 0 && <EmptyState icon="pin" title="No saved addresses" sub="Addresses you use will be saved here." />}
         </div>
       );
+    } else if (state.drawer === 'settings') {
+      title = 'Settings';
+      const trackOrder = (orderId: string) => {
+        setState(prev => ({ ...prev, drawer: null }));
+        const msg = 'Track order ' + orderId;
+        pushUser(msg);
+        sendMessage(msg);
+      };
+      const SectionHeader = ({ icon, label }: { icon: string; label: string }) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 800, fontSize: 13, color: '#402970', textTransform: 'uppercase', letterSpacing: '.4px', margin: '4px 0 12px' }}>
+          <Icon name={icon} size={15} color="#7B5BD6" /> {label}
+        </div>
+      );
+      body = (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          {/* ── Saved addresses ── */}
+          <div>
+            <SectionHeader icon="pin" label="Saved addresses" />
+            {state.loadingDrawers.saved ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[0, 1].map(i => (
+                  <div key={i} style={{ background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 14, display: 'flex', flexDirection: 'column', gap: 9 }}>
+                    <Skel w="45%" h={14} /><Skel w="58%" h={12} /><Skel w="72%" h={12} />
+                  </div>
+                ))}
+              </div>
+            ) : state.savedAddrs.length > 0 ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {state.savedAddrs.map(a => (
+                  <div key={a.id} style={{ background: '#fff', border: '1px solid ' + (a.isDefault ? '#C9B8ED' : 'rgba(64,41,112,.09)'), borderRadius: 14, padding: 14 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontWeight: 800, fontSize: 14, color: '#2A1E4A' }}>{a.label}</span>
+                      {a.isDefault && <span style={{ fontSize: 10, fontWeight: 700, color: '#7B5BD6', background: '#EEE7FB', padding: '2px 7px', borderRadius: 6 }}>Default</span>}
+                    </div>
+                    <div style={{ fontSize: 13, color: '#5C5276', marginTop: 6 }}>{a.recipientName}</div>
+                    <div style={{ fontSize: 12.5, color: '#9389AE', marginTop: 2 }}>{a.address || a.city}</div>
+                    <div style={{ fontSize: 12.5, color: '#9389AE' }}>{a.phone}</div>
+                    {!a.isDefault && (
+                      <button onClick={() => setDefaultAddress(a.id)} style={{ marginTop: 10, border: '1.5px solid #E2D9F3', background: '#fff', color: '#5C3FB0', fontWeight: 700, fontSize: 12, padding: '7px 12px', borderRadius: 10, cursor: 'pointer' }}>
+                        Set as default
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : <EmptyState icon="pin" title="No saved addresses" sub="Tick “Save this address” at checkout to store it here." />}
+          </div>
+
+          {/* ── Recent orders ── */}
+          <div>
+            <SectionHeader icon="box" label="Recent orders" />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {DUMMY_ORDERS.map(o => {
+                const cfg = STATUS_CONFIG[o.status] ?? { color: '#6B5B93', bg: '#F5F0FF', icon: '📦' };
+                return (
+                  <div key={o.id} style={{ background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 14 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                      <span style={{ fontWeight: 800, fontSize: 13.5, color: '#2A1E4A' }}>{o.id}</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: cfg.color, background: cfg.bg, padding: '3px 9px', borderRadius: 7, whiteSpace: 'nowrap' }}>{cfg.icon} {o.statusLabel}</span>
+                    </div>
+                    <div style={{ fontSize: 12.5, color: '#7B7398', marginTop: 6 }}>{o.items.join(' · ')}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
+                      <div style={{ fontSize: 12, color: '#9389AE' }}>{o.date} · <strong style={{ color: '#402970' }}>{money(o.total)}</strong></div>
+                      <button onClick={() => trackOrder(o.id)} style={{ border: '1.5px solid #E2D9F3', background: '#fff', color: '#5C3FB0', fontWeight: 700, fontSize: 12, padding: '7px 12px', borderRadius: 10, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <Icon name="truck" size={13} color="#5C3FB0" /> Track
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
     } else if (state.drawer === 'orders') {
       title = 'Track Order';
       const trackFormKey = 'orders_track';
@@ -1975,7 +2164,7 @@ export default function KaprukaChatUI() {
         <RailBtn icon="box" label="Orders" onClick={() => openDrawer('orders')} active={state.drawer === 'orders'} />
         <RailBtn icon="heart" label="Wishlist" onClick={() => openDrawer('wishlist')} active={state.drawer === 'wishlist'} />
         <RailBtn icon="cart" label="Cart" onClick={() => openDrawer('cart')} active={state.drawer === 'cart'} />
-        <RailBtn icon="gear" label="Settings" onClick={() => showToast('Settings — coming soon', 'gear')} />
+        <RailBtn icon="gear" label="Settings" onClick={() => openDrawer('settings')} active={state.drawer === 'settings'} />
         <div style={{ flex: 1 }} />
         <div style={{ position: 'relative' }}>
           <RailBtn icon="chart" label="Manager dashboard" onClick={() => setAdminView(v => !v)} active={adminView} />
@@ -2011,7 +2200,7 @@ export default function KaprukaChatUI() {
       {renderDrawer()}
 
       {/* Manager dashboard overlay */}
-      {adminView && <KaprukaAdminUI railOffset={!isMobile} />}
+      {adminView && <KaprukaAdminUI railOffset={!isMobile} topOffset={isMobile ? 60 : 72} />}
 
       {/* Main */}
       <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', background: 'radial-gradient(120% 80% at 100% 0%, #F3EFFC 0%, #ECE7F6 55%, #E7E0F4 100%)', position: 'relative' }}>
@@ -2028,6 +2217,7 @@ export default function KaprukaChatUI() {
             <img src="/assets/logo-full.png" alt="Kapruka" style={{ height: 30, width: 'auto', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
           </button>
           <div style={{ flex: 1 }} />
+          {!adminView && (<>
           <button onClick={() => openDrawer('wishlist')}
             style={{ all: 'unset', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', gap: 8, padding: isMobile ? '9px 11px' : '9px 14px', borderRadius: 12, background: '#fff', boxShadow: '0 2px 8px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.07)', transition: 'transform .15s ease, box-shadow .15s ease' } as CSSProperties}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 16px rgba(64,41,112,.16)'; }}
@@ -2052,6 +2242,7 @@ export default function KaprukaChatUI() {
               </span>
             )}
           </button>
+          </>)}
         </header>
 
         {/* Scroll area */}
