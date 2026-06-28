@@ -285,6 +285,8 @@ export default function KaprukaChatUI() {
   const streamingTextRef = useRef<string>('');
   const streamingProductsMsgIdRef = useRef<string | null>(null);
   const convIdRef = useRef<string | null>(null);
+  const revealTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const productsShownRef = useRef(false);
 
   // Auto-scroll on new messages
   useEffect(() => {
@@ -377,7 +379,9 @@ export default function KaprukaChatUI() {
   };
 
   const setAvatar = useCallback((s: AvatarKey) => {
-    setState(prev => ({ ...prev, headerState: s, avSeq: prev.avSeq + 1 }));
+    // Skip redundant re-sets so the searching animation isn't restarted between
+    // consecutive searches (each search emits its own "Searching" status).
+    setState(prev => (prev.headerState === s ? prev : { ...prev, headerState: s, avSeq: prev.avSeq + 1 }));
   }, []);
 
   const setForm = (key: string, val: Record<string, unknown>) => {
@@ -537,7 +541,9 @@ export default function KaprukaChatUI() {
             messages: [...prev.messages, newMsg],
           }));
         }
-        setAvatar('show');
+        // Don't reveal yet — keep the searching animation until the whole
+        // operation finishes (see the 'done' handler). Just record that we have products.
+        productsShownRef.current = true;
         break;
       }
       case 'widget': {
@@ -573,6 +579,11 @@ export default function KaprukaChatUI() {
             extra.text = `[${widgetType}]`;
         }
         pushBot({ kind, ...extra });
+        // Purchase complete — invite the customer to rate the experience.
+        if (kind === 'pay_url') {
+          const ref = extra.orderRef as string | undefined;
+          setTimeout(() => pushBot({ kind: 'feedback', orderRef: ref }), 1400);
+        }
         break;
       }
       case 'track_result': {
@@ -587,11 +598,23 @@ export default function KaprukaChatUI() {
       }
       case 'done': {
         finalizeStreamingMsg();
-        setState(prev => ({ ...prev, status: null, streaming: false }));
+        const revealed = productsShownRef.current;
+        productsShownRef.current = false;
+        clearTimeout(revealTimeoutRef.current);
+        if (revealed) {
+          // Whole search operation finished — play the reveal once, then ease back to idle.
+          setState(prev => ({ ...prev, status: null, streaming: false, headerState: 'show', avSeq: prev.avSeq + 1 }));
+          revealTimeoutRef.current = setTimeout(() => setAvatar('idle'), 10000);
+        } else {
+          // Nothing to reveal — don't leave the avatar stuck mid-search.
+          setState(prev => ({
+            ...prev, status: null, streaming: false,
+            ...(prev.headerState === 'search' ? { headerState: 'idle', avSeq: prev.avSeq + 1 } : {}),
+          }));
+        }
         break;
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setAvatar]);
 
   // ── core send message to API ──
@@ -600,6 +623,8 @@ export default function KaprukaChatUI() {
     abortRef.current = new AbortController();
 
     createStreamingMsg();
+    clearTimeout(revealTimeoutRef.current);
+    productsShownRef.current = false;
     setState(prev => ({ ...prev, streaming: true, status: 'Thinking' }));
     setAvatar('idle');
 
@@ -804,6 +829,22 @@ export default function KaprukaChatUI() {
     const text = skip ? 'No gift message.' : `Gift message: ${String(f.message || '')}`;
     pushUser(text);
     sendMessage(text);
+  };
+
+  const submitFeedback = (mid: string) => {
+    const k = 'fb_' + mid;
+    const f = state.forms[k] || {};
+    const rating = Number(f.rating || 0);
+    if (!rating) { showToast('Tap a star to rate', 'star'); return; }
+    const comment = String(f.comment || '').trim();
+    const orderRef = state.messages.find(m => m.id === mid)?.orderRef as string | undefined;
+    completeMsg(mid);
+    setForm(k, { submitted: true });
+    fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating, comment, order_ref: orderRef, conversation_id: convIdRef.current }),
+    }).catch(() => {});
   };
 
   const submitTrackInput = (mid: string) => {
@@ -1296,6 +1337,54 @@ export default function KaprukaChatUI() {
     );
   };
 
+  const WFeedback = ({ m }: { m: Message }) => {
+    const k = 'fb_' + m.id;
+    const f = state.forms[k] || {};
+    const rating = Number(f.rating || 0);
+    const comment = String(f.comment || '');
+    const submitted = Boolean(f.submitted) || Boolean(m.done);
+    const labels = ['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent'];
+
+    if (submitted) {
+      return (
+        <Card accent="#1F9D6B">
+          <div style={{ padding: '22px 18px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#EDFAF5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="check" size={22} color="#1F9D6B" /></div>
+            <div style={{ fontWeight: 800, fontSize: 15, color: '#2A1E4A' }}>Thank you for your feedback!</div>
+            <div style={{ fontSize: 13, color: '#7B7398', maxWidth: 260 }}>{rating >= 4 ? 'So glad you enjoyed shopping with Kapruka 💜' : 'We’ll use your notes to keep improving.'}</div>
+            <div style={{ display: 'flex', gap: 3, marginTop: 2 }}>
+              {[1, 2, 3, 4, 5].map(s => <Icon key={s} name="star" size={16} fill={s <= rating ? '#FDB813' : undefined} color={s <= rating ? '#FDB813' : '#E2D9F3'} />)}
+            </div>
+          </div>
+        </Card>
+      );
+    }
+
+    return (
+      <Card accent="#FDB813">
+        <div style={{ padding: '18px 18px' }}>
+          <div style={{ fontWeight: 800, fontSize: 15, color: '#2A1E4A', textAlign: 'center' }}>How was your experience?</div>
+          <div style={{ fontSize: 12.5, color: '#7B7398', textAlign: 'center', marginTop: 3 }}>Your order is on its way — we’d love your feedback.</div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 8, margin: '16px 0 4px' }}>
+            {[1, 2, 3, 4, 5].map(s => (
+              <button key={s} onClick={() => setForm(k, { rating: s })} aria-label={`${s} star${s > 1 ? 's' : ''}`}
+                style={{ all: 'unset', cursor: 'pointer', lineHeight: 0, transform: s <= rating ? 'scale(1.1)' : 'scale(1)', transition: 'transform .12s' } as CSSProperties}>
+                <Icon name="star" size={34} fill={s <= rating ? '#FDB813' : undefined} color={s <= rating ? '#FDB813' : '#DDD3EE'} />
+              </button>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', height: 17, fontSize: 12.5, fontWeight: 700, color: '#E0A106' }}>{labels[rating]}</div>
+          <textarea value={comment} maxLength={1000} placeholder="Tell us more… (optional)" onChange={e => setForm(k, { comment: e.target.value })}
+            style={{ width: '100%', minHeight: 64, border: '1.5px solid ' + (comment ? '#C9B8ED' : '#E6DEF5'), borderRadius: 13, padding: '11px 13px', fontSize: 14, lineHeight: 1.5, outline: 'none', resize: 'vertical', color: '#241C3D', background: comment ? '#FAF8FE' : '#fff', boxSizing: 'border-box', marginTop: 8 }} />
+          <button onClick={() => submitFeedback(m.id)} disabled={!rating}
+            style={{ width: '100%', marginTop: 12, padding: 13, borderRadius: 13, border: 'none', cursor: rating ? 'pointer' : 'default', background: rating ? 'linear-gradient(135deg,#402970,#5C3FB0)' : '#D8CEEC', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: rating ? '0 6px 18px rgba(64,41,112,.3)' : 'none' }}>
+            Submit feedback
+          </button>
+        </div>
+      </Card>
+    );
+  };
+
   const STATUS_CONFIG: Record<string, { color: string; bg: string; icon: string }> = {
     delivered:        { color: '#1F9D6B', bg: '#EDFAF5', icon: '✓' },
     out_for_delivery: { color: '#2563EB', bg: '#EFF6FF', icon: '🚚' },
@@ -1455,6 +1544,7 @@ export default function KaprukaChatUI() {
       case 'gift':          return WGift({ m });
       case 'track_result':  return WTrackResult({ m });
       case 'pay_url':       return WPayUrl({ m });
+      case 'feedback':      return WFeedback({ m });
       case 'track_input':   return WTrackInput({ m });
       default: return null;
     }
@@ -1760,7 +1850,8 @@ export default function KaprukaChatUI() {
           <div style={{ fontWeight: 700, fontSize: 16, color: '#2A1E4A' }}>Sign in to save your progress</div>
           <div style={{ fontSize: 13.5, color: '#7B7398', maxWidth: 280 }}>Your cart, wishlist, and addresses will be saved across sessions.</div>
           <button onClick={() => signIn('google')} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 20px', borderRadius: 13, border: '1.5px solid #E2D9F3', background: '#fff', color: '#2A1E4A', fontWeight: 700, fontSize: 14, cursor: 'pointer', boxShadow: '0 4px 14px rgba(64,41,112,.12)' }}>
-            <Icon name="google" size={20} color="#4285F4" /> Continue with Google
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/google-logo-48.png" alt="" style={{ width: 20, height: 20, display: 'block' }} /> Continue with Google
           </button>
         </div>
       ) : (
@@ -1779,9 +1870,39 @@ export default function KaprukaChatUI() {
       );
     }
 
+    // Persistence nudge: cart, wishlist & history work this session but only
+    // survive across sessions/devices once the user signs in.
+    const persistNudge: Record<string, string> = {
+      cart: 'Your cart is saved for this session only.',
+      wishlist: 'Your wishlist is saved for this session only.',
+      history: 'Your chat history is saved for this session only.',
+    };
+    if (isAnon && persistNudge[state.drawer]) {
+      body = (
+        <>
+          <div style={{ background: 'linear-gradient(135deg,#EEE7FB,#F8F4FE)', border: '1px solid rgba(64,41,112,.12)', borderRadius: 14, padding: '13px 14px', marginBottom: 16, display: 'flex', flexDirection: 'column', gap: 11 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+              <div style={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#402970,#5C3FB0)', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}>
+                <Icon name="link" size={16} color="#fff" />
+              </div>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: 13, color: '#2A1E4A', lineHeight: 1.3 }}>{persistNudge[state.drawer]}</div>
+                <div style={{ fontSize: 12, color: '#7B7398', marginTop: 2, lineHeight: 1.4 }}>Sign in to keep it and sync across your devices.</div>
+              </div>
+            </div>
+            <button onClick={() => signIn('google')} style={{ all: 'unset', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '9px 14px', borderRadius: 10, background: '#fff', border: '1.5px solid #E2D9F3', color: '#2A1E4A', fontWeight: 700, fontSize: 12.5, boxShadow: '0 2px 8px rgba(64,41,112,.1)' } as CSSProperties}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/google-logo-48.png" alt="" style={{ width: 15, height: 15, display: 'block' }} /> Sign in with Google
+            </button>
+          </div>
+          {body}
+        </>
+      );
+    }
+
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 60, display: 'flex' }}>
-        <div onClick={close} style={{ position: 'absolute', inset: 0, background: 'rgba(42,30,74,.32)', backdropFilter: 'blur(2px)', animation: 'fadeBg .25s both' }} />
+        <div onClick={close} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 74, background: 'rgba(42,30,74,.32)', backdropFilter: 'blur(2px)', animation: 'fadeBg .25s both' }} />
         <div style={{ position: 'relative', marginLeft: 74, width: 380, maxWidth: '90vw', height: '100%', background: '#F6F2FC', boxShadow: '8px 0 40px rgba(42,30,74,.2)', display: 'flex', flexDirection: 'column', animation: 'drawerIn .32s cubic-bezier(.2,.9,.3,1) both' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 20px', borderBottom: '1px solid rgba(64,41,112,.08)' }}>
             <div style={{ fontFamily: "var(--font-baloo2), 'Baloo 2', sans-serif", fontWeight: 700, fontSize: 19, color: '#2A1E4A' }}>{title}</div>
@@ -1813,7 +1934,7 @@ export default function KaprukaChatUI() {
     <div style={{ display: 'flex', height: '100vh', width: '100%', overflow: 'hidden', background: '#ECE7F6', color: '#241C3D' }}>
 
       {/* Left rail */}
-      <aside style={{ width: 74, flex: '0 0 74px', background: 'linear-gradient(180deg,#402970 0%,#33205C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0', gap: 6, zIndex: 40, boxShadow: '2px 0 24px rgba(45,28,90,.22)' }}>
+      <aside style={{ width: 74, flex: '0 0 74px', position: 'relative', background: 'linear-gradient(180deg,#402970 0%,#33205C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0', gap: 6, zIndex: 70, boxShadow: '2px 0 24px rgba(45,28,90,.22)' }}>
         <div style={{ flex: 1 }} />
         <RailBtn icon="plus" label="New chat" onClick={newChat} />
         <RailBtn icon="msg" label="Conversations" onClick={() => { openDrawer('history'); if (state.drawer !== 'history') loadConversations(); }} active={state.drawer === 'history'} />
@@ -1835,7 +1956,10 @@ export default function KaprukaChatUI() {
               <div style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A', lineHeight: 1.3 }}>Sign in to save your progress</div>
               <div style={{ fontSize: 12, color: '#9389AE', marginTop: 3, lineHeight: 1.4 }}>Cart, wishlist & orders sync across devices.</div>
               <button onClick={() => signIn('google')} style={{ all: 'unset', cursor: 'pointer', marginTop: 10, display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 12px', borderRadius: 9, background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 700, fontSize: 12.5, boxShadow: '0 4px 12px rgba(64,41,112,.28)' }}>
-                <Icon name="google" size={14} color="#fff" /> Sign in with Google
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 18, height: 18, borderRadius: '50%', background: '#fff' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/assets/google-logo-48.png" alt="" style={{ width: 12, height: 12, display: 'block' }} />
+                </span> Sign in with Google
               </button>
             </div>
             <button onClick={() => setShowSignInPrompt(false)} style={{ all: 'unset', cursor: 'pointer', color: '#C3B8DE', marginTop: -2, flex: '0 0 auto' }}>
@@ -1853,8 +1977,10 @@ export default function KaprukaChatUI() {
 
         {/* Header */}
         <header style={{ height: 72, flex: '0 0 72px', display: 'flex', alignItems: 'center', gap: 14, padding: '0 26px', background: 'rgba(255,255,255,.72)', backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(64,41,112,.08)', zIndex: 20 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/logo-full.png" alt="Kapruka" style={{ height: 30, width: 'auto', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+          <button onClick={newChat} title="New chat" aria-label="Kapruka home" style={{ all: 'unset', cursor: 'pointer', display: 'flex', alignItems: 'center' } as CSSProperties}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/logo-full.png" alt="Kapruka" style={{ height: 30, width: 'auto', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+          </button>
           <div style={{ flex: 1 }} />
           <button onClick={() => openDrawer('wishlist')}
             style={{ all: 'unset', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', gap: 8, padding: '9px 14px', borderRadius: 12, background: '#fff', boxShadow: '0 2px 8px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.07)', transition: 'transform .15s ease, box-shadow .15s ease' } as CSSProperties}
