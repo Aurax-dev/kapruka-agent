@@ -7,11 +7,12 @@ export const GEMINI_TOOLS: Tool[] = [
       {
         name: "search_products",
         description:
-          "Search Kapruka's catalog for products matching a keyword query. Use short, direct product-type terms (1–2 words): 'skincare', 'perfume', 'watch', 'headphones'. Avoid long descriptive phrases — 'skincare hamper for mom' makes the search anchor on 'hamper' and returns unrelated results. Call multiple times with different product types to cover broad requests.",
+          "Search Kapruka's catalog. Frame queries as GIFTS (2–4 words): 'cosmetics gift set', 'rose bouquet', 'gift box for her', 'grooming gift set'. A bare term like 'skincare' returns pharmacy items — avoid it. Call multiple times in one turn with different gift categories to fill the carousel with variety.",
         parameters: {
           type: Type.OBJECT,
           properties: {
-            q: { type: Type.STRING, description: "Product type keyword — short and direct, e.g. 'skincare', 'watch', 'perfume'. Avoid multi-word gift phrases." },
+            q: { type: Type.STRING, description: "Gift-framed query, 2–4 words, e.g. 'cosmetics gift set', 'rose bouquet', 'gift box for him'. Not a bare product word." },
+            label: { type: Type.STRING, description: "Short human tab title for this result group, e.g. 'Cosmetics', 'Flowers', 'Gift Boxes'. Shown to the user; keep it 1–2 words." },
             limit: { type: Type.NUMBER, description: "Number of results (1-12). Default 6." },
             category: { type: Type.STRING, description: "Optional category slug to filter results. Only use values returned by list_categories — do NOT guess category names. Omit this for broad searches." },
             max_price: { type: Type.NUMBER, description: "Maximum price in LKR." },
@@ -119,6 +120,7 @@ export const GEMINI_TOOLS: Tool[] = [
           type: Type.OBJECT,
           properties: {
             list: { type: Type.STRING, description: "List name: best_sellers | promotions | same_day" },
+            contains: { type: Type.STRING, description: "Optional category keyword to filter the list by, e.g. 'flowers', 'cake', 'chocolate'. Use it when the conversation is focused on a product type. If the result count comes back 0, nothing in the curated list matched — fall back to search_products for that type." },
             limit: { type: Type.NUMBER, description: "Max results (1-12). Default 12." },
           },
           required: ["list"],

@@ -35,6 +35,26 @@ export type WidgetType =
   | "pay_url"
   | "saved_address";
 
+export interface TrackResult {
+  order_number: string;
+  status: string;
+  status_display: string;
+  order_date: string;
+  delivery_date: string;
+  shipped_date: string | null;
+  amount: string;
+  payment_method: string;
+  comments: string | null;
+  recipient: { name: string; phone: string; address: string; city: string };
+  greeting_message: string | null;
+  special_instructions: string | null;
+  progress: { step: string; timestamp: string }[];
+  live_tracking_available: boolean;
+  has_delivery_video: boolean;
+  has_delivery_photo: boolean;
+  items: { product_id: string; name: string; quantity: number; selling_price: number }[];
+}
+
 export type AgentEvent =
   | { type: "text_delta"; text: string }
   | { type: "clear_text" }
@@ -42,4 +62,5 @@ export type AgentEvent =
   | { type: "status"; label: string }
   | { type: "widget"; widget: WidgetType; data?: Record<string, unknown> }
   | { type: "url"; url: string; title: string }
+  | { type: "track_result"; data: TrackResult }
   | { type: "done" };

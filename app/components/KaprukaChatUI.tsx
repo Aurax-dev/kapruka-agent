@@ -43,6 +43,9 @@ interface Message {
   order?: string;
   payUrl?: string;
   payAmount?: number;
+  orderRef?: string;
+  expiresAt?: string;
+  trackData?: import('@/lib/chat/types').TrackResult;
   savedAddrs?: SavedAddress[];
   [key: string]: unknown;
 }
@@ -91,6 +94,7 @@ interface AppState {
   conversationId: string | null;
   savedAddrs: SavedAddress[];
   conversations: ConversationRow[];
+  loadingDrawers: Record<string, boolean>;
 }
 
 interface ConversationRow {
@@ -104,15 +108,32 @@ interface ConversationRow {
 // ─────────────────────────────────────────────
 
 const AV: Record<AvatarKey, string> = {
-  idle:     '/avatar/video/idle.mp4',
-  greeting: '/avatar/video/greeting.mp4',
-  search:   '/avatar/video/searching-products.mp4',
-  show:     '/avatar/video/show-products.mp4',
-  detail:   '/avatar/video/details-on-product.mp4',
-  cart:     '/avatar/video/add-to-cart.mp4',
-  delivery: '/avatar/video/delivery.mp4',
-  done:     '/avatar/video/purchase-complete.mp4',
+  idle:     '/avatar/video/optimized/idle.mp4',
+  greeting: '/avatar/video/optimized/greeting.mp4',
+  search:   '/avatar/video/optimized/searching-products.mp4',
+  show:     '/avatar/video/optimized/show-products.mp4',
+  detail:   '/avatar/video/optimized/details-on-product.mp4',
+  cart:     '/avatar/video/optimized/add-to-cart.mp4',
+  delivery: '/avatar/video/optimized/delivery.mp4',
+  done:     '/avatar/video/optimized/purchase-complete.mp4',
 };
+
+const AVP: Record<AvatarKey, string> = {
+  idle:     '/avatar/images/idle.png',
+  greeting: '/avatar/images/greeting.png',
+  search:   '/avatar/images/searching-products.png',
+  show:     '/avatar/images/show-products.png',
+  detail:   '/avatar/images/details-on-product.png',
+  cart:     '/avatar/images/add-to-cart.png',
+  delivery: '/avatar/images/delivery.png',
+  done:     '/avatar/images/purchase-complete.png',
+};
+
+const IDLE_VARIANTS = [
+  '/avatar/video/optimized/idle.mp4',
+  '/avatar/video/optimized/idle-v2.mp4',
+  '/avatar/video/optimized/idle-v3.mp4',
+];
 
 const TONES = ['rose', 'cocoa', 'mint', 'peach', 'violet'];
 
@@ -187,20 +208,26 @@ function money(n: number) {
 // Avatar Video Component
 // ─────────────────────────────────────────────
 
-function AvatarVideo({ src, style }: { src: string; style?: React.CSSProperties }) {
+function AvatarVideo({ src, poster, loop = true, style }: { src: string; poster?: string; loop?: boolean; style?: React.CSSProperties }) {
   const ref = useRef<HTMLVideoElement>(null);
   useEffect(() => {
-    if (ref.current) {
-      ref.current.load();
-      ref.current.play().catch(() => {});
+    const v = ref.current;
+    if (!v) return;
+    v.load();
+    v.play().catch(() => {});
+    if (!loop) {
+      const holdLastFrame = () => { if (v.duration) v.currentTime = v.duration - 0.001; };
+      v.addEventListener('ended', holdLastFrame);
+      return () => v.removeEventListener('ended', holdLastFrame);
     }
-  }, [src]);
+  }, [src, loop]);
   return (
     <video
       ref={ref}
       src={src}
+      poster={poster}
       autoPlay
-      loop
+      loop={loop}
       muted
       playsInline
       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', ...style }}
@@ -247,6 +274,7 @@ export default function KaprukaChatUI() {
     conversationId: null,
     savedAddrs: [],
     conversations: [],
+    loadingDrawers: {},
   });
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -263,6 +291,14 @@ export default function KaprukaChatUI() {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [state.messages, state.streaming, state.status]);
 
+  const [showSignInPrompt, setShowSignInPrompt] = useState(false);
+  useEffect(() => {
+    if (!isAnon) { setShowSignInPrompt(false); return; }
+    const show = setTimeout(() => setShowSignInPrompt(true), 2500);
+    const hide = setTimeout(() => setShowSignInPrompt(false), 9000);
+    return () => { clearTimeout(show); clearTimeout(hide); };
+  }, [isAnon]);
+
   // Auto-sign-in as guest if unauthenticated
   useEffect(() => {
     if (sessionStatus === 'unauthenticated') {
@@ -274,9 +310,37 @@ export default function KaprukaChatUI() {
     }
   }, [sessionStatus, session]);
 
-  // Load cart and addresses from API on auth
+  // Load cart, addresses, and wishlist from API on auth
   useEffect(() => {
     if (sessionStatus !== 'authenticated') return;
+    setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, cart: true, wishlist: true, saved: true } }));
+
+    fetch('/api/wishlist').then(r => r.json()).then(d => {
+      if (!Array.isArray(d.items)) return;
+      const ids: string[] = d.items.map((i: { productId: string }) => i.productId);
+      const synthetic: Record<string, RealProduct> = {};
+      d.items.forEach((item: { productId: string; name: string; imageUrl: string | null; priceAmount: number }, idx: number) => {
+        synthetic[item.productId] = {
+          id: item.productId,
+          name: item.name,
+          price: { amount: item.priceAmount, currency: 'LKR' },
+          comparePrice: null,
+          image_url: item.imageUrl,
+          in_stock: true,
+          url: '',
+          summary: '',
+          tone: TONES[idx % TONES.length],
+          glyph: 'gift',
+        };
+      });
+      setState(prev => ({
+        ...prev,
+        wishlist: ids,
+        products: { ...synthetic, ...prev.products },
+        loadingDrawers: { ...prev.loadingDrawers, wishlist: false },
+      }));
+    }).catch(() => setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, wishlist: false } })));
+
     fetch('/api/cart').then(r => r.json()).then(d => {
       if (!Array.isArray(d.items)) return;
       setState(prev => ({
@@ -290,12 +354,14 @@ export default function KaprukaChatUI() {
           tone: 'violet',
           glyph: 'gift',
         })),
+        loadingDrawers: { ...prev.loadingDrawers, cart: false },
       }));
-    }).catch(() => {});
+    }).catch(() => setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, cart: false } })));
+
     fetch('/api/addresses').then(r => r.json()).then(d => {
       if (!Array.isArray(d.addresses)) return;
-      setState(prev => ({ ...prev, savedAddrs: d.addresses }));
-    }).catch(() => {});
+      setState(prev => ({ ...prev, savedAddrs: d.addresses, loadingDrawers: { ...prev.loadingDrawers, saved: false } }));
+    }).catch(() => setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, saved: false } })));
   }, [sessionStatus]);
 
   // ── helpers ──
@@ -495,6 +561,8 @@ export default function KaprukaChatUI() {
             kind = 'pay_url';
             extra.payUrl = data.url;
             extra.payAmount = data.amount;
+            extra.orderRef = data.order_ref;
+            extra.expiresAt = data.expires_at;
             setAvatar('done');
             break;
           case 'track_order':
@@ -507,6 +575,16 @@ export default function KaprukaChatUI() {
         pushBot({ kind, ...extra });
         break;
       }
+      case 'track_result': {
+        const msgId = String(++uidRef.current);
+        setState(prev => ({
+          ...prev,
+          status: null,
+          messages: [...prev.messages, { id: msgId, role: 'bot', kind: 'track_result', trackData: event.data as import('@/lib/chat/types').TrackResult }],
+        }));
+        setAvatar('delivery');
+        break;
+      }
       case 'done': {
         finalizeStreamingMsg();
         setState(prev => ({ ...prev, status: null, streaming: false }));
@@ -517,7 +595,7 @@ export default function KaprukaChatUI() {
   }, [setAvatar]);
 
   // ── core send message to API ──
-  const sendMessage = useCallback(async (text: string) => {
+  const sendMessage = useCallback(async (text: string, historyOverride?: import('@/lib/chat/types').ChatMessage[]) => {
     abortRef.current?.abort();
     abortRef.current = new AbortController();
 
@@ -543,7 +621,7 @@ export default function KaprukaChatUI() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: text,
-          history: buildHistory(),
+          history: historyOverride ?? buildHistory(),
           cart: buildCartPayload(),
           conversationId: convIdRef.current,
         }),
@@ -579,6 +657,25 @@ export default function KaprukaChatUI() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionStatus, handleStreamEvent, setAvatar]);
 
+  // ── retry — replays the last user message, wiping subsequent bot turn ──
+  const retryLastUser = () => {
+    if (state.streaming) return;
+    const msgs = state.messages;
+    let userMsgIdx = -1;
+    for (let i = msgs.length - 1; i >= 0; i--) {
+      if (msgs[i].role === 'user') { userMsgIdx = i; break; }
+    }
+    if (userMsgIdx === -1) return;
+    const userText = msgs[userMsgIdx].text ?? '';
+    if (!userText) return;
+    const historyOverride = msgs
+      .slice(0, userMsgIdx)
+      .filter(m => !m.streaming && m.kind === 'text' && m.text)
+      .map(m => ({ role: m.role === 'user' ? 'user' as const : 'ruki' as const, text: m.text as string }));
+    setState(prev => ({ ...prev, messages: prev.messages.slice(0, userMsgIdx + 1) }));
+    sendMessage(userText, historyOverride);
+  };
+
   // ── user input ──
   const send = () => {
     const t = (state.input || '').trim();
@@ -599,20 +696,21 @@ export default function KaprukaChatUI() {
   };
 
   const toggleWish = (id: string) => {
-    const p = getProduct(id);
-    if (!p) return;
     const has = state.wishlist.includes(id);
     setState(prev => ({ ...prev, wishlist: has ? prev.wishlist.filter(x => x !== id) : [...prev.wishlist, id] }));
     if (!has) {
-      fetch('/api/wishlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product_id: id, name: p.name, image_url: p.image_url, price_amount: p.price.amount ?? 0 }),
-      }).catch(() => {});
+      const p = getProduct(id);
+      if (p) {
+        fetch('/api/wishlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ product_id: id, name: p.name, image_url: p.image_url, price_amount: p.price.amount ?? 0 }),
+        }).catch(() => {});
+      }
     } else {
       fetch(`/api/wishlist/${id}`, { method: 'DELETE' }).catch(() => {});
     }
-    showToast(has ? 'Removed from wishlist' : `Saved to wishlist`, 'heart');
+    showToast(has ? 'Removed from wishlist' : 'Saved to wishlist', 'heart');
   };
 
   const addToCart = (id: string) => {
@@ -712,8 +810,9 @@ export default function KaprukaChatUI() {
     const f = state.forms['ti_' + mid] || {};
     if (!f.orderNo) { showToast('Enter your order number', 'box'); return; }
     completeMsg(mid);
-    pushUser(String(f.orderNo));
-    sendMessage(String(f.orderNo));
+    const orderNo = String(f.orderNo).trim();
+    pushUser(orderNo);
+    sendMessage('Track order ' + orderNo);
   };
 
   const newChat = () => {
@@ -754,11 +853,14 @@ export default function KaprukaChatUI() {
   };
 
   const loadConversations = async () => {
+    setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, history: true } }));
     try {
       const r = await fetch('/api/conversations');
       const d = await r.json() as { conversations: ConversationRow[] };
-      setState(prev => ({ ...prev, conversations: d.conversations || [] }));
-    } catch {}
+      setState(prev => ({ ...prev, conversations: d.conversations || [], loadingDrawers: { ...prev.loadingDrawers, history: false } }));
+    } catch {
+      setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, history: false } }));
+    }
   };
 
   // ── sub-renders ──
@@ -887,7 +989,13 @@ export default function KaprukaChatUI() {
               return (
                 <button
                   key={i}
-                  onClick={() => setState(prev => ({ ...prev, selectedTabs: { ...prev.selectedTabs, [m.id]: i } }))}
+                  onClick={() => {
+                    setState(prev => ({ ...prev, selectedTabs: { ...prev.selectedTabs, [m.id]: i } }));
+                    requestAnimationFrame(() => {
+                      const el = document.getElementById(`carousel-${m.id}`);
+                      if (el) el.scrollLeft = 0;
+                    });
+                  }}
                   style={{
                     flex: '0 0 auto', display: 'flex', alignItems: 'center', gap: 5,
                     padding: '5px 11px', borderRadius: 20, border: 'none', cursor: 'pointer',
@@ -914,14 +1022,14 @@ export default function KaprukaChatUI() {
         )}
 
         {/* ── carousel ── */}
-        <div style={{ display: 'flex', gap: 14, overflowX: 'auto', margin: '0 18px', padding: '8px 0 14px', scrollSnapType: 'x mandatory' }}>
+        <div id={`carousel-${m.id}`} style={{ display: 'flex', gap: 14, overflowX: 'auto', margin: '0 18px', padding: '8px 0 14px', scrollSnapType: 'x mandatory' }}>
           {loadedIds.map((id, i) => ProductCard({ id, i }))}
 
           {/* load more sentinel — only for labelled searches */}
           {activeLabel && (
             <div
               onClick={() => {
-                const msg = `Show me more ${sentenceCase(activeLabel!)} options`;
+                const msg = `Show me more options for "${sentenceCase(activeLabel!)}"`;
                 pushUser(msg);
                 sendMessage(msg);
               }}
@@ -1188,9 +1296,108 @@ export default function KaprukaChatUI() {
     );
   };
 
+  const STATUS_CONFIG: Record<string, { color: string; bg: string; icon: string }> = {
+    delivered:        { color: '#1F9D6B', bg: '#EDFAF5', icon: '✓' },
+    out_for_delivery: { color: '#2563EB', bg: '#EFF6FF', icon: '🚚' },
+    shipped:          { color: '#2563EB', bg: '#EFF6FF', icon: '📦' },
+    confirmed:        { color: '#5C3FB0', bg: '#F3EBFF', icon: '✅' },
+    received:         { color: '#5C3FB0', bg: '#F3EBFF', icon: '📋' },
+    cancelled:        { color: '#C0392B', bg: '#FDECEA', icon: '✕' },
+  };
+
+  const WTrackResult = ({ m }: { m: Message }) => {
+    const d = m.trackData;
+    if (!d) return null;
+    const cfg = STATUS_CONFIG[d.status] ?? { color: '#6B5B93', bg: '#F5F0FF', icon: '📦' };
+    const lkrAmount = parseFloat(d.amount ?? '0');
+    return (
+      <Card accent={cfg.color}>
+        <div style={{ padding: '18px 18px 14px' }}>
+          {/* Status header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+            <div style={{ width: 38, height: 38, borderRadius: '50%', background: cfg.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, flexShrink: 0 }}>{cfg.icon}</div>
+            <div>
+              <div style={{ fontWeight: 800, fontSize: 15, color: cfg.color }}>{d.status_display || d.status}</div>
+              <div style={{ fontSize: 12, color: '#9389AE', marginTop: 1 }}>Order {d.order_number}</div>
+            </div>
+            {!isNaN(lkrAmount) && lkrAmount > 0 && (
+              <div style={{ marginLeft: 'auto', fontWeight: 800, fontSize: 14, color: '#402970' }}>{money(lkrAmount)}</div>
+            )}
+          </div>
+
+          {/* Meta row */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px', fontSize: 12, color: '#6B5B93', marginBottom: 14, paddingBottom: 12, borderBottom: '1px solid #ECE5F7' }}>
+            {d.order_date && <span>Ordered {d.order_date}</span>}
+            {d.delivery_date && <span>Delivery {d.delivery_date}</span>}
+            {d.payment_method && <span>{d.payment_method}</span>}
+          </div>
+
+          {/* Progress timeline */}
+          {d.progress?.length > 0 && (
+            <div style={{ marginBottom: 14 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#9389AE', letterSpacing: 0.5, marginBottom: 8, textTransform: 'uppercase' }}>Progress</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {d.progress.map((step, i) => (
+                  <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: i === 0 ? cfg.color : '#C9B8ED', marginTop: 4, flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? '#2A1E4A' : '#5A4F72' }}>{step.step}</div>
+                      {step.timestamp && <div style={{ fontSize: 11, color: '#9389AE' }}>{step.timestamp}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Items */}
+          {d.items?.length > 0 && (
+            <div style={{ marginBottom: 12, paddingTop: 12, borderTop: '1px solid #ECE5F7' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#9389AE', letterSpacing: 0.5, marginBottom: 7, textTransform: 'uppercase' }}>Items</div>
+              {d.items.map((item, i) => (
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#5A4F72', marginBottom: 4 }}>
+                  <span>{item.quantity > 1 ? `${item.quantity}× ` : ''}{item.name}</span>
+                  {item.selling_price > 0 && <span style={{ fontWeight: 600, color: '#402970' }}>{money(item.selling_price)}</span>}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Recipient */}
+          {d.recipient?.name && (
+            <div style={{ fontSize: 12, color: '#9389AE', paddingTop: 10, borderTop: '1px solid #ECE5F7' }}>
+              Delivering to <strong style={{ color: '#6B5B93' }}>{d.recipient.name}</strong>
+              {d.recipient.city ? `, ${d.recipient.city}` : ''}
+            </div>
+          )}
+
+          {/* Extras */}
+          {(d.live_tracking_available || d.has_delivery_photo || d.has_delivery_video) && (
+            <div style={{ marginTop: 10, fontSize: 11, color: '#1F9D6B', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {d.live_tracking_available && <span>📍 Live tracking available</span>}
+              {d.has_delivery_photo && <span>📷 Delivery photo available</span>}
+              {d.has_delivery_video && <span>🎥 Delivery video available</span>}
+            </div>
+          )}
+        </div>
+      </Card>
+    );
+  };
+
   const WPayUrl = ({ m }: { m: Message }) => {
     const amount = (m.payAmount as number | undefined) ?? 0;
     const url = (m.payUrl as string | undefined) ?? '';
+    const orderRef = (m.orderRef as string | undefined);
+    const expiresAt = (m.expiresAt as string | undefined);
+
+    let expiryLabel = '';
+    if (expiresAt) {
+      try {
+        const dt = new Date(expiresAt);
+        expiryLabel = dt.toLocaleTimeString('en-LK', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Colombo' }) + ' SL time';
+      } catch { expiryLabel = '60 minutes'; }
+    }
+
     return (
       <Card accent="#1F9D6B">
         <div style={{ padding: '20px 18px' }}>
@@ -1205,7 +1412,18 @@ export default function KaprukaChatUI() {
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9, width: '100%', padding: 15, borderRadius: 14, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#1F9D6B,#16855A)', color: '#fff', fontWeight: 800, fontSize: 15, textDecoration: 'none', boxShadow: '0 8px 22px rgba(31,157,107,.36)' }}>
             <Icon name="check" size={18} color="#fff" /> Complete Purchase {amount > 0 && `· ${money(amount)}`}
           </a>
-          <div style={{ textAlign: 'center', fontSize: 11, color: '#9389AE', marginTop: 9, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>🔒 Secure checkout via kapruka.com</div>
+          {orderRef && (
+            <div style={{ marginTop: 11, padding: '7px 10px', background: '#F5F0FF', borderRadius: 8, fontSize: 12, color: '#6B5B93', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span>Order ref</span>
+              <strong style={{ fontFamily: 'monospace', letterSpacing: 0.4 }}>{orderRef}</strong>
+            </div>
+          )}
+          <div style={{ marginTop: 8, textAlign: 'center', fontSize: 11, color: '#9389AE', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
+            🔒 Secure checkout via kapruka.com{expiryLabel ? ` · ⏱ link expires ${expiryLabel}` : ''}
+          </div>
+          <div style={{ marginTop: 8, padding: '7px 10px', background: '#FFF8EC', borderRadius: 8, fontSize: 11, color: '#8B6914', lineHeight: 1.4 }}>
+            After paying, Kapruka will email you an order number (e.g. VIMP12345CB2) — save it to track your delivery.
+          </div>
         </div>
       </Card>
     );
@@ -1218,7 +1436,7 @@ export default function KaprukaChatUI() {
       <Card>
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="truck" size={16} color="#7B5BD6" /> Track your order</div>
-          <Field label="Order number" fieldKey="orderNo" formKey={k} ph="KPR-2026-12345" />
+          <Field label="Order number" fieldKey="orderNo" formKey={k} ph="e.g. VIMP34456CB2 (from your email)" />
           <button onClick={() => submitTrackInput(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Tracking…' : 'Track order'}</button>
         </div>
       </Card>
@@ -1227,16 +1445,17 @@ export default function KaprukaChatUI() {
 
   const renderWidget = (m: Message) => {
     switch (m.kind) {
-      case 'products':    return WProducts({ m });
-      case 'detail':      return WDetail({ m });
-      case 'cartconfirm': return WCartConfirm({ m });
-      case 'citydate':    return WCityDate({ m });
-      case 'saved':       return WSaved({ m });
-      case 'recipient':   return WRecipient({ m });
-      case 'sender':      return WSender({ m });
-      case 'gift':        return WGift({ m });
-      case 'pay_url':     return WPayUrl({ m });
-      case 'track_input': return WTrackInput({ m });
+      case 'products':      return WProducts({ m });
+      case 'detail':        return WDetail({ m });
+      case 'cartconfirm':   return WCartConfirm({ m });
+      case 'citydate':      return WCityDate({ m });
+      case 'saved':         return WSaved({ m });
+      case 'recipient':     return WRecipient({ m });
+      case 'sender':        return WSender({ m });
+      case 'gift':          return WGift({ m });
+      case 'track_result':  return WTrackResult({ m });
+      case 'pay_url':       return WPayUrl({ m });
+      case 'track_input':   return WTrackInput({ m });
       default: return null;
     }
   };
@@ -1252,14 +1471,16 @@ export default function KaprukaChatUI() {
     if (m.kind === 'text') {
       return (
         <div key={m.id} style={{ display: 'flex', justifyContent: 'flex-start', animation: 'msgIn .5s cubic-bezier(.2,.9,.3,1) both' }}>
-          <div style={{ maxWidth: '76%', background: '#fff', color: '#2A2342', padding: m.streaming ? '14px 18px' : '11px 16px', borderRadius: '5px 18px 18px 18px', fontSize: 14.5, lineHeight: 1.55, boxShadow: '0 3px 12px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.05)', whiteSpace: 'pre-wrap' }}>
-            {m.streaming ? (
-              <span style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '0ms' }} />
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '150ms' }} />
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '300ms' }} />
-              </span>
-            ) : m.text}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: '76%' }}>
+            <div style={{ background: '#fff', color: '#2A2342', padding: m.streaming ? '14px 18px' : '11px 16px', borderRadius: '5px 18px 18px 18px', fontSize: 14.5, lineHeight: 1.55, boxShadow: '0 3px 12px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.05)', whiteSpace: 'pre-wrap' }}>
+              {m.streaming ? (
+                <span style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '0ms' }} />
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '150ms' }} />
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '300ms' }} />
+                </span>
+              ) : m.text}
+            </div>
           </div>
         </div>
       );
@@ -1273,12 +1494,11 @@ export default function KaprukaChatUI() {
     );
   };
 
-  // ── composer toolbar (quick actions + price filter + contextual chips) ──
-  const PRICE_STEPS = [3000, 5000, 8000, 15000, 25000, 50000];
+  // ── composer toolbar ──
   const QUICK_ACTIONS = [
     { label: '⭐  Best sellers', msg: 'Show me your best sellers' },
     { label: '🏷️  Promotions',  msg: "Show me today's deals and promotions" },
-    { label: '⚡  Same day',    msg: 'What can I get delivered today?' },
+    { label: '⚡  Same day delivery', msg: 'What can I get delivered today?' },
   ];
 
   const chipBtn = (label: string, onClick: () => void, delay = 0) => (
@@ -1291,41 +1511,20 @@ export default function KaprukaChatUI() {
   );
 
   let composerToolbar: React.ReactNode = null;
-  if (state.started) {
+  if (state.started && !state.streaming) {
     const last = [...state.messages].reverse().find(m => m.role === 'bot');
-    const contextualChips: React.ReactNode[] = [];
-    if (!state.streaming && last) {
-      if (last.kind === 'detail')      contextualChips.push(chipBtn('See more options', () => { pushUser('Show me more gift options'); sendMessage('Show me more gift options'); }, 0));
-      if (last.kind === 'cartconfirm') contextualChips.push(chipBtn('Keep shopping', () => { pushUser('Show me more gifts'); sendMessage('Show me more gifts'); }, 0), chipBtn('Checkout now', beginCheckout, 60));
-      if (last.kind === 'pay_url')     contextualChips.push(chipBtn('Track my order', () => { pushUser('Track my order'); sendMessage('Track my order'); }, 0));
-      contextualChips.push(chipBtn('🛒 Cart', () => openDrawer('cart'), contextualChips.length * 60));
+    const contextual: React.ReactNode[] = [];
+    if (last) {
+      if (last.kind === 'detail')      contextual.push(chipBtn('See more options', () => { pushUser('Show me more gift options'); sendMessage('Show me more gift options'); }, 220));
+      if (last.kind === 'cartconfirm') contextual.push(chipBtn('Keep shopping', () => { pushUser('Show me more gifts'); sendMessage('Show me more gifts'); }, 220), chipBtn('Checkout now', beginCheckout, 275));
+      if (last.kind === 'pay_url')     contextual.push(chipBtn('Track my order', () => { pushUser('Track my order'); sendMessage('Track my order'); }, 220));
     }
-
     composerToolbar = (
-      <div style={{ marginBottom: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {/* Quick-access row */}
-        {!state.streaming && (
-          <div style={{ display: 'flex', gap: 7, overflowX: 'auto', scrollbarWidth: 'none' }}>
-            {QUICK_ACTIONS.map((a, i) => chipBtn(a.label, () => { pushUser(a.msg); sendMessage(a.msg); }, i * 55))}
-          </div>
-        )}
-
-        {/* Price filter row */}
-        {!state.streaming && (
-          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', scrollbarWidth: 'none', alignItems: 'center' }}>
-            <span style={{ flex: '0 0 auto', fontSize: 11, fontWeight: 600, color: '#9389AE' }}>Under</span>
-            {PRICE_STEPS.map((p, i) => {
-              const label = p >= 1000 ? `Rs ${p / 1000}K` : `Rs ${p}`;
-              const msg = `Show me gifts under Rs ${p.toLocaleString()}`;
-              return chipBtn(label, () => { pushUser(msg); sendMessage(msg); }, 180 + i * 45);
-            })}
-          </div>
-        )}
-
-        {/* Contextual chips */}
-        {contextualChips.length > 0 && (
-          <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>{contextualChips}</div>
-        )}
+      <div style={{ marginBottom: 8, display: 'flex', gap: 7, overflowX: 'auto', scrollbarWidth: 'none', paddingLeft: 74 }}>
+        {QUICK_ACTIONS.map((a, i) => chipBtn(a.label, () => { pushUser(a.msg); sendMessage(a.msg); }, i * 55))}
+        {chipBtn('Under Rs 10K', () => { const msg = 'Show me gifts under Rs 10,000'; pushUser(msg); sendMessage(msg); }, 165)}
+        {contextual}
+        {chipBtn('🛒 Cart', () => openDrawer('cart'), 220)}
       </div>
     );
   }
@@ -1345,9 +1544,35 @@ export default function KaprukaChatUI() {
       </div>
     );
 
+    const skelStyle: CSSProperties = {
+      background: 'linear-gradient(90deg,#EDE8F6 25%,#F5F2FC 50%,#EDE8F6 75%)',
+      backgroundSize: '400% 100%',
+      animation: 'shimmer 1.4s ease infinite',
+    };
+    const Skel = ({ w, h, r = 8 }: { w: number | string; h: number; r?: number }) => (
+      <div style={{ width: w, height: h, borderRadius: r, flexShrink: 0, ...skelStyle }} />
+    );
+
     if (state.drawer === 'cart') {
       title = 'Your Cart';
-      body = state.cart.length > 0 ? (
+      body = state.loadingDrawers.cart ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {[0, 1, 2].map(i => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 11 }}>
+              <Skel w={54} h={54} r={11} />
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 9 }}>
+                <Skel w="68%" h={13} />
+                <Skel w="38%" h={13} />
+                <div style={{ display: 'flex', gap: 8, marginTop: 2 }}>
+                  <Skel w={26} h={26} r={8} />
+                  <Skel w={18} h={26} r={8} />
+                  <Skel w={26} h={26} r={8} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : state.cart.length > 0 ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {state.cart.map(i => {
             const p = getProduct(i.id);
@@ -1381,24 +1606,59 @@ export default function KaprukaChatUI() {
     } else if (state.drawer === 'wishlist') {
       title = 'Wishlist';
       const wishProducts = state.wishlist.map(id => getProduct(id)).filter(Boolean) as RealProduct[];
-      body = wishProducts.length > 0 ? (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      body = state.loadingDrawers.wishlist ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[0, 1, 2].map(i => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 11 }}>
+              <Skel w={54} h={54} r={11} />
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 9 }}>
+                <Skel w="62%" h={13} />
+                <Skel w="35%" h={13} />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <Skel w={82} h={30} r={10} />
+                <Skel w={82} h={26} r={10} />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : wishProducts.length > 0 ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {wishProducts.map(p => (
             <div key={p.id} style={{ display: 'flex', gap: 12, alignItems: 'center', background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 11 }}>
               <div style={{ width: 54, height: 54, borderRadius: 11, overflow: 'hidden', flex: '0 0 auto' }}><ProductImage p={p} height={54} glyphSize={22} /></div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A' }}>{p.name}</div>
+                <div style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</div>
                 <div style={{ fontWeight: 800, color: '#402970', fontSize: 14, marginTop: 2 }}>{p.price.amount ? money(p.price.amount) : '—'}</div>
               </div>
-              <button onClick={() => { if (p.price.amount) addToCart(p.id); setState(prev => ({ ...prev, drawer: null })); }} style={{ padding: '9px 13px', borderRadius: 11, border: 'none', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 700, fontSize: 12.5, cursor: 'pointer' }}>Add</button>
-              <button onClick={() => toggleWish(p.id)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#E5447A', display: 'flex' }}><Icon name="heart" size={18} color="#E5447A" fill="#E5447A" /></button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: '0 0 auto' }}>
+                <button
+                  onClick={() => { if (p.price.amount) addToCart(p.id); setState(prev => ({ ...prev, drawer: null })); }}
+                  style={{ padding: '8px 12px', borderRadius: 10, border: 'none', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
+                  Add to cart
+                </button>
+                <button
+                  onClick={() => toggleWish(p.id)}
+                  style={{ padding: '5px 12px', borderRadius: 10, border: '1.5px solid #F0DFF7', background: '#fff', color: '#9389AE', fontWeight: 600, fontSize: 11.5, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+                  <span style={{ fontSize: 12 }}>×</span> Remove
+                </button>
+              </div>
             </div>
           ))}
         </div>
       ) : <EmptyState icon="heart" title="No saved gifts yet" sub="Tap the heart on any product to save it." />;
     } else if (state.drawer === 'history') {
       title = 'Chat History';
-      body = (
+      body = state.loadingDrawers.history ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {[0, 1, 2, 3].map(i => (
+            <div key={i} style={{ display: 'flex', gap: 11, alignItems: 'center', background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 13, padding: '12px 14px' }}>
+              <Skel w={34} h={34} r={10} />
+              <Skel w={`${55 + (i % 3) * 12}%`} h={13} />
+            </div>
+          ))}
+        </div>
+      ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {state.conversations.length === 0 && <EmptyState icon="msg" title="No conversations yet" sub="Your chat history will appear here." />}
           {state.conversations.map(c => (
@@ -1417,7 +1677,18 @@ export default function KaprukaChatUI() {
       );
     } else if (state.drawer === 'saved') {
       title = 'Saved Addresses';
-      body = (
+      body = state.loadingDrawers.saved ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {[0, 1].map(i => (
+            <div key={i} style={{ background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 14, display: 'flex', flexDirection: 'column', gap: 9 }}>
+              <Skel w="45%" h={14} />
+              <Skel w="58%" h={12} />
+              <Skel w="72%" h={12} />
+              <Skel w="38%" h={12} />
+            </div>
+          ))}
+        </div>
+      ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {state.savedAddrs.map(a => (
             <div key={a.id} style={{ background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 14 }}>
@@ -1551,10 +1822,27 @@ export default function KaprukaChatUI() {
         <RailBtn icon="cart" label="Cart" onClick={() => openDrawer('cart')} active={state.drawer === 'cart'} />
         <RailBtn icon="gear" label="Settings" onClick={() => showToast('Settings — coming soon', 'gear')} />
         <div style={{ flex: 1 }} />
-        <button onClick={() => openDrawer('account')} title="Account"
-          style={{ all: 'unset', cursor: 'pointer', width: 46, height: 46, borderRadius: '50%', background: '#5C3FB0', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, boxShadow: '0 4px 12px rgba(0,0,0,.25)', border: '2px solid rgba(255,255,255,.25)' } as CSSProperties}>
-          {userInitial}
+        <button onClick={() => openDrawer('account')} title={isAnon ? 'Sign in' : 'Account'}
+          style={{ all: 'unset', cursor: 'pointer', width: 46, height: 46, borderRadius: '50%', background: '#5C3FB0', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, boxShadow: '0 4px 12px rgba(0,0,0,.25)', border: '2px solid rgba(255,255,255,.25)', overflow: 'hidden' } as CSSProperties}>
+          {!isAnon && session?.user?.image
+            ? <img src={session.user.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            : <Icon name="user" size={22} color="#fff" />
+          }
         </button>
+        {isAnon && showSignInPrompt && (
+          <div style={{ position: 'fixed', left: 84, bottom: 20, zIndex: 55, background: '#fff', borderRadius: 16, padding: '14px 14px 14px 16px', boxShadow: '0 8px 32px rgba(42,30,74,.22)', border: '1px solid rgba(64,41,112,.1)', display: 'flex', alignItems: 'flex-start', gap: 12, maxWidth: 250, animation: 'widgetIn .35s cubic-bezier(.2,.9,.3,1) both' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A', lineHeight: 1.3 }}>Sign in to save your progress</div>
+              <div style={{ fontSize: 12, color: '#9389AE', marginTop: 3, lineHeight: 1.4 }}>Cart, wishlist & orders sync across devices.</div>
+              <button onClick={() => signIn('google')} style={{ all: 'unset', cursor: 'pointer', marginTop: 10, display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 12px', borderRadius: 9, background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 700, fontSize: 12.5, boxShadow: '0 4px 12px rgba(64,41,112,.28)' }}>
+                <Icon name="google" size={14} color="#fff" /> Sign in with Google
+              </button>
+            </div>
+            <button onClick={() => setShowSignInPrompt(false)} style={{ all: 'unset', cursor: 'pointer', color: '#C3B8DE', marginTop: -2, flex: '0 0 auto' }}>
+              <Icon name="close" size={16} />
+            </button>
+          </div>
+        )}
       </aside>
 
       {/* Drawer */}
@@ -1603,7 +1891,7 @@ export default function KaprukaChatUI() {
               <div style={{ position: 'relative', marginBottom: 22 }}>
                 <div style={{ position: 'absolute', inset: -14, borderRadius: '50%', background: 'radial-gradient(circle,rgba(124,91,214,.22),transparent 70%)' }} />
                 <div style={{ width: 160, height: 160, borderRadius: '50%', overflow: 'hidden', boxShadow: '0 18px 44px rgba(64,41,112,.32)', border: '4px solid #fff', position: 'relative' }}>
-                  <AvatarVideo src={AV.greeting} />
+                  <AvatarVideo src={AV.greeting} poster={AVP.greeting} />
                 </div>
                 <div style={{ position: 'absolute', top: 6, right: -6, animation: 'sparkleFloat 3s ease-in-out infinite' }}>
                   <Icon name="spark" size={22} color="#FDB813" fill="#FDB813" />
@@ -1635,6 +1923,21 @@ export default function KaprukaChatUI() {
           {state.started && (
             <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 26px 8px', display: 'flex', flexDirection: 'column', gap: 16 }}>
               {state.messages.map(m => renderMessage(m))}
+              {/* Retry button — shown once after the full bot turn */}
+              {!state.streaming && state.messages.some(m => m.role === 'bot') && state.messages.some(m => m.role === 'user') && (
+                <div style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: 2 }}>
+                  <button
+                    onClick={retryLastUser}
+                    style={{ display: 'flex', alignItems: 'center', gap: 4, border: 'none', background: 'none', cursor: 'pointer', color: '#B4AAD0', fontSize: 11.5, fontWeight: 600, padding: '2px 4px', borderRadius: 6, transition: 'color .15s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#7B5BD6')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#B4AAD0')}
+                    title="Retry last response"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    Retry
+                  </button>
+                </div>
+              )}
               {state.status && state.status !== 'Thinking' && (
                 <div key="status" style={{ display: 'flex', alignItems: 'center', gap: 9, paddingLeft: 2, animation: 'msgIn .3s both' }}>
                   <span style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid #C9B8ED', borderTopColor: '#7B5BD6', animation: 'spin .7s linear infinite', flex: '0 0 auto', display: 'block' }} />
@@ -1657,7 +1960,13 @@ export default function KaprukaChatUI() {
               <div style={{ position: 'absolute', left: -66, bottom: -4, zIndex: 30, width: 128, height: 128, pointerEvents: 'none' }}>
                 <div style={{ position: 'absolute', inset: -8, borderRadius: '50%', background: 'radial-gradient(circle,rgba(124,91,214,.16),transparent 70%)' }} />
                 <div key={state.avSeq + '-' + state.headerState} style={{ width: 128, height: 128, borderRadius: '50%', overflow: 'hidden', border: '5px solid #fff', boxShadow: '0 14px 32px rgba(64,41,112,.28)', animation: 'rukiPop .5s cubic-bezier(.2,1.3,.4,1) both' }}>
-                  <AvatarVideo src={AV[state.headerState] || AV.idle} />
+                  <AvatarVideo
+                    src={state.headerState === 'idle'
+                      ? IDLE_VARIANTS[state.avSeq % IDLE_VARIANTS.length]
+                      : (AV[state.headerState] || AV.idle)}
+                    poster={AVP[state.headerState] || AVP.idle}
+                    loop={state.headerState !== 'show'}
+                  />
                 </div>
               </div>
             )}

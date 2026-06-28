@@ -1,0 +1,2798 @@
+{
+  "mother": {
+    "label": "Mother",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "FLOWERS00T2134",
+          "FLOWERS00T2136",
+          "GIFTV00Z95",
+          "FASHION0010767",
+          "COMBOGIFL90",
+          "GIFTSET00598",
+          "GIFTSET00599",
+          "BOOK001587",
+          "GIFTV00Z164",
+          "GROCERY003231",
+          "EF_PC_GIFT0V1133POD00024",
+          "EF_PC_GIFT0V1133POD00026"
+        ]
+      },
+      {
+        "name": "automobile",
+        "ids": [
+          "AUTOMOBILE00451",
+          "AUTOMOBILE00439",
+          "AUTOMOBILE00440",
+          "AUTOMOBILE00550"
+        ]
+      },
+      {
+        "name": "books",
+        "ids": [
+          "BOOK001492",
+          "BOOK001974",
+          "BOOK002388",
+          "BOOK00346",
+          "BOOK00446",
+          "BOOK00926",
+          "BOOK001555",
+          "BOOK002093",
+          "CHLDBOOK00266",
+          "BOOK001614",
+          "EF_PC_BOOK0V2362P00011",
+          "EF_PC_BOOK0V2909P00172"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001304",
+          "CAKE00KA001450",
+          "CAKE00KA001477",
+          "CAKE00KA001498",
+          "CAKE00KA001612",
+          "CAKE00KA001622",
+          "CAKE00KA001641",
+          "CAKE00KA001646",
+          "CAKE00KA001692",
+          "CAKE00KA001707",
+          "CAKE00KA001856",
+          "CAKE00KA001878"
+        ]
+      },
+      {
+        "name": "chocolates best sellers",
+        "ids": [
+          "CHOCOLATES00AC009",
+          "CHOCOLATES001088",
+          "CHOCOLATES001301",
+          "CHOCOLATES001473",
+          "CHOCOLATES001743",
+          "CHOCOLATES001744",
+          "CHOCOLATES001745",
+          "CHOCOLATES00KA00133",
+          "CHOCOLATES00KA00135",
+          "CHOCOLATES00KA00144",
+          "CHOCOLATES00KA00149"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "CLOTHING0589",
+          "EF_PC_CLOT0V1165P00014",
+          "EF_PC_CLOT0V1165P00022",
+          "EF_PC_CLOT0V1165P00029",
+          "EF_PC_CLOT0V154POD00443",
+          "EF_PC_CLOT0V363P00036"
+        ]
+      },
+      {
+        "name": "combo gift packs",
+        "ids": [
+          "COMBOCKFL22",
+          "COMBOCKFL26"
+        ]
+      },
+      {
+        "name": "electronics",
+        "ids": [
+          "ELEC00A5735",
+          "ELEC00A5969"
+        ]
+      },
+      {
+        "name": "essential general",
+        "ids": [
+          "GROCERY0003",
+          "GROCERY002454",
+          "GROCERY001934",
+          "GROCERY003177",
+          "GROCERY003346",
+          "GROCERY003390",
+          "GROCERY003232",
+          "GROCERY003234",
+          "GROCERY003599",
+          "GROCERY002450"
+        ]
+      },
+      {
+        "name": "fashion and cosmetics",
+        "ids": [
+          "FASHION0010567",
+          "FASHION0010573",
+          "FASHION0010586",
+          "FASHION0010589",
+          "FASHION0010594",
+          "FASHION0010636",
+          "FASHION0010639",
+          "FASHION0010664",
+          "FASHION0010702",
+          "FASHION0010704",
+          "FASHION0010710",
+          "FASHION0010711"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1666",
+          "FLOWERS00T1672",
+          "FLOWERS00T1780",
+          "FLOWERS00T1827"
+        ]
+      },
+      {
+        "name": "fruit baskets",
+        "ids": [
+          "FRUITS00133",
+          "FRUITS00168",
+          "FRUITS00170",
+          "FRUITS00178",
+          "FRUITS00180",
+          "FRUITS00190",
+          "FRUITS00214",
+          "FRUITS00223",
+          "FRUITS00224",
+          "FRUITS00261"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z157",
+          "GIFTV00Z202",
+          "GIFTV00Z239",
+          "GIFTV00Z241",
+          "GIFTV00Z159",
+          "GIFTV00Z269",
+          "GIFTV00Z168",
+          "GIFTV00Z213",
+          "GIFTV00Z161",
+          "GIFTV00Z215",
+          "GIFTV00Z216",
+          "GIFTV00Z217"
+        ]
+      },
+      {
+        "name": "gifts for sweetheart",
+        "ids": [
+          "FASHION0010466",
+          "FASHION0010744",
+          "FASHION0010783",
+          "FASHION0010784",
+          "FASHION0010785",
+          "FASHION0010787",
+          "EF_PC_GIFT0V1133POD00025",
+          "EF_PC_GIFT0V1133POD00099",
+          "EF_PC_GIFT0V1133POD00100",
+          "EF_PC_GIFT0V1133POD00103",
+          "EF_PC_GIFT0V1133POD00105",
+          "EF_PC_GIFT0V1133POD00107"
+        ]
+      },
+      {
+        "name": "gourmet gifts",
+        "ids": [
+          "HAPPYPANDA001",
+          "HAPPYPANDA002",
+          "KINGSBURYF00103",
+          "KINGSBURYF00104",
+          "KINGSBURYF00108",
+          "KINGSBURYF00110",
+          "MANGO00140",
+          "MITSIS00106",
+          "HOMEMADE00144",
+          "RAJABOJUN0103",
+          "HOMEMADE00132",
+          "HOMEMADE00147"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z1282",
+          "GREETING00Z1575",
+          "GREETING00Z1576",
+          "GREETING00Z2087",
+          "GREETING00Z2088",
+          "GREETING00Z2091",
+          "GREETING00Z2092",
+          "GREETING00Z2093",
+          "GREETING00Z2105",
+          "GREETING00Z2250",
+          "GREETING00Z2729",
+          "GREETING00Z2736"
+        ]
+      },
+      {
+        "name": "health care",
+        "ids": [
+          "PHARMACY00791",
+          "PHARMACY00300",
+          "PHARMACY00500",
+          "PHARMACY00388"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "STONENS0470",
+          "STONENS0474",
+          "STONENS0476",
+          "STONENS0477",
+          "STONENS0485",
+          "STONENS0490",
+          "JEWELLERYTGJ028",
+          "JEWELLERYTGJ031",
+          "JEWELLERY002",
+          "EF_PC_JEWE0V3690P00037",
+          "EF_PC_JEWE0V3690P00067",
+          "EF_PC_JEWE0V2216P00050"
+        ]
+      }
+    ]
+  },
+  "father": {
+    "label": "Father",
+    "sections": [
+      {
+        "name": "best sellers",
+        "ids": [
+          "CAKE00KA001664",
+          "FASHION0010342",
+          "FRUITS00222",
+          "CHOCOLATES00663",
+          "GIFTSET00542",
+          "CHOCOLATES00KA00144",
+          "EF_PC_GIFT0V1108P00001",
+          "EF_PC_GIFT0V2505POD00009",
+          "EF_PC_GIFT0V571POD00062",
+          "EF_PC_GIFT0V571POD00109"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001463",
+          "CAKE00KA001487",
+          "CAKE00KA001493",
+          "CAKE00KA001494",
+          "CAKE00KA001500",
+          "CAKE00KA001565",
+          "CAKE00KA001656",
+          "CAKE00KA001662",
+          "CAKE00KA001667",
+          "CAKE00KA001863",
+          "CAKE00KA001903",
+          "CAKE00KA001910"
+        ]
+      },
+      {
+        "name": "chocolates best sellers",
+        "ids": [
+          "CHOCOLATES00AC0029",
+          "CHOCOLATES00AC0034",
+          "CHOCOLATES00AC0035",
+          "COMBOCHG258",
+          "CHOCOLATES001899",
+          "CHOCOLATES001870",
+          "CHOCOLATES00751",
+          "CHOCOLATES00KA00180",
+          "EF_PC_CHOC0V1133POD00001"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "CLOTHING01006",
+          "CLOTHING02943",
+          "CLOTHING07044",
+          "EF_PC_CLOT0V825P00005",
+          "EF_PC_CLOT0V825P00037"
+        ]
+      },
+      {
+        "name": "electronics",
+        "ids": [
+          "EF_PC_ELEC0V1905POD00362P",
+          "EF_PC_ELEC0V4463POD00047FDP",
+          "EF_PC_ELEC0V4463POD00105FDP",
+          "EF_PC_ELEC0V4463POD00153FDP",
+          "EF_PC_ELEC0V4463POD00222FDP",
+          "EF_PC_ELEC0V701POD00112",
+          "EF_PC_ELEC0V701POD00584",
+          "EF_PC_ELEC0V701POD00589",
+          "EF_PC_ELEC0V701POD00599",
+          "EF_PC_ELEC0V701POD00627",
+          "EF_PC_ELEC0V701POD00701",
+          "EF_PC_ELEC0V890P00058"
+        ]
+      },
+      {
+        "name": "fashion and cosmetics",
+        "ids": [
+          "PERFUME00834",
+          "PERFUME00838",
+          "PERFUME00839",
+          "JEWELLERYTGJ0100",
+          "JEWELLERYTGJ018",
+          "EF_PC_FASHION0V193POD00056",
+          "EF_PC_FASHION0V193POD00057",
+          "EF_PC_FASHION0V193POD00059",
+          "EF_PC_FASHION0V207POD00097",
+          "EF_PC_FASHION0V207POD00115",
+          "EF_PC_FASHION0V207POD00145P",
+          "EF_PC_FASHION0V153P00003"
+        ]
+      },
+      {
+        "name": "food and restaurants",
+        "ids": [
+          "KINGSBURYF00104",
+          "KINGSBURYF00108",
+          "KINGSBURYF00112",
+          "PIZZAHUT00234",
+          "PIZZAHUT00235",
+          "PIZZAHUT00261",
+          "PIZZAHUT00277",
+          "PIZZAHUT00282",
+          "PIZZAHUT0095"
+        ]
+      },
+      {
+        "name": "fruit baskets",
+        "ids": [
+          "COMBOCHG248",
+          "FRUITS00173",
+          "FRUITS00239",
+          "FRUITS00240",
+          "FRUITS00241",
+          "FRUITS00243",
+          "FRUITS00249",
+          "FRUITS00250",
+          "FRUITS00257",
+          "FRUITS00259"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z157",
+          "GIFTV00Z202",
+          "GIFTV00Z239",
+          "GIFTV00Z148",
+          "GIFTV00Z159",
+          "GIFTV00Z269",
+          "GIFTV00Z97",
+          "GIFTV00Z168",
+          "GIFTV00Z213",
+          "GIFTV00Z161",
+          "GIFTV00Z276",
+          "GIFTV00Z282"
+        ]
+      },
+      {
+        "name": "hampers",
+        "ids": [
+          "CPHAMPER0176",
+          "CPHAMPER0192"
+        ]
+      },
+      {
+        "name": "speciality gifts",
+        "ids": [
+          "GIFTSET00500",
+          "EF_PC_COSM0V2505POD00001",
+          "EF_PC_GIFT0V1133POD00032",
+          "EF_PC_GIFT0V1133POD00037",
+          "EF_PC_GIFT0V1133POD00040"
+        ]
+      }
+    ]
+  },
+  "kid": {
+    "label": "Kids",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "KIDSTOY0Z1410",
+          "KIDSTOY0Z1517",
+          "KIDSTOY0Z1518",
+          "KIDSTOY0Z1528",
+          "KIDSTOY0Z1649",
+          "SOFTTOY001192",
+          "KIDSTOY0Z1521",
+          "KIDSTOY0Z1548",
+          "KIDSTOY0Z1566",
+          "KIDSTOY0Z1584",
+          "KIDSTOY0Z1585",
+          "KIDSTOY0Z1653"
+        ]
+      },
+      {
+        "name": "bicycles",
+        "ids": [
+          "EF_PC_BICY0V2133POD00007",
+          "EF_PC_BICY0V2333POD00001",
+          "EF_PC_BICY0V2333POD00002",
+          "EF_PC_BICY0V2333POD00018",
+          "EF_PC_BICY0V2333POD00022",
+          "EF_PC_BICY0V577P00032"
+        ]
+      },
+      {
+        "name": "books",
+        "ids": [
+          "BOOK001948",
+          "BOOK001950",
+          "BOOK001953",
+          "BOOK001955",
+          "BOOK001956",
+          "BOOK001957",
+          "BOOK001958",
+          "BOOK001959",
+          "BOOK001961",
+          "BOOK001962",
+          "BOOK001963",
+          "BOOK001964"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001334",
+          "CAKE00KA001340",
+          "CAKE00KA001343",
+          "CAKE00KA001346",
+          "CAKE00KA001358",
+          "CAKE00KA001378",
+          "CAKE00KA001383",
+          "CAKE00KA001387",
+          "CAKE00KA001425",
+          "CAKE00KA001513",
+          "CAKE00KA001528",
+          "CAKE00KA001530"
+        ]
+      },
+      {
+        "name": "chocolates best sellers",
+        "ids": [
+          "COMBOCHG1994",
+          "COMBOCHG1996",
+          "COMBOCHG202",
+          "COMBOCHG254",
+          "EF_PC_CHOC0V1133POD00001",
+          "EF_PC_CHOC0V1133POD00006",
+          "EF_PC_CHOC0V571POD00020",
+          "EF_PC_CHOC0V571POD00033",
+          "EF_PC_CHOC0V571POD00070"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "CLOTHING02674",
+          "CLOTHING02905",
+          "CLOTHING05150",
+          "CLOTHING05615",
+          "EF_PC_CLOT0V362P00052",
+          "EF_PC_CLOT0V362P00053",
+          "EF_PC_CLOT0V362P00026",
+          "SOFTTOY001195",
+          "KIDSTOY0Z1651",
+          "KIDSTOY0Z1632",
+          "KIDSTOY0Z1650",
+          "KIDSTOY0Z1640"
+        ]
+      },
+      {
+        "name": "combo gift packs",
+        "ids": [
+          "COMBOCHG117",
+          "COMBOCHG119",
+          "COMBOCHG121"
+        ]
+      },
+      {
+        "name": "essential general",
+        "ids": [
+          "GROCERY00964",
+          "GROCERY001015",
+          "GROCERY001122",
+          "GROCERY001226"
+        ]
+      },
+      {
+        "name": "fruit baskets",
+        "ids": [
+          "FRUITS00168",
+          "FRUITS00190",
+          "FRUITS00213",
+          "FRUITS00216",
+          "FRUITS00219",
+          "FRUITS00220",
+          "FRUITS00241",
+          "FRUITS00232"
+        ]
+      },
+      {
+        "name": "gift for children",
+        "ids": [
+          "CHILDRENP01177",
+          "CHILDRENP01198",
+          "CHILDRENP0776",
+          "CHILDRENP01053",
+          "CHILDRENP01122",
+          "KIDSTOY0Z687",
+          "COMBOCHG141",
+          "CHILDRENP01146",
+          "CHILDRENP01225",
+          "CHILDRENP01232",
+          "CHILDRENP0819",
+          "CHILDRENP0826"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z148",
+          "GIFTV00Z151",
+          "GIFTV00Z159",
+          "GIFTV00Z269",
+          "GIFTV00Z97",
+          "GIFTV00Z271",
+          "GIFTV00Z279"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "JEWELLERYMH00124",
+          "JEWELLERYMH00125",
+          "JEWELLERYMH00134",
+          "JEWELLERYMH0164",
+          "JEWELLERYMH0237",
+          "JEWELLERYMH0238",
+          "JEWELLERYMH0253",
+          "JEWELLERYTGJ052"
+        ]
+      },
+      {
+        "name": "teddies and gifts",
+        "ids": [
+          "SOFTTOY00979",
+          "SOFTTOY001048",
+          "SOFTTOY001074",
+          "SOFTTOY001108",
+          "SOFTTOY001109",
+          "SOFTTOY001110",
+          "SOFTTOY001111",
+          "SOFTTOY001112",
+          "SOFTTOY00866"
+        ]
+      }
+    ]
+  },
+  "newborn": {
+    "label": "New Baby",
+    "sections": [
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001202",
+          "CAKE00KA001351",
+          "CAKE00KA001355",
+          "CAKE00KA001591",
+          "CAKE00KA001651",
+          "CAKE00KA001782",
+          "CAKE00KA001832",
+          "CAKE00KA001214"
+        ]
+      },
+      {
+        "name": "essential general",
+        "ids": [
+          "BABYPACK001054",
+          "BABYPACK001084",
+          "BABYPACK001085",
+          "BABYPACK001001",
+          "BABYPACK001066",
+          "BABYPACK00975",
+          "BABYPACK00976",
+          "BABYPACK00978"
+        ]
+      },
+      {
+        "name": "essential hygiene",
+        "ids": [
+          "BABYPACK001016",
+          "BABYPACK001017",
+          "BABYPACK001018",
+          "BABYPACK001019",
+          "BABYPACK001020",
+          "BABYPACK001025",
+          "BABYPACK001027",
+          "BABYPACK001030",
+          "BABYPACK001031",
+          "BABYPACK001040",
+          "BABYPACK001045",
+          "BABYPACK001047"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z1373",
+          "GREETING00Z1375",
+          "GREETING00Z1382",
+          "GREETING00Z1383",
+          "GREETING00Z1387",
+          "GREETING00Z1900",
+          "GREETING00Z1981",
+          "GREETING00Z1984",
+          "GREETING00Z1985",
+          "GREETING00Z1987",
+          "GREETING00Z2006",
+          "GREETING00Z2166"
+        ]
+      },
+      {
+        "name": "hampers",
+        "ids": [
+          "EF_PC_MOTH0V1141P00021",
+          "EF_PC_MOTH0V18P00009",
+          "EF_PC_MOTH0V18P00010",
+          "EF_PC_MOTH0V571P00031",
+          "EF_PC_MOTH0V571P00042",
+          "EF_PC_MOTH0V571P00044",
+          "EF_PC_MOTH0V571P00051"
+        ]
+      },
+      {
+        "name": "health care",
+        "ids": [
+          "PHARMACY00683",
+          "PHARMACY00786"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "JEWELLERYMH0237",
+          "JEWELLERYMH0238",
+          "JEWELLERYRJ0133"
+        ]
+      },
+      {
+        "name": "parents",
+        "ids": [
+          "PHARMACY00624",
+          "PHARMACY00396",
+          "EF_PC_MOTH0V2091P00011",
+          "EF_PC_MOTH0V2091P00012",
+          "EF_PC_MOTH0V2364POD00010P",
+          "EF_PC_MOTH0V2686POD00138",
+          "EF_PC_MOTH0V2686POD00142",
+          "EF_PC_MOTH0V3318POD00006P",
+          "EF_PC_MOTH0V3318POD00007P",
+          "EF_PC_MOTH0V2364POD00006",
+          "BABYPACK001048",
+          "BABYPACK001049"
+        ]
+      },
+      {
+        "name": "party essentials",
+        "ids": [
+          "BALOONX00155",
+          "BALOONX00156",
+          "PARTYP00170",
+          "PARTYP00174"
+        ]
+      },
+      {
+        "name": "teddies and gifts",
+        "ids": [
+          "SOFTTOY001039",
+          "SOFTTOY001046",
+          "SOFTTOY001047",
+          "SOFTTOY001048",
+          "SOFTTOY001050",
+          "SOFTTOY00938",
+          "SOFTTOY00866"
+        ]
+      }
+    ]
+  },
+  "lover": {
+    "label": "Sweetheart",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "CAKE00KA001427",
+          "CAKE00KA001551",
+          "CAKE00KA001602",
+          "CAKE00KA001806",
+          "COMBOCHG102",
+          "COMBOGITE4",
+          "EF_PC_CHOC0V571POD00022",
+          "EF_PC_CHOC0V571POD00041",
+          "EF_PC_CHOC0V571POD00097"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001618",
+          "CAKE00KA001810",
+          "CAKE00KA001819",
+          "CAKE00KA001820",
+          "CAKE00KA001824",
+          "CAKE00KA001826",
+          "CAKE00KA002068",
+          "CAKE00KA002075",
+          "CAKE00KA002082",
+          "CAKE00KA002092",
+          "CAKE00KA002093",
+          "CAKE00KA002094"
+        ]
+      },
+      {
+        "name": "chocolates best sellers",
+        "ids": [
+          "CHOCOLATES00AC0029",
+          "CHOCOLATES001878",
+          "CHOCOLATES001881",
+          "CHOCOLATES001182",
+          "CHOCOLATES00124",
+          "CHOCOLATES00125",
+          "CHOCOLATES001259",
+          "CHOCOLATES001598",
+          "CHOCOLATES001715",
+          "CHOCOLATES001784",
+          "CHOCOLATES001860",
+          "CHOCOLATES001870"
+        ]
+      },
+      {
+        "name": "combo gift packs",
+        "ids": [
+          "COMBOCHG163",
+          "COMBOCHG164",
+          "COMBOCHG197",
+          "COMBOCHG239",
+          "COMBOCHG240",
+          "COMBOCHG242",
+          "COMBOCHG247",
+          "COMBOCHG250",
+          "COMBOCHG91"
+        ]
+      },
+      {
+        "name": "fashion and cosmetics",
+        "ids": [
+          "COSMETICS00570",
+          "FASHION0010567",
+          "FASHION0010573",
+          "FASHION0010578",
+          "FASHION0010586",
+          "FASHION0010588",
+          "FASHION0010589",
+          "FASHION0010590",
+          "FASHION0010592",
+          "FASHION0010595",
+          "FASHION0010606",
+          "FASHION0010608"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1279",
+          "FLOWERS00T1383",
+          "FLOWERS00T1573",
+          "FLOWERS00T1718",
+          "FLOWERS00T1783",
+          "FLOWERS00T1925",
+          "FLOWERS00T1995",
+          "FLOWERS00T2010",
+          "FLOWERS00T2032",
+          "FLOWERS00T2034",
+          "FLOWERS00T2044",
+          "FLOWERS00T2053"
+        ]
+      },
+      {
+        "name": "gifts for sweetheart",
+        "ids": [
+          "FASHION0010466",
+          "GIFTSET00586",
+          "GIFTSET00589",
+          "GIFTSET00594",
+          "EF_PC_GIFT0V1133POD00045",
+          "EF_PC_GIFT0V1133POD00070",
+          "EF_PC_GIFT0V1133POD00072",
+          "EF_PC_GIFT0V1133POD00081",
+          "EF_PC_GIFT0V1133POD00089",
+          "EF_PC_GIFT0V1133POD00149",
+          "EF_PC_GIFT0V2505POD00007",
+          "EF_PC_GIFT0V2505POD00023"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z1182",
+          "GREETING00Z1245",
+          "GREETING00Z1307",
+          "GREETING00Z1391",
+          "GREETING00Z1392",
+          "GREETING00Z1398",
+          "GREETING00Z1402",
+          "GREETING00Z2053",
+          "GREETING00Z2251",
+          "GREETING00Z2308",
+          "GREETING00Z243",
+          "GREETING00Z2607"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "JEWELLERYF0308",
+          "JEWELLERYMH00131",
+          "JEWELLERYMH00136",
+          "JEWELLERYTGJ044",
+          "JEWELLERYTGJ078",
+          "JEWELLERYTGJ089"
+        ]
+      },
+      {
+        "name": "teddies and gifts",
+        "ids": [
+          "SOFTTOY001190",
+          "SOFTTOY001075",
+          "SOFTTOY001097",
+          "SOFTTOY001191",
+          "SOFTTOY001196",
+          "SOFTTOY00745",
+          "SOFTTOY00830",
+          "SOFTTOY00875",
+          "SOFTTOY00881",
+          "SOFTTOY00882",
+          "SOFTTOY00974"
+        ]
+      }
+    ]
+  },
+  "birthday": {
+    "label": "Birthday",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "CAKE00KA001561",
+          "CAKE00KA001565",
+          "CAKE00KA001676",
+          "CAKE00KA001836",
+          "CAKEDIV00246",
+          "CAKEJAVA00106",
+          "CAKESP00101",
+          "COMBOCHG117",
+          "COMBOCHG163",
+          "COMBOCHG207",
+          "COMBOGIFL48",
+          "CHOCOLATES00991"
+        ]
+      },
+      {
+        "name": "books",
+        "ids": [
+          "BOOK001909",
+          "BOOK001976",
+          "BOOK001912",
+          "BOOK002010",
+          "BOOK001587",
+          "EF_PC_BOOK0V2909P00051",
+          "EF_PC_BOOK0V2909P00152"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001330",
+          "CAKE00KA001564",
+          "CAKE00KA001597",
+          "CAKE00KA001615",
+          "CAKE00KA001653",
+          "CAKE00KA001656",
+          "CAKE00KA001670",
+          "CAKE00KA001673",
+          "CAKE00KA001684",
+          "CAKE00KA001685",
+          "CAKE00KA001692",
+          "CAKE00KA001732"
+        ]
+      },
+      {
+        "name": "chocolates best sellers",
+        "ids": [
+          "CHOCOLATES00AC0012",
+          "CHOCOLATES00AC0027",
+          "COMBOCHG1993",
+          "COMBOCHG1994",
+          "CHOCOLATES001145",
+          "CHOCOLATES00663",
+          "CHOCOLATES001870",
+          "CHOCOLATES00835",
+          "CHOCOLATES00KA00116",
+          "CHOCOLATES00KA00133",
+          "CHOCOLATES00KA00139",
+          "CHOCOLATES00KA00142"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "CLOTHING02943",
+          "EF_PC_CLOT0V1165P00033",
+          "EF_PC_CLOT0V1165P00040"
+        ]
+      },
+      {
+        "name": "combo gift packs",
+        "ids": [
+          "COMBOCKFL19",
+          "COMBOCKFL21",
+          "COMBOCKFL4",
+          "COMBOCHG149",
+          "COMBOCHG164",
+          "COMBOCHG170",
+          "COMBOCHG248",
+          "COMBOCHG258",
+          "FASHION0010466",
+          "COMBOGICK17"
+        ]
+      },
+      {
+        "name": "electronics",
+        "ids": [
+          "ELEC00A5988",
+          "ELEC00A6029",
+          "ELEC00A6043",
+          "ELEC00A6058",
+          "ELEC00A4877",
+          "ELEC00A4890",
+          "EF_PC_ELEC0V3851POD00056P",
+          "EF_PC_ELEC0V4463POD00061FDP",
+          "EF_PC_ELEC0V4463POD00118FDP",
+          "EF_PC_ELEC0V4463POD00179FDP",
+          "EF_PC_ELEC0V4463POD00187FDP",
+          "EF_PC_ELEC0V4463POD00188FDP"
+        ]
+      },
+      {
+        "name": "fashion and cosmetics",
+        "ids": [
+          "COSMETICS001588",
+          "COSMETICS001596",
+          "COSMETICS001533",
+          "COSMETICS001544",
+          "COSMETICS001137",
+          "COSMETICS001266",
+          "COSMETICS00694",
+          "COSMETICS00695",
+          "COSMETICS001590",
+          "COSMETICS001592",
+          "COSMETICS001602",
+          "COSMETICS001607"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1631",
+          "FLOWERS00T1718"
+        ]
+      },
+      {
+        "name": "food and restaurants",
+        "ids": [
+          "MRKOTTU0111",
+          "MRKOTTU0128",
+          "MRKOTTU0133",
+          "MRKOTTU098",
+          "PIZZAHUT00264",
+          "HOMEMADE00142",
+          "HOMEMADE00147",
+          "HOMEMADE00151"
+        ]
+      },
+      {
+        "name": "fruit baskets",
+        "ids": [
+          "FRUITS00135",
+          "FRUITS00179",
+          "FRUITS00190",
+          "FRUITS00191",
+          "FRUITS00214",
+          "FRUITS00219",
+          "FRUITS00222",
+          "FRUITS00224",
+          "FRUITS00225",
+          "FRUITS00239",
+          "FRUITS00240",
+          "FRUITS00242"
+        ]
+      },
+      {
+        "name": "gift for children",
+        "ids": [
+          "KIDSTOY0Z1528",
+          "CHILDRENP01177",
+          "CHILDRENP01122",
+          "KIDSTOY0Z1649",
+          "CHILDRENP01148",
+          "CHILDRENP01154",
+          "CHILDRENP01221",
+          "KIDSTOY0Z1584",
+          "KIDSTOY0Z1653",
+          "CHILDRENP01294",
+          "CHILDRENP01308",
+          "CHILDRENP01321"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z111",
+          "GIFTV00Z157",
+          "GIFTV00Z219",
+          "GIFTV00Z239",
+          "GIFTV00Z242",
+          "GIFTV00Z168",
+          "GIFTV00Z213",
+          "GIFTVOUCHER00Z141",
+          "GIFTV00Z215",
+          "GIFTV00Z216",
+          "GIFTV00Z217",
+          "GIFTV00Z218"
+        ]
+      },
+      {
+        "name": "gifts for him",
+        "ids": [
+          "GIFTSET00554",
+          "EF_PC_ELEC0V1905POD00391P",
+          "EF_PC_ELEC0V701POD00412",
+          "EF_PC_ELEC0V701POD00514",
+          "EF_PC_ELEC0V701POD00599",
+          "EF_PC_ELEC0V701POD00635",
+          "EF_PC_ELEC0V890P00112",
+          "EF_PC_GIFT0V1108P00006",
+          "EF_PC_GIFT0V1133POD00067",
+          "EF_PC_GIFT0V1133POD00068",
+          "EF_PC_GIFT0V1133POD00087",
+          "EF_PC_GIFT0V1133POD00125"
+        ]
+      },
+      {
+        "name": "gifts for sweetheart",
+        "ids": [
+          "ELEC00A6031",
+          "EF_PC_ELEC0V1876POD00131",
+          "EF_PC_ELEC0V18POD00408P",
+          "EF_PC_ELEC0V4463POD00047FDP",
+          "EF_PC_ELEC0V4463POD00217FDP",
+          "EF_PC_ELEC0V701POD00632",
+          "EF_PC_ELEC0V701POD00634",
+          "EF_PC_ELEC0V701POD00730",
+          "EF_PC_ELEC0V701POD00841",
+          "EF_PC_GIFT0V1133POD00062",
+          "EF_PC_GIFT0V2505POD00021",
+          "EF_PC_GIFT0V2505POD00028"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z1335",
+          "GREETING00Z1371",
+          "GREETING00Z1396",
+          "GREETING00Z1400",
+          "GREETING00Z2212",
+          "GREETING00Z2357",
+          "GREETING00Z2365",
+          "GREETING00Z2405",
+          "GREETING00Z2406",
+          "GREETING00Z2408",
+          "GREETING00Z2787",
+          "GREETING00Z2866"
+        ]
+      },
+      {
+        "name": "health care",
+        "ids": [
+          "GIFTV00Z124",
+          "GIFTV00Z145",
+          "GIFTV00Z267",
+          "GIFTV00Z276",
+          "GIFTV00Z280",
+          "GIFTV00Z281",
+          "GIFTV00Z282",
+          "GIFTV00Z283",
+          "GIFTV00Z284"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "JEWELLERYRJ0101",
+          "JEWELLERYRJ0123",
+          "JEWELLERYTGJ091",
+          "JEWELLERYTGJ094"
+        ]
+      },
+      {
+        "name": "and baby",
+        "ids": [
+          "BABYPACK00939",
+          "BABYPACK00950",
+          "BABYPACK00881",
+          "BABYPACK00594",
+          "BABYPACK00955",
+          "EF_PC_MOTH0V1141P00003",
+          "EF_PC_MOTH0V1141P00017",
+          "EF_PC_MOTH0V571POD00003",
+          "EF_PC_MOTH0V571POD00005"
+        ]
+      },
+      {
+        "name": "party essentials",
+        "ids": [
+          "PARTYP00187",
+          "PARTYP00199",
+          "PARTYP00200",
+          "PARTYP00201",
+          "PARTYP00171",
+          "PARTYP00170",
+          "PARTYP00224",
+          "PARTYP00227",
+          "PARTYP00234",
+          "PARTYP00240",
+          "PARTYP00265",
+          "PARTYP00270"
+        ]
+      },
+      {
+        "name": "teddies and gifts",
+        "ids": [
+          "SOFTTOY001126",
+          "SOFTTOY001046",
+          "SOFTTOY001145",
+          "SOFTTOY001044",
+          "SOFTTOY001097",
+          "SOFTTOY001104",
+          "SOFTTOY001106",
+          "SOFTTOY00900",
+          "SOFTTOY00971",
+          "EF_PC_SOFT0V571POD00004"
+        ]
+      }
+    ]
+  },
+  "anniversary": {
+    "label": "Anniversary",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "CAKEJAVA00194",
+          "CAKEJAVA00229",
+          "COMBOCKFL5",
+          "CHOCOLATES001598",
+          "CHOCOLATES001599",
+          "COSMETICS00700",
+          "PIZZAHUT00181",
+          "GIFTV00Z195"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001428",
+          "CAKE00KA001597",
+          "CAKE00KA001601",
+          "CAKEJAVA00100",
+          "CAKEJAVA00102",
+          "CAKEJAVA00106",
+          "CAKEJAVA00122",
+          "CAKEJAVA00123",
+          "CAKEJAVA00131",
+          "CAKEJAVA00144",
+          "CAKEJAVA00149",
+          "CAKEJAVA00165"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1122",
+          "FLOWERS00T1279",
+          "FLOWERS00T1384",
+          "FLOWERS00T1522",
+          "FLOWERS00T1567",
+          "FLOWERS00T1572",
+          "FLOWERS00T1573",
+          "FLOWERS00T1574",
+          "FLOWERS00T1603",
+          "FLOWERS00T1718",
+          "FLOWERS00T1783",
+          "FLOWERS00T497"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "CLOTHING02943",
+          "CLOTHING01495",
+          "CLOTHING01498",
+          "CLOTHING01499",
+          "CLOTHING03556"
+        ]
+      },
+      {
+        "name": "combo gift packs",
+        "ids": [
+          "COMBOCKFL19",
+          "COMBOCKFL6",
+          "COMBOCHG134",
+          "COMBOCHG148",
+          "COMBOCHCK1",
+          "COMBOGIFL60",
+          "COMBOGITE9"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z1229",
+          "GREETING00Z1230",
+          "GREETING00Z1234",
+          "GREETING00Z1236",
+          "GREETING00Z1238",
+          "GREETING00Z2379",
+          "GREETING00Z2380",
+          "GREETING00Z2475",
+          "GREETING00Z2569",
+          "GREETING00Z2693",
+          "GREETING00Z2726",
+          "GREETING00Z2734"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "COSMETICS001451",
+          "COSMETICS001597",
+          "COSMETICS001158",
+          "COSMETICS00960",
+          "COSMETICS001595"
+        ]
+      },
+      {
+        "name": "teddies and gifts",
+        "ids": [
+          "SOFTTOY001062",
+          "SOFTTOY001074",
+          "SOFTTOY001078",
+          "SOFTTOY001098",
+          "SOFTTOY001105",
+          "SOFTTOY001106",
+          "SOFTTOY001109",
+          "SOFTTOY00745",
+          "SOFTTOY00752",
+          "SOFTTOY00830",
+          "SOFTTOY00875",
+          "SOFTTOY00881"
+        ]
+      }
+    ]
+  },
+  "wedding": {
+    "label": "Wedding",
+    "sections": [
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001283",
+          "CAKE00KA001428",
+          "CAKE00KA001460",
+          "CAKE00KA001462",
+          "CAKE00KA001601",
+          "CAKE00KA001603",
+          "CAKE00KA001604",
+          "CAKE00KA001807",
+          "CAKE00KA001820",
+          "CAKE00KA001824"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "EF_PC_CLOT0V154POD00077",
+          "EF_PC_CLOT0V154POD00306",
+          "EF_PC_CLOT0V154POD00318",
+          "EF_PC_CLOT0V154POD00526",
+          "EF_PC_CLOT0V154POD00543",
+          "EF_PC_CLOT0V2248POD00065"
+        ]
+      },
+      {
+        "name": "electronics",
+        "ids": [
+          "ELEC00A1551",
+          "ELEC00A1555",
+          "ELEC00A5694",
+          "ELEC00A6042",
+          "ELEC00A6044",
+          "ELEC00A6048",
+          "EF_PC_ELEC0V1905POD00179P",
+          "EF_PC_ELEC0V1905POD00248P",
+          "EF_PC_ELEC0V2031POD00095",
+          "EF_PC_ELEC0V3851POD00072P",
+          "EF_PC_ELEC0V4463POD00015FDP",
+          "EF_PC_ELEC0V4463POD00023FDP"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1122",
+          "FLOWERS00T1279",
+          "FLOWERS00T1336",
+          "FLOWERS00T1558",
+          "FLOWERS00T1567",
+          "FLOWERS00T1573",
+          "FLOWERS00T1679"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z157",
+          "GIFTV00Z239",
+          "GIFTV00Z242",
+          "GIFTV00Z168",
+          "GIFTV00Z213",
+          "GIFTVOUCHER00Z141",
+          "GIFTV00Z215",
+          "GIFTV00Z216",
+          "GIFTV00Z217",
+          "GIFTV00Z218",
+          "GIFTV00Z195",
+          "GIFTV00Z270"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z1482",
+          "GREETING00Z1484",
+          "GREETING00Z1485",
+          "GREETING00Z1493",
+          "GREETING00Z1495",
+          "GREETING00Z1804",
+          "GREETING00Z1805",
+          "GREETING00Z1806",
+          "GREETING00Z1807",
+          "GREETING00Z2107"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "JEWELLERYMH00151",
+          "JEWELLERYMH00163",
+          "JEWELLERYMH00170",
+          "JEWELLERYMH00171",
+          "JEWELLERYMH00173",
+          "JEWELLERYMH00177",
+          "JEWELLERYMH00178",
+          "JEWELLERYRJ0101",
+          "JEWELLERYS010000",
+          "JEWELLERYS09996"
+        ]
+      }
+    ]
+  },
+  "graduation": {
+    "label": "Graduation",
+    "sections": [
+      {
+        "name": "best sellers",
+        "ids": [
+          "CAKE00KA001444",
+          "COMBOCHG112",
+          "FRUITS00243",
+          "GREETING00Z2218",
+          "HOUSEHOLD00958",
+          "HOUSEHOLD00959",
+          "CATSYM00342",
+          "SOFTTOY001026",
+          "SOFTTOY001209",
+          "SOFTTOY00863",
+          "EF_PC_SOFT0V571POD00008"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "EF_PC_CLOT0V363P00039",
+          "EF_PC_CLOT0V1993P00023",
+          "EF_PC_GREE0V44P00272",
+          "HOUSEHOLD001371",
+          "GREETING00Z2887",
+          "GREETING00Z2891"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1603",
+          "FLOWERS00T1631"
+        ]
+      },
+      {
+        "name": "gifts for him",
+        "ids": [
+          "EF_PC_GIFT0V1133POD00067",
+          "EF_PC_GIFT0V571POD00062"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z2219",
+          "GREETING00Z2228",
+          "GREETING00Z2229",
+          "GREETING00Z2234"
+        ]
+      },
+      {
+        "name": "teddies and gifts",
+        "ids": [
+          "COMBOCHG145",
+          "SOFTTOY001027",
+          "EF_PC_SOFT0V571P00024",
+          "EF_PC_SOFT0V571POD00001",
+          "EF_PC_SOFT0V571POD00004",
+          "EF_PC_SOFT0V571POD00005",
+          "EF_PC_SOFT0V571POD00010",
+          "EF_PC_SOFT0V571POD00012",
+          "EF_PC_SOFT0V571POD00020"
+        ]
+      }
+    ]
+  },
+  "sympathies": {
+    "label": "Sympathy",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "PIRIKARA0129",
+          "PIRIKARA0132",
+          "PIRIKARA0140",
+          "PIRIKARA0144",
+          "PIRIKARA0146",
+          "PIRIKARA0158",
+          "PIRIKARA0160",
+          "PIRIKARA0163",
+          "PIRIKARA0164",
+          "PIRIKARA0167",
+          "PIRIKARA0169",
+          "PIRIKARA0176"
+        ]
+      },
+      {
+        "name": "essential general",
+        "ids": [
+          "GROCERY001303",
+          "GROCERY001450",
+          "GROCERY001453",
+          "GROCERY00493",
+          "SEAFOOD0095",
+          "GROCERY001306"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1484",
+          "FLOWERS00T1486",
+          "FLOWERS00T1487",
+          "FLOWERS00T211",
+          "FLOWERS00T217",
+          "FLOWERS00T687",
+          "FLOWERS00T710",
+          "FLOWERS00T996"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "GREETING00Z1292",
+          "GREETING00Z1293",
+          "GREETING00Z1294",
+          "GREETING00Z1517",
+          "GREETING00Z1518",
+          "GREETING00Z1519",
+          "GREETING00Z1520",
+          "GREETING00Z1521",
+          "GREETING00Z1522",
+          "GREETING00Z1524",
+          "GREETING00Z1525",
+          "GREETING00Z1906"
+        ]
+      }
+    ]
+  },
+  "bridetobe": {
+    "label": "Bride to Be",
+    "sections": [
+      {
+        "name": "best sellers",
+        "ids": [
+          "BALOONX00163",
+          "BALOONX00160",
+          "PARTYP00178"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001271",
+          "CAKE00KA001426",
+          "CAKE00KA001427",
+          "CAKE00KA001429",
+          "CAKE00KA001599",
+          "CAKE00KA001600",
+          "CAKE00KA001601",
+          "CAKE00KA001602",
+          "CAKE00KA001603",
+          "CAKE00KA001604",
+          "CAKE00KA001616",
+          "CAKE00KA001654"
+        ]
+      }
+    ]
+  },
+  "momtobe": {
+    "label": "Mom to Be",
+    "sections": [
+      {
+        "name": "best sellers",
+        "ids": [
+          "PARTYP00174",
+          "EF_PC_MOTH0V1141P00008",
+          "EF_PC_MOTH0V1141P00017",
+          "EF_PC_MOTH0V18P00010",
+          "EF_PC_MOTH0V571P00034",
+          "EF_PC_MOTH0V571P00049",
+          "EF_PC_MOTH0V571POD00001",
+          "EF_PC_MOTH0V571POD00002",
+          "EF_PC_MOTH0V571POD00005",
+          "EF_PC_MOTH0V571POD00006",
+          "EF_PC_MOTH0V571POD00009",
+          "EF_PC_MOTH0V571POD00013"
+        ]
+      },
+      {
+        "name": "essential general",
+        "ids": [
+          "BABYPACK001001",
+          "BABYPACK001009",
+          "BABYPACK00885",
+          "GROCERY001539",
+          "GROCERY00466",
+          "GROCERY00468",
+          "BABYPACK001006",
+          "BABYPACK001019",
+          "BABYPACK001026",
+          "BABYPACK001035",
+          "BABYPACK001046",
+          "BABYPACK00975"
+        ]
+      }
+    ]
+  },
+  "corporate": {
+    "label": "Corporate",
+    "sections": [
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001349",
+          "CAKE00KA001362",
+          "CAKE00KA001368",
+          "CAKECG00101"
+        ]
+      },
+      {
+        "name": "fruit baskets",
+        "ids": [
+          "FRUITS00173",
+          "FRUITS00190",
+          "FRUITS00191",
+          "FRUITS00201",
+          "FRUITS00180"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z165",
+          "GIFTV00Z97",
+          "GIFTV00Z124"
+        ]
+      },
+      {
+        "name": "hampers",
+        "ids": [
+          "CPHAMPER0192",
+          "CINNAMONL092",
+          "CINNAMONL098",
+          "CINNAMONL097"
+        ]
+      }
+    ]
+  },
+  "newyear": {
+    "label": "New Year",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "FRUITS00252",
+          "PHARMACY00870",
+          "CHOCOLATES001991",
+          "KINGSBURYF00106",
+          "GIFTV00Z98",
+          "GROCERY003599",
+          "PARTYP00210",
+          "PARTYP00213",
+          "PARTYP00215",
+          "EF_PC_CLOT0V4796P00004",
+          "EF_PC_CLOT0V4796P00011",
+          "EF_PC_HOME0V18POD00193P"
+        ]
+      },
+      {
+        "name": "cakes",
+        "ids": [
+          "CAKE00KA001395",
+          "CAKE00KA001536",
+          "CAKE00KA002111",
+          "CAKE00KA002112",
+          "CAKE00KA002113",
+          "CAKE00KA002136",
+          "CAKE00KA002137",
+          "CAKE00KA00434"
+        ]
+      },
+      {
+        "name": "chocolates best sellers",
+        "ids": [
+          "CHOCOLATES00414",
+          "CHOCOLATES00415",
+          "CHOCOLATES00447",
+          "CHOCOLATES001992"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "CLOTHING0589",
+          "EF_PC_CLOT0V1216P00017",
+          "EF_PC_CLOT0V1216P00020",
+          "EF_PC_CLOT0V363P00024",
+          "EF_PC_CLOT0V4697P00001",
+          "EF_PC_CLOT0V4697P00004",
+          "EF_PC_CLOT0V4796P00003",
+          "EF_PC_CLOT0V4796P00010",
+          "EF_PC_CLOT0V4796P00012",
+          "EF_PC_CLOT0V4796P00014",
+          "EF_PC_CLOT0V4796P00016",
+          "EF_PC_CLOT0V1216P00030"
+        ]
+      },
+      {
+        "name": "combo gift packs",
+        "ids": [
+          "COMBOCHG141",
+          "COMBOCHG1992",
+          "COMBOCHG1998",
+          "COMBOCHG244",
+          "COMBOCHG248",
+          "COMBOCHG252",
+          "COMBOCHG254"
+        ]
+      },
+      {
+        "name": "electronics",
+        "ids": [
+          "ELEC00A6079",
+          "ELEC00A6080",
+          "ELEC00A2514",
+          "ELEC00A6067",
+          "ELEC00A6069",
+          "ELEC00A5389",
+          "ELEC00A5966",
+          "ELEC00A5967",
+          "ELEC00A5969",
+          "ELEC00A6068",
+          "EF_PC_ELEC0V18POD00064P",
+          "EF_PC_ELEC0V18POD00374P"
+        ]
+      },
+      {
+        "name": "fashion and cosmetics",
+        "ids": [
+          "JEWLLERYCH0170",
+          "COSMETICS001711",
+          "COSMETICS001733",
+          "COSMETICS001735",
+          "COSMETICS001736",
+          "FASHION0010604",
+          "STONENS0477",
+          "STONENS0479",
+          "STONENS0481",
+          "JEWELLERYW001366",
+          "JEWELLERYW001373",
+          "JEWELLERYW001378"
+        ]
+      },
+      {
+        "name": "flowers",
+        "ids": [
+          "FLOWERS00T1504",
+          "FLOWERS00T1506",
+          "FLOWERS00T1509",
+          "FLOWERS00T1621",
+          "FLOWERS00T1666",
+          "FLOWERS00T1733",
+          "FLOWERS00T1821",
+          "FLOWERS00T1929",
+          "FLOWERS00T1939",
+          "FLOWERS00T2054"
+        ]
+      },
+      {
+        "name": "food and restaurants",
+        "ids": [
+          "KINGSBURYF00103",
+          "KINGSBURYF00104",
+          "KINGSBURYF00107"
+        ]
+      },
+      {
+        "name": "fruit baskets",
+        "ids": [
+          "FRUITS00190",
+          "FRUITS00219",
+          "FRUITS00222",
+          "FRUITS00240",
+          "FRUITS00243",
+          "FRUITS00249",
+          "FRUITS00250",
+          "FRUITS00255",
+          "FRUITS00259",
+          "FRUITS00275",
+          "FRUITS00276",
+          "FRUITS00277"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z130",
+          "GIFTV00Z157",
+          "GIFTV00Z165",
+          "GIFTV00Z202",
+          "GIFTV00Z239",
+          "GIFTV00Z242",
+          "GIFTV00Z168",
+          "GIFTV00Z213",
+          "GIFTV00Z161",
+          "GIFTV00Z216",
+          "GIFTV00Z217",
+          "GIFTV00Z218"
+        ]
+      },
+      {
+        "name": "gourmet gifts",
+        "ids": [
+          "GROCERY002381",
+          "GROCERY003523",
+          "GROCERY003524",
+          "GROCERY003525",
+          "EF_PC_GROC0V2601P00009",
+          "EF_PC_GROC0V2601P00010"
+        ]
+      },
+      {
+        "name": "hampers",
+        "ids": [
+          "CPHAMPER0353",
+          "CPHAMPER0363",
+          "CPHAMPER0375",
+          "EF_PC_HAMP0V18POD00013P",
+          "EF_PC_HAMP0V18POD00014P",
+          "EF_PC_HAMP0V18POD00015P",
+          "EF_PC_HAMP0V4204POD00007P"
+        ]
+      },
+      {
+        "name": "health care",
+        "ids": [
+          "GIFTV00Z124",
+          "GIFTV00Z266",
+          "GIFTV00Z268",
+          "GIFTV00Z276",
+          "GIFTV00Z280",
+          "GIFTV00Z284",
+          "GIFTV00Z194",
+          "GIFTV00Z270",
+          "EF_PC_GIFTV0V2012P00006",
+          "EF_PC_PART0V1954POD00004",
+          "EF_PC_PART0V1954POD00005",
+          "EF_PC_PART0V1954POD00006"
+        ]
+      },
+      {
+        "name": "home needs",
+        "ids": [
+          "HOUSEHOLD001091",
+          "HOUSEHOLD001092",
+          "HOUSEHOLD00348",
+          "HOUSEHOLD00356",
+          "HOUSEHOLD00357",
+          "HOUSEHOLD00358",
+          "HOUSEHOLD00359",
+          "EF_PC_HOME0V18POD00388P",
+          "EF_PC_HOME0V18POD00544P",
+          "EF_PC_HOME0V18POD00570P",
+          "EF_PC_HOME0V1954POD00046",
+          "EF_PC_HOME0V1954POD00051"
+        ]
+      },
+      {
+        "name": "toys",
+        "ids": [
+          "KIDSTOY0Z1528",
+          "KIDSTOY0Z1649",
+          "KIDSTOY0Z1560",
+          "KIDSTOY0Z1566",
+          "KIDSTOY0Z1584",
+          "KIDSTOY0Z1653",
+          "KIDSTOY0Z1651",
+          "KIDSTOY0Z1650",
+          "KIDSTOY0Z1387"
+        ]
+      },
+      {
+        "name": "vegetables",
+        "ids": [
+          "EF_PC_VEGE0V2056POD00068",
+          "EF_PC_VEGE0V2056POD00128",
+          "EF_PC_VEGE0V2056POD00132",
+          "EF_PC_VEGE0V2056POD00134",
+          "EF_PC_VEGE0V2056POD00135"
+        ]
+      }
+    ]
+  },
+  "christmas": {
+    "label": "Christmas",
+    "sections": [
+      {
+        "name": "top sellers",
+        "ids": [
+          "CPHAMPER0351",
+          "HOUSEHOLD001058",
+          "CHOCOLATES00KA00133",
+          "CHOCOLATES00KA00183",
+          "CHOCOLATES00KA00185",
+          "EF_PC_CHOC0V18P00021",
+          "EF_PC_HAMP0V18POD00013P",
+          "EF_PC_HAMP0V18POD00015P",
+          "EF_PC_HOME0V2497P00026",
+          "EF_PC_HOME0V18P00489",
+          "EF_PC_HOME0V18P00490",
+          "EF_PC_HOME0V2497P00046"
+        ]
+      },
+      {
+        "name": "hampers",
+        "ids": [
+          "CPHAMPER0192",
+          "CPHAMPER0318",
+          "CPHAMPER0352",
+          "CPHAMPER0353",
+          "EF_PC_HAMP0V18POD00014P",
+          "EF_PC_HAMP0V18POD00017P"
+        ]
+      },
+      {
+        "name": "clothing",
+        "ids": [
+          "EF_PC_CLOT0V1165P00052",
+          "EF_PC_CLOT0V1165P00054",
+          "EF_PC_CLOT0V1165P00062",
+          "EF_PC_CLOT0V160POD00417FDP",
+          "EF_PC_CLOT0V160POD00459FDP",
+          "EF_PC_CLOT0V160POD00469FDP",
+          "EF_PC_CLOT0V160POD00551FDP",
+          "EF_PC_CLOT0V160POD00592FDP",
+          "EF_PC_CLOT0V160POD00593FDP",
+          "EF_PC_CLOT0V160POD00675FDP",
+          "EF_PC_CLOT0V160POD00722FDP",
+          "EF_PC_CLOT0V160POD00803FDP"
+        ]
+      },
+      {
+        "name": "electronics",
+        "ids": [
+          "EF_PC_ELEC0V701POD00514",
+          "EF_PC_ELEC0V701POD00520"
+        ]
+      },
+      {
+        "name": "fashion and cosmetics",
+        "ids": [
+          "COSMETICS001670",
+          "COSMETICS00570",
+          "COSMETICS001658",
+          "COSMETICS001672",
+          "COSMETICS001679",
+          "COSMETICS001683",
+          "COSMETICS001666",
+          "COSMETICS001667",
+          "ELEC00A6031",
+          "PERFUME00819",
+          "PERFUME00821",
+          "PERFUME00822"
+        ]
+      },
+      {
+        "name": "food and restaurants",
+        "ids": [
+          "DEMOREST0046",
+          "HAPPYPANDA0011",
+          "HAPPYPANDA007",
+          "KINGSBURYF00104",
+          "KINGSBURYF00107",
+          "MITSIS00104",
+          "MITSIS00106",
+          "MRKOTTU0129",
+          "SPONGE097"
+        ]
+      },
+      {
+        "name": "gift vouchers",
+        "ids": [
+          "GIFTV00Z130",
+          "GIFTV00Z149",
+          "GIFTV00Z191",
+          "GIFTV00Z219",
+          "GIFTV00Z168",
+          "GIFTV00Z215",
+          "GIFTV00Z216",
+          "GIFTV00Z195",
+          "GIFTV00Z98"
+        ]
+      },
+      {
+        "name": "gifts for him",
+        "ids": [
+          "EF_PC_GIFT0V1133POD00048",
+          "EF_PC_GIFT0V1133POD00068",
+          "EF_PC_GIFT0V1133POD00087",
+          "EF_PC_GIFT0V18POD00010P",
+          "EF_PC_GIFT0V18POD00011P",
+          "EF_PC_GIFT0V2505POD00016",
+          "EF_PC_GIFT0V2505POD00055",
+          "EF_PC_GIFT0V571POD00074",
+          "EF_PC_GIFT0V571POD00176",
+          "EF_PC_GIFT0V1133POD00076"
+        ]
+      },
+      {
+        "name": "gourmet gifts",
+        "ids": [
+          "CAKE00KA001762",
+          "COMBOCHG141",
+          "COMBOCHG163",
+          "COMBOCHG216",
+          "FRUITS00168",
+          "FRUITS00222",
+          "FRUITS00239",
+          "FRUITS00240",
+          "FRUITS00241",
+          "FRUITS00243",
+          "FRUITS00250",
+          "FRUITS00252"
+        ]
+      },
+      {
+        "name": "handbags and wallets",
+        "ids": [
+          "FASHION0010603",
+          "FASHION0010638",
+          "FASHION0010645"
+        ]
+      },
+      {
+        "name": "home needs",
+        "ids": [
+          "HOUSEHOLD001048",
+          "HOUSEHOLD001061",
+          "HOUSEHOLD001065",
+          "HOUSEHOLD001330",
+          "HOUSEHOLD001339",
+          "EF_PC_HOME0V3833POD00001",
+          "EF_PC_HOME0V18P00465",
+          "EF_PC_HOME0V18P00466",
+          "EF_PC_HOME0V18P00473",
+          "EF_PC_HOME0V18P00484",
+          "EF_PC_HOME0V2686POD00189"
+        ]
+      },
+      {
+        "name": "jewellery and gifts",
+        "ids": [
+          "JEWELLERYF0283",
+          "JEWELLERYMH0199",
+          "JEWELLERYMH0271",
+          "JEWELLERYRJ0128",
+          "JEWELLERYTGJ038",
+          "JEWELLERYTGJ05",
+          "JEWELLERYMH0267",
+          "EF_PC_JEWE0V829P00303",
+          "EF_PC_JEWE0V829P00319"
+        ]
+      },
+      {
+        "name": "toys",
+        "ids": [
+          "KIDSTOY0Z1574",
+          "KIDSTOY0Z1617",
+          "EF_PC_FASHION0V18P00085",
+          "EF_PC_KIDS0V18P00098",
+          "EF_PC_SCHO0V18P00070",
+          "EF_PC_CLOT0V160POD01719FDP",
+          "EF_PC_CLOT0V160POD02131FDP",
+          "EF_PC_CLOT0V160POD02294FDP",
+          "EF_PC_CLOT0V160POD02295FDP",
+          "EF_PC_CLOT0V2096POD01961FD",
+          "EF_PC_CLOT0V2096POD01970FD",
+          "EF_PC_CLOT0V2096POD01976FD"
+        ]
+      },
+      {
+        "name": "speciality gifts",
+        "ids": [
+          "EF_PC_GIFT0V1133POD00026",
+          "EF_PC_GIFT0V1133POD00054",
+          "EF_PC_GIFT0V1133POD00055",
+          "EF_PC_GIFT0V1133POD00061",
+          "EF_PC_GIFT0V1133POD00062",
+          "EF_PC_GIFT0V571POD00109",
+          "EF_PC_GIFT0V571POD00110"
+        ]
+      },
+      {
+        "name": "teddies and gifts",
+        "ids": [
+          "CHILDRENP01140",
+          "CHILDRENP01221",
+          "CHILDRENP01226",
+          "CHILDRENP01229",
+          "CHILDRENP01232",
+          "SOFTTOY001079",
+          "EF_PC_SCHO0V2463POD00009",
+          "EF_PC_SCHO0V2463POD00047"
+        ]
+      },
+      {
+        "name": "greeting cards",
+        "ids": [
+          "EF_PC_GREE0V699P00097",
+          "EF_PC_GREE0V833P00029"
+        ]
+      }
+    ]
+  },
+  "childrensday": {
+    "label": "Children's Day",
+    "sections": [
+      {
+        "name": "childrens day best sellers",
+        "ids": [
+          "CAKE00KA001683",
+          "CAKE00KA001986",
+          "KIDSTOY0Z1517",
+          "BABYPACK00950",
+          "KIDSTOY0Z1649",
+          "SOFTTOY001032",
+          "BOOK001989",
+          "COMBOCHG117",
+          "COMBOCHG119",
+          "KIDSTOY0Z1636",
+          "CHILDRENP0828",
+          "KIDSTOY0Z1669"
+        ]
+      },
+      {
+        "name": "childrens day biscuits and snacks",
+        "ids": [
+          "GROCERY001238",
+          "GROCERY001302",
+          "GROCERY00146",
+          "GROCERY001510",
+          "GROCERY001526",
+          "GROCERY00174",
+          "GROCERY00190",
+          "GROCERY002298",
+          "GROCERY002347",
+          "GROCERY003088",
+          "GROCERY001793",
+          "GROCERY002591"
+        ]
+      },
+      {
+        "name": "childrens day books",
+        "ids": [
+          "BOOK001567",
+          "BOOK00165",
+          "BOOK001863",
+          "BOOK001867",
+          "BOOK001928",
+          "BOOK001933",
+          "BOOK001936",
+          "BOOK001937",
+          "BOOK001938",
+          "BOOK001947",
+          "BOOK001964",
+          "BOOK001966"
+        ]
+      },
+      {
+        "name": "childrens day cakes",
+        "ids": [
+          "CAKE00KA001336",
+          "CAKE00KA001387",
+          "CAKE00KA001389",
+          "CAKE00KA001425",
+          "CAKE00KA001510",
+          "CAKE00KA001512",
+          "CAKE00KA001513",
+          "CAKE00KA001527",
+          "CAKE00KA001530",
+          "CAKE00KA001548",
+          "CAKE00KA001549",
+          "CAKE00KA001668"
+        ]
+      },
+      {
+        "name": "childrens day chocolates best sellers",
+        "ids": [
+          "CHOCOLATES00102",
+          "CHOCOLATES00104",
+          "CHOCOLATES001640",
+          "CHOCOLATES001653",
+          "CHOCOLATES00904",
+          "CHOCOLATES00KA00125",
+          "CHOCOLATES00KA00142",
+          "CHOCOLATES001671",
+          "CHOCOLATES001672",
+          "CHOCOLATES001628",
+          "CHOCOLATES001631",
+          "CHOCOLATES001635"
+        ]
+      },
+      {
+        "name": "childrens day clothing",
+        "ids": [
+          "CLOTHING02672",
+          "CLOTHING02673",
+          "CLOTHING03195",
+          "CLOTHING03200",
+          "CLOTHING03580",
+          "CLOTHING03729",
+          "CLOTHING04080",
+          "CLOTHING04081",
+          "CLOTHING04082",
+          "CLOTHING05146",
+          "CLOTHING05148",
+          "CLOTHING05150"
+        ]
+      },
+      {
+        "name": "childrens day combo gift packs",
+        "ids": [
+          "COMBOGICK23",
+          "CHILDRENP01306",
+          "CHILDRENP01308",
+          "EF_PC_SCHO0V571P00001"
+        ]
+      },
+      {
+        "name": "childrens day electronics",
+        "ids": [
+          "EF_PC_ELEC0V1768POD00412",
+          "EF_PC_ELEC0V1768POD00416",
+          "EF_PC_ELEC0V1954POD00054",
+          "EF_PC_ELEC0V1966POD00001",
+          "EF_PC_ELEC0V1966POD00031",
+          "EF_PC_ELEC0V2208POD00001P",
+          "EF_PC_ELEC0V3883POD00028",
+          "EF_PC_ELEC0V701POD00026",
+          "EF_PC_ELEC0V701POD00270",
+          "EF_PC_ELEC0V701POD00412",
+          "EF_PC_ELEC0V1466P00004",
+          "EF_PC_ELEC0V2098P00002"
+        ]
+      },
+      {
+        "name": "childrens day fashion and cosmetics",
+        "ids": [
+          "FASHION002511",
+          "FASHION002516",
+          "EF_PC_FASHION0V1428P00012",
+          "EF_PC_FASHION0V193POD00074",
+          "EF_PC_FASHION0V193POD00077",
+          "EF_PC_FASHION0V193POD00080",
+          "EF_PC_FASHION0V193POD00087",
+          "EF_PC_FASHION0V193POD00088",
+          "EF_PC_FASHION0V2310P00031",
+          "EF_PC_FASHION0V2676P00004",
+          "EF_PC_FASHION0V2676P00005",
+          "EF_PC_FASHION0V18P00062"
+        ]
+      },
+      {
+        "name": "childrens day gift for children",
+        "ids": [
+          "KIDSTOY0Z1569",
+          "KIDSTOY0Z1528",
+          "CHILDRENP01122",
+          "KIDSTOY0Z1521",
+          "KIDSTOY0Z1566",
+          "KIDSTOY0Z1584",
+          "CHILDRENP01158",
+          "EF_PC_KIDS0V18P00060",
+          "EF_PC_KIDS0V2686POD00024"
+        ]
+      },
+      {
+        "name": "childrens day gift vouchers",
+        "ids": [
+          "GIFTV00Z165",
+          "GIFTV00Z202",
+          "GIFTV00Z148",
+          "GIFTV00Z159",
+          "GIFTV00Z269",
+          "GIFTV00Z217",
+          "GIFTV00Z235",
+          "GIFTV00Z271",
+          "GIFTV00Z279"
+        ]
+      },
+      {
+        "name": "childrens day gourmet gifts",
+        "ids": [
+          "BURGERK00163",
+          "DINEMORE00104",
+          "PIZZAHUT00261",
+          "PIZZAHUT00265",
+          "PIZZAHUT00267",
+          "POPEYES099"
+        ]
+      },
+      {
+        "name": "childrens day home needs",
+        "ids": [
+          "HOUSEHOLD001008",
+          "ORNAMENTS00850",
+          "ORNAMENTS00875",
+          "HOUSEHOLD001473",
+          "HOUSEHOLD001474",
+          "HOUSEHOLD001475",
+          "HOUSEHOLD001478",
+          "HOUSEHOLD00962",
+          "HOUSEHOLD00963",
+          "CUSTOMGIFT0023",
+          "EF_PC_HOME0V2310P00038",
+          "EF_PC_HOME0V2461POD00073P"
+        ]
+      },
+      {
+        "name": "childrens day jewellery and gifts",
+        "ids": [
+          "JEWELLERYF0213",
+          "JEWELLERYMH00134",
+          "JEWELLERYMH0164",
+          "JEWELLERYMH0237",
+          "JEWELLERYMH0238",
+          "JEWELLERYRJ0123",
+          "JEWELLERYRJ0127",
+          "JEWELLERYRJ0128",
+          "JEWELLERYRJ0133"
+        ]
+      },
+      {
+        "name": "childrens day sports items",
+        "ids": [
+          "SPORTSITEM00288",
+          "EF_PC_BICY0V2333POD00001",
+          "EF_PC_BICY0V2333POD00007",
+          "EF_PC_SPOR0V1388P00136",
+          "EF_PC_SPOR0V1388P00133",
+          "EF_PC_SPOR0V1388P00148",
+          "KIDSTOY0Z1585",
+          "SOFTTOY001050",
+          "SOFTTOY001060",
+          "KIDSTOY0Z1632",
+          "KIDSTOY0Z1652",
+          "KIDSTOY0Z1638"
+        ]
+      },
+      {
+        "name": "childrens day teddies and gifts",
+        "ids": [
+          "SOFTTOY001034",
+          "SOFTTOY001127",
+          "SOFTTOY001142",
+          "SOFTTOY001143",
+          "SOFTTOY001149",
+          "SOFTTOY00982",
+          "SOFTTOY00983",
+          "SOFTTOY001045",
+          "SOFTTOY00979",
+          "SOFTTOY001042",
+          "SOFTTOY001077",
+          "SOFTTOY001110"
+        ]
+      }
+    ]
+  },
+  "teachersday": {
+    "label": "Teacher's Day",
+    "sections": [
+      {
+        "name": "teachers day top sellers",
+        "ids": [
+          "CAKE00KA001732",
+          "CAKEJAVA00237",
+          "FLOWERS00T1650",
+          "FLOWERS00T1672",
+          "FLOWERS00T1795",
+          "FASHION0010466",
+          "FASHION0010750",
+          "FRUITS00170",
+          "FRUITS00243",
+          "COMBOGIFL48",
+          "GIFTSET00542",
+          "FASHION0010725"
+        ]
+      },
+      {
+        "name": "teachers day books",
+        "ids": [
+          "BOOK001466",
+          "BOOK001859",
+          "BOOK001244",
+          "BOOK001624"
+        ]
+      },
+      {
+        "name": "teachers day cakes",
+        "ids": [
+          "CAKE00KA001328",
+          "CAKE00KA001367",
+          "CAKE00KA001495",
+          "CAKE00KA001514",
+          "CAKE00KA001536",
+          "CAKE00KA001537",
+          "CAKE00KA001542",
+          "CAKE00KA001557",
+          "CAKE00KA001691",
+          "CAKE00KA001693",
+          "CAKEJAVA00193",
+          "CAKEJAVA00211"
+        ]
+      },
+      {
+        "name": "teachers day chocolates best sellers",
+        "ids": [
+          "CHOCOLATES001310",
+          "CHOCOLATES001928",
+          "CHOCOLATES001640",
+          "CHOCOLATES001653",
+          "CHOCOLATES00904",
+          "CHOCOLATES001671",
+          "CHOCOLATES001627",
+          "CHOCOLATES001628",
+          "CHOCOLATES001631",
+          "CHOCOLATES001635",
+          "CHOCOLATES001636"
+        ]
+      },
+      {
+        "name": "teachers day clothing",
+        "ids": [
+          "CLOTHING02472",
+          "CLOTHING07949",
+          "CLOTHING07951",
+          "CLOTHING0630",
+          "EF_PC_CLOT0V154POD00159",
+          "EF_PC_CLOT0V2096POD01116FD",
+          "EF_PC_CLOT0V2096POD01125FD",
+          "EF_PC_CLOT0V2096POD01378FD",
+          "EF_PC_CLOT0V2248POD00738",
+          "EF_PC_CLOT0V2248POD00789",
+          "EF_PC_CLOT0V2248POD00891",
+          "EF_PC_CLOT0V2879P00001"
+        ]
+      },
+      {
+        "name": "teachers day electronics",
+        "ids": [
+          "ELEC00A5980",
+          "ELEC00A6013",
+          "EF_PC_ELEC0V2031POD00009",
+          "EF_PC_ELEC0V2310P00004",
+          "EF_PC_ELEC0V2310P00011"
+        ]
+      },
+      {
+        "name": "teachers day essential general",
+        "ids": [
+          "GROCERY001492",
+          "GROCERY003118",
+          "GROCERY002860",
+          "GROCERY002785",
+          "GROCERY003233",
+          "GROCERY003235",
+          "GROCERY002784"
+        ]
+      },
+      {
+        "name": "teachers day fashion and cosmetics",
+        "ids": [
+          "FASHION0010342",
+          "EF_PC_FASHION0V2310P00015",
+          "EF_PC_FASHION0V2310P00018",
+          "EF_PC_FASHION0V2310P00024"
+        ]
+      },
+      {
+        "name": "teachers day gift vouchers",
+        "ids": [
+          "GIFTV00Z165",
+          "GIFTV00Z95",
+          "GIFTV00Z151",
+          "GIFTV00Z159",
+          "GIFTV00Z216",
+          "GIFTV00Z217",
+          "GIFTV00Z218",
+          "GIFTV00Z124",
+          "GIFTV00Z220",
+          "GIFTV00Z164",
+          "GIFTV00Z98",
+          "GIFTV00Z285"
+        ]
+      },
+      {
+        "name": "teachers day hampers",
+        "ids": [
+          "FRUITS00168",
+          "FRUITS00172"
+        ]
+      },
+      {
+        "name": "teachers day home needs",
+        "ids": [
+          "ORNAMENTS00891",
+          "HOUSEHOLD00500",
+          "HOUSEHOLD00536",
+          "HOUSEHOLD001390",
+          "HOUSEHOLD00851",
+          "HOUSEHOLD00671"
+        ]
+      },
+      {
+        "name": "teachers day jewellery and gifts",
+        "ids": [
+          "JEWELLERYF0138",
+          "JEWELLERYMH00142",
+          "JEWELLERYMH00148",
+          "JEWELLERYMH0227",
+          "JEWELLERYS09999",
+          "JEWELLERY0014",
+          "JEWELLERYTGJ014",
+          "JEWELLERYTGJ016",
+          "JEWELLERYTGJ02",
+          "EF_PC_JEWE0V2216P00031",
+          "HOUSEHOLD001480",
+          "CATSYM00342"
+        ]
+      },
+      {
+        "name": "teachers day combo gift packs",
+        "ids": [
+          "EF_PC_GIFT0V18POD00014P",
+          "EF_PC_GIFT0V18POD00016P"
+        ]
+      }
+    ]
+  },
+  "womenday": {
+    "label": "Women's Day",
+    "sections": [
+      {
+        "name": "womens day top sellers",
+        "ids": [
+          "CAKE00KA001830",
+          "CAKE00KA001878",
+          "CAKE00KA001886",
+          "CAKE00KA001980",
+          "CAKEJAVA00102",
+          "CAKEJAVA00296",
+          "CAKEJAVA00297",
+          "FLOWERS00T1720",
+          "FLOWERS00T2056",
+          "COSMETICS001628",
+          "COMBOCKFL22",
+          "COMBOCHG248"
+        ]
+      },
+      {
+        "name": "womens day books",
+        "ids": [
+          "BOOK001492",
+          "BOOK001243",
+          "BOOK001555",
+          "BOOK001874",
+          "EF_PC_BOOK0V2362P00009",
+          "EF_PC_BOOK0V2404P00378",
+          "EF_PC_BOOK0V2404P00380",
+          "EF_PC_BOOK0V2909P00067",
+          "EF_PC_BOOK0V1940P00112",
+          "EF_PC_BOOK0V1940P00148",
+          "EF_PC_BOOK0V2909P00017",
+          "EF_PC_BOOK0V2909P00069"
+        ]
+      },
+      {
+        "name": "womens day cakes",
+        "ids": [
+          "CAKE00KA001498",
+          "CAKE00KA001612",
+          "CAKE00KA001620",
+          "CAKE00KA001652",
+          "CAKE00KA001674",
+          "CAKE00KA001732",
+          "CAKE00KA001733",
+          "CAKE00KA001747",
+          "CAKE00KA001790",
+          "CAKE00KA001793",
+          "CAKE00KA001856",
+          "CAKE00KA001860"
+        ]
+      },
+      {
+        "name": "womens day chocolates best sellers",
+        "ids": [
+          "CHOCOLATES00AC0031",
+          "CHOCOLATES00447",
+          "CHOCOLATES00663",
+          "CHOCOLATES001256",
+          "CHOCOLATES001929",
+          "CHOCOLATES001992",
+          "CHOCOLATES001993",
+          "CHOCOLATES00KA00116",
+          "CHOCOLATES00KA00196",
+          "CHOCOLATES00KA00197",
+          "CHOCOLATES00KA00210",
+          "CHOCOLATES00KA00213"
+        ]
+      },
+      {
+        "name": "womens day clothing",
+        "ids": [
+          "CLOTHING01132",
+          "CLOTHING03551",
+          "EF_PC_CLOT0V1152P00004",
+          "EF_PC_CLOT0V1165P00043",
+          "EF_PC_CLOT0V1165P00053",
+          "EF_PC_CLOT0V154POD00610",
+          "EF_PC_CLOT0V160POD02191FDP",
+          "EF_PC_CLOT0V165P00022",
+          "EF_PC_CLOT0V2096POD02157FD",
+          "EF_PC_CLOT0V2096POD02222FD",
+          "EF_PC_CLOT0V2699POD00029P",
+          "EF_PC_CLOT0V2699POD02203FD"
+        ]
+      },
+      {
+        "name": "womens day combo gift packs",
+        "ids": [
+          "COMBOCKFL15",
+          "COMBOCHG165",
+          "FRUITS00243",
+          "FRUITS00249",
+          "FRUITS00250",
+          "FRUITS00259",
+          "COMBOGIFL60",
+          "COMBOGITE4",
+          "EF_PC_GIFT0V2450POD00165"
+        ]
+      },
+      {
+        "name": "womens day electronics",
+        "ids": [
+          "ELEC00A6043",
+          "ELEC00A6058",
+          "ELEC00A4875",
+          "EF_PC_ELEC0V1905POD00400P",
+          "EF_PC_ELEC0V2228P00117",
+          "EF_PC_ELEC0V2310P00024",
+          "EF_PC_ELEC0V4463POD00047FDP",
+          "EF_PC_ELEC0V4463POD00191FDP",
+          "EF_PC_ELEC0V701POD00730",
+          "EF_PC_ELEC0V890P00080",
+          "EF_PC_ELEC0V701POD00192"
+        ]
+      },
+      {
+        "name": "womens day fashion and cosmetics",
+        "ids": [
+          "FASHION0010524",
+          "FASHION0010567",
+          "FASHION0010603",
+          "EF_PC_COSM0V2033P00004",
+          "EF_PC_COSM0V2033P00006",
+          "EF_PC_COSM0V2442P00042",
+          "EF_PC_COSM0V2774P00008",
+          "EF_PC_COSM0V4472P00086",
+          "EF_PC_PERF0V1385P00055",
+          "EF_PC_PERF0V334P00185",
+          "EF_PC_PERF0V4612POD00014P",
+          "EF_PC_COSM0V4472P00028"
+        ]
+      },
+      {
+        "name": "womens day flowers",
+        "ids": [
+          "FLOWERS00T1631",
+          "FLOWERS00T1650",
+          "FLOWERS00T1737",
+          "FLOWERS00T1749",
+          "FLOWERS00T1860",
+          "FLOWERS00T1920",
+          "FLOWERS00T2016",
+          "FLOWERS00T2069"
+        ]
+      },
+      {
+        "name": "womens day gift vouchers",
+        "ids": [
+          "GIFTV00Z193",
+          "GIFTV00Z202",
+          "GIFTV00Z227",
+          "GIFTV00Z239",
+          "GIFTV00Z241",
+          "GIFTV00Z242",
+          "GIFTV00Z269",
+          "GIFTV00Z168",
+          "GIFTV00Z213",
+          "GIFTV00Z161",
+          "GIFTV00Z217",
+          "GIFTV00Z218"
+        ]
+      },
+      {
+        "name": "womens day gourmet gifts",
+        "ids": [
+          "ASYLUM091",
+          "CINNAMONG0247",
+          "PASTRY00171",
+          "PASTRY00172",
+          "GREENC093",
+          "KINGSBURYF00102",
+          "MIRCHIZ0011",
+          "MITSIS00101",
+          "MITSIS00105",
+          "MITSIS00107"
+        ]
+      },
+      {
+        "name": "womens day hampers",
+        "ids": [
+          "CPHAMPER0243",
+          "CPHAMPER0319",
+          "FRUITS00179",
+          "FRUITS00276",
+          "EF_PC_HAMP0V18POD00015P",
+          "EF_PC_HAMP0V2505POD00010",
+          "EF_PC_HAMP0V2505POD00013"
+        ]
+      },
+      {
+        "name": "womens day home needs",
+        "ids": [
+          "EF_PC_HOME0V1729POD00032",
+          "EF_PC_HOME0V4150P00004",
+          "EF_PC_HOME0V2364POD00077"
+        ]
+      },
+      {
+        "name": "womens day jewellery and gifts",
+        "ids": [
+          "JEWELLERYF0106",
+          "JEWELLERYF0298",
+          "JEWELLERYF098",
+          "JEWLLERYCH0184",
+          "JEWLLERYCH0187",
+          "JEWELLERYMH00141",
+          "JEWELLERYMH0252",
+          "STONENS0470",
+          "STONENS0480",
+          "JEWELLERYS010001",
+          "JEWELLERYTGJ0111",
+          "JEWELLERYTGJ016"
+        ]
+      },
+      {
+        "name": "womens day speciality gifts",
+        "ids": [
+          "FASHION0010466",
+          "CUSTOMGIFT00214",
+          "EF_PC_GIFT0V1133POD00081",
+          "EF_PC_GIFT0V1133POD00090",
+          "EF_PC_GIFT0V1133POD00183",
+          "EF_PC_GIFT0V18POD00022P",
+          "EF_PC_GIFT0V2505POD00009",
+          "EF_PC_GIFT0V571POD00247"
+        ]
+      }
+    ]
+  }
+}

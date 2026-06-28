@@ -10,10 +10,15 @@ import {
   type OrderSender,
 } from "@/lib/mcp/tools";
 
+type EmitEvent =
+  | { type: "products"; products: import("@/lib/chat/types").ProductSummarySnippet[] }
+  | { type: "url"; url: string; title: string }
+  | { type: "track_result"; data: import("@/lib/chat/types").TrackResult };
+
 export async function executeTool(
   name: string,
   args: Record<string, unknown>,
-  emit?: (event: { type: "products"; products: import("@/lib/chat/types").ProductSummarySnippet[] } | { type: "url"; url: string; title: string }) => void,
+  emit?: (event: EmitEvent) => void,
   context?: { userId?: string; db?: import("@/db").DB },
 ): Promise<unknown> {
   switch (name) {
@@ -52,51 +57,55 @@ export async function executeTool(
         currency: args.currency as string | undefined,
       });
 
-    case "track_order":
-      return trackOrder(args.order_number as string);
+    case "track_order": {
+      const result = await trackOrder(args.order_number as string);
+      emit?.({ type: "track_result", data: result as import("@/lib/chat/types").TrackResult });
+      return result;
+    }
 
     case "get_curated_products": {
-      type PromoEntry = { id: string; compare_price: number | null };
-      type CuratedData = { best_sellers: string[]; same_day: string[]; promotions: PromoEntry[] };
-      const curated = (await import("@/data/curated.json")).default as CuratedData;
+      // curated.json is a full product snapshot (see scripts/enrich-curated.mjs), so this
+      // renders with ZERO live MCP calls and can filter by category without fetching.
+      type Money = { amount: number | null; currency: string };
+      type CuratedItem = {
+        id: string; name: string; category?: string; image: string | null; price: Money;
+        url?: string; in_stock?: boolean; summary?: string; compare_price?: number | null;
+      };
+      type CuratedData = { best_sellers: CuratedItem[]; same_day: CuratedItem[]; promotions: CuratedItem[] };
+      const curated = (await import("@/data/curated.json")).default as unknown as CuratedData;
       const list = args.list as string;
       const limit = Math.min((args.limit as number | undefined) ?? 12, 12);
+      const contains = (args.contains as string | undefined)?.trim().toLowerCase();
 
-      if (list === "promotions") {
-        const entries = curated.promotions.slice(0, limit);
-        const products = await Promise.all(entries.map((e) => getProduct(e.id)));
-        const snippets = products.map((p, i) => ({
-          id: p.id,
-          name: p.name,
-          price: p.price,
-          compare_at_price: entries[i].compare_price != null
-            ? { amount: entries[i].compare_price, currency: "LKR" }
-            : (p.compare_at_price ?? null),
-          image_url: p.image_url ?? null,
-          images: p.images ?? [],
-          in_stock: p.in_stock,
-          url: p.url,
-          summary: p.summary ?? "",
-        }));
-        emit?.({ type: "products", products: snippets });
-        return { count: snippets.length, list };
-      }
+      const source: CuratedItem[] =
+        list === "promotions" ? curated.promotions
+        : list === "best_sellers" ? curated.best_sellers
+        : curated.same_day;
 
-      const raw = list === "best_sellers" ? curated.best_sellers : curated.same_day;
-      const ids = (raw ?? []).slice(0, limit);
-      const products = await Promise.all(ids.map((id) => getProduct(id)));
-      const snippets = products.map((p) => ({
-        id: p.id,
-        name: p.name,
-        price: p.price,
-        image_url: p.image_url ?? null,
-        images: p.images ?? [],
-        in_stock: p.in_stock,
-        url: p.url,
-        summary: p.summary ?? "",
+      // Optional context filter: keep items whose name/category mention the keyword.
+      // Token-prefix match tolerates singular/plural ("electronics" vs category "Electronic").
+      const matchesContains = (it: CuratedItem, q: string): boolean => {
+        const hay = `${it.name} ${it.category ?? ""}`.toLowerCase();
+        if (hay.includes(q)) return true;
+        const qToks = q.split(/[^a-z0-9]+/).filter((t) => t.length >= 4);
+        const hToks = hay.split(/[^a-z0-9]+/).filter((t) => t.length >= 4);
+        return qToks.some((qt) => hToks.some((ht) => ht.startsWith(qt) || qt.startsWith(ht)));
+      };
+      const filtered = contains ? source.filter((it) => matchesContains(it, contains)) : source;
+
+      const snippets = filtered.slice(0, limit).map((it) => ({
+        id: it.id,
+        name: it.name,
+        price: it.price,
+        compare_at_price: it.compare_price != null ? { amount: it.compare_price, currency: "LKR" } : null,
+        image_url: it.image ?? null,
+        in_stock: it.in_stock ?? true,
+        url: it.url ?? "",
+        summary: it.summary ?? "",
       }));
       emit?.({ type: "products", products: snippets });
-      return { count: snippets.length, list };
+      // count: 0 with a filter → caller should fall back to search_products for that category.
+      return { count: snippets.length, list, filtered: contains ?? null };
     }
 
     case "open_page":

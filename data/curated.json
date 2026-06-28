@@ -1,218 +1,1581 @@
 {
   "best_sellers": [
-    "COMBOCKFL64",
-    "CUSTOMGIFT00199",
-    "CUSTOMGREE00215",
-    "CUSTOMGREE00222",
-    "CUSTOMGREE00212",
-    "CUSTOMGREE00210",
-    "CUSTOMGREE00208",
-    "CUSTOMGREE00213",
-    "CUSTOMGIFT00275",
-    "CUSTOMGIFT0051",
-    "GROCERY002512",
-    "COSMETICS001753",
-    "CUSTOMGREE00219",
-    "GIFTSET00500",
-    "CUSTOMGIFT00268",
-    "CUSTOMGIFT00186",
-    "CUSTOMGIFT00249",
-    "CUSTOMGIFT0095",
-    "CUSTOMGIFT0054",
-    "CUSTOMGIFT00164",
-    "GREETING00Z2973",
-    "GREETING00Z2895",
-    "GREETING00Z2736",
-    "GREETING00Z2860",
-    "GREETING00Z2942",
-    "GREETING00Z2859",
-    "GREETING00Z2726",
-    "FRUITS00168",
-    "COSMETICS001739",
-    "GIFTSET00601"
-  ],
-  "promotions": [
     {
-      "id": "PERFUME00850",
-      "compare_price": 30000
+      "id": "combockfl64",
+      "name": "Purple Petals Birthday Surprise Combo With Loaf Ribbon Cake And  Bouquet",
+      "category": "combopack",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1782196615262_dsc06684.jpg",
+      "price": {
+        "amount": 7850,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/purple-petals-birthday-surpris/kid/combockfl64",
+      "in_stock": true,
+      "summary": "Celebrate their special day with a charming combination of a beautifully decorated butterfly-themed birthday cake and a stunning bouquet of fresh pastel blooms. Thoughtfully curated to bring joy, s..."
     },
     {
-      "id": "KIDSTOY0Z1560",
-      "compare_price": null
+      "id": "customgift00199",
+      "name": "Personalized ``Love`` Mug",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/176976605401811_0077.jpg",
+      "price": {
+        "amount": 1250,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-love-mug/kid/customgift00199",
+      "in_stock": true,
+      "summary": "Celebrate love with the Personalized `Love` Valentine Mug. This charming mug is perfect for sharing your feelings with someone special. Add their name to make it a unique gift they will cherish eve..."
     },
     {
-      "id": "ELEC00A3258",
-      "compare_price": null
+      "id": "customgree00215",
+      "name": "Personalized ``AMORFLIX`` Greeting Card",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/178227779989411_0017.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-amorflix-greeting/kid/customgree00215",
+      "in_stock": true,
+      "summary": "Turn your love story into a cinematic moment with the AmorFlix Custom Photo Greeting Card. Designed in a modern streaming-style layout, this card features three customizable photo slots. Perfect fo..."
     },
     {
-      "id": "ORNAMENTS00868",
-      "compare_price": 11900
+      "id": "customgree00222",
+      "name": "Customized ``Happy Anniversary`` Greeting Card",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17822777998949_0010.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/customized-happy-anniversary-g/kid/customgree00222",
+      "in_stock": true,
+      "summary": "Make your anniversary extra special with a personalized greeting card. Add a special message, and even a photo to create a card that`s unique to your love story. Printed on quality board with a bea..."
     },
     {
-      "id": "ORNAMENTS00858",
-      "compare_price": 23800
+      "id": "customgree00212",
+      "name": "Customized ``Happy Wedding Anniversary`` Greeting Card",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17822777998946_0007.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/customized-happy-wedding-anniv/kid/customgree00212",
+      "in_stock": true,
+      "summary": "Celebrate lasting love with a personalized anniversary card. Add a special message, and even a photo to create a meaningful keepsake. Perfect for married couples of all anniversaries."
     },
     {
-      "id": "ELEC00A5638",
-      "compare_price": null
+      "id": "customgree00210",
+      "name": "Personalized ``Happy Birthday`` Stitch Themed Greeting Card",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/178227779989410_0016.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-happy-birthday-st/kid/customgree00210",
+      "in_stock": true,
+      "summary": "Celebrate a special day with this vibrant Stitch Birthday Photo Greeting Card!. This card adds a fun and cheerful touch to any birthday celebration. The card features a customizable photo area, all..."
     },
     {
-      "id": "ELEC00A5881",
-      "compare_price": null
+      "id": "customgree00208",
+      "name": "Customized ``Happy Birthday My Love`` Greeting Card",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17822771458051_0001.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/customized-happy-birthday-my-l/kid/customgree00208",
+      "in_stock": true,
+      "summary": "Celebrate your special someone`s birthday with a personalized card made just for them. Add a sweet message, and a photo to show how much they mean to you. It`s a simple but meaningful way to say ``..."
     },
     {
-      "id": "ELEC00A5995",
-      "compare_price": null
+      "id": "customgree00213",
+      "name": "Customized ``Happy Birthday`` Greeting Card",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17822777998945_0006.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/customized-happy-birthday-gree/kid/customgree00213",
+      "in_stock": true,
+      "summary": "Make their birthday extra special with a personalized greeting card. Add a message, and even a photo to create a unique and thoughtful card they`ll love. Perfect for all ages and relationships!"
     },
     {
-      "id": "HOUSEHOLD001091",
-      "compare_price": 990
+      "id": "customgift00275",
+      "name": "Dad`s Love Personalized Gift Set For Dad",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1780043493767_0012.jpg",
+      "price": {
+        "amount": 5300,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/dad-s-love-personalized-gift-s/kid/customgift00275",
+      "in_stock": true,
+      "summary": "This personalized gift set for father celebrates the love and guidance of your dad with three custom keepsakes. The Dad`s Love collection includes a customized `Thaththa` mug, premium crystal frame..."
     },
     {
-      "id": "HOUSEHOLD00359",
-      "compare_price": 700
+      "id": "customgift0051",
+      "name": "``Happy Birthday MOM, I`m So Blessed`` Personalized Crystal Plaque",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1754466934686_0005.jpg",
+      "price": {
+        "amount": 2800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-birthday-mom-i-m-so-bles/kid/customgift0051",
+      "in_stock": true,
+      "summary": "Celebrate your mom`s special day with this beautiful personalized crystal plaque, available at Kapruka. This heartfelt piece in the Photo Albums and Frames category makes a perfect keepsake, beauti..."
     },
     {
-      "id": "HOUSEHOLD00358",
-      "compare_price": 490
+      "id": "grocery002512",
+      "name": "Nipuna  Nadu -5Kg",
+      "category": "Grocery",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1659860311548_nipunafb.jpg",
+      "price": {
+        "amount": 1150,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/nipuna-nadu-5kg/kid/grocery002512",
+      "in_stock": true,
+      "summary": "Nipuna Nadu Rice is a popular medium-grain red rice in Sri Lanka, valued for its health benefits and rich taste. This 5kg pack of Red Nadu rice delivers high satiety and a low glycemic index, makin..."
     },
     {
-      "id": "HOUSEHOLD00357",
-      "compare_price": 560
+      "id": "cosmetics001753",
+      "name": "Spa Ceylon Green Mint Foot Luxuries Collection",
+      "category": "Cosmetics",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1781153838694_greenmintfootluxuriouscollectiowithprodcutfront.jpg",
+      "price": {
+        "amount": 5900,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/spa-ceylon-green-mint-foot-lux/kid/cosmetics001753",
+      "in_stock": true,
+      "summary": "The Spa Ceylon Green Mint Foot Luxuries Collection is a complete four-piece foot care gift set formulated with natural ingredients to revitalise tired feet and legs. This luxury collection combines..."
     },
     {
-      "id": "SOFTTOY00979",
-      "compare_price": 2800
+      "id": "customgree00219",
+      "name": "Customized ``Happy Anniversary`` Greeting Card",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17822777998941_0002.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/customized-happy-anniversary-g/kid/customgree00219",
+      "in_stock": true,
+      "summary": "Make your anniversary extra special with a personalized greeting card. Add a special message, and even a photo to create a card that`s unique to your love story. Printed on quality board with a bea..."
     },
     {
-      "id": "KIDSTOY0Z1649",
-      "compare_price": null
+      "id": "giftset00500",
+      "name": "Dad`s Love Pack -  JAVA I LOVE DAD 10 Piece Chocolate Box With Love You Dad Greeting Card And Love You Dad Mug",
+      "category": "giftset",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1718013882707_dsc_5999.jpg",
+      "price": {
+        "amount": 5500,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/dad-s-love-pack-java-i-love-da/kid/giftset00500",
+      "in_stock": true,
+      "summary": "Celebrate your dad with the `Dad`s Love Pack,` a thoughtful gift set available at Kapruka in Sri Lanka. It`s the perfect way to show your appreciation and love on any special day.       10-Piece Ch..."
     },
     {
-      "id": "COSMETICS001670",
-      "compare_price": 3900
+      "id": "customgift00268",
+      "name": "Personalized ``I Love You DAD`` Color Changing Magic Mug",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17797866499957_0109.jpg",
+      "price": {
+        "amount": 1850,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-i-love-you-dad-co/kid/customgift00268",
+      "in_stock": true,
+      "summary": "Make your Father extra special with a personalized mug created just for him. Designed with custom photo. This unique mug is a meaningful keepsake he can use every day. it`s a thoughtful gift that r..."
     },
     {
-      "id": "ELEC00A6031",
-      "compare_price": null
+      "id": "customgift00186",
+      "name": "Personalized Color Gradient Name Mug - Pink",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17694138723742_0059.jpg",
+      "price": {
+        "amount": 1000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-color-gradient-na/kid/customgift00186",
+      "in_stock": true,
+      "summary": "Enjoy your coffee moments with a special touch using this Personalized Color Gradient Valentine Name Mug available at Kapruka. It`s perfect for birthdays, anniversaries, Valentineâ??s Day, or just ..."
     },
     {
-      "id": "GROCERY003236",
-      "compare_price": 17072
+      "id": "customgift00249",
+      "name": "Personalized ``Adarei Amma`` Crystal Plaque",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17770283900651_0012.jpg",
+      "price": {
+        "amount": 4000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-adarei-amma-cryst/kid/customgift00249",
+      "in_stock": true,
+      "summary": "Celebrate the unconditional love of your mother with this beautifully designed ``Adarei Amma`` personalized photo frame. Featuring a soft floral theme and elegant Sinhala typography, this frame all..."
     },
     {
-      "id": "GROCERY003234",
-      "compare_price": 15960
+      "id": "customgift0095",
+      "name": "Personalized ``Hubby And Wifey`` Couple Mugs",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1761127417189_0020.jpg",
+      "price": {
+        "amount": 2000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-hubby-and-wifey-c/kid/customgift0095",
+      "in_stock": true,
+      "summary": "Enjoy your morning coffee and celebrate your love with the Personalized `Hubby and Wifey` Couple Mugs, available at Kapruka in Sri Lanka. This charming set is perfect for any couple.       Includes..."
     },
     {
-      "id": "HOUSEHOLD001008",
-      "compare_price": 3490
+      "id": "customgift0054",
+      "name": "Personalized Initial And Name Mug ~ Brown",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1754912083988_0015.jpg",
+      "price": {
+        "amount": 1600,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-initial-and-name-/kid/customgift0054",
+      "in_stock": true,
+      "summary": "Enjoy your favorite drink with a special touch using this personalized mug, available at Kapruka in Sri Lanka. Perfect for coffee or tea, this elegant mug showcases your initial and name.       Per..."
     },
     {
-      "id": "PHARMACY00791",
-      "compare_price": 14850
+      "id": "customgift00164",
+      "name": "Personalized ``Happy Birthday To You`` Color Changing Magic Mug",
+      "category": "personalized gifts",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1764752719400_0047.jpg",
+      "price": {
+        "amount": 1850,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/personalized-happy-birthday-to/kid/customgift00164",
+      "in_stock": true,
+      "summary": "Surprise your loved ones with the Personalized `Happy Birthday To You` Color Changing Magic Mug. This special mug transforms its look when hot liquid is poured in, creating a magical birthday momen..."
     },
     {
-      "id": "ELEC00A5637",
-      "compare_price": null
+      "id": "greeting00Z2973",
+      "name": "``Happy Anniversary`` Greeting Card",
+      "category": "greetingcards",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17657907224886_0006.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-anniversary-greeting-card/kid/greeting00z2973",
+      "in_stock": true,
+      "summary": "Celebrate the love and commitment you share with this beautiful `Happy Anniversary` card. Perfect for marking the milestones of your journey together and expressing deep feelings.    Category : Mil..."
     },
     {
-      "id": "ELEC00A2182",
-      "compare_price": null
+      "id": "greeting00Z2895",
+      "name": "``You and Me`` Greeting Card",
+      "category": "greetingcards",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/175750266428110_0010.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/you-and-me-greeting-card/kid/greeting00z2895",
+      "in_stock": true,
+      "summary": "Celebrate your unique love story with the `You and Me` Greeting Card, available at Kapruka. This card captures the magic of romance and is a perfect way to express your feelings.       Heartfelt De..."
     },
     {
-      "id": "ELEC00A5694",
-      "compare_price": null
+      "id": "greeting00Z2736",
+      "name": "Happy Birthday Greeting Card",
+      "category": "greetingcards",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17412599643747_7.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-birthday-greeting-card/kid/greeting00z2736",
+      "in_stock": true,
+      "summary": "Make your wife`s special day even more memorable with this thoughtful Happy Birthday Greeting Card. Its lovely design is perfect for sending warm wishes, bringing joy to the ones you love.       Ca..."
     },
     {
-      "id": "ELEC00A5689",
-      "compare_price": null
+      "id": "greeting00Z2860",
+      "name": "Happy Birthday MOM Greeting Card",
+      "category": "greetingcards",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17549058611164_0004.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-birthday-mom-greeting-ca/kid/greeting00z2860",
+      "in_stock": true,
+      "summary": "Celebrate your mom`s special day with this delightful `Happy Birthday MOM` greeting card, available at Kapruka in Sri Lanka. It`s perfect for showing your love and appreciation.       Charming Desi..."
     },
     {
-      "id": "ELEC00A2502",
-      "compare_price": null
+      "id": "greeting00Z2942",
+      "name": "Suit and Tie Happy Birthday Greeting Card",
+      "category": "greetingcards",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1761111727120_0001.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/suit-and-tie-happy-birthday-gr/kid/greeting00z2942",
+      "in_stock": true,
+      "summary": "Celebrate his special day with a touch of elegance using the Suit and Tie Happy Birthday Card, available at Kapruka. This card features a simple yet classy design that suits any man, from the corpo..."
     },
     {
-      "id": "CHILDRENP01122",
-      "compare_price": null
+      "id": "greeting00Z2859",
+      "name": "Happy Birthday Greeting Card",
+      "category": "greetingcards",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17549058611163_0003.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-birthday-greeting-card/kid/greeting00z2859",
+      "in_stock": true,
+      "summary": "Brighten someone`s special day with this delightful Happy Birthday greeting card, designed to bring joy and warmth.       Charming Design : Features balloons and presents to make them smile.    Per..."
     },
     {
-      "id": "ELEC00A6007",
-      "compare_price": null
+      "id": "greeting00Z2726",
+      "name": "Happy Anniversary Greeting Card",
+      "category": "greetingcards",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/174125996437410_10.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-anniversary-greeting-card/kid/greeting00z2726",
+      "in_stock": true,
+      "summary": "Celebrate love and togetherness with this elegant anniversary card, perfect for marking a special occasion. The heartfelt message and timeless design add a touch of charm.      Category: Wedding An..."
     },
     {
-      "id": "ELEC00A6003",
-      "compare_price": null
+      "id": "fruits00168",
+      "name": "Pineapple Delight Fresh Fruit Basket",
+      "category": "Fruits",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1651562409012_pineapplem.jpg",
+      "price": {
+        "amount": 7990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/pineapple-delight-fresh-fruit-/kid/fruits00168",
+      "in_stock": true,
+      "summary": "The Pineapple Delight Fresh Fruit Basket is a wonderful way to share joy with loved ones. Perfect for any occasion, this basket is filled with fresh, ripe fruits, beautifully wrapped with an elegan..."
     },
     {
-      "id": "ELEC00A6002",
-      "compare_price": null
+      "id": "cosmetics001739",
+      "name": "Prevense Mens Essemtial Collection Gift Set",
+      "category": "Cosmetics",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1779777984798_dsc03524.jpg",
+      "price": {
+        "amount": 6720,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/prevense-mens-essemtial-collec/kid/cosmetics001739",
+      "in_stock": true,
+      "summary": "Upgrade his daily grooming routine with this thoughtfully curated Men`s Grooming Gift Pack, featuring essential skincare and body care products designed to cleanse, refresh, and revitalize.nnbsp;  ..."
     },
     {
-      "id": "ELEC00A5998",
-      "compare_price": null
+      "id": "giftset00601",
+      "name": "Gentleman Gift Set",
+      "category": "giftset",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1780640251753_nmmm.jpg",
+      "price": {
+        "amount": 9600,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/gentleman-gift-set/kid/giftset00601",
+      "in_stock": true,
+      "summary": "The Gentleman Gift Set is a stylish and thoughtfully curated gift box designed for the modern man. It includes a combination of everyday grooming essentials and lifestyle accessories, beautifully a..."
     }
   ],
   "same_day": [
-    "CAKE00KA001536",
-    "CAKE00KA001903",
-    "CAKE00KA002136",
-    "CAKE00KA002137",
-    "FLOWERS00T1603",
-    "FLOWERS00T2089",
-    "COMBOCKFL21",
-    "SOFTTOY001153",
-    "SOFTTOY001154",
-    "SOFTTOY001161",
-    "COMBOCHG1996",
-    "FASHION0010750",
-    "FASHION0010784",
-    "FASHION0010785",
-    "FASHION0010787",
-    "FRUITS00222",
-    "COMBOGICK17",
-    "GIFTSET00494",
-    "FASHION0010567",
-    "FASHION0010586",
-    "FASHION0010588",
-    "FASHION0010590",
-    "FASHION0010592",
-    "FASHION0010593",
-    "FASHION0010595",
-    "FASHION0010606",
-    "FASHION0010608",
-    "FASHION0010637",
-    "FASHION0010646",
-    "FASHION0010651",
-    "FASHION0010669",
-    "FASHION0010703",
-    "FASHION0010708",
-    "HOUSEHOLD001471",
-    "HOUSEHOLD001453",
-    "HOUSEHOLD001454",
-    "HOUSEHOLD001475",
-    "HOUSEHOLD001476",
-    "HOUSEHOLD001482",
-    "HOUSEHOLD001485",
-    "SOFTTOY001042",
-    "SOFTTOY001075",
-    "HOUSEHOLD001002",
-    "EF_PC_CLOT0V18POD00024P",
-    "EF_PC_ELEC0V18POD00212P",
-    "EF_PC_ELEC0V18POD00363P",
-    "EF_PC_ELEC0V18POD00376P",
-    "EF_PC_ELEC0V18POD00417P",
-    "EF_PC_FASHION0V18POD00114P",
-    "EF_PC_HOME0V18POD00051P",
-    "EF_PC_HOME0V18POD00260P",
-    "EF_PC_HOME0V18POD00444P",
-    "EF_PC_HOME0V18POD00496P",
-    "EF_PC_KIDS0V18POD00004P",
-    "EF_PC_SPOR0V18POD00081P",
-    "BOOK002013",
-    "BOOK002015",
-    "BOOK002017",
-    "BOOK002018",
-    "BOOK002027"
+    {
+      "id": "cake00KA001536",
+      "name": "Marble Butter Cake",
+      "category": "cakes",
+      "image": "https://www.kapruka.com/shops/cakes/productImages/zoom/1692873667183_dsc_1067_m.jpg",
+      "price": {
+        "amount": 3010,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/marble-butter-cake/kid/cake00ka001536",
+      "in_stock": true,
+      "summary": "CAKE00KA001536 Weight: 1.1 lbs Lbs      Kapruka Cakes Cakes     Experience the magic of our Marble Butter Cake, where rich chocolate swirls with smooth vanilla in a beautiful pattern. Perfect for s..."
+    },
+    {
+      "id": "cake00KA001903",
+      "name": "The Man We Love Ribbon Tower Cake",
+      "category": "cakes",
+      "image": "https://www.kapruka.com/shops/cakes/productImages/zoom/1748425664059_tag.jpg",
+      "price": {
+        "amount": 9500,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/the-man-we-love-ribbon-tower-c/kid/cake00ka001903",
+      "in_stock": true,
+      "summary": "CAKE00KA001903 Weight: 4.22 Lbs (1.9 KG)     Kapruka Cakes Cakes     Celebrate the special man in your life with `The Man We Love Ribbon Tower Cake,` available at Kapruka. This elegant and tall cak..."
+    },
+    {
+      "id": "cake00KA002136",
+      "name": "Simple Joy Chocolate Cake",
+      "category": "cakes",
+      "image": "https://www.kapruka.com/shops/cakes/productImages/zoom/1775817739282_dsc00003.jpg",
+      "price": {
+        "amount": 4280,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/simple-joy-chocolate-cake/kid/cake00ka002136",
+      "in_stock": true,
+      "summary": "CAKE00KA002136 Weight: 2.22 Lbs (1.0 KG)     Kapruka Cakes Cakes  A simple yet delicious chocolate cake with a soft sponge and rich cocoa taste. Kept plain to highlight its natural flavor, this cak..."
+    },
+    {
+      "id": "cake00KA002137",
+      "name": "Simple Joy  Ribbon Cake",
+      "category": "cakes",
+      "image": "https://www.kapruka.com/shops/cakes/productImages/zoom/1775817372424_dsc09991.jpg",
+      "price": {
+        "amount": 3570,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/simple-joy-ribbon-cake/kid/cake00ka002137",
+      "in_stock": true,
+      "summary": "CAKE00KA002137 Weight: 2.22 Lbs (1.0 KG)     Kapruka Cakes Cakes  A fluffy ribbon cake with delicate vanilla layers and a clean icing finish on top. Designed for Avurudu festivities, this simple ca..."
+    },
+    {
+      "id": "flowers00T1603",
+      "name": "Velvet Rose Dreams Bouquet With 12 Red Roses",
+      "category": "flowers",
+      "image": "https://www.kapruka.com/shops/flowershop/flowerImages/zooms/1709546621875_dsc_3191.jpg",
+      "price": {
+        "amount": 8820,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/velvet-rose-dreams-bouquet-wit/kid/flowers00t1603",
+      "in_stock": true,
+      "summary": "Experience the magic of romance with the Velvet Rose Dreams Bouquet, now available at Kapruka. This captivating bouquet is perfect for celebrating love in Sri Lanka.      Includes 12 exquisite red ..."
+    },
+    {
+      "id": "flowers00T2089",
+      "name": "Red Heart Gift Box Arrangement With Red Roses  Ferrero Rocher Chocolates",
+      "category": "flowers",
+      "image": "https://www.kapruka.com/shops/flowershop/flowerImages/zooms/1773993674851_dsc05962.jpg",
+      "price": {
+        "amount": 12560,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/red-heart-gift-box-arrangement/kid/flowers00t2089",
+      "in_stock": true,
+      "summary": "The Red Heart Gift Box Arrangement With Red Roses and Ferrero Rocher Chocolates makes a striking romantic gesture, ideal for expressing love on special occasions. This exquisite floral arrangement ..."
+    },
+    {
+      "id": "combockfl21",
+      "name": "Love In Bloom Combo with 3D Petal Bloom Cake and Red roses",
+      "category": "combopack",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1738034789652_dsc5677.jpg",
+      "price": {
+        "amount": 14690,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/love-in-bloom-combo-with-3d-pe/kid/combockfl21",
+      "in_stock": true,
+      "summary": "Celebrate love with the Love In Bloom Combo from Kapruka, a delightful mix of cake and flowers perfect for any occasion in Sri Lanka. This beautiful gift set symbolizes a love that blossoms like a ..."
+    },
+    {
+      "id": "softtoy001153",
+      "name": "Labubu Plush Toy 55cm",
+      "category": "Softtoy",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1761305437892_dsc01351_.jpg",
+      "price": {
+        "amount": 5200,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/labubu-plush-toy-55cm/kid/softtoy001153",
+      "in_stock": true,
+      "summary": "Meet the Labubu Plush Toy, a delightful member of The Monsters family now available at Kapruka in Sri Lanka. This charming pink plush, clad in a cute bunny costume, is perfect for fans and collecto..."
+    },
+    {
+      "id": "softtoy001154",
+      "name": "Mink Stitch Angel Plush Toy - 70cm",
+      "category": "Softtoy",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1761306193824_dsc01221_.jpg",
+      "price": {
+        "amount": 13000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/mink-stitch-angel-plush-toy-70/kid/softtoy001154",
+      "in_stock": true,
+      "summary": "Meet the adorable Stitch Angel Plush Toy, now available at Kapruka in Sri Lanka. This premium Disney Characters plush is a must-have for fans of the lovable blue alien, Stitch. Crafted with ultra-s..."
+    },
+    {
+      "id": "softtoy001161",
+      "name": "Fur Stitch Plush Toy- 45cm",
+      "category": "Softtoy",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1763358218669_1.jpg",
+      "price": {
+        "amount": 7000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/fur-stitch-plush-toy-45cm/kid/softtoy001161",
+      "in_stock": true,
+      "summary": "Meet your new favorite Disney character from Lilo n Stitch. This adorable Stitch plush toy is perfect for cuddles and fun, and it`s available at Kapruka in Sri Lanka. With its ultra-soft fabric and..."
+    },
+    {
+      "id": "combochg1996",
+      "name": "The Sweet Bear Hugs Box With Chocolates",
+      "category": "combopack",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1773990574658_dsc04794.jpg",
+      "price": {
+        "amount": 7760,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/the-sweet-bear-hugs-box-with-c/kid/combochg1996",
+      "in_stock": true,
+      "summary": "Discover the ultimate gifting experience with `The Sweet Bear Hugs Box With Chocolates,` a delightfully curated choco gift that exudes warmth and charm. Perfect for birthdays, anniversaries, or jus..."
+    },
+    {
+      "id": "fashion0010750",
+      "name": "ENCHANTEUR ROMANTIC GIFT PACK WITH WALLET FOR HER",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1754458487727_dsc01355.jpg",
+      "price": {
+        "amount": 5300,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/enchanteur-romantic-gift-pack-/kid/fashion0010750",
+      "in_stock": true,
+      "summary": "Brighten her day with the Enchanteur Romantic Gift Pack with Wallet, available at Kapruka. This Fashion Gift Set captures the essence of romance and is a perfect choice for showing love and care. I..."
+    },
+    {
+      "id": "fashion0010784",
+      "name": "Rani Sandalwood Care And Love Gift Set For Her",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1777351648561_dsc01078.jpg",
+      "price": {
+        "amount": 7000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/rani-sandalwood-care-and-love-/kid/fashion0010784",
+      "in_stock": true,
+      "summary": "A beautifully curated gift set designed to celebrate care, warmth, and everyday indulgence. This elegant collection combines the soothing essence of sandalwood with thoughtful lifestyle essentials...."
+    },
+    {
+      "id": "fashion0010785",
+      "name": "Radiant Glow Self-Care Beauty Hamper",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1777373001661_dsc01099.jpg",
+      "price": {
+        "amount": 9000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/radiant-glow-self-care-beauty-/kid/fashion0010785",
+      "in_stock": true,
+      "summary": "A complete self-care and beauty collection designed to refresh, nourish, and pamper from head to toe. This thoughtfully curated hamper combines skincare essentials, grooming tools, and relaxation a..."
+    },
+    {
+      "id": "fashion0010787",
+      "name": "Kohomba Comfort Luxury Box For Mom",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1778125292929_dsc03689.jpg",
+      "price": {
+        "amount": 5870,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/kohomba-comfort-luxury-box-for/kid/fashion0010787",
+      "in_stock": true,
+      "summary": "Included Items:    Khomba Herbal Soap 5 in 1 Pack  Zerina Luxe Croc Clutch Wallet ? Black  Khomba Deo Talc 100g  Khomba Sulphate Free Shampoo 180ml  Khomba Body Wash Lemongrass 250ml  Heat Mug with..."
+    },
+    {
+      "id": "fruits00222",
+      "name": "Fruitful Decadence / Fruit Basket",
+      "category": "Fruits",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1686721596814_dsc_7067_m.jpg",
+      "price": {
+        "amount": 11900,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/fruitful-decadence-fruit-basket/kid/fruits00222",
+      "in_stock": true,
+      "summary": "Discover the Fruitful Decadence Fruit Basket, a luxurious gift hamper perfect for those who enjoy premium tastes. Available at Kapruka, this delightful package features a mix of ripe fruits and ind..."
+    },
+    {
+      "id": "combogick17",
+      "name": "You Are My Happily Ever After Cake  with Chocolate and Greeting Card",
+      "category": "combopack",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1737713691080_dsc_5011.jpg",
+      "price": {
+        "amount": 6840,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/you-are-my-happily-ever-after-/kid/combogick17",
+      "in_stock": true,
+      "summary": "Celebrate love with the `You Are My Happily Ever After` Gift Set and Cake, available at Kapruka in Sri Lanka. This perfect Valentineâ??s Day combo is packed with sweet surprises.       Greeting Car..."
+    },
+    {
+      "id": "giftset00494",
+      "name": "Achievement Appreciation - Graduation Gift for Her - Gift for him",
+      "category": "giftset",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1712133953198_1.jpg",
+      "price": {
+        "amount": 5500,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/achievement-appreciation-gradu/kid/giftset00494",
+      "in_stock": true,
+      "summary": "Celebrate a special graduation with the Achievement Appreciation Bundle, available at Kapruka. This collection is perfect for marking the end of an educational journey and the start of a new advent..."
+    },
+    {
+      "id": "fashion0010567",
+      "name": "Elira Heart-Stitch Compact Wallet Black",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750746529854_dsc05275.jpg",
+      "price": {
+        "amount": 1800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/elira-heart-stitch-compact-wal/kid/fashion0010567",
+      "in_stock": true,
+      "summary": "The Elira Heart-Stitch Compact Wallet in black adds a touch of charm to your daily essentials. Made from textured faux leather, it features sweet heart-stitch designs that give a playful yet elegan..."
+    },
+    {
+      "id": "fashion0010586",
+      "name": "Elira Heart-Stitch Compact Wallet Silver",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750751945538_dsc05259.jpg",
+      "price": {
+        "amount": 1800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/elira-heart-stitch-compact-wal/kid/fashion0010586",
+      "in_stock": true,
+      "summary": "The Elira Heart-Stitch Compact Wallet Silver adds charm to your daily routine. Made from textured faux leather, this wallet features cute heart stitches. Itâ??s stylish and practical, perfect to ca..."
+    },
+    {
+      "id": "fashion0010588",
+      "name": "Elira Heart-Stitch Compact Wallet White",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750751676652_dsc05301.jpg",
+      "price": {
+        "amount": 1800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/elira-heart-stitch-compact-wal/kid/fashion0010588",
+      "in_stock": false,
+      "summary": "Discover the Elira Heart-Stitch Compact Wallet, where elegance meets practicality. This wallet is perfect for organizing your essentials with style. Available at Kapruka and perfect for anyone in S..."
+    },
+    {
+      "id": "fashion0010590",
+      "name": "Stylish Pink Short Wallet",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750773957914_tempbhhchina110_m.jpg",
+      "price": {
+        "amount": 1960,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/stylish-pink-short-wallet/kid/fashion0010590",
+      "in_stock": true,
+      "summary": "Introducing the Stylish Pink Short Wallet from Kapruka, perfect for keeping your essentials organized. Made with premium PU leather, this wallet is sleek and practical for daily use, travel, or gif..."
+    },
+    {
+      "id": "fashion0010592",
+      "name": "Stylish Khaki Short Wallet",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750774575156_tempbhhchina114_a.jpg",
+      "price": {
+        "amount": 1960,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/stylish-khaki-short-wallet/kid/fashion0010592",
+      "in_stock": true,
+      "summary": "The Stylish Khaki Short Wallet is a sleek, minimal, and practical choice for everyday use. Made with premium PU leather, this wallet`s textured finish adds a touch of elegance. Perfect for your dai..."
+    },
+    {
+      "id": "fashion0010593",
+      "name": "Stylish Green Short Wallet",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750774438291_tempbhhchina111_m.jpg",
+      "price": {
+        "amount": 1960,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/stylish-green-short-wallet/kid/fashion0010593",
+      "in_stock": true,
+      "summary": "The Stylish Green Short Wallet, available at Kapruka, is a practical and elegant choice for anyone in Sri Lanka looking for a reliable and fashionable accessory. Made from premium PU leather with a..."
+    },
+    {
+      "id": "fashion0010595",
+      "name": "Stylish Beige Short Wallet",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750774277089_tempbhhchina112_m.jpg",
+      "price": {
+        "amount": 1960,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/stylish-beige-short-wallet/kid/fashion0010595",
+      "in_stock": true,
+      "summary": "The Stylish Beige Short Wallet is perfect for everyday use or travel. Made from premium PU leather, this wallet combines fashion and function. Its sleek design, along with practical features, makes..."
+    },
+    {
+      "id": "fashion0010606",
+      "name": "Aria Charm Trifold Wallet Brown",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750835761593_dsc05510.jpg",
+      "price": {
+        "amount": 1800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/aria-charm-trifold-wallet-brown/kid/fashion0010606",
+      "in_stock": false,
+      "summary": "The Aria Charm Trifold Wallet in brown is where style meets practicality. It`s crafted with a soft woven finish and smooth faux leather accents, giving it a breezy and minimalist look. Perfect for ..."
+    },
+    {
+      "id": "fashion0010608",
+      "name": "Rhea Geo Texture Fold Wallet Black",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750839730667_dsc05541.jpg",
+      "price": {
+        "amount": 1800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/rhea-geo-texture-fold-wallet-b/kid/fashion0010608",
+      "in_stock": true,
+      "summary": "Discover the Rhea Geo Texture Fold Wallet in classic black, available at Kapruka. This wallet offers a blend of style and utility, perfect for everyday use or as a chic gift. Crafted for those in S..."
+    },
+    {
+      "id": "fashion0010637",
+      "name": "Saddle Classic Multi Compartment Wallet Apricot",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1751008452604_dsc05483.jpg",
+      "price": {
+        "amount": 2080,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/saddle-classic-multi-compartme/kid/fashion0010637",
+      "in_stock": true,
+      "summary": "The Saddle Classic Multi-Compartment Wallet in Apricot is perfect for keeping all your essentials neatly organized. Made from textured PU faux leather, this wallet combines function and style, maki..."
+    },
+    {
+      "id": "fashion0010646",
+      "name": "Python Charm Mini Wallet Black And White",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1751276799615_dsc05584.jpg",
+      "price": {
+        "amount": 2080,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/python-charm-mini-wallet-black/kid/fashion0010646",
+      "in_stock": true,
+      "summary": "Elevate your style with the Amber Python Charm Mini Wallet, available at Kapruka in Sri Lanka. This wallet combines fashion and function, perfect for the stylish woman on the move.       Material: ..."
+    },
+    {
+      "id": "fashion0010651",
+      "name": "Python Charm Wallet Large Black And Brown",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1751267391927_dsc05605.jpg",
+      "price": {
+        "amount": 2600,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/python-charm-wallet-large-blac/kid/fashion0010651",
+      "in_stock": true,
+      "summary": "The Python Charm Wallet is a perfect blend of fashion and function, available at Kapruka in Sri Lanka. With its striking black and brown design, this wallet is both stylish and practical for every ..."
+    },
+    {
+      "id": "fashion0010669",
+      "name": "Signature Mini Wallet Blue",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1751254941586_dsc05620.jpg",
+      "price": {
+        "amount": 1800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/signature-mini-wallet-blue/kid/fashion0010669",
+      "in_stock": true,
+      "summary": "Discover the Powder Mist Signature Mini Wallet Blue, where style meets everyday use. Perfect for those who want elegance and practicality in one. Available at Kapruka in Sri Lanka.      Soft, leath..."
+    },
+    {
+      "id": "fashion0010703",
+      "name": "Croco Textured Wallet Blue",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1751363886652_dsc05364.jpg",
+      "price": {
+        "amount": 2300,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/croco-textured-wallet-blue/kid/fashion0010703",
+      "in_stock": true,
+      "summary": "Step into timeless style with the Croco Textured Wallet Blue, now available at Kapruka. This wallets product combines luxury with everyday use, featuring a glossy faux crocodile finish. Perfect for..."
+    },
+    {
+      "id": "fashion0010708",
+      "name": "Croco Textured Wallet Apricot",
+      "category": "Fashion",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1751363576727_dsc05335.jpg",
+      "price": {
+        "amount": 2300,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/croco-textured-wallet-apricot/kid/fashion0010708",
+      "in_stock": true,
+      "summary": "Discover the Croco Textured Wallet in Apricot, perfect for adding a touch of luxury to your daily routine. Its stylish faux crocodile texture and glossy finish make it a chic choice for any occasio..."
+    },
+    {
+      "id": "household001471",
+      "name": "Dad You Are My Super Hero Mug  Spoon Gift Set",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1753951208151_tempbhhchina472_a1.jpg",
+      "price": {
+        "amount": 1800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/dad-you-are-my-super-hero-mug-/kid/household001471",
+      "in_stock": false,
+      "summary": "Make Dad feel like a superhero with this special gift from Kapruka. The `Dad You Are My Super Hero` Mug and Spoon Gift Set is perfect for celebrating a housewarming or any special occasion in Sri L..."
+    },
+    {
+      "id": "household001453",
+      "name": "Happy Birthday Balloon  Cake Mug Gift Set With Spoon  Lid",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1753178381526_tempbhhchina475_m.jpg",
+      "price": {
+        "amount": 1200,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-birthday-balloon-cake-mu/kid/household001453",
+      "in_stock": false,
+      "summary": "Make someone`s birthday extra special with this Happy Birthday Balloon Cake Mug Gift Set. This charming set includes a beautifully illustrated mug, a matching lid, and a convenient spoon. It`s perf..."
+    },
+    {
+      "id": "household001454",
+      "name": "Happy Birthday To You Mug Gift Set With Cake  Balloon Design - Includes Spoon  Lid",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1753179036330_tempbhhchina476_m.jpg",
+      "price": {
+        "amount": 1200,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/happy-birthday-to-you-mug-gift/kid/household001454",
+      "in_stock": false,
+      "summary": "Celebrate a special birthday with this lovely Happy Birthday To You Mug Gift Set, available at Kapruka in Sri Lanka. Perfect for friends, family, or colleagues, this set is ready to delight on any ..."
+    },
+    {
+      "id": "household001475",
+      "name": "Magical Unicorn Dreams Mug Gift Set",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1753942421786_tempbhhchina447_m.jpg",
+      "price": {
+        "amount": 2500,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/magical-unicorn-dreams-mug-gif/kid/household001475",
+      "in_stock": true,
+      "summary": "Surprise someone on their special day with the Magical Unicorn Dreams Mug Gift Set, available at Kapruka. This lovely set includes a pretty ceramic mug with a magical unicorn design and a handy spo..."
+    },
+    {
+      "id": "household001476",
+      "name": "Feliz Dia Del Padre Mug  Spoon Gift Set",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1753945723688_tempbhhchina468_m.jpg",
+      "price": {
+        "amount": 1600,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/feliz-dia-del-padre-mug-spoon-/kid/household001476",
+      "in_stock": true,
+      "summary": "Make someone`s day special with the delightful Feliz Dia Del Padre Mug n Spoon Gift Set, available at Kapruka in Sri Lanka. This charming set is perfect for enjoying your favorite warm or cold beve..."
+    },
+    {
+      "id": "household001482",
+      "name": "Mocha Delight Ceramic Mug Gift Set With Spoon  Lid",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1754029082889_tempbhhchina445_m.jpg",
+      "price": {
+        "amount": 1280,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/mocha-delight-ceramic-mug-gift/kid/household001482",
+      "in_stock": false,
+      "summary": "The Mocha Delight Ceramic Mug Gift Set with Spoon and Lid is a perfect treat from Kapruka for any special day. It features a beautifully illustrated mug that`s ideal for enjoying tea, coffee, or an..."
+    },
+    {
+      "id": "household001485",
+      "name": "Dia Del Padre Mug  Spoon Gift Set",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1753950033059_tempbhhchina469_m.jpg",
+      "price": {
+        "amount": 1850,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/dia-del-padre-mug-spoon-gift-s/kid/household001485",
+      "in_stock": true,
+      "summary": "Make every sip a special occasion with the Dia Del Padre Mug and Spoon Gift Set. This delightful ceramic mug comes with a handy spoon, perfect for enjoying your favorite tea or coffee.       Includ..."
+    },
+    {
+      "id": "softtoy001042",
+      "name": "Twinkle Unicorn Soft Toy - 14 Inches",
+      "category": "Softtoy",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1730700593848_3366.jpg",
+      "price": {
+        "amount": 2900,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/twinkle-unicorn-soft-toy-14-in/kid/softtoy001042",
+      "in_stock": true,
+      "summary": "The Twinkle Unicorn Soft Toy brings magic and joy to your home. This adorable stuffed animal is perfect for cuddles and playtime adventures. Made from soft, plush fabric, it`s sure to be a favorite..."
+    },
+    {
+      "id": "softtoy001075",
+      "name": "Cuddle King Charlie T-shirt Bear 5.5 Ft  Brown",
+      "category": "Softtoy",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1732768781852_2222.jpg",
+      "price": {
+        "amount": 20000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/cuddle-king-charlie-t-shirt-be/kid/softtoy001075",
+      "in_stock": true,
+      "summary": "Cuddle King Charlie is the perfect giant teddy bear for big hugs and cozy moments. Available at Kapruka in Sri Lanka, this enormous bear is ready to be your best friend. With soft brown fur and bri..."
+    },
+    {
+      "id": "household001002",
+      "name": "12-in-1 Multifunctional Hammer Tool- Camping Survival Gear Cool - Gadgets For Hiking Outdoor",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1696824149064_aa.jpg",
+      "price": {
+        "amount": 3460,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/12-in-1-multifunctional-hammer/kid/household001002",
+      "in_stock": false,
+      "summary": "The 12-in-1 Multifunctional Hammer Tool is perfect for camping, hiking, and outdoor adventures. Available at Kapruka in Sri Lanka, this cool gadget is also a fantastic gift for anyone who loves DIY..."
+    },
+    {
+      "id": "EF_PC_CLOT0V18POD00024P",
+      "name": "Yellow Aqua Dot Satin Saree",
+      "category": "CLOTHING",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/clot0v18p00024/clot0v18p00024_1.jpg",
+      "price": {
+        "amount": 3100,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/yellow-aqua-dot-satin-saree/kid/ef_pc_clot0v18pod00024p",
+      "in_stock": true,
+      "summary": "Elevate your ethnic wardrobe with the Yellow Aqua Dot Satin  Saree , perfect for adding a touch of elegance to any occasion. Crafted from luxurious satin fabric, this saree  offers  a glossy finish..."
+    },
+    {
+      "id": "EF_PC_ELEC0V18POD00212P",
+      "name": "Silver Crest Sc 08 1500w Heavy Duty Blender",
+      "category": "ELECTRONICS",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/elec0v18p00212/elec0v18p00212_1.jpg",
+      "price": {
+        "amount": 6050,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/silver-crest-sc-08-1500w-heavy/kid/ef_pc_elec0v18pod00212p",
+      "in_stock": true,
+      "summary": "The Silver Crest SC 08 1500W Heavy Duty  Blender  ( ) handles ice crushing, nut grinding and smooth  fruit  or vegetable mixes for both home and commercial kitchens. This high-powered blender makes..."
+    },
+    {
+      "id": "EF_PC_ELEC0V18POD00363P",
+      "name": "Greenlife Rice Cooker",
+      "category": "ELECTRONICS",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/elec0v18p00363/elec0v18p00363_1.jpg",
+      "price": {
+        "amount": 9200,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/greenlife-rice-cooker/kid/ef_pc_elec0v18pod00363p",
+      "in_stock": true,
+      "summary": "The Greenlife  Rice  Cooker, part of the  All Cookers  range, is a convenient kitchen tool for families in Sri Lanka. Available at Kapruka, it is designed to make cooking rice easy and quick.      ..."
+    },
+    {
+      "id": "EF_PC_ELEC0V18POD00376P",
+      "name": "FBITE Coffee Spice Grinder",
+      "category": "ELECTRONICS",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/elec0v18p00376/elec0v18p00376_1.jpg",
+      "price": {
+        "amount": 2000,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/fbite-coffee-spice-grinder/kid/ef_pc_elec0v18pod00376p",
+      "in_stock": true,
+      "summary": "Discover the FBITE  Coffee  Spice  Grinder , a versatile  Blenders/ Mixers/ Grinders/ Food Processors  product available at Kapruka for all your grinding needs in Sri Lanka. This powerful tool is p..."
+    },
+    {
+      "id": "EF_PC_ELEC0V18POD00417P",
+      "name": "Mini Sewing Machine Sm 202a",
+      "category": "ELECTRONICS",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/elec0v18p00417/elec0v18p00417_1.jpg",
+      "price": {
+        "amount": 2380,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/mini-sewing-machine-sm-202a/kid/ef_pc_elec0v18pod00417p",
+      "in_stock": true,
+      "summary": "The Mini  Sewing  Machine SM:202A is a compact, portable sewing machine for quick stitching and minor repairs at home. This  small  sewing machine uses double-thread stitching and two-speed control..."
+    },
+    {
+      "id": "EF_PC_FASHION0V18POD00114P",
+      "name": "Neutral Beige Small Classic Metallic Edge City Handbag",
+      "category": "FASHION",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/fashion0v18p00114/fashion0v18p00114_1.jpg",
+      "price": {
+        "amount": 11500,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/neutral-beige-small-classic-me/kid/ef_pc_fashion0v18pod00114p",
+      "in_stock": true,
+      "summary": "Sleek and modern Easy Tide Shoulder Handbag in Gray, perfect for everyday use  Elegant neutral tone that complements both casual and formal outfits  Spacious main compartment to carry daily essenti..."
+    },
+    {
+      "id": "EF_PC_HOME0V18POD00051P",
+      "name": "Rotating Spin Mop with Bucket  Stainless Steel Magic Mop for Effortless Cleaning",
+      "category": "HOUSEHOLD",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/home0v18p00051/home0v18p00051_1.jpg",
+      "price": {
+        "amount": 3350,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/rotating-spin-mop-with-bucket-/kid/ef_pc_home0v18pod00051p",
+      "in_stock": true,
+      "summary": "The Spin  Mop  and Bucket set keeps floors spotless with 360 rotating microfiber heads and a built-in spin wringer. This stainless steel rotating mop reaches tricky corners and dries hands-free, ma..."
+    },
+    {
+      "id": "EF_PC_HOME0V18POD00260P",
+      "name": "2 Tier Over The Sink Dish Drying Rack",
+      "category": "HOUSEHOLD",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/home0v18p00260/home0v18p00260_1.jpg",
+      "price": {
+        "amount": 6200,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/2-tier-over-the-sink-dish-dryi/kid/ef_pc_home0v18pod00260p",
+      "in_stock": true,
+      "summary": "The 2 Tier Over The Sink Dish Drying  Rack  ( ) sits over your sink to dry dishes and free up counter space. This over-the-sink dish rack holds plates,  bowls , cups and  utensils  while water drai..."
+    },
+    {
+      "id": "EF_PC_HOME0V18POD00444P",
+      "name": "Stainless Steel Over Sink Dish Drying Rack with Flip Cover 85 CM",
+      "category": "HOUSEHOLD",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/home0v18p00444/home0v18p00444_1.jpg",
+      "price": {
+        "amount": 9450,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/stainless-steel-over-sink-dish/kid/ef_pc_home0v18pod00444p",
+      "in_stock": true,
+      "summary": "Elevate your kitchen space with the Stainless Steel Over Sink Dish Drying  Rack  with Flip Cover 85 CM. Ideal for maximizing limited space, this dish rack fits snugly over your kitchen sink, offeri..."
+    },
+    {
+      "id": "EF_PC_HOME0V18POD00496P",
+      "name": "3 Door 6 Layer Diy Shoe Rack",
+      "category": "HOUSEHOLD",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/home0v18p00496/home0v18p00496_1.jpg",
+      "price": {
+        "amount": 6100,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/3-door-6-layer-diy-shoe-rack/kid/ef_pc_home0v18pod00496p",
+      "in_stock": true,
+      "summary": "Keep your  shoes  tidy and your home neat with the 3 Door 6 Layer DIY Shoe Rack, a great  Decorative Accessories  item available at Kapruka. This practical organizer features a modern design and du..."
+    },
+    {
+      "id": "EF_PC_KIDS0V18POD00004P",
+      "name": "Led Light Up Transparent Message Board",
+      "category": "KIDS TOYS",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/kids0v18p00004/kids0v18p00004_1.jpg",
+      "price": {
+        "amount": 1720,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/led-light-up-transparent-messa/kid/ef_pc_kids0v18pod00004p",
+      "in_stock": true,
+      "summary": "Stay creative and organized with the LED Light-Up Transparent Message Board, available at Kapruka in Sri Lanka. This educational and learning toy is perfect for home, office, or classroom use. Writ..."
+    },
+    {
+      "id": "EF_PC_SPOR0V18POD00081P",
+      "name": "Floral Pink Stainless Steel Tumbler With Handle 1200ml",
+      "category": "SPORTS",
+      "image": "https://partnercentral.kapruka.com/kapruka-pc/assets/images/product/pc00006/spor0v18p00081/spor0v18p00081_1.jpg",
+      "price": {
+        "amount": 3750,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/floral-pink-stainless-steel-tu/kid/ef_pc_spor0v18pod00081p",
+      "in_stock": true,
+      "summary": "Enjoy your favorite  drinks  with the Floral Pink Stainless Steel Tumbler, available at Kapruka. This tumbler is perfect for keeping your  beverages  hot or cold throughout the day in Sri Lanka.   ..."
+    },
+    {
+      "id": "book002013",
+      "name": "Bumpy",
+      "category": "books",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1760097476634_z23.jpg",
+      "price": {
+        "amount": 400,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/bumpy/kid/book002013",
+      "in_stock": true,
+      "summary": "Bumpy is an engaging children`s book designed for young readers in Sri Lanka. This fun-filled adventure book sparks imagination and brings joy to bedtime reading sessions, making it an ideal choice..."
+    },
+    {
+      "id": "book002015",
+      "name": "Chickery Chick",
+      "category": "books",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1760097156796_ad33.jpg",
+      "price": {
+        "amount": 300,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/chickery-chick/kid/book002015",
+      "in_stock": true,
+      "summary": "Chickery Chick is a heartwarming children`s book that brings young readers a delightful tale of adventure and friendship. This engaging story captivates kids with its charming narrative and colorfu..."
+    },
+    {
+      "id": "book002017",
+      "name": "Candleena",
+      "category": "books",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1760095436798_zx1.jpg",
+      "price": {
+        "amount": 300,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/candleena/kid/book002017",
+      "in_stock": true,
+      "summary": "Candleena is a captivating children`s book by renowned Sri Lankan author Janaki Sooriyarachchi, designed to ignite imagination and wonder in young readers. This engaging storybook encourages creati..."
+    },
+    {
+      "id": "book002018",
+      "name": "Jingbu- The Big Bully",
+      "category": "books",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1760094056833_as3.jpg",
+      "price": {
+        "amount": 400,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/jingbu-the-big-bully/kid/book002018",
+      "in_stock": true,
+      "summary": "Jingbu The Big Bully is a children`s story book by Janaki Sooriyarachchi that teaches young readers valuable lessons about friendship and kindness through engaging storytelling. This delightful boo..."
+    },
+    {
+      "id": "book002027",
+      "name": "Sinaamalee",
+      "category": "books",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1760420320395_cv.jpg",
+      "price": {
+        "amount": 400,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/sinaamalee/kid/book002027",
+      "in_stock": true,
+      "summary": "Sinaamalee is a Sinhala-language children`s book designed for young readers in Sri Lanka. This engaging storybook combines captivating illustrations with an age-appropriate narrative that encourage..."
+    }
+  ],
+  "promotions": [
+    {
+      "id": "perfume00850",
+      "name": "Spa Ceylon Orchid Paradise Festive Fragrance Journey Eau De Perfume Collection",
+      "category": "Perfumes",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1772098567784_boxwithcover.jpg",
+      "price": {
+        "amount": 15900,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/spa-ceylon-orchid-paradise-fes/kid/perfume00850",
+      "in_stock": true,
+      "summary": "Celebrate the natural beauty of Ceylonese Orchids native to the island?s lush tropical Rainforests.   This Set Includes:  1.Night Jasmine - Eau de Perfume 3.5ml 2.Island Rose - Eau de Perfume 3.5ml...",
+      "compare_price": 30000
+    },
+    {
+      "id": "kidstoy0Z1560",
+      "name": "Baby Shark Kids Toy with Music ,Lights and Rotation",
+      "category": "kidstoys",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1708076531475_a26.jpg",
+      "price": {
+        "amount": 2200,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/baby-shark-kids-toy-with-music/kid/kidstoy0z1560",
+      "in_stock": true,
+      "summary": "Dive into fun with the Baby Shark Kids Toy, a fantastic Hot Wheels and Toy Vehicles product. This exciting toy brings music, lights, and movement to playtime, creating a world of imagination right ..."
+    },
+    {
+      "id": "elec00A3258",
+      "name": "Sanford Single Tub Baby Napkin Washing Machine With Shoe Brush - SF 830W",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/164187577321130_30.jpg",
+      "price": {
+        "amount": 43990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/sanford-single-tub-baby-napkin/kid/elec00a3258",
+      "in_stock": true,
+      "summary": "Details    SKU: SF-830W  Brand: Sanford  Type: Washing Machines  Availability: In Stock   Description    2.5Kg Wash capacity.  1.5kg Spin capacity.  Compact size.  Light weight and high capacity.  ..."
+    },
+    {
+      "id": "ornaments00868",
+      "name": "Modern Luxury European Style Ginkgo Leaf Living Room Storage Wall Hanger Bathroom Coat Hats Accessories",
+      "category": "Ornaments",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1646826740902_dsc_8558_m.jpg",
+      "price": {
+        "amount": 9240,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/modern-luxury-european-style-g/kid/ornaments00868",
+      "in_stock": true,
+      "summary": "This European style ginkgo leaf wall hanger brings functional elegance to your living room, bathroom or hallway. The decorative wall-mounted storage piece features graceful leaf-shaped hooks in gre...",
+      "compare_price": 11900
+    },
+    {
+      "id": "ornaments00858",
+      "name": "Luxury Wall Clock (Small) Modern Design Silent Creative Wall Clock Digital Novelty Wall Clock Home Décor",
+      "category": "Ornaments",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1646828243054_dsc_8584bc_m.jpg",
+      "price": {
+        "amount": 18900,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/luxury-wall-clock-small-modern/kid/ornaments00858",
+      "in_stock": true,
+      "summary": "This modern wall clock brings a striking geometric design and elegant gold finish to any living room or bedroom. The luxury wall clock features a classic circular center framed by delicate oval-edg...",
+      "compare_price": 23800
+    },
+    {
+      "id": "elec00A5638",
+      "name": "Sharp 65L Mini-Bar Refrigerator - SJ-K75X-SL3",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17085942336239_10-.jpg",
+      "price": {
+        "amount": 69990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/sharp-65l-mini-bar-refrigerato/kid/elec00a5638",
+      "in_stock": true,
+      "summary": "Capacity ? 65 Liter (Gross) R600A Refrigerant Tropical Compressor Recess Handle Design Internal Condenser Wire Shelf - Bottle Rack With Key Lock  With Egg Tray - Ice Tray Product Dimension - 449*47..."
+    },
+    {
+      "id": "elec00A5881",
+      "name": "Sharp Rechargeable Party Speaker - PS-925",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17235289818978_286.jpg",
+      "price": {
+        "amount": 45990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/sharp-rechargeable-party-speak/kid/elec00a5881",
+      "in_stock": true,
+      "summary": "The Sharp PS-925 is a rechargeable portable party speaker built for karaoke nights, gatherings and outdoor events. It delivers 44W RMS output with Bluetooth V5.0 streaming, an Enhance Bass button a..."
+    },
+    {
+      "id": "elec00A5995",
+      "name": "ABANS SOLO MICROWAVE OVEN 20L",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1733901620934_abans_solo_microwave_oven_20l.jpg",
+      "price": {
+        "amount": 25990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/abans-solo-microwave-oven-20l/kid/elec00a5995",
+      "in_stock": true,
+      "summary": "The Abans Solo Microwave Oven 20L is your perfect companion for quick and efficient meal preparation. This ABN20-S model is designed specifically for small to medium-sized families in Sri Lanka, of..."
+    },
+    {
+      "id": "household001091",
+      "name": "Quick Knife Sharpener hck-168, 3 stages, for sharpening kitchen knives",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17063450923822_3.jpg",
+      "price": {
+        "amount": 550,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/quick-knife-sharpener-hck-168-/kid/household001091",
+      "in_stock": true,
+      "summary": "The Quick Knife Sharpener hck-168 is a 3-stage kitchen knife sharpener built to restore a keen edge on your blades fast. This compact knife sharpener tool handles everyday prep knives and keeps the...",
+      "compare_price": 990
+    },
+    {
+      "id": "household00359",
+      "name": "Silver kitchen utensil Turners Shovel",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1557815344447_dsc_4476_m.jpg",
+      "price": {
+        "amount": 230,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/silver-kitchen-utensil-turners/kid/household00359",
+      "in_stock": true,
+      "summary": "Discover the essential Silver Kitchen Utensil Turner Shovel, perfect for all your cooking needs. Made from durable stainless steel, this kitchen tool is a must-have in every home.       Material : ...",
+      "compare_price": 700
+    },
+    {
+      "id": "household00358",
+      "name": "Stainless Steel Spatulas Kitchen Cooking Tool",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1557814721952_dsc_4475_m.jpg",
+      "price": {
+        "amount": 230,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/stainless-steel-spatulas-kitch/kid/household00358",
+      "in_stock": true,
+      "summary": "Elevate your cooking experience with this Stainless Steel Spatula, a must-have for every Sri Lankan kitchen. Available at Kapruka, this durable tool simplifies your kitchen tasks.       Material : ...",
+      "compare_price": 490
+    },
+    {
+      "id": "household00357",
+      "name": "Wine Opener",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1557813780740_dsc_4464_m.jpg",
+      "price": {
+        "amount": 100,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/wine-opener/kid/household00357",
+      "in_stock": true,
+      "summary": "This Wine Opener is a must-have addition to your Kitchen and Dining collection. Made for easy use and durability, it helps you open wine and champagne bottles quickly. Available at Kapruka in Sri L...",
+      "compare_price": 560
+    },
+    {
+      "id": "softtoy00979",
+      "name": "Squirtle Pokemon Plush Toy",
+      "category": "Softtoy",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1706261920484_a2333.jpg",
+      "price": {
+        "amount": 1980,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/squirtle-pokemon-plush-toy/kid/softtoy00979",
+      "in_stock": true,
+      "summary": "Meet the Squirtle Pokemon Plush Toy, a delightful stuffed animal that`s perfect for anyone who loves cute and cuddly companions. This plush toy is a light green turtle designed to bring joy to chil...",
+      "compare_price": 2800
+    },
+    {
+      "id": "kidstoy0Z1649",
+      "name": "DIY Fire Rescue Parking Lot Playset - 1:64 Metal Alloy Car Series",
+      "category": "kidstoys",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1750416352287_dsc04735.jpg",
+      "price": {
+        "amount": 4200,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/diy-fire-rescue-parking-lot-pl/kid/kidstoy0z1649",
+      "in_stock": true,
+      "summary": "Ignite your childâ??s imagination with the DIY Fire Rescue Parking Lot Playset, available at Kapruka in Sri Lanka. This exciting Building Blocks And Lego Sets product lets kids build their own fire..."
+    },
+    {
+      "id": "cosmetics001670",
+      "name": "VOI SCRUB AND WASH COFFEE 400ML",
+      "category": "Cosmetics",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1761131560975_voiscrubwashcoffee.jpg",
+      "price": {
+        "amount": 2400,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/voi-scrub-and-wash-coffee-400ml/kid/cosmetics001670",
+      "in_stock": true,
+      "summary": "Discover smooth, glowing skin with the VOI Scrub and Wash Coffee Body Wash, available at Kapruka in Sri Lanka. This delightful scrub gently cleans your skin with its bubbly, easy-to-melt gel, leavi...",
+      "compare_price": 3900
+    },
+    {
+      "id": "elec00A6031",
+      "name": "USB Chargeable Scalp Massage Comb For Men And Women With A Hair Oil Tank",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1752218769756_main(2).jpg",
+      "price": {
+        "amount": 6800,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/usb-chargeable-scalp-massage-c/kid/elec00a6031",
+      "in_stock": true,
+      "summary": "Revitalize your hair care routine with the USB Chargeable Scalp Massage Comb. Perfect for both men and women, this massager combines a brush with a wellness tool, bringing salon-style scalp therapy..."
+    },
+    {
+      "id": "grocery003236",
+      "name": "4 Tins Of Entrasol Vanilla 400g",
+      "category": "Grocery",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1715168007817_3.jpg",
+      "price": {
+        "amount": 15680,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/4-tins-of-entrasol-vanilla-400g/kid/grocery003236",
+      "in_stock": true,
+      "summary": "Entrasol Vanilla milk powder is a complete nutritional supplement that delivers essential vitamins, minerals and protein in every serving. This bundle includes four 400g tins, providing convenient ...",
+      "compare_price": 17072
+    },
+    {
+      "id": "grocery003234",
+      "name": "4 Tins Of Diabetasol Creamy Almond 360g",
+      "category": "Grocery",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1715167254099_11.jpg",
+      "price": {
+        "amount": 15280,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/4-tins-of-diabetasol-creamy-al/kid/grocery003234",
+      "in_stock": true,
+      "summary": "Diabetasol Creamy Almond offers a smooth blend of creamy and nutty flavors in this value pack of 4 tins, each 360g. Specially formulated for those managing diabetes in Sri Lanka, this nutritional s...",
+      "compare_price": 15960
+    },
+    {
+      "id": "household001008",
+      "name": "Crown Alarm Clock- Children Retro Metal Alarm Lock- Creative Mute Alarm Clock",
+      "category": "household",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1697789904150_1.jpg",
+      "price": {
+        "amount": 1500,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/crown-alarm-clock-children-ret/kid/household001008",
+      "in_stock": false,
+      "summary": "Bring a touch of vintage charm to your bedroom with the Crown Retro Metal Alarm Clock, available at Kapruka in Sri Lanka. This classic clock features a timeless design that fits perfectly on any ni...",
+      "compare_price": 3490
+    },
+    {
+      "id": "pharmacy00791",
+      "name": "Diabetes Care Essentials Gift Pack -  FREE ONE TOUCH SELECT PLUS SIMPLE STRIPS 25S -  Gift For Amma",
+      "category": "pharmacy",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17313278676382_5.jpg",
+      "price": {
+        "amount": 14820,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/diabetes-care-essentials-gift-/kid/pharmacy00791",
+      "in_stock": true,
+      "summary": "Introducing our Diabetes Care Essentials Pack ? the all-in-one solution for managing and supporting your diabetes journey with confidence! This carefully curated pack combines essential products de...",
+      "compare_price": 14850
+    },
+    {
+      "id": "elec00A5637",
+      "name": "Sharp 32` HD Smart LED Android Television - 2T-C32EG5NX + Sanford 30W Bluetooth Sound Bar- SF-752SB",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/17085942336237_8-.jpg",
+      "price": {
+        "amount": 76220,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/sharp-32-hd-smart-led-android-/kid/elec00a5637",
+      "in_stock": true,
+      "summary": "HD Ready ? 1366 x 769 Resolution Android 11.0 Tv with Netflix - YouTube Built-In Screen Mirroring App | Google Chrome Cast - to Mirror Windows Laptop  HDMI x 3 , USB x 2 Bluetooth Connection for Au..."
+    },
+    {
+      "id": "elec00A2182",
+      "name": "Premier Pressure Cooker 12L PRPC12WSN",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/16012800131654_4.jpg",
+      "price": {
+        "amount": 20990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/premier-pressure-cooker-12l-pr/kid/elec00a2182",
+      "in_stock": true,
+      "summary": "Cook faster and easier with the Premier Pressure Cooker 12L, a must-have Kitchen Appliance available at Kapruka. Perfect for big families in Sri Lanka, this pressure cooker helps you make tasty mea..."
+    },
+    {
+      "id": "elec00A5694",
+      "name": "Abans Upgraded 190L Defrost DD Refrigerator - R600 Gas - ABRFDD205DDSC",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/171074616043710_0040.jpg",
+      "price": {
+        "amount": 105990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/abans-upgraded-190l-defrost-dd/kid/elec00a5694",
+      "in_stock": true,
+      "summary": "The Abans Upgraded 190L Defrost DD Refrigerator is a reliable home appliance available at Kapruka, perfect for keeping your food fresh in Sri Lanka. With eco-friendly features and a robust build, i..."
+    },
+    {
+      "id": "elec00A5689",
+      "name": "Abans Upgraded 190L Defrost DD Refrigerator - R600 Gas (Silver) - ABRFDD205DDSC",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/171074616043712_0042.jpg",
+      "price": {
+        "amount": 105990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/abans-upgraded-190l-defrost-dd/kid/elec00a5689",
+      "in_stock": true,
+      "summary": "The Abans Upgraded 190L Defrost DD Refrigerator in sleek silver is a great addition to any home. Designed for practicality and sustainability, it uses eco-friendly R600a refrigerant to keep your fo..."
+    },
+    {
+      "id": "elec00A2502",
+      "name": "Abans Hand Mixer 4L With Bowl ABHM3111A",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/16118633784573_3.jpg",
+      "price": {
+        "amount": 15990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/abans-hand-mixer-4l-with-bowl-/kid/elec00a2502",
+      "in_stock": true,
+      "summary": "The Abans Hand Mixer 4L With Bowl ABHM3111A is an essential addition to any kitchen appliance collection, perfect for efficient mixing tasks. With its automatic stainless steel bowl rotation and va..."
+    },
+    {
+      "id": "childrenP01122",
+      "name": "Teddy Pop Fidget Bag for Girls, Teddy  Pop Shoulder Bags for Kids",
+      "category": "Childrens",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1708059241990_7b183f5a778a2f05.jpg",
+      "price": {
+        "amount": 1300,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/teddy-pop-fidget-bag-for-girls/kid/childrenp01122",
+      "in_stock": true,
+      "summary": "The Teddy Pop Fidget Bag for Girls is a fun and trendy accessory for kids available at Kapruka. Perfect for school or play, this kids` schoolbag combines the charm of a teddy bear with the trendy p..."
+    },
+    {
+      "id": "elec00A6007",
+      "name": "ELBA-CASSETTE TYPE COOKER HOOD - SILVER- 60CM",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1734061098625_elba_cassette_type_cooker_hood_silver_60cm.jpg",
+      "price": {
+        "amount": 32990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/elba-cassette-type-cooker-hood/kid/elec00a6007",
+      "in_stock": true,
+      "summary": "Enhance your kitchen ventilation with the sleek and efficient ELBA-Cassette Type Cooker Hood. Perfect for any modern kitchen, this cooker hood is designed to keep the air fresh and clean.       Smo..."
+    },
+    {
+      "id": "elec00A6003",
+      "name": "ELBA-CASSETTE TYPE COOKER HOOD - BLACK- 60CM",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1734004294352_elba_cassette_type_cooker_hood_black_60cm.jpg",
+      "price": {
+        "amount": 38990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/elba-cassette-type-cooker-hood/kid/elec00a6003",
+      "in_stock": true,
+      "summary": "The ELBA-Cassette Type Cooker Hood in sleek black is perfect for enhancing your kitchen in Sri Lanka. This cooker hood offers excellent ventilation while adding a touch of style.       Design:  Smo..."
+    },
+    {
+      "id": "elec00A6002",
+      "name": "ABANS-NO FROST SMART PRO 285L MIRROR HAIRLINE",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1734002062594_abans_no_frost_smart_pro_285l_mirror_hairline.jpg",
+      "price": {
+        "amount": 169990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/abans-no-frost-smart-pro-285l-/kid/elec00a6002",
+      "in_stock": true,
+      "summary": "The Abans No Frost Smart Pro 285L Refrigerator combines advanced cooling technology with spacious storage for families in Sri Lanka. This mirror hairline finish fridge features Wanbao Inverter Comp..."
+    },
+    {
+      "id": "elec00A5998",
+      "name": "ABANS GRILL MICROWAVE OVEN 25L",
+      "category": "Electronic",
+      "image": "https://www.kapruka.com/shops/specialGifts/productImages/1733997958575_abans_grill_microwave_oven_25l.jpg",
+      "price": {
+        "amount": 37990,
+        "currency": "LKR"
+      },
+      "url": "https://www.kapruka.com/buyonline/abans-grill-microwave-oven-25l/kid/elec00a5998",
+      "in_stock": true,
+      "summary": "Discover the convenience of cooking with the ABANS Grill Microwave Oven 25L, available at Kapruka in Sri Lanka. It`s perfect for everyday meals, combining the power of a microwave and a grill.     ..."
+    }
   ]
 }

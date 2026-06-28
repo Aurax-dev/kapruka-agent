@@ -129,7 +129,7 @@ export async function* runAgentLoop(
       yield { type: "status", label };
 
       const sideEvents: AgentEvent[] = [];
-      const emit = (ev: { type: "products"; products: ProductSummarySnippet[] } | { type: "url"; url: string; title: string }) => {
+      const emit = (ev: { type: "products"; products: ProductSummarySnippet[] } | { type: "url"; url: string; title: string } | { type: "track_result"; data: import("@/lib/chat/types").TrackResult }) => {
         sideEvents.push(ev as AgentEvent);
       };
 
@@ -139,7 +139,8 @@ export async function* runAgentLoop(
 
       if (name === "search_products") {
         const products = extractProducts(result);
-        if (products.length > 0) yield { type: "products", products, label: args.q as string };
+        const productLabel = (args.label as string | undefined) ?? (args.q as string);
+        if (products.length > 0) yield { type: "products", products, label: productLabel };
       }
 
       responseParts.push({
