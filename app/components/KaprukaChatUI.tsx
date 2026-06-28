@@ -115,8 +115,9 @@ const AV: Record<AvatarKey, string> = {
 
 const TONES = ['rose', 'cocoa', 'mint', 'peach', 'violet'];
 
-function titleCase(s: string) {
-  return s.replace(/\b\w/g, c => c.toUpperCase());
+function sentenceCase(s: string) {
+  if (!s) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 const TONE_COLORS: Record<string, string[]> = {
   rose:   ['#FBD7E3', '#F4A8C4', '#D86A95'],
@@ -875,13 +876,13 @@ export default function KaprukaChatUI() {
                     padding: '5px 11px', borderRadius: 20, border: 'none', cursor: 'pointer',
                     fontSize: 12, fontWeight: active ? 700 : 500, whiteSpace: 'nowrap',
                     color: active ? '#fff' : '#7B5BD6',
-                    background: active ? 'linear-gradient(135deg,#402970,#6B49C8)' : '#F0EAFB',
-                    boxShadow: active ? '0 2px 8px rgba(64,41,112,.25)' : 'none',
+                    background: active ? '#5C3FB0' : '#F0EAFB',
+                    boxShadow: active ? '0 2px 8px rgba(64,41,112,.18)' : 'none',
                     opacity: cnt === 0 ? 0.4 : 1,
                     transition: 'all .15s',
                   }}
                 >
-                  {titleCase(tab.label)}
+                  {sentenceCase(tab.label)}
                   {cnt > 0 && (
                     <span style={{
                       fontSize: 10, fontWeight: 700, borderRadius: 10, padding: '1px 5px',
@@ -902,7 +903,11 @@ export default function KaprukaChatUI() {
           {/* load more sentinel — only for labelled searches */}
           {activeLabel && (
             <div
-              onClick={() => sendMessage(`Show me more ${titleCase(activeLabel!)} options`)}
+              onClick={() => {
+                const msg = `Show me more ${sentenceCase(activeLabel!)} options`;
+                pushUser(msg);
+                sendMessage(msg);
+              }}
               style={{ flex: '0 0 88px', scrollSnapAlign: 'start', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, cursor: 'pointer', opacity: 0.55, transition: 'opacity .2s', userSelect: 'none' }}
               onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.opacity = '1'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.opacity = '0.55'; }}
@@ -914,21 +919,6 @@ export default function KaprukaChatUI() {
             </div>
           )}
         </div>
-
-        {/* ── conversational CTA — only on the last completed products card ── */}
-        {!state.streaming && state.messages.filter(x => x.kind === 'products').at(-1)?.id === m.id && (
-          <div style={{ borderTop: '1px solid #F0EAFB', padding: '10px 18px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
-            <span style={{ fontSize: 12.5, color: '#6B5A8E', lineHeight: 1.4, flex: 1 }}>
-              Does any of these feel right? Tell me more about them and I&apos;ll refine the search. 💬
-            </span>
-            <button
-              onClick={() => sendMessage('None of these feel right — help me refine the search')}
-              style={{ flex: '0 0 auto', padding: '6px 12px', borderRadius: 20, border: '1.5px solid #C9B8ED', background: '#fff', color: '#5C3FB0', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}
-            >
-              Refine →
-            </button>
-          </div>
-        )}
       </Card>
     );
   };
@@ -1396,6 +1386,54 @@ export default function KaprukaChatUI() {
           {state.savedAddrs.length === 0 && <EmptyState icon="pin" title="No saved addresses" sub="Addresses you use will be saved here." />}
         </div>
       );
+    } else if (state.drawer === 'orders') {
+      title = 'Track Order';
+      const trackFormKey = 'orders_track';
+      const trackOrderNo = String(state.forms[trackFormKey]?.orderNo || '');
+      const handleTrack = () => {
+        if (!trackOrderNo.trim()) { showToast('Enter your order number', 'box'); return; }
+        setState(prev => ({ ...prev, drawer: null }));
+        const msg = 'Track order ' + trackOrderNo.trim();
+        pushUser(msg);
+        sendMessage(msg);
+      };
+      body = (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div style={{ background: 'linear-gradient(135deg,#EEE7FB,#F8F4FE)', border: '1px solid rgba(64,41,112,.1)', borderRadius: 16, padding: '20px 18px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ width: 42, height: 42, borderRadius: 13, background: 'linear-gradient(135deg,#402970,#5C3FB0)', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}>
+                <Icon name="truck" size={20} color="#fff" />
+              </div>
+              <div>
+                <div style={{ fontWeight: 800, fontSize: 15, color: '#2A1E4A' }}>Order Tracking</div>
+                <div style={{ fontSize: 12.5, color: '#7B7398', marginTop: 1 }}>Enter your order number to get live updates</div>
+              </div>
+            </div>
+            <Field label="Order number" fieldKey="orderNo" formKey={trackFormKey} ph="e.g. KPR-2026-12345" />
+            <button onClick={handleTrack}
+              style={{ width: '100%', padding: '13px 0', borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)', transition: 'opacity .15s' }}>
+              Track order →
+            </button>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {[
+              { icon: 'ship', label: 'Shipping status', sub: 'See where your package is right now' },
+              { icon: 'cal', label: 'Delivery estimate', sub: 'Check expected arrival date' },
+              { icon: 'pin', label: 'Delivery address', sub: 'Confirm where it\'s being sent' },
+            ].map(({ icon, label, sub }) => (
+              <div key={label} style={{ display: 'flex', gap: 12, alignItems: 'center', background: '#fff', border: '1px solid rgba(64,41,112,.08)', borderRadius: 13, padding: '12px 14px' }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, background: '#EEE7FB', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}>
+                  <Icon name={icon} size={18} color="#7B5BD6" />
+                </div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A' }}>{label}</div>
+                  <div style={{ fontSize: 12, color: '#9389AE', marginTop: 1 }}>{sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
     } else if (state.drawer === 'account') {
       title = isAnon ? 'Sign in' : 'Account';
       body = isAnon ? (
@@ -1461,6 +1499,9 @@ export default function KaprukaChatUI() {
         <div style={{ flex: 1 }} />
         <RailBtn icon="plus" label="New chat" onClick={newChat} />
         <RailBtn icon="msg" label="Conversations" onClick={() => { openDrawer('history'); if (state.drawer !== 'history') loadConversations(); }} active={state.drawer === 'history'} />
+        <RailBtn icon="box" label="Orders" onClick={() => openDrawer('orders')} active={state.drawer === 'orders'} />
+        <RailBtn icon="heart" label="Wishlist" onClick={() => openDrawer('wishlist')} active={state.drawer === 'wishlist'} />
+        <RailBtn icon="cart" label="Cart" onClick={() => openDrawer('cart')} active={state.drawer === 'cart'} />
         <RailBtn icon="gear" label="Settings" onClick={() => showToast('Settings — coming soon', 'gear')} />
         <div style={{ flex: 1 }} />
         <button onClick={() => openDrawer('account')} title="Account"
