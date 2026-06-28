@@ -5,6 +5,22 @@ import { useSession, signIn } from 'next-auth/react';
 import KaprukaAdminUI from './KaprukaAdminUI';
 
 // ─────────────────────────────────────────────
+// Hooks
+// ─────────────────────────────────────────────
+
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, [breakpoint]);
+  return isMobile;
+}
+
+// ─────────────────────────────────────────────
 // Types
 // ─────────────────────────────────────────────
 
@@ -172,6 +188,7 @@ const ICON_PATHS: Record<string, string | string[]> = {
   user:   'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 20c0-3.3 3.6-5 8-5s8 1.7 8 5',
   star:   'M12 3l2.6 5.6L21 9.3l-4.5 4.3 1.1 6.4L12 17l-5.6 3 1.1-6.4L3 9.3l6.4-.7L12 3Z',
   close:  'M18 6 6 18M6 6l12 12',
+  menu:   'M4 6h16M4 12h16M4 18h16',
   chev:   'M9 6l6 6-6 6',
   back:   'M15 6l-6 6 6 6',
   flower: 'M12 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM12 8c0-3 2-4 2-4M12 8c0-3-2-4-2-4M12 14c0 3 2 4 2 4M12 14c0 3-2 4-2 4M9 11c-3 0-4-2-4-2M15 11c3 0 4-2 4-2M9 11c-3 0-4 2-4 2M15 11c3 0 4 2 4 2',
@@ -256,6 +273,8 @@ function Card({ children, accent, lush }: { children: React.ReactNode; accent?: 
 
 export default function KaprukaChatUI() {
   const { data: session, status: sessionStatus } = useSession();
+  const isMobile = useIsMobile();
+  const [railOpen, setRailOpen] = useState(false);
   const userName = session?.user?.name?.split(' ')[0] || 'there';
   const userInitial = (session?.user?.name || 'R')[0].toUpperCase();
   const isAnon = (session?.user as { isAnonymous?: boolean })?.isAnonymous ?? true;
@@ -1618,7 +1637,7 @@ export default function KaprukaChatUI() {
       if (last.kind === 'pay_url')     contextual.push(chipBtn('Track my order', () => { pushUser('Track my order'); sendMessage('Track my order'); }, 220));
     }
     composerToolbar = (
-      <div style={{ marginBottom: 8, display: 'flex', gap: 7, overflowX: 'auto', scrollbarWidth: 'none', paddingLeft: 74 }}>
+      <div style={{ marginBottom: 8, display: 'flex', gap: 7, overflowX: 'auto', scrollbarWidth: 'none', paddingLeft: isMobile ? 2 : 74 }}>
         {QUICK_ACTIONS.map((a, i) => chipBtn(a.label, () => { pushUser(a.msg); sendMessage(a.msg); }, i * 55))}
         {chipBtn('Under Rs 10K', () => { const msg = 'Show me gifts under Rs 10,000'; pushUser(msg); sendMessage(msg); }, 165)}
         {contextual}
@@ -1910,8 +1929,8 @@ export default function KaprukaChatUI() {
 
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 60, display: 'flex' }}>
-        <div onClick={close} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 74, background: 'rgba(42,30,74,.32)', backdropFilter: 'blur(2px)', animation: 'fadeBg .25s both' }} />
-        <div style={{ position: 'relative', marginLeft: 74, width: 380, maxWidth: '90vw', height: '100%', background: '#F6F2FC', boxShadow: '8px 0 40px rgba(42,30,74,.2)', display: 'flex', flexDirection: 'column', animation: 'drawerIn .32s cubic-bezier(.2,.9,.3,1) both' }}>
+        <div onClick={close} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: isMobile ? 0 : 74, background: 'rgba(42,30,74,.32)', backdropFilter: 'blur(2px)', animation: 'fadeBg .25s both' }} />
+        <div style={{ position: 'relative', marginLeft: isMobile ? 0 : 74, width: isMobile ? '100%' : 380, maxWidth: isMobile ? '100%' : '90vw', height: '100%', background: '#F6F2FC', boxShadow: '8px 0 40px rgba(42,30,74,.2)', display: 'flex', flexDirection: 'column', animation: 'drawerIn .32s cubic-bezier(.2,.9,.3,1) both' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 20px', borderBottom: '1px solid rgba(64,41,112,.08)' }}>
             <div style={{ fontFamily: "var(--font-baloo2), 'Baloo 2', sans-serif", fontWeight: 700, fontSize: 19, color: '#2A1E4A' }}>{title}</div>
             <button onClick={close} style={{ all: 'unset', cursor: 'pointer', width: 34, height: 34, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9389AE', background: '#fff' }}>
@@ -1929,7 +1948,7 @@ export default function KaprukaChatUI() {
   const wishCount = state.wishlist.length;
 
   const RailBtn = ({ icon, label, onClick, active }: { icon: string; label: string; onClick: () => void; active?: boolean }) => (
-    <button onClick={onClick} title={label}
+    <button onClick={() => { onClick(); if (isMobile) setRailOpen(false); }} title={label}
       style={{ all: 'unset', cursor: 'pointer', width: 46, height: 46, borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', color: active ? '#402970' : 'rgba(255,255,255,.85)', background: active ? '#fff' : 'transparent', transition: 'all .15s' } as CSSProperties}
       onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,.14)'; }}
       onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}>
@@ -1939,10 +1958,17 @@ export default function KaprukaChatUI() {
 
   // ── main render ──
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100%', overflow: 'hidden', background: '#ECE7F6', color: '#241C3D' }}>
+    <div style={{ display: 'flex', height: '100dvh', width: '100%', overflow: 'hidden', background: '#ECE7F6', color: '#241C3D' }}>
+
+      {/* Mobile rail backdrop */}
+      {isMobile && railOpen && (
+        <div onClick={() => setRailOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 69, background: 'rgba(42,30,74,.4)', backdropFilter: 'blur(2px)', animation: 'fadeBg .25s both' }} />
+      )}
 
       {/* Left rail */}
-      <aside style={{ width: 74, flex: '0 0 74px', position: 'relative', background: 'linear-gradient(180deg,#402970 0%,#33205C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0', gap: 6, zIndex: 70, boxShadow: '2px 0 24px rgba(45,28,90,.22)' }}>
+      <aside style={isMobile
+        ? { width: 74, position: 'fixed', top: 0, bottom: 0, left: 0, background: 'linear-gradient(180deg,#402970 0%,#33205C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0', gap: 6, zIndex: 70, boxShadow: '2px 0 24px rgba(45,28,90,.22)', transform: railOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform .28s cubic-bezier(.2,.9,.3,1)' }
+        : { width: 74, flex: '0 0 74px', position: 'relative', background: 'linear-gradient(180deg,#402970 0%,#33205C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0', gap: 6, zIndex: 70, boxShadow: '2px 0 24px rgba(45,28,90,.22)' }}>
         <div style={{ flex: 1 }} />
         <RailBtn icon="plus" label="New chat" onClick={newChat} />
         <RailBtn icon="msg" label="Conversations" onClick={() => { openDrawer('history'); if (state.drawer !== 'history') loadConversations(); }} active={state.drawer === 'history'} />
@@ -1955,14 +1981,14 @@ export default function KaprukaChatUI() {
           <RailBtn icon="chart" label="Manager dashboard" onClick={() => setAdminView(v => !v)} active={adminView} />
           {!adminView && <div style={{ position: 'absolute', top: 6, right: 6, width: 7, height: 7, borderRadius: '50%', background: '#FDB813', border: '1.5px solid #402970', pointerEvents: 'none' }} />}
         </div>
-        <button onClick={() => openDrawer('account')} title={isAnon ? 'Sign in' : 'Account'}
+        <button onClick={() => { openDrawer('account'); if (isMobile) setRailOpen(false); }} title={isAnon ? 'Sign in' : 'Account'}
           style={{ all: 'unset', cursor: 'pointer', width: 46, height: 46, borderRadius: '50%', background: '#5C3FB0', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, boxShadow: '0 4px 12px rgba(0,0,0,.25)', border: '2px solid rgba(255,255,255,.25)', overflow: 'hidden' } as CSSProperties}>
           {!isAnon && session?.user?.image
             ? <img src={session.user.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             : <Icon name="user" size={22} color="#fff" />
           }
         </button>
-        {isAnon && showSignInPrompt && (
+        {isAnon && showSignInPrompt && !isMobile && (
           <div style={{ position: 'fixed', left: 84, bottom: 20, zIndex: 55, background: '#fff', borderRadius: 16, padding: '14px 14px 14px 16px', boxShadow: '0 8px 32px rgba(42,30,74,.22)', border: '1px solid rgba(64,41,112,.1)', display: 'flex', alignItems: 'flex-start', gap: 12, maxWidth: 250, animation: 'widgetIn .35s cubic-bezier(.2,.9,.3,1) both' }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A', lineHeight: 1.3 }}>Sign in to save your progress</div>
@@ -1985,24 +2011,29 @@ export default function KaprukaChatUI() {
       {renderDrawer()}
 
       {/* Manager dashboard overlay */}
-      {adminView && <KaprukaAdminUI railOffset />}
+      {adminView && <KaprukaAdminUI railOffset={!isMobile} />}
 
       {/* Main */}
       <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', background: 'radial-gradient(120% 80% at 100% 0%, #F3EFFC 0%, #ECE7F6 55%, #E7E0F4 100%)', position: 'relative' }}>
 
         {/* Header */}
-        <header style={{ height: 72, flex: '0 0 72px', display: 'flex', alignItems: 'center', gap: 14, padding: '0 26px', background: 'rgba(255,255,255,.72)', backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(64,41,112,.08)', zIndex: 20 }}>
+        <header style={{ height: isMobile ? 60 : 72, flex: isMobile ? '0 0 60px' : '0 0 72px', display: 'flex', alignItems: 'center', gap: isMobile ? 10 : 14, padding: isMobile ? '0 14px' : '0 26px', background: 'rgba(255,255,255,.72)', backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(64,41,112,.08)', zIndex: 20 }}>
+          {isMobile && (
+            <button onClick={() => setRailOpen(true)} title="Menu" aria-label="Open menu" style={{ all: 'unset', cursor: 'pointer', width: 40, height: 40, borderRadius: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#402970', background: '#fff', boxShadow: '0 2px 8px rgba(64,41,112,.08)', flex: '0 0 auto' } as CSSProperties}>
+              <Icon name="menu" size={20} color="#402970" />
+            </button>
+          )}
           <button onClick={newChat} title="New chat" aria-label="Kapruka home" style={{ all: 'unset', cursor: 'pointer', display: 'flex', alignItems: 'center' } as CSSProperties}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/assets/logo-full.png" alt="Kapruka" style={{ height: 30, width: 'auto', display: 'block' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
           </button>
           <div style={{ flex: 1 }} />
           <button onClick={() => openDrawer('wishlist')}
-            style={{ all: 'unset', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', gap: 8, padding: '9px 14px', borderRadius: 12, background: '#fff', boxShadow: '0 2px 8px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.07)', transition: 'transform .15s ease, box-shadow .15s ease' } as CSSProperties}
+            style={{ all: 'unset', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', gap: 8, padding: isMobile ? '9px 11px' : '9px 14px', borderRadius: 12, background: '#fff', boxShadow: '0 2px 8px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.07)', transition: 'transform .15s ease, box-shadow .15s ease' } as CSSProperties}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 16px rgba(64,41,112,.16)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 8px rgba(64,41,112,.08)'; }}>
             <Icon name="heart" size={17} color="#5C3FB0" fill={wishCount > 0 ? '#E5447A' : undefined} />
-            <span style={{ fontWeight: 600, fontSize: 13, color: '#4A3D6B' }}>Wishlist</span>
+            {!isMobile && <span style={{ fontWeight: 600, fontSize: 13, color: '#4A3D6B' }}>Wishlist</span>}
             {wishCount > 0 && (
               <span key={'wb' + wishCount} style={{ position: 'absolute', top: -6, right: -6, minWidth: 18, height: 18, padding: '0 5px', borderRadius: 9, background: '#E5447A', color: '#fff', fontSize: 11, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'badgePop .4s' }}>
                 {wishCount}
@@ -2010,11 +2041,11 @@ export default function KaprukaChatUI() {
             )}
           </button>
           <button onClick={() => openDrawer('cart')}
-            style={{ all: 'unset', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 12, background: 'linear-gradient(135deg,#402970,#5C3FB0)', boxShadow: '0 4px 14px rgba(64,41,112,.32)', transition: 'transform .15s ease, box-shadow .15s ease' } as CSSProperties}
+            style={{ all: 'unset', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', gap: 8, padding: isMobile ? '9px 12px' : '9px 16px', borderRadius: 12, background: 'linear-gradient(135deg,#402970,#5C3FB0)', boxShadow: '0 4px 14px rgba(64,41,112,.32)', transition: 'transform .15s ease, box-shadow .15s ease' } as CSSProperties}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 22px rgba(64,41,112,.42)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 14px rgba(64,41,112,.32)'; }}>
             <Icon name="cart" size={17} color="#fff" />
-            <span style={{ fontWeight: 700, fontSize: 13, color: '#fff' }}>Cart</span>
+            {!isMobile && <span style={{ fontWeight: 700, fontSize: 13, color: '#fff' }}>Cart</span>}
             {cc > 0 && (
               <span key={'cb' + cc} style={{ position: 'absolute', top: -6, right: -6, minWidth: 18, height: 18, padding: '0 5px', borderRadius: 9, background: '#FDB813', color: '#402970', fontSize: 11, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'badgePop .4s' }}>
                 {cc}
@@ -2028,18 +2059,18 @@ export default function KaprukaChatUI() {
 
           {/* Hero */}
           {!state.started && (
-            <div style={{ minHeight: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '30px 24px 10px', animation: 'heroIn .6s cubic-bezier(.2,.9,.3,1) both' }}>
-              <div style={{ position: 'relative', marginBottom: 22 }}>
+            <div style={{ minHeight: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '24px 18px 10px' : '30px 24px 10px', animation: 'heroIn .6s cubic-bezier(.2,.9,.3,1) both' }}>
+              <div style={{ position: 'relative', marginBottom: isMobile ? 16 : 22 }}>
                 <div style={{ position: 'absolute', inset: -14, borderRadius: '50%', background: 'radial-gradient(circle,rgba(124,91,214,.22),transparent 70%)' }} />
-                <div style={{ width: 160, height: 160, borderRadius: '50%', overflow: 'hidden', boxShadow: '0 18px 44px rgba(64,41,112,.32)', border: '4px solid #fff', position: 'relative' }}>
+                <div style={{ width: isMobile ? 120 : 160, height: isMobile ? 120 : 160, borderRadius: '50%', overflow: 'hidden', boxShadow: '0 18px 44px rgba(64,41,112,.32)', border: '4px solid #fff', position: 'relative' }}>
                   <AvatarVideo src={AV.greeting} poster={AVP.greeting} />
                 </div>
                 <div style={{ position: 'absolute', top: 6, right: -6, animation: 'sparkleFloat 3s ease-in-out infinite' }}>
                   <Icon name="spark" size={22} color="#FDB813" fill="#FDB813" />
                 </div>
               </div>
-              <div style={{ fontFamily: "var(--font-baloo2), 'Baloo 2', sans-serif", fontWeight: 700, fontSize: 30, color: '#2A1E4A', textAlign: 'center', lineHeight: 1.15 }}>Hi {userName}! I&apos;m Ruki 👋</div>
-              <div style={{ fontSize: 15.5, color: '#6B6390', textAlign: 'center', maxWidth: 440, marginTop: 9, lineHeight: 1.55 }}>
+              <div style={{ fontFamily: "var(--font-baloo2), 'Baloo 2', sans-serif", fontWeight: 700, fontSize: isMobile ? 24 : 30, color: '#2A1E4A', textAlign: 'center', lineHeight: 1.15 }}>Hi {userName}! I&apos;m Ruki 👋</div>
+              <div style={{ fontSize: isMobile ? 14 : 15.5, color: '#6B6390', textAlign: 'center', maxWidth: 440, marginTop: 9, lineHeight: 1.55 }}>
                 Your AI gift concierge for Kapruka. Tell me who you&apos;re shopping for and I&apos;ll find, wrap, and deliver the perfect gift — start to finish, right here in chat.
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 11, justifyContent: 'center', marginTop: 24, maxWidth: 560 }}>
@@ -2062,7 +2093,7 @@ export default function KaprukaChatUI() {
 
           {/* Thread */}
           {state.started && (
-            <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 26px 8px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ maxWidth: 860, margin: '0 auto', padding: isMobile ? '16px 14px 8px' : '24px 26px 8px', display: 'flex', flexDirection: 'column', gap: 16 }}>
               {state.messages.map(m => renderMessage(m))}
               {/* Retry button — shown once after the full bot turn */}
               {!state.streaming && state.messages.some(m => m.role === 'bot') && state.messages.some(m => m.role === 'user') && (
@@ -2092,12 +2123,12 @@ export default function KaprukaChatUI() {
         </div>
 
         {/* Composer */}
-        <div style={{ flex: '0 0 auto', padding: '0 26px 22px', background: 'linear-gradient(180deg, rgba(236,231,246,0) 0%, #ECE7F6 38%)', position: 'relative', zIndex: 10 }}>
+        <div style={{ flex: '0 0 auto', padding: isMobile ? '0 12px 14px' : '0 26px 22px', background: 'linear-gradient(180deg, rgba(236,231,246,0) 0%, #ECE7F6 38%)', position: 'relative', zIndex: 10 }}>
           <div style={{ position: 'absolute', left: 0, right: 0, top: -40, height: 54, pointerEvents: 'none', backdropFilter: 'blur(7px)', WebkitBackdropFilter: 'blur(7px)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, #000 100%)', maskImage: 'linear-gradient(to bottom, transparent 0%, #000 100%)' }} />
           <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative' }}>
             {composerToolbar}
             {/* Ruki avatar (appears once chat starts) */}
-            {state.started && (
+            {state.started && !isMobile && (
               <div style={{ position: 'absolute', left: -66, bottom: -4, zIndex: 30, width: 128, height: 128, pointerEvents: 'none' }}>
                 <div style={{ position: 'absolute', inset: -8, borderRadius: '50%', background: 'radial-gradient(circle,rgba(124,91,214,.16),transparent 70%)' }} />
                 <div key={state.avSeq + '-' + state.headerState} style={{ width: 128, height: 128, borderRadius: '50%', overflow: 'hidden', border: '5px solid #fff', boxShadow: '0 14px 32px rgba(64,41,112,.28)', animation: 'rukiPop .5s cubic-bezier(.2,1.3,.4,1) both' }}>
@@ -2112,7 +2143,7 @@ export default function KaprukaChatUI() {
               </div>
             )}
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 10, background: '#fff', border: '1.5px solid rgba(64,41,112,.1)', borderRadius: 20, padding: '8px 8px 8px 18px', boxShadow: '0 8px 28px rgba(64,41,112,.12)' }}>
-              {state.started && <div style={{ flex: '0 0 auto', width: 82 }} />}
+              {state.started && !isMobile && <div style={{ flex: '0 0 auto', width: 82 }} />}
               <textarea value={state.input} rows={1} placeholder="Ask me anything…"
                 onChange={e => setState(prev => ({ ...prev, input: e.target.value }))}
                 onKeyDown={(e: KeyboardEvent<HTMLTextAreaElement>) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
