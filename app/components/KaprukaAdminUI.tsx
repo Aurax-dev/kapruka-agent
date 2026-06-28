@@ -127,7 +127,7 @@ function ACard({ title, sub, children, right, style, tight }: { title?: string |
 
 const RANGES = ['Today', 'Last 7 days', 'Last 30 days', 'Last 90 days'];
 
-export default function KaprukaAdminUI() {
+export default function KaprukaAdminUI({ railOffset = false }: { railOffset?: boolean } = {}) {
   const [range, setRange] = useState('Last 7 days');
 
   // -------- KPI strip --------
@@ -203,7 +203,7 @@ export default function KaprukaAdminUI() {
   const sentDot: Record<string, string> = { pos: '#1F9D6B', neu: '#D98818', neg: '#E5447A' };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 50, overflowY: 'auto', background: 'radial-gradient(120% 70% at 100% 0%, #F3EFFC 0%, #ECE7F6 55%, #E7E0F4 100%)', animation: 'fadeBg .3s both', color: '#241C3D' }}>
+    <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, left: railOffset ? 74 : 0, zIndex: 50, overflowY: 'auto', background: 'radial-gradient(120% 70% at 100% 0%, #F3EFFC 0%, #ECE7F6 55%, #E7E0F4 100%)', animation: 'fadeBg .3s both', color: '#241C3D' }}>
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '26px 30px 60px' }}>
 
         {/* banner */}

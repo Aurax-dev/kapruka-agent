@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, KeyboardEvent, CSSProperties, useCallback } from 'react';
 import { useSession, signIn } from 'next-auth/react';
+import KaprukaAdminUI from './KaprukaAdminUI';
 
 // ─────────────────────────────────────────────
 // Types
@@ -179,6 +180,7 @@ const ICON_PATHS: Record<string, string | string[]> = {
   truck:  'M3 6h11v9H3zM14 9h4l3 3v3h-7zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
   msg:    'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4z',
   ship:   'M2 13h20l-2 6H4l-2-6ZM6 13V7a2 2 0 0 1 2-2h4l4 4v4',
+  chart:  'M3 21V5M3 21h18M8 21v-6M13 21v-10M18 21v-4',
   link:   'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71',
   google: 'M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z',
 };
@@ -296,6 +298,7 @@ export default function KaprukaChatUI() {
   }, [state.messages, state.streaming, state.status]);
 
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
+  const [adminView, setAdminView] = useState(false);
   useEffect(() => {
     if (!isAnon) { setShowSignInPrompt(false); return; }
     const show = setTimeout(() => setShowSignInPrompt(true), 2500);
@@ -1948,6 +1951,10 @@ export default function KaprukaChatUI() {
         <RailBtn icon="cart" label="Cart" onClick={() => openDrawer('cart')} active={state.drawer === 'cart'} />
         <RailBtn icon="gear" label="Settings" onClick={() => showToast('Settings — coming soon', 'gear')} />
         <div style={{ flex: 1 }} />
+        <div style={{ position: 'relative' }}>
+          <RailBtn icon="chart" label="Manager dashboard" onClick={() => setAdminView(v => !v)} active={adminView} />
+          {!adminView && <div style={{ position: 'absolute', top: 6, right: 6, width: 7, height: 7, borderRadius: '50%', background: '#FDB813', border: '1.5px solid #402970', pointerEvents: 'none' }} />}
+        </div>
         <button onClick={() => openDrawer('account')} title={isAnon ? 'Sign in' : 'Account'}
           style={{ all: 'unset', cursor: 'pointer', width: 46, height: 46, borderRadius: '50%', background: '#5C3FB0', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, boxShadow: '0 4px 12px rgba(0,0,0,.25)', border: '2px solid rgba(255,255,255,.25)', overflow: 'hidden' } as CSSProperties}>
           {!isAnon && session?.user?.image
@@ -1976,6 +1983,9 @@ export default function KaprukaChatUI() {
 
       {/* Drawer */}
       {renderDrawer()}
+
+      {/* Manager dashboard overlay */}
+      {adminView && <KaprukaAdminUI railOffset />}
 
       {/* Main */}
       <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', background: 'radial-gradient(120% 80% at 100% 0%, #F3EFFC 0%, #ECE7F6 55%, #E7E0F4 100%)', position: 'relative' }}>
