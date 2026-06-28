@@ -50,9 +50,14 @@ export async function POST(request: Request) {
   return Response.json(toCartItem(created), { status: 201 });
 }
 
-export async function DELETE() {
+export async function DELETE(request: Request) {
   const session = await auth();
   if (!session?.user?.id) return Response.json({ error: "Unauthorized" }, { status: 401 });
-  await db.delete(cartItems).where(eq(cartItems.userId, session.user.id));
+  const productId = new URL(request.url).searchParams.get("product_id");
+  if (productId) {
+    await db.delete(cartItems).where(and(eq(cartItems.userId, session.user.id), eq(cartItems.productId, productId)));
+  } else {
+    await db.delete(cartItems).where(eq(cartItems.userId, session.user.id));
+  }
   return new Response(null, { status: 204 });
 }

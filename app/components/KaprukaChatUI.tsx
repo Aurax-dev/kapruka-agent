@@ -842,7 +842,14 @@ export default function KaprukaChatUI() {
     ...prev,
     cart: prev.cart.map(i => i.id === id ? { ...i, qty: Math.max(1, i.qty + d) } : i),
   }));
-  const removeCart = (id: string) => setState(prev => ({ ...prev, cart: prev.cart.filter(i => i.id !== id) }));
+  const removeCart = (id: string) => {
+    setState(prev => ({ ...prev, cart: prev.cart.filter(i => i.id !== id) }));
+    fetch(`/api/cart?product_id=${encodeURIComponent(id)}`, { method: 'DELETE' }).catch(() => {});
+  };
+  const clearCart = () => {
+    setState(prev => ({ ...prev, cart: [] }));
+    fetch('/api/cart', { method: 'DELETE' }).catch(() => {});
+  };
 
   // ── checkout handlers (send to agent) ──
   const beginCheckout = () => {
@@ -1806,6 +1813,9 @@ export default function KaprukaChatUI() {
         </div>
       ) : state.cart.length > 0 ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button onClick={clearCart} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#C3B8DE', fontSize: 12, fontWeight: 600 }}>Clear cart</button>
+          </div>
           {state.cart.map(i => {
             const p = getProduct(i.id);
             return (
