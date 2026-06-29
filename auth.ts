@@ -47,7 +47,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     sessionsTable: sessions,
     verificationTokensTable: verificationTokens,
   }),
-  session: { strategy: "database" },
+  // JWT strategy (not database): the guest Credentials provider can only issue a
+  // JWT session token, and a database-strategy resolver can't read it — server-side
+  // auth() would return null for guests, 401-ing every guest API call. With jwt the
+  // DrizzleAdapter still persists users/accounts (so FKs + anon→Google migration work)
+  // while both Google and guest sessions resolve from the signed token.
+  session: { strategy: "jwt" },
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,

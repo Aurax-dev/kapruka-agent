@@ -39,6 +39,7 @@ function toolStatusLabel(toolName: string): string {
     case "create_order":         return "Placing order";
     case "track_order":          return "Tracking order";
     case "get_curated_products": return "Loading picks";
+    case "get_kapruka_info":     return "Checking info";
     case "open_page":            return "Opening page";
     case "save_to_wishlist":     return "Saving to wishlist";
     default:                     return "Thinking";
@@ -62,6 +63,7 @@ export async function* runAgentLoop(
   let round = 0;
   let searchRound = 0;
   let productsEmitted = false;
+  let emptyRetries = 0;
   const SEARCH_LABELS = ["Searching", "Exploring", "Browsing", "Expanding search"];
 
   while (round < MAX_ROUNDS) {
@@ -76,15 +78,26 @@ export async function* runAgentLoop(
       config: {
         systemInstruction: SYSTEM_PROMPT + cartSection + addressesSection,
         tools: lastRound ? undefined : GEMINI_TOOLS,
+        // gemini-2.5-flash defaults to dynamic "thinking", which sometimes burns a
+        // whole turn on thoughts and streams back nothing (finishReason=STOP, no
+        // text, no tool call) — the source of the silently-dropped/blank replies.
+        // Disabling it makes every turn emit a real answer or tool call, and is
+        // much faster for this concierge flow.
+        thinkingConfig: { thinkingBudget: 0 },
       },
     });
 
     const pendingFunctionCalls: FunctionCall[] = [];
     let fullText = "";
+    let finishReason: string | undefined;
+    let chunkCount = 0;
 
     for await (const chunk of stream) {
+      chunkCount++;
       const text = (chunk as { text?: string }).text;
       const functionCalls = (chunk as { functionCalls?: FunctionCall[] }).functionCalls;
+      const fr = (chunk as { candidates?: { finishReason?: string }[] }).candidates?.[0]?.finishReason;
+      if (fr) finishReason = fr;
 
       if (text) {
         fullText += text;
@@ -94,6 +107,32 @@ export async function* runAgentLoop(
       if (functionCalls?.length) {
         for (const fc of functionCalls) pendingFunctionCalls.push(fc);
       }
+    }
+
+    // Diagnostic: a round that yields neither text nor a tool call is the source
+    // of the "retry button, no response" drop. Log why so it can be traced, and
+    // recover instead of letting the client silently remove the empty bubble.
+    if (pendingFunctionCalls.length === 0 && !fullText) {
+      console.warn(
+        `[runAgentLoop] empty round ${round}/${MAX_ROUNDS}: chunks=${chunkCount}, finishReason=${finishReason ?? "none"}, retries=${emptyRetries}, productsEmitted=${productsEmitted}`,
+      );
+      // Transient empty responses from the model are common — retry the round
+      // once without consuming the budget before giving up.
+      if (emptyRetries < 1 && !lastRound) {
+        emptyRetries++;
+        round--;
+        continue;
+      }
+      // Don't vanish: give the user a real message they can respond to.
+      if (!productsEmitted) {
+        yield { type: "text_delta", text: "Sorry, I didn't catch that — could you try again?" };
+      }
+      yield { type: "done" };
+      return;
+    }
+
+    if (finishReason && finishReason !== "STOP") {
+      console.warn(`[runAgentLoop] round ${round} finishReason=${finishReason} (text len=${fullText.length}, calls=${pendingFunctionCalls.length})`);
     }
 
     if (pendingFunctionCalls.length === 0) {
@@ -137,7 +176,17 @@ export async function* runAgentLoop(
         sideEvents.push(ev as AgentEvent);
       };
 
-      const result = await executeTool(name, args, emit, context);
+      // A single tool failure (e.g. the MCP backend returning a non-JSON error
+      // string) must not abort the whole stream and surface as "Something went
+      // wrong". Feed the error back to the model as a tool result so it can
+      // recover — retry, apologise, or ask the user to try again.
+      let result: unknown;
+      try {
+        result = await executeTool(name, args, emit, context);
+      } catch (err) {
+        console.error(`[runAgentLoop] tool ${name} failed:`, err);
+        result = { error: true, message: err instanceof Error ? err.message : String(err) };
+      }
 
       for (const ev of sideEvents) yield ev;
 

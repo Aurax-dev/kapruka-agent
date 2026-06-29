@@ -112,6 +112,12 @@ export async function executeTool(
       emit?.({ type: "url", url: args.url as string, title: args.title as string });
       return "Page opened.";
 
+    case "get_kapruka_info": {
+      console.log("[get_kapruka_info]", JSON.stringify({ topic: args.topic, query: args.query }));
+      const { lookupKaprukaInfo } = await import("@/lib/kapruka/info");
+      return lookupKaprukaInfo(args.topic as string, args.query as string | undefined);
+    }
+
     case "save_to_wishlist": {
       if (!context?.userId || !context?.db) return { saved: false, reason: "Not signed in" };
       const { wishlistItems } = await import("@/db/schema");

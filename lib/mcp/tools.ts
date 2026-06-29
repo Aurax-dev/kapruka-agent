@@ -88,7 +88,14 @@ export async function createOrder(args: {
     { ...args, sender, response_format: "json" },
     { cache: false },
   );
-  return JSON.parse(raw);
+  // The MCP backend sometimes returns a plain-text error (e.g. "Error (...)")
+  // instead of JSON. Surface it as a clear message rather than a cryptic
+  // "Unexpected token" SyntaxError so the agent loop can report it usefully.
+  try {
+    return JSON.parse(raw);
+  } catch {
+    throw new Error(`create_order returned a non-JSON response: ${raw.slice(0, 200)}`);
+  }
 }
 
 export async function trackOrder(order_number: string): Promise<{

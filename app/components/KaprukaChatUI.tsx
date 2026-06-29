@@ -2,7 +2,30 @@
 
 import { useState, useRef, useEffect, KeyboardEvent, CSSProperties, useCallback } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import ReactMarkdown from 'react-markdown';
 import KaprukaAdminUI from './KaprukaAdminUI';
+
+// Renders Ruki's replies as markdown (bold, bullet/numbered lists, links) so longer
+// policy/FAQ answers read cleanly. Default block margins are stripped so it sits tight
+// inside the chat bubble; only this minimal element set is allowed.
+function RukiMarkdown({ text }: { text: string }) {
+  return (
+    <ReactMarkdown
+      components={{
+        p: ({ children }) => <p style={{ margin: '0 0 8px' }}>{children}</p>,
+        ul: ({ children }) => <ul style={{ margin: '0 0 8px', paddingLeft: 20 }}>{children}</ul>,
+        ol: ({ children }) => <ol style={{ margin: '0 0 8px', paddingLeft: 20 }}>{children}</ol>,
+        li: ({ children }) => <li style={{ margin: '2px 0' }}>{children}</li>,
+        strong: ({ children }) => <strong style={{ fontWeight: 700 }}>{children}</strong>,
+        a: ({ href, children }) => (
+          <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#5C3FB0', textDecoration: 'underline' }}>{children}</a>
+        ),
+      }}
+    >
+      {text}
+    </ReactMarkdown>
+  );
+}
 
 // ─────────────────────────────────────────────
 // Hooks
@@ -60,6 +83,10 @@ interface Message {
   order?: string;
   payUrl?: string;
   payAmount?: number;
+  itemsTotal?: number;
+  deliveryFee?: number;
+  itemsCount?: number;
+  payItems?: { name: string; qty: number; price: number; imageUrl: string | null }[];
   orderRef?: string;
   expiresAt?: string;
   trackData?: import('@/lib/chat/types').TrackResult;
@@ -553,6 +580,11 @@ export default function KaprukaChatUI() {
       .replace(/\n{3,}/g, '\n\n')
       .trim();
     streamingTextRef.current = '';
+    if (!text && !productsShownRef.current) {
+      // Empty bot turn — the bubble is about to be removed, leaving only the
+      // user message + retry button. Log it so dropped turns are traceable.
+      console.warn('[finalizeStreamingMsg] dropping empty bot turn', msgId);
+    }
     setState(prev => ({
       ...prev,
       messages: text
@@ -714,8 +746,14 @@ export default function KaprukaChatUI() {
             kind = 'pay_url';
             extra.payUrl = data.url;
             extra.payAmount = data.amount;
+            extra.itemsTotal = data.items_total;
+            extra.deliveryFee = data.delivery_fee;
+            extra.itemsCount = data.items_count;
             extra.orderRef = data.order_ref;
             extra.expiresAt = data.expires_at;
+            // Snapshot the cart into the card so it itemises the order with photos,
+            // independent of later cart changes. (Live session only — see WPayUrl.)
+            extra.payItems = stateRef.current.cart.map(i => ({ name: i.name, qty: i.qty, price: i.price, imageUrl: i.imageUrl }));
             setAvatar('done');
             break;
           case 'track_order':
@@ -814,7 +852,8 @@ export default function KaprukaChatUI() {
         buf = lines.pop() ?? '';
         for (const line of lines) {
           if (!line.trim()) continue;
-          try { handleStreamEvent(JSON.parse(line)); } catch {}
+          try { handleStreamEvent(JSON.parse(line)); }
+          catch (e) { console.error('[sendMessage] failed to handle stream line:', line, e); }
         }
       }
     } catch (err) {
@@ -1062,10 +1101,28 @@ export default function KaprukaChatUI() {
     sendMessage(text);
   };
 
-  const helpWrite = (mid: string) => {
-    const msg = `Happy Birthday! 🎂 Thank you for everything you do. Wishing you a day as wonderful and special as you are. With all my love, ${userName}.`;
-    setForm('gf_' + mid, { message: msg });
-    showToast('Drafted a message for you ✨', 'spark');
+  const helpWrite = async (mid: string) => {
+    const k = 'gf_' + mid;
+    if (state.forms[k]?.writing) return;
+    setForm(k, { writing: true });
+    try {
+      const r = await fetch('/api/gift-message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          history: buildHistory(),
+          sender: session?.user?.name ?? '',
+        }),
+      });
+      if (!r.ok) throw new Error('bad response');
+      const d = await r.json() as { message?: string };
+      if (!d.message) throw new Error('empty');
+      setForm(k, { message: d.message, writing: false });
+      showToast('Drafted a message for you ✨', 'spark');
+    } catch {
+      setForm(k, { writing: false });
+      showToast("Couldn't draft one — give it another try", 'spark');
+    }
   };
 
   const submitGift = (mid: string, skip: boolean) => {
@@ -1144,8 +1201,14 @@ export default function KaprukaChatUI() {
       for (const m of d.messages) {
         const role = m.role === 'user' ? 'user' as const : 'bot' as const;
 
+        // Stored widget payload — either a client-persisted detail card ({kind:'detail'})
+        // or a bot-emitted widget event ({widget, data}) such as the payment link.
+        const w = (m.widgets ?? null) as {
+          kind?: string; productId?: string; bullets?: string[]; description?: string; images?: string[];
+          widget?: string; data?: Record<string, unknown>;
+        } | null;
+
         // Persisted detail-card interaction → rebuild the card + rehydrate its details.
-        const w = (m.widgets ?? null) as { kind?: string; productId?: string; bullets?: string[]; description?: string; images?: string[] } | null;
         if (role === 'bot' && w?.kind === 'detail' && w.productId) {
           const snippet = Array.isArray(m.products) ? (m.products as Snippet[])[0] : undefined;
           if (snippet) {
@@ -1158,6 +1221,26 @@ export default function KaprukaChatUI() {
           }
           restoredDetails[w.productId] = { bullets: w.bullets ?? [], images: w.images ?? [], description: w.description ?? '' };
           msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'detail', productId: w.productId });
+          continue;
+        }
+
+        // Payment link card → rebuild it after the bot's preamble text so the
+        // checkout link (with order ref + expiry) survives a reload.
+        if (role === 'bot' && w?.widget === 'pay_url') {
+          const data = w.data ?? {};
+          if (m.content) msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'text', text: m.content });
+          msgs.push({
+            id: String(++uidRef.current),
+            role: 'bot',
+            kind: 'pay_url',
+            payUrl: typeof data.url === 'string' ? data.url : undefined,
+            payAmount: typeof data.amount === 'number' ? data.amount : undefined,
+            itemsTotal: typeof data.items_total === 'number' ? data.items_total : undefined,
+            deliveryFee: typeof data.delivery_fee === 'number' ? data.delivery_fee : undefined,
+            itemsCount: typeof data.items_count === 'number' ? data.items_count : undefined,
+            orderRef: typeof data.order_ref === 'string' ? data.order_ref : undefined,
+            expiresAt: typeof data.expires_at === 'string' ? data.expires_at : undefined,
+          });
           continue;
         }
 
@@ -1606,7 +1689,7 @@ export default function KaprukaChatUI() {
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="user" size={16} color="#7B5BD6" /> Your name (sender)</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <Field label="Your name" fieldKey="name" formKey={k} ph={userName} />
+            <Field label="Your name" fieldKey="name" formKey={k} ph={session?.user?.name?.split(' ')[0] || 'e.g. Sahan'} />
           </div>
           <div style={{ fontSize: 11.5, color: '#9389AE', marginTop: 8 }}>Shown on the gift card.</div>
           <button onClick={() => submitSender(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Saved' : 'Continue'}</button>
@@ -1620,13 +1703,14 @@ export default function KaprukaChatUI() {
     const f = state.forms[k] || {};
     const msg = String(f.message || '');
     const len = msg.length;
+    const writing = Boolean(f.writing);
     return (
       <Card>
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970' }}><Icon name="msg" size={16} color="#7B5BD6" /> Gift message</div>
-            <button onClick={() => helpWrite(m.id)} style={{ display: 'flex', alignItems: 'center', gap: 6, border: '1.5px solid #F0DFF7', background: 'linear-gradient(135deg,#FBF3FF,#F3EBFF)', color: '#8B47C9', fontWeight: 700, fontSize: 12, padding: '7px 12px', borderRadius: 10, cursor: 'pointer' }}>
-              <Icon name="spark" size={14} color="#A855D6" /> Help me write
+            <button onClick={() => helpWrite(m.id)} disabled={writing} style={{ display: 'flex', alignItems: 'center', gap: 6, border: '1.5px solid #F0DFF7', background: 'linear-gradient(135deg,#FBF3FF,#F3EBFF)', color: '#8B47C9', fontWeight: 700, fontSize: 12, padding: '7px 12px', borderRadius: 10, cursor: writing ? 'default' : 'pointer', opacity: writing ? 0.7 : 1 }}>
+              <Icon name="spark" size={14} color="#A855D6" /> {writing ? 'Writing…' : 'Help me write'}
             </button>
           </div>
           <div style={{ position: 'relative' }}>
@@ -1785,6 +1869,13 @@ export default function KaprukaChatUI() {
     const orderRef = (m.orderRef as string | undefined);
     const expiresAt = (m.expiresAt as string | undefined);
 
+    // Itemised order. payItems is a live-session cart snapshot (absent on reload);
+    // the totals come from the order summary and persist, so the breakdown always shows.
+    const items = m.payItems ?? [];
+    const itemsCount = m.itemsCount ?? (items.reduce((s, i) => s + i.qty, 0) || items.length);
+    const itemsTotal = m.itemsTotal ?? (items.length ? items.reduce((s, i) => s + i.price * i.qty, 0) : undefined);
+    const deliveryFee = m.deliveryFee ?? (amount && itemsTotal != null ? Math.max(0, amount - itemsTotal) : undefined);
+
     let expiryLabel = '';
     if (expiresAt) {
       try {
@@ -1796,11 +1887,48 @@ export default function KaprukaChatUI() {
     return (
       <Card accent="#1F9D6B">
         <div style={{ padding: '20px 18px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 14 }}><Icon name="box" size={16} color="#7B5BD6" /> Order ready to pay</div>
-          {amount > 0 && (
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14, paddingBottom: 14, borderBottom: '1.5px solid #ECE5F7' }}>
-              <span style={{ fontWeight: 700, fontSize: 15, color: '#2A1E4A' }}>Total</span>
-              <span style={{ fontWeight: 800, fontSize: 20, color: '#402970' }}>{money(amount)}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 14 }}>
+            <Icon name="box" size={16} color="#7B5BD6" /> Order ready to pay
+            {itemsCount > 0 && <span style={{ marginLeft: 'auto', fontSize: 11.5, fontWeight: 600, color: '#9389AE' }}>{itemsCount} item{itemsCount === 1 ? '' : 's'}</span>}
+          </div>
+
+          {items.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxHeight: 232, overflowY: 'auto', marginBottom: 12 }}>
+              {items.map((it, idx) => (
+                <div key={idx} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 9, overflow: 'hidden', flex: '0 0 auto', background: tileGrad('violet') }}>
+                    {it.imageUrl && <img src={it.imageUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 12.5, fontWeight: 600, color: '#2A1E4A', lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{it.name}</div>
+                    {it.qty > 1 && <div style={{ fontSize: 11, color: '#9389AE', marginTop: 1 }}>Qty {it.qty}</div>}
+                  </div>
+                  <div style={{ fontWeight: 700, fontSize: 12.5, color: '#402970', flex: '0 0 auto' }}>{money(it.price * it.qty)}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {(itemsTotal != null || deliveryFee != null || amount > 0) && (
+            <div style={{ borderTop: '1.5px solid #ECE5F7', paddingTop: 12, marginBottom: 14, display: 'flex', flexDirection: 'column', gap: 7 }}>
+              {itemsTotal != null && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#5C5276' }}>
+                  <span>Items{itemsCount > 0 ? ` (${itemsCount})` : ''}</span>
+                  <span style={{ fontWeight: 600, color: '#2A1E4A' }}>{money(itemsTotal)}</span>
+                </div>
+              )}
+              {deliveryFee != null && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#5C5276' }}>
+                  <span>Delivery</span>
+                  <span style={{ fontWeight: 600, color: '#2A1E4A' }}>{deliveryFee > 0 ? money(deliveryFee) : 'Free'}</span>
+                </div>
+              )}
+              {amount > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 3, paddingTop: 8, borderTop: '1px dashed #ECE5F7' }}>
+                  <span style={{ fontWeight: 700, fontSize: 15, color: '#2A1E4A' }}>Total</span>
+                  <span style={{ fontWeight: 800, fontSize: 20, color: '#402970' }}>{money(amount)}</span>
+                </div>
+              )}
             </div>
           )}
           <a href={url} target="_blank" rel="noopener noreferrer"
@@ -1868,14 +1996,14 @@ export default function KaprukaChatUI() {
       return (
         <div key={m.id} style={{ display: 'flex', justifyContent: 'flex-start', animation: 'msgIn .5s cubic-bezier(.2,.9,.3,1) both' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: '76%' }}>
-            <div style={{ background: '#fff', color: '#2A2342', padding: m.streaming ? '14px 18px' : '11px 16px', borderRadius: '5px 18px 18px 18px', fontSize: 14.5, lineHeight: 1.55, boxShadow: '0 3px 12px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.05)', whiteSpace: 'pre-wrap' }}>
+            <div style={{ background: '#fff', color: '#2A2342', padding: m.streaming ? '14px 18px' : '11px 16px', borderRadius: '5px 18px 18px 18px', fontSize: 14.5, lineHeight: 1.55, boxShadow: '0 3px 12px rgba(64,41,112,.08)', border: '1px solid rgba(64,41,112,.05)' }} className="ruki-md">
               {m.streaming ? (
                 <span style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
                   <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '0ms' }} />
                   <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '150ms' }} />
                   <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: '300ms' }} />
                 </span>
-              ) : m.text}
+              ) : <RukiMarkdown text={m.text ?? ''} />}
             </div>
           </div>
         </div>

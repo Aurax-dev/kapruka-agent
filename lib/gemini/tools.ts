@@ -152,6 +152,27 @@ export const GEMINI_TOOLS: Tool[] = [
           required: ["product_id", "name", "price_amount"],
         },
       },
+      {
+        name: "get_kapruka_info",
+        description:
+          "Look up Kapruka's company information, contact details, policies, or FAQ answers. Call this whenever the user asks about returns, refunds, cancellations, delivery/shipping policy, who Kapruka is, where they're based, how to contact them, or any 'how does X work' question about a product category (cakes, flowers, electronics, etc.). Answer ONLY from what this returns — never guess policies or contact details.",
+        parameters: {
+          type: Type.OBJECT,
+          properties: {
+            topic: {
+              type: Type.STRING,
+              description:
+                "Which knowledge area: 'about' (company overview + contact), 'contact' (phone/email/offices), 'policies' (returns/refunds/cancellation), or 'faq' (how things work, per category).",
+            },
+            query: {
+              type: Type.STRING,
+              description:
+                "For topic='faq' only: keywords to find matching Q&A, e.g. 'eggless cake', 'same day delivery', 'warranty'. Omit to get the list of FAQ categories.",
+            },
+          },
+          required: ["topic"],
+        },
+      },
     ],
   },
 ];

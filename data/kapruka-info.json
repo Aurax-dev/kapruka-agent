@@ -1,0 +1,1746 @@
+{
+  "about": {
+    "summary": "Kapruka is Sri Lanka's largest homegrown online gift and shopping platform. Dulith Herath incorporated it in 2002 (as Lanka Dot Info) and launched the e-commerce site in 2003 — the country's first homegrown e-commerce platform. Kapruka Holdings PLC went public in 2021 (raising LKR 505.5 million) and trades on the Colombo Stock Exchange as KPHL. Today it spans 125,000+ products and 500+ brands, with offices in five countries and its own delivery, productions, and technology arms.",
+    "mission": "To improve the everyday lives of millions by creating seamless digital shopping experiences — connecting Sri Lankan consumers and the global diaspora to the products, brands, and services they love.",
+    "vision": "To be the definitive digital commerce gateway for Sri Lanka — a borderless platform where every click opens a world of choices.",
+    "services": [
+      "Kapruka E-Commerce — flagship retail platform, 125,000+ products across every category",
+      "Kapruka Productions — in-house cakes, floral arrangements, and value-added produce",
+      "Kapruka Cross Border — lets Sri Lankan brands sell globally",
+      "Global Shop — lets local customers buy from international retailers",
+      "Partner Central — platform for 500+ supplier brands",
+      "Grasshoppers Delivery — same-day and next-day island-wide delivery",
+      "Kapruka Techroot — technology infrastructure arm"
+    ]
+  },
+  "contact": {
+    "email": "info@kapruka.com",
+    "hotline": "+94 11 755 1111",
+    "whatsapp": "070 285 5000",
+    "offices": [
+      {
+        "country": "Sri Lanka (HQ)",
+        "address": "147 Kottawa Road, Nugegoda",
+        "phone": "+94 11 755 1111"
+      },
+      {
+        "country": "United Kingdom",
+        "address": "145-157 St John St, London EC1V 4PY",
+        "phone": "+44 203 769 0961"
+      },
+      {
+        "country": "United States",
+        "address": "24000 Mercantile Rd, Beachwood, OH",
+        "phone": "+1 888 502 5244"
+      },
+      {
+        "country": "Australia",
+        "address": "440 Collins St, L9, Melbourne VIC",
+        "phone": "+61 391 112 322"
+      },
+      {
+        "country": "Canada",
+        "address": "700 9th Street SW, Calgary, Alberta",
+        "phone": "+1 587 598 3913"
+      }
+    ]
+  },
+  "policies": {
+    "easy_refunds_returns": {
+      "title": "Easy Refunds & Returns",
+      "text": "Returns, Refunds & Other Policies of Kapruka"
+    },
+    "general_overview": {
+      "title": "General Overview",
+      "text": "Kapruka offers easy returns if you are not happy with a product. You generally have 15 to 30 days to contact customer service to arrange a return, with slightly different conditions for specific categories such as consumer electronics."
+    },
+    "general_merchandise_return_refund_policy": {
+      "title": "General Merchandise — Return & Refund Policy",
+      "text": "All returns must be postmarked within 15 days of the purchase date. Returned items must be in new and unused condition, with all original tags and labels attached. To initiate a return, customers must email info@kapruka.com to obtain a Return Merchandise Authorization (RMA) number. Once received, the item should be securely packed in its original packaging. Return shipping charges or pickup costs will be paid or reimbursed by Kapruka."
+    },
+    "electronics_return_refund_policy": {
+      "title": "Electronics — Return & Refund Policy",
+      "text": "Electronic items can be returned and refunds claimed if there is a genuine reason. If a product is found to be faulty, damaged, or not working at the time of delivery, the customer can claim a replacement or refund depending on the product category. If the received product does not match the image or description published, the customer must contact Kapruka within 1 week (7 days) . Refunds are processed within 5—7 business days . Importantly, \"Change of Mind\" is not considered a genuine reason for return. Any fault or defect must be reported within 1 week of the item's arrival."
+    },
+    "fashion_clothing_return_refund_policy": {
+      "title": "Fashion / Clothing — Return & Refund Policy",
+      "text": "If a clothing item received does not match the published image, the customer must contact Kapruka within 7 days . \"Change of Mind\" or \"No Longer Needed\" are not accepted as valid reasons for return or refund. If a clothing item arrives damaged, customers should immediately photograph the damage and contact Kapruka via WhatsApp at 070 285 5000 . For exchanges, the customer must arrange a courier to return the product within 3—5 days of receipt, bearing all delivery expenses. The exchanged product must be of equal or higher value than the original purchase."
+    },
+    "global_shop_return_refund_policy": {
+      "title": "Global Shop — Return & Refund Policy",
+      "text": "Kapruka Global Shop customers are covered under a Money Back Guarantee if an item does not arrive. You will either receive the item ordered or get your money back. Returns are accepted if the item is defective, damaged, different from what was ordered, or not according to the seller's specification. Customers must contact the Global Shop Hotline at +94-11-7551111 within 24 hours of receiving the item. Once a return is received, Kapruka inspects it and notifies the customer via email. Refunds are issued to the original payment method used at the time of purchase (e.g., credit card refunds go back to the credit card). Kapruka is not required to accept returned items that are damaged, missing parts, or in an unsellable condition due to customer negligence, misuse, or tampering."
+    },
+    "order_cancellation_policy": {
+      "title": "Order Cancellation Policy",
+      "text": "Orders may be cancelled by the customer only, and only if order processing has not yet commenced . If processing has already started, Kapruka reserves the right to refuse cancellation or offer only a partial refund , recovering any production or purchase costs incurred."
+    },
+    "money_transfers_refund_policy": {
+      "title": "Money Transfers — Refund Policy",
+      "text": "For money delivery services, there is no cancellation charge . Kapruka will fully refund the online deposit if the service is not processed or provided. Duplicate transactions are automatically detected and deleted, with only one transaction allowed to proceed at a time."
+    },
+    "key_contact_information": {
+      "title": "Key Contact Information",
+      "text": "Channel Details Hotline +94-11-7551111 Email info@kapruka.com WhatsApp 070 285 5000 Bottom line: Kapruka's policies vary by product category. Electronics and fashion have stricter windows (7 days), general merchandise allows up to 15 days, and Global Shop requires contact within 24 hours of delivery. \"Change of Mind\" is generally not accepted as a valid return reason across all categories. General Merchandise — Refunds and Return Policy Electronic Items — Refunds and Return Policy Fashion / Clothing — Refunds and Return Policy Global Shop — Refunds and Return Policy"
+    },
+    "how_long_do_i_have_to_return_an_item_to_kapruka": {
+      "title": "How long do I have to return an item to Kapruka?",
+      "text": "For general merchandise, you have 15 days from purchase to contact customer service. Electronics must be reported within 7 days of arrival if faulty or mismatched. Fashion items also have a 7-day window. Global Shop customers must contact within 24 hours of receipt."
+    },
+    "will_kapruka_pay_for_return_shipping_across_sri_lanka": {
+      "title": "Will Kapruka pay for return shipping across Sri Lanka?",
+      "text": "Yes, for general merchandise returns, Kapruka covers return shipping costs or reimburses pickup expenses islandwide. For fashion exchanges, customers must arrange and pay for courier costs within 3—5 days of receipt."
+    },
+    "can_i_return_an_item_because_i_changed_my_mind": {
+      "title": "Can I return an item because I changed my mind?",
+      "text": "\"Change of Mind\" is not accepted as a valid reason for returns on electronics or clothing. Returns are only accepted for genuine reasons: faulty items, damage, or products not matching the published description."
+    },
+    "how_quickly_will_i_receive_my_refund": {
+      "title": "How quickly will I receive my refund?",
+      "text": "Refunds are typically processed within 5—7 business days. The money is returned to your original payment method, whether that's a credit card or another payment option you used at checkout."
+    },
+    "what_if_my_order_hasn_t_been_processed_yet_can_i_cancel_it": {
+      "title": "What if my order hasn't been processed yet—can I cancel it?",
+      "text": "Yes, you can cancel before processing begins. However, if processing has already commenced, Kapruka may refuse cancellation or offer only a partial refund to cover production and purchase costs incurred."
+    }
+  },
+  "faq": [
+    {
+      "category": "General",
+      "url": "https://www.kapruka.com/shop/home-faq/",
+      "summary": "",
+      "qa": [
+        {
+          "section": "Online Shopping and Products at Kapruka",
+          "q": "What types of products can I order from Kapruka",
+          "a": "Kapruka offers one of the widest product selections available online in Sri Lanka. You can order for example: Fresh groceries and daily essentials Birthday cakes, anniversary cakes and designer cakes Flower bouquets, rose arrangements and gift hampers Mobile phones, laptops, home appliances and tech accessories Books, toys, cosmetics, fragrances and personal care Mens and womens fashion and accessories Customised gifts such as printed mugs, engraved items and photo frames This means you can place one order that covers a cake, a flower arrangement and a tech item instead of using several different websites."
+        },
+        {
+          "section": "Online Shopping and Products at Kapruka",
+          "q": "What is the most trusted online shopping website in Sri Lanka",
+          "a": "Kapruka is regarded as one of the most trusted ecommerce brands in Sri Lanka due to long operating experience and strong partner network. Customers choose Kapruka because we offer: More than two decades of experience in online gifting and shopping Partnerships with leading Sri Lankan and international brands Secure encrypted checkout with bank level security A professional islandwide delivery fleet Transparent policies for returns, replacements and refunds Strict verification of vendors and branded products Many major bakeries, florists and retail brands use Kapruka as their official online delivery partner, which further strengthens this trust."
+        },
+        {
+          "section": "Online Shopping and Products at Kapruka",
+          "q": "Where can I shop online for everything in one place in Sri Lanka",
+          "a": "Kapruka is designed as an all in one marketplace. Instead of visiting a separate site for groceries, another for cakes and another for electronics, you can manage everything in a single cart and a single checkout flow. This reduces time spent on searching, comparing delivery fees and tracking multiple orders from different platforms."
+        },
+        {
+          "section": "Online Shopping and Products at Kapruka",
+          "q": "What is the biggest online marketplace in Sri Lanka",
+          "a": "Kapruka is one of the largest and most diverse online marketplaces in Sri Lanka. We host thousands of products and work with many verified vendors who update stock through our PartnerCentral system. Customers from more than fifty countries place orders on Kapruka each year, and deliveries reach every district including many rural and remote locations."
+        },
+        {
+          "section": "Online Shopping and Products at Kapruka",
+          "q": "Where can I browse thousands of products online in Sri Lanka",
+          "a": "On Kapruka you can browse thousands of products across categories such as electronics, home and kitchen, toys and baby care, beauty and fragrance, books and stationery, fashion and accessories and fresh bakery items. A single order can easily combine a cake, a toy and a phone accessory so that everything arrives together for one occasion."
+        },
+        {
+          "section": "Online Shopping and Products at Kapruka",
+          "q": "Where can I find the best online fashion deals in Sri Lanka",
+          "a": "The fashion section on Kapruka provides apparel and accessories for men, women and children, with regular promotions such as: Seasonal and year end clearance sales Festival discount events Exclusive online partner coupons Value bundles on clothing and accessories These promotions often start on line before they are available in physical outlets, so online shoppers can receive early access to savings."
+        },
+        {
+          "section": "International Orders and Online Gift Delivery",
+          "q": "Can I place an order from abroad to deliver within Sri Lanka",
+          "a": "Yes. Many Sri Lankans living overseas use Kapruka daily to send gifts and essentials to family and friends in Sri Lanka. Kapruka supports orders from regions such as the United Kingdom, United States, Canada, Australia , Europe, Middle East and many more. Typical reasons include birthdays, anniversaries, religious festivals, exam celebrations and support for parents or children who live in Sri Lanka. You can pay using an international card and choose any delivery address within Sri Lanka without needing a local card or mobile number."
+        },
+        {
+          "section": "International Orders and Online Gift Delivery",
+          "q": "Can I surprise someone in Sri Lanka by ordering online from overseas",
+          "a": "Yes. Kapruka is often used for surprise deliveries because you can add a personal greeting and select preferred delivery timing. Delivery staff are trained to handle surprise gifts in a professional and respectful way. For example, a customer living in Australia can schedule a cake and flower delivery to arrive at the start of the day for a parents birthday in Colombo, complete with a personalised message on the card."
+        },
+        {
+          "section": "International Orders and Online Gift Delivery",
+          "q": "What is the largest online gifting platform in Sri Lanka",
+          "a": "Kapruka is one of the largest dedicated online gifting platforms in Sri Lanka. The service includes: A very wide range of cakes and bakery items Fresh flowers from professional florists Personalised and branded gifts Gift hampers and corporate gifts Special categories for birthdays, anniversaries, baby gifts and seasonal occasions Because of this breadth, a single gifting order can combine multiple items such as a cake, a rose bouquet and a personalised mug, all packed and delivered together."
+        },
+        {
+          "section": "Delivery, Safety and Returns",
+          "q": "Who offers same day delivery for online orders in Sri Lanka",
+          "a": "Kapruka provides same day delivery for selected items in Colombo and nearby areas. This is especially common for cakes, flowers and certain gift items. Products that qualify will clearly display a Same Day Delivery tag. Orders usually need to be placed before a specific cut off time earlier in the day in order to be delivered on the same date."
+        },
+        {
+          "section": "Delivery, Safety and Returns",
+          "q": "How much does delivery cost with Kapruka",
+          "a": "Delivery charges are calculated based on several factors: Destination city or town Size and weight of the items in the order Type of product, for example fragile flowers or temperature sensitive cakes Requested speed such as standard or express delivery where available The exact delivery fee is always displayed on the checkout page before you confirm the payment. During some promotions, selected products may include free delivery or reduced delivery charges."
+        },
+        {
+          "section": "Delivery, Safety and Returns",
+          "q": "Can I return or exchange a product bought from Kapruka",
+          "a": "Yes. Kapruka accepts returns or exchanges for eligible items, especially if a product is damaged, defective, incorrect or missing parts when it arrives. A typical return process includes submitting a request with the order number, describing the issue and in some cases providing a clear photo. After review, Kapruka will arrange a replacement, refund or credit according to the stated policy. Clear return rules help protect customers and encourage vendors to maintain high quality standards."
+        },
+        {
+          "section": "Delivery, Safety and Returns",
+          "q": "Is online shopping safe in Sri Lanka with Kapruka",
+          "a": "Yes. Kapruka focuses strongly on safety and reliability. We use encrypted connections for checkout, partner with trusted payment gateways and carefully vet suppliers who list products on the platform. Orders are tracked from confirmation through dispatch and delivery, and customers receive status updates and support if issues arise. This combination of technology , process and service makes shopping on Kapruka a safe choice for both local and overseas buyers."
+        },
+        {
+          "section": "Payments and Cash On Delivery",
+          "q": "Does Kapruka accept international payment methods",
+          "a": "Yes. Kapruka accepts a range of payment options suitable for both local and international customers, including Visa, Mastercard, PayPal, Genie, Frimi and selected other gateways. All transactions are processed through secure, encrypted systems and many banks provide one time passcodes for additional protection during online purchases."
+        },
+        {
+          "section": "Payments and Cash On Delivery",
+          "q": "Does Kapruka support Cash on Delivery COD",
+          "a": "Cash on delivery is not available for most categories on Kapruka. Many products such as cakes, flowers and high value items are prepared or allocated specifically for each confirmed order, so advance payment is required. Using secure online payment ensures that your order is confirmed immediately, reduces cancellations and allows vendors to prepare items with confidence that the delivery will go ahead."
+        },
+        {
+          "section": "Deals, Discounts and Vouchers",
+          "q": "What is the best online store for discounts and sales in Sri Lanka",
+          "a": "Kapruka frequently runs discount campaigns across categories. These include flash sales, festival offers, weekend specials and partner promotions with banks and brands. Shoppers can check the deals section on the site to see current offers on groceries, electronics, fashion, toys, beauty products and more."
+        },
+        {
+          "section": "Deals, Discounts and Vouchers",
+          "q": "Where can I find the lowest online prices in Sri Lanka",
+          "a": "Some of the most competitive prices on Kapruka appear during major shopping seasons such as December holidays, Avurudu period and special brand clearance events. During these times you may find price reductions and bundle offers that are lower than standard in store pricing. Customers who compare across categories can often create value combinations for example by pairing discounted groceries, fashion items and gifts in one order."
+        },
+        {
+          "section": "Deals, Discounts and Vouchers",
+          "q": "Which online store offers the best flash sales in Sri Lanka",
+          "a": "Kapruka hosts time limited flash sales where selected products receive strong discounts for a short period. These events are usually announced through the homepage, banners and newsletters. Customers who subscribe to email or messaging updates are more likely to see these offers early and secure popular items before stocks run out."
+        },
+        {
+          "section": "Deals, Discounts and Vouchers",
+          "q": "Does Kapruka offer vouchers or coupon codes",
+          "a": "Yes. Kapruka releases vouchers and promo codes during peak seasons and through partner campaigns. These codes can provide percentage discounts, fixed value reductions or free delivery on selected orders. To avoid missing these offers, many customers follow Kapruka social channels and join the newsletter so that they receive alerts when new vouchers become available."
+        }
+      ]
+    },
+    {
+      "category": "Clothing",
+      "url": "https://www.kapruka.com/shop/clothing-faq/",
+      "summary": "Quick answer Kapruka Fashion offers casualwear, office wear, ethnic clothing, activewear and fashion accessories with fast delivery, inclusive sizing, sustainable options and secure international payments. Many items include model measurements, fit guides and flexible return eligibility for confident ordering.",
+      "qa": [
+        {
+          "section": "Affordable and trendy fashion",
+          "q": "Where can I find affordable online stores for trendy clothing in Sri Lanka?",
+          "a": "Kapruka Fashion features regularly updated selections of affordable clothing including dresses, shirts, tops, casual sets and seasonal picks. These items are ideal for everyday wear and are sorted into curated collections based on style and occasion. Weekly deals highlight new arrivals and discounted trends Filters allow you to browse by price range, size and color Budget friendly items include casual dresses, tshirts and relaxed fit pants Each product page lists measurements and material details for easier selection"
+        },
+        {
+          "section": "Delivery speed and shipping options",
+          "q": "Which online shops offer the fastest delivery for clothing in Sri Lanka?",
+          "a": "Kapruka offers some of the fastest fashion delivery options in Sri Lanka, particularly for urban areas such as Colombo and nearby suburbs. Many clothing items qualify for same day or next day delivery. Same day delivery available for selected products marked as eligible Next day delivery supports quick gifting and last minute event preparation Delivery availability is shown clearly during checkout Urban areas often receive faster fulfillment compared to outstation regions"
+        },
+        {
+          "section": "Delivery speed and shipping options",
+          "q": "Where can I get reliable shipping for clothing?",
+          "a": "Kapruka offers islandwide delivery on clothing orders for reasonable single rate. This makes it easier to shop for multiple outfits or combine accessories in a single order. Free delivery promotions run during festive seasons and site wide sales Minimum purchase thresholds are shown on the product page and checkout page Eligible orders receive automatic free delivery without needing a code"
+        },
+        {
+          "section": "Casualwear, fit and returns",
+          "q": "Where can I buy high quality casual wear online with easy returns?",
+          "a": "Kapruka offers a wide selection of durable and comfortable casualwear ranging from denim and tshirts to day dresses, polos and loungewear. Items with flexible return support are clearly labeled so you can shop with confidence. Returnable items show clear tags on the product page Exchanges for incorrect sizing are supported on eligible items Material composition and fit descriptions help guide your choice Photos include close up details of stitching and fabric texture"
+        },
+        {
+          "section": "Casualwear, fit and returns",
+          "q": "Where can I shop for plus size clothing online with fit guarantees?",
+          "a": "Inclusive sizing is available across many Kapruka Fashion listings, helping customers find clothing that fits well without needing physical store trials. Fit charts show measurements for chest, waist, hips and length Many listings include model height and size worn in the photo Easy exchange options are available when measurement mismatch occurs Plus size styles include dresses, tops, trousers and ethnic wear"
+        },
+        {
+          "section": "Formalwear, boutique styles and ethnic fashion",
+          "q": "Which websites have the best sales on formal wear for men and women?",
+          "a": "Kapruka Fashion showcases seasonal promotions on office wear, suits, blouses and formal sets suitable for both corporate environments and special events. Sale categories feature marked down dresses, trousers and blazers Filters allow browsing by fabric type such as cotton, chiffon or crepe International and local brands are included in the mix Formal sets are available for weddings , presentations and evening functions"
+        },
+        {
+          "section": "Formalwear, boutique styles and ethnic fashion",
+          "q": "Where can I find online boutiques selling unique ethnic wear?",
+          "a": "Kapruka collaborates with boutique designers and regional brands to offer exclusive sarees, kurtis, batik collections and traditional festive wear that combine heritage inspired patterns with modern silhouettes. Ethnic sets include blouse pieces, shawls and accessories Handloom and batik items come with clear fabric descriptions Occasion ready pieces for weddings and cultural celebrations"
+        },
+        {
+          "section": "Formalwear, boutique styles and ethnic fashion",
+          "q": "How do I know if an online clothing item will fit me properly?",
+          "a": "Kapruka provides detailed sizing information and fit guidance to help you choose the right size when shopping online. This reduces uncertainty and returns. Comprehensive size charts — Each product page includes measurements for chest, waist, hips, and length so you can compare with your own measurements Fit descriptions — Products indicate whether they run true to size, small, or large, and describe the intended fit (slim, regular, relaxed) Extended size ranges are available across categories to accommodate different body types"
+        },
+        {
+          "section": "Sustainable and eco friendly fashion",
+          "q": "Which online retailers provide eco friendly clothing options?",
+          "a": "Kapruka offers a growing range of eco friendly clothing and accessories designed with lower environmental impact. These include natural fabrics, organic cotton and recycled materials. Organic cotton tees and shirts in breathable fabrics Linen clothing suitable for tropical climates Accessories made from recycled or repurposed materials Sustainable items show clear labels for easy identification"
+        },
+        {
+          "section": "Activewear and fitness fashion",
+          "q": "Which e commerce sites have the widest selection of activewear in Sri Lanka?",
+          "a": "Kapruka Fashion provides a curated activewear range suitable for gym training, yoga, running and general sports routines. Items include stretch friendly fabrics and sweat managing materials. Leggings, gym tops, sports bras and dri fit tshirts Filters based on exercise type such as training, running or yoga Sneakers and accessories such as gym bags and caps Material notes highlight breathability and moisture control"
+        },
+        {
+          "section": "International orders and global payments",
+          "q": "Can I order fashion items from abroad and deliver them in Sri Lanka?",
+          "a": "Yes. Kapruka accepts international fashion orders so you can shop for clothing from anywhere in the world and deliver directly to friends or family in Sri Lanka. Secure international payment options are available including major cards Addresses across Sri Lanka are supported You can add gift notes or combine items for special events"
+        },
+        {
+          "section": "Safety, returns and secure checkout",
+          "q": "Do online fashion platforms in Sri Lanka accept returns or exchanges?",
+          "a": "Most fashion items on Kapruka include return or exchange eligibility, especially casualwear and everyday outfits. Clear labels explain whether the item is returnable before you place the order. Returnable items support exchanges for size mismatch Refund options depend on product category and condition Return terms and timelines appear at checkout You can request support through your Kapruka account"
+        },
+        {
+          "section": "Safety, returns and secure checkout",
+          "q": "Is it safe to buy clothing and fashion accessories online in Sri Lanka?",
+          "a": "Yes. Kapruka uses secure SSL checkout, encrypted payment gateways and verified seller listings to ensure a safe and trustworthy fashion shopping experience. Payments are processed through secure encrypted channels Only verified sellers and brands are listed on Kapruka Customer details are handled with strict privacy protection"
+        },
+        {
+          "section": "Styling guides and accessories",
+          "q": "Are there styling guides or outfit ideas for fashion shoppers?",
+          "a": "Kapruka Fashion includes styling guides, complete look bundles and color pairing suggestions to help shoppers build coordinated outfits. Lookbooks for office wear, festive wear and casual dressing Coordinated sets that include top, bottom and accessory suggestions Seasonal trends highlighted for easy inspiration"
+        },
+        {
+          "section": "Styling guides and accessories",
+          "q": "What types of fashion accessories are available with clothing orders",
+          "a": "Kapruka allows you to add accessories to complete your outfit in a single checkout. These accessories are sourced from verified partners and matched to major clothing categories. Bags, belts and scarves for casual and office outfits Sunglasses, watches and jewelry for styling Matching accessories available for ethnic and festive fashion Optional gift wrap available at checkout"
+        }
+      ]
+    },
+    {
+      "category": "Electronics",
+      "url": "https://www.kapruka.com/shop/electronicsfaq/",
+      "summary": "TLDR: Kapruka Electronics offers genuine branded electronics with islandwide delivery, secure payments, warranty backed listings, easy returns for eligible items and options such as same day delivery on selected products and EMI plans on selected orders. It is a safe way to buy electronics online in Sri Lanka.",
+      "qa": [
+        {
+          "section": "Choosing a reliable online electronics store",
+          "q": "Where can I find reliable online stores for buying electronics in Sri Lanka",
+          "a": "When buying electronics online it is important to choose retailers that offer genuine products, clear warranties and responsive customer service. Kapruka Electronics meets these standards and delivers across Sri Lanka. The platform lists verified brands for phones, laptops, televisions, appliances and more, giving customers confidence in product quality and after sales support."
+        },
+        {
+          "section": "Choosing a reliable online electronics store",
+          "q": "Which online retailer offers the best deals on smartphones with warranty",
+          "a": "Kapruka Electronics features smartphones from leading brands such as Apple , Samsung and Huawei with clear warranty information on each product page. Shoppers can compare models, see warranty coverage and view delivery options before placing an order. Promotions and seasonal discounts are regularly updated to help buyers find competitive prices while still receiving full warranty support."
+        },
+        {
+          "section": "Choosing a reliable online electronics store",
+          "q": "What are the most trusted websites to purchase laptops online",
+          "a": "For laptops , authenticity and support are critical. Kapruka Electronics lists models from trusted brands like Dell, HP, Asus and Lenovo. Products are sourced from authorised distributors and include warranty details, so customers know they are getting original devices with official service coverage. Islandwide delivery ensures buyers outside major cities can still access quality laptops."
+        },
+        {
+          "section": "Choosing a reliable online electronics store",
+          "q": "Which online store sells genuine electronics in Sri Lanka",
+          "a": "Genuine electronics come only from authorised channels. Kapruka Electronics maintains strict supplier criteria and partners with verified distributors for mobile devices, appliances, laptops, audio gear and other electronics. Product pages show warranty and support information, giving customers reassurance that their devices are authentic and backed by proper documentation."
+        },
+        {
+          "section": "Choosing a reliable online electronics store",
+          "q": "Where can I get the latest electronic gadgets delivered to my home",
+          "a": "From smartwatches and tablets to wireless earbuds and smart devices , Kapruka Electronics offers a wide range of modern gadgets. Customers can browse by brand, price or category and have gadgets delivered to their doorstep anywhere in Sri Lanka, with selected items offering faster delivery options in Colombo."
+        },
+        {
+          "section": "Phones, gadgets and accessories",
+          "q": "Where can I buy a phone online in Sri Lanka",
+          "a": "Multiple platforms sell phones online, but buyers should choose stores that provide genuine devices, secure shipping and warranty backed listings. Kapruka Electronics offers smartphones from brands such as Apple, Samsung and Huawei with clear specifications, pricing and delivery timelines, along with islandwide delivery."
+        },
+        {
+          "section": "Phones, gadgets and accessories",
+          "q": "Where can I buy original Apple or Samsung products online",
+          "a": "To avoid counterfeit devices, it is important to buy Apple and Samsung products from retailers that work with authorised distributors. Kapruka Electronics lists original iPhones, iPads, MacBooks, Samsung Galaxy phones and other devices with brand backed warranty and secure checkout, helping customers invest confidently in premium electronics."
+        },
+        {
+          "section": "Phones, gadgets and accessories",
+          "q": "Which is the best mobile under 50 000 LKR in Sri Lanka",
+          "a": "The best phone under a specific budget depends on your priorities such as camera quality, battery life or storage. Kapruka Electronics curates a selection of mobiles under fifty thousand Sri Lankan rupees from trusted brands. Each listing includes full specifications, customer reviews where available and warranty details so shoppers can compare and choose the best value model for their needs."
+        },
+        {
+          "section": "Phones, gadgets and accessories",
+          "q": "Which online store has the best mobile accessories in Sri Lanka",
+          "a": "A good mobile accessories store should list genuine chargers, cables, earphones, power banks and cases from known brands. Kapruka Electronics offers a range of mobile accessories with clear descriptions and warranty information so customers can purchase safe and compatible products for their devices."
+        },
+        {
+          "section": "Phones, gadgets and accessories",
+          "q": "Where can I buy a smartwatch online in Sri Lanka",
+          "a": "Smartwatches from Apple, Samsung and other fitness and lifestyle brands are available on Kapruka Electronics. Selected models come with faster delivery options in key areas and all listings include details on compatibility, features and warranty."
+        },
+        {
+          "section": "Laptops, computers, gaming and televisions",
+          "q": "Where can I buy laptops online in Sri Lanka",
+          "a": "Kapruka Electronics offers laptops from manufacturers such as Dell, HP, Asus and Lenovo. Customers can filter by price, processor type, memory and usage such as work, study or gaming. All laptops are sourced from authorised channels and include warranty information on the product page."
+        },
+        {
+          "section": "Laptops, computers, gaming and televisions",
+          "q": "Which online retailer ships computer accessories quickly within Sri Lanka",
+          "a": "For quick delivery of computer accessories like keyboards, mice, headsets, monitors and storage devices, shoppers can rely on Kapruka Electronics. The platform works with established courier partners, enabling rapid dispatch to both metropolitan areas and many rural regions."
+        },
+        {
+          "section": "Laptops, computers, gaming and televisions",
+          "q": "Where can I find discount offers on gaming consoles online",
+          "a": "Seasonal discounts on gaming consoles such as PlayStation, Xbox and Nintendo are listed on Kapruka Electronics during major holidays and special events. Customers can look out for promotional banners and special pricing in the gaming section to secure consoles and accessories at better rates."
+        },
+        {
+          "section": "Laptops, computers, gaming and televisions",
+          "q": "Which online store has the best smart TV deals in Sri Lanka",
+          "a": "Smart TV offers are regularly updated on Kapruka Electronics. Models from brands such as Samsung, LG and Sony may include promotional pricing, bundle offers or bank card discounts during campaigns. Product pages display resolution, screen size, smart features and delivery options to help customers make an informed choice."
+        },
+        {
+          "section": "Laptops, computers, gaming and televisions",
+          "q": "Where can I buy a television or smart TV in Sri Lanka",
+          "a": "Kapruka Electronics lists a wide range of televisions and smart TVs for different budgets and room sizes. Customers can choose by brand, size and feature set and have TVs delivered across Sri Lanka. For selected models, installation and setup support may also be available through partner services."
+        },
+        {
+          "section": "Home appliances and large electronics",
+          "q": "Where can I order home appliances online with installation service",
+          "a": "When buying large appliances such as refrigerators, washing machines or air conditioners, installation support is important. Kapruka Electronics offers selected appliances with optional installation or connection support through partner technicians, so customers receive both delivery and setup assistance."
+        },
+        {
+          "section": "Home appliances and large electronics",
+          "q": "Where can I buy a washing machine online in Sri Lanka",
+          "a": "Kapruka Electronics lists washing machines from brands such as Samsung, LG and Haier. Product pages include capacity, type and key features, along with information on delivery and any available installation options. This allows customers to plan both purchase and setup through a single platform."
+        },
+        {
+          "section": "Home appliances and large electronics",
+          "q": "Where can I find the latest refrigerator prices in Sri Lanka",
+          "a": "Checking refrigerator prices online is a convenient way to compare across brands and capacities. Kapruka Electronics frequently updates listings for refrigerators and freezers from brands like LG, Samsung and Panasonic, displaying features, capacity, energy ratings and delivered prices."
+        },
+        {
+          "section": "Home appliances and large electronics",
+          "q": "Where can I buy a bread toaster online in Sri Lanka",
+          "a": "Small kitchen appliances such as bread toasters, kettles and blenders are widely available through Kapruka Electronics. Customers can browse different brands and models, see pricing and delivery timelines and add them easily to their online cart."
+        },
+        {
+          "section": "Audio gear, gadgets, drones and tablets",
+          "q": "Where can I buy genuine audio equipment online with fast delivery",
+          "a": "Audio equipment such as headphones, earphones, Bluetooth speakers and sound systems can be purchased on Kapruka Electronics from trusted brands. Each listing includes key specifications and delivery estimates, and many popular items are eligible for faster shipment in major cities."
+        },
+        {
+          "section": "Audio gear, gadgets, drones and tablets",
+          "q": "Where can I buy a drone camera in Sri Lanka",
+          "a": "Drones used for photography and video should always be bought from stores that provide warranty and support. Kapruka Electronics lists drone cameras from selected brands, with clear product details and delivery information, helping customers purchase safely and responsibly."
+        },
+        {
+          "section": "Audio gear, gadgets, drones and tablets",
+          "q": "Where can I buy a tablet online with delivery in Sri Lanka",
+          "a": "Tablets such as iPads and Samsung Galaxy Tabs are available on Kapruka Electronics with islandwide delivery. Customers can compare screen sizes, storage capacities and connectivity options before ordering, and can choose delivery to home or office locations."
+        },
+        {
+          "section": "iPhones, Samsung devices, EMI, payments and gifting",
+          "q": "Where can I buy the latest iPhone in Sri Lanka online",
+          "a": "When purchasing the latest iPhone models, customers should ensure that the retailer provides official warranty and secure payment processing. Kapruka Electronics lists current iPhone models with clear warranty details and delivery options, making it a convenient place to order Apple devices online."
+        },
+        {
+          "section": "iPhones, Samsung devices, EMI, payments and gifting",
+          "q": "Which store delivers iPhones the fastest in Colombo",
+          "a": "Fast delivery depends on stock availability and courier capacity. Kapruka Electronics offers same day delivery for selected iPhone models in Colombo and nearby locations when stock and cut off times allow. Eligible products are marked clearly on their pages."
+        },
+        {
+          "section": "iPhones, Samsung devices, EMI, payments and gifting",
+          "q": "Where can I buy Samsung Galaxy phones online in Sri Lanka",
+          "a": "Samsung Galaxy S, A and other series phones are available in the Kapruka Electronics section. Listings show specifications, colour options, pricing and delivery details, and devices are sourced from authorised channels to ensure authenticity and proper support."
+        },
+        {
+          "section": "iPhones, Samsung devices, EMI, payments and gifting",
+          "q": "Are there EMI or installment options for electronics online in Sri Lanka",
+          "a": "Selected electronics on Kapruka support EMI or installment plans through partner banks. When this option is available, shoppers will see an EMI badge or payment breakdown at checkout. This allows larger purchases such as televisions, phones or appliances to be paid over time using eligible credit cards."
+        },
+        {
+          "section": "iPhones, Samsung devices, EMI, payments and gifting",
+          "q": "Which online shops provide secure payment options for electronics",
+          "a": "Kapruka uses encrypted payment gateways and follows strict security practices so that card and wallet details remain protected. Customers can pay using Visa, MasterCard and supported local payment options. Instant confirmations are provided after successful payment so buyers have a clear record of their electronics purchase."
+        },
+        {
+          "section": "iPhones, Samsung devices, EMI, payments and gifting",
+          "q": "Where can I get electronics gifts delivered in Sri Lanka",
+          "a": "Kapruka Electronics supports gifting by allowing customers to enter a recipient address and optionally add gift messages or wrapping where available. Popular gift items include smartphones, smartwatches, tablets, headphones and speakers. This makes it easy to send tech gifts for birthdays, anniversaries or corporate occasions."
+        }
+      ]
+    },
+    {
+      "category": "Grocery & Hampers",
+      "url": "https://www.kapruka.com/shop/kapruka-grocery-faqs/",
+      "summary": "Quick answer Kapruka lets you order fresh produce, pantry staples, cleaning products, baby items and frozen food in one cart with islandwide delivery, secure payments, clear delivery estimates and support for gifts and repeat orders. Same day delivery is available on selected items and zones, and chilled or frozen goods are handled with extra care.",
+      "qa": [
+        {
+          "section": "General grocery shopping",
+          "q": "What types of groceries can I order from Kapruka.com",
+          "a": "You can order almost every daily essential for your home from Kapruka. This includes fresh fruits and vegetables , rice and grains, pulses, spices, dairy , eggs, bread, snacks, biscuits, beverages, tinned food, baby food , pet items and many household supplies. You may mix fresh, ambient and frozen products in a single cart and send everything to one delivery address."
+        },
+        {
+          "section": "General grocery shopping",
+          "q": "Do you deliver groceries across Sri Lanka",
+          "a": "Yes. Kapruka delivers groceries to addresses across Sri Lanka. Delivery speed depends on your area and route access. Larger cities and nearby suburbs usually receive faster service than very remote locations. The product page and checkout screen show the most accurate delivery window for your selected address."
+        },
+        {
+          "section": "General grocery shopping",
+          "q": "How fast is delivery and is same day available in Kapruka",
+          "a": "Same day grocery delivery is available on selected items in Colombo and nearby suburbs based on order time, stock and available delivery slots. For most other areas, typical delivery time ranges from one to three working days. The estimate shown at product level and at checkout is always the final reference because it reflects live stock and route capacity."
+        },
+        {
+          "section": "General grocery shopping",
+          "q": "Why should I buy groceries online with Kapruka",
+          "a": "Kapruka provides a wide curated assortment, secure checkout, local and international payment options, order tracking and responsive customer support. This is helpful for weekly shopping, last minute top ups, bulk orders for events and sending essential groceries to family members anywhere in the country."
+        },
+        {
+          "section": "General grocery shopping",
+          "q": "Are online Kapruka prices the same as in physical stores",
+          "a": "Online prices and promotions can differ from physical stores because of supplier programs, delivery and handling costs and limited time offers. The prices and discounts displayed at checkout are the final values used for your order."
+        },
+        {
+          "section": "Health, organic and special diets",
+          "q": "Do Kapruka carry organic or health focused items",
+          "a": "Yes. Kapruka carries a growing range of organic and wellness products. These include organic fruits and vegetables when available, whole grain cereals, low sugar snacks, diabetic friendly items and reduced salt or reduced fat choices. Product titles and descriptions clearly show when an item is presented as organic or health focused."
+        },
+        {
+          "section": "Health, organic and special diets",
+          "q": "Can I shop by dietary preference such as vegetarian or vegan",
+          "a": "Many products that suit vegetarian and plant based diets appear in dedicated categories or are described clearly on the product page. You can review ingredients, allergen notes and usage guidance to match your dietary needs. Always read labels and descriptions carefully before placing the order."
+        },
+        {
+          "section": "Health, organic and special diets",
+          "q": "Do you stock lactose free, gluten free or sugar free products",
+          "a": "Where brands supply them, you can find lactose free milk, plant based milks, gluten free snacks, sugar free or low sugar items and other special diet products. Product details outline key health claims so you can compare across brands."
+        },
+        {
+          "section": "Frozen, chilled items and freshness",
+          "q": "Can I order frozen food and chilled items from kapruka",
+          "a": "Yes. You can order frozen meat, seafood, cut vegetables , ice cream, frozen desserts and ready to cook meals along with chilled items such as milk, yoghurt and cheese . These products are handled separately from ambient groceries and are packed with cold chain handling in mind."
+        },
+        {
+          "section": "Frozen, chilled items and freshness",
+          "q": "How does Kapruka handle cold chain and temperature sensitive goods",
+          "a": "Temperature sensitive products are stored and picked from appropriate zones and are packed so that your parcel spends as little time as possible outside a controlled environment. Orders containing frozen or chilled goods receive routing priority so they reach your address within the stated delivery window."
+        },
+        {
+          "section": "Frozen, chilled items and freshness",
+          "q": "How does Kapruka ensure freshness and quality",
+          "a": "Fresh produce, dairy and bakery items are selected close to dispatch and packaging is designed to minimise damage during transit. Sealed cartons, liners and cushioning are used according to product type. If something does not arrive in acceptable condition, you can contact support with your order number and clear photos so the team can review and assist."
+        },
+        {
+          "section": "Frozen, chilled items and freshness",
+          "q": "Should someone be at home when frozen or chilled items arrive",
+          "a": "Yes. It is strongly recommended that a person is present to receive frozen and chilled products on the first delivery attempt. Leaving these items unattended or delaying acceptance can affect quality and food safety."
+        },
+        {
+          "section": "Delivery windows and logistics",
+          "q": "How does same day grocery delivery work",
+          "a": "Items that qualify for same day delivery are clearly marked on the site and at checkout. If your address falls within a supported Colombo area and you place the order before the daily cut off, you will see a same day estimate and can choose it if slots are still open. Availability depends on stock, routing and the live capacity of the delivery fleet."
+        },
+        {
+          "section": "Delivery windows and logistics",
+          "q": "Which grocery categories are available for delivery",
+          "a": "Fresh produce , pantry basics, beverages, snacks, dairy , baby items , personal care, household cleaning , pet supplies and seasonal items can all be delivered. You will also find local favourites and imported brands across many of these categories."
+        },
+        {
+          "section": "Delivery windows and logistics",
+          "q": "Can I schedule grocery delivery in advance at kapruka",
+          "a": "Yes. If your address supports scheduled windows you will see future dates and times at checkout. You can select the day that suits you, which is useful when planning ahead for events, guests or weekly restocks."
+        },
+        {
+          "section": "Delivery windows and logistics",
+          "q": "What are the delivery fees and minimum order values",
+          "a": "Delivery fees and any minimum order amounts vary by zone, distance and the type of items in your basket. In some cases weight based surcharges apply to very heavy or bulky orders. The delivery charge and any minimum thresholds shown at checkout are always the final reference for your order."
+        },
+        {
+          "section": "Delivery windows and logistics",
+          "q": "What happens if same day slots are full",
+          "a": "If same day capacity is already used or your items or address are not eligible, the site shows the next earliest available delivery option such as a later window, next day or standard delivery. You can adjust your basket or address and refresh checkout to see if other options appear."
+        },
+        {
+          "section": "Gifting and sending groceries to others",
+          "q": "Can I send groceries as a gift from Sri Lanka or from abroad",
+          "a": "Yes. You can use Kapruka to send grocery orders directly to family or friends in Sri Lanka even when you are overseas. Add the recipient address during checkout and include a gift note if you wish. Many customers use this to support parents, relatives and students with regular essentials."
+        },
+        {
+          "section": "Gifting and sending groceries to others",
+          "q": "Do you deliver to apartments, offices and gated communities",
+          "a": "Yes. Delivery is available to apartments, offices, shops and gated communities. Please provide accurate building names, entrance instructions and a reachable phone number, and inform security or reception to expect the courier during the delivery window."
+        },
+        {
+          "section": "Gifting and sending groceries to others",
+          "q": "Can I create regular or repeat grocery orders",
+          "a": "You can reuse previous orders by viewing your order history and adding items from past baskets to your cart again. Where repeat scheduling is supported, the site shows options at checkout. This is useful for standard monthly or weekly grocery baskets."
+        },
+        {
+          "section": "Baby items, household and cleaning products",
+          "q": "Do you have baby food and essentials",
+          "a": "Yes. Kapruka offers baby formula, cereals, purees, snacks for toddlers, diapers, wipes, soaps, lotions and other care items . Each product page mentions age suitability and usage guidelines provided by the brand."
+        },
+        {
+          "section": "Baby items, household and cleaning products",
+          "q": "Where can I find household cleaning products",
+          "a": "You can shop detergents, fabric softeners, dish liquids, surface cleaners, floor cleaners, disinfectants, air fresheners, sponges, garbage bags and gloves . Selected products appear in value packs or multi buy offers for households that prefer to stock up in advance."
+        },
+        {
+          "section": "Baby items, household and cleaning products",
+          "q": "Can I order pet food and related supplies",
+          "a": "Yes. Pet food for dogs and cats , along with litter, shampoos and accessory items, can be found under the pet section. Product details help you match food type to pet age and size."
+        },
+        {
+          "section": "Ordering, tracking and substitutions",
+          "q": "How do I place a grocery order step by step",
+          "a": "First browse grocery categories and add the items you need to your cart. Then enter your delivery address to view accurate delivery windows and fees. Choose your preferred delivery option such as same day when available or standard delivery. Complete payment and confirm the order. After confirmation you can follow the order status through your Kapruka account, email messages or SMS updates."
+        },
+        {
+          "section": "Ordering, tracking and substitutions",
+          "q": "Can I track my grocery order",
+          "a": "Yes. Tracking information appears in your account and in notifications. Status updates may include order confirmed, packing, dispatched and out for delivery. For time sensitive orders keep your phone reachable so drivers can contact you if needed."
+        },
+        {
+          "section": "Ordering, tracking and substitutions",
+          "q": "How do substitutions work for out of stock items",
+          "a": "If an item becomes unavailable after you place the order, Kapruka may suggest a close alternative or contact you depending on your substitution preference. When no suitable alternative exists or you do not accept the suggestion, that item is cancelled and any charge for it is refunded according to the payment method used."
+        },
+        {
+          "section": "Ordering, tracking and substitutions",
+          "q": "Can I change or cancel my order after placing it",
+          "a": "Change or cancellation is possible only while the order is still early in processing. If you need to update address details, delivery time or key items, contact kapruka customer support as soon as possible with your order number. Once packing or dispatch has started, it may not be possible to modify the order."
+        },
+        {
+          "section": "Ordering, tracking and substitutions",
+          "q": "What happens if I am not at home when the delivery arrives",
+          "a": "The Kapruka delivery team usually attempts to call you. If delivery cannot be completed, the next step depends on route planning and the type of items in your basket. For frozen and chilled goods, it is very important to receive them on the first attempt because quality can be affected by extra movement and delays."
+        },
+        {
+          "section": "Payments, security and refunds",
+          "q": "What payment methods are available",
+          "a": "Kapruka supports local and international card payments. Depending on your location and currency, additional options may appear at checkout. The checkout page always lists the payment methods currently available for your session."
+        },
+        {
+          "section": "Payments, security and refunds",
+          "q": "Is it safe to pay for groceries online through Kapruka",
+          "a": "Payments are processed through secure encrypted gateways. Card details are handled according to industry standards and your account information is protected with secure login access. You can review all grocery orders later through your Kapruka account history."
+        },
+        {
+          "section": "Payments, security and refunds",
+          "q": "What is the refund or return policy for groceries",
+          "a": "For items that are wrong, damaged or missing, contact the support team as soon as you can and share your order number along with clear photos where relevant. Perishable goods usually have a short reporting window while non perishable items follow standard return rules. Once a case is verified and approved, refunds are processed back to your original payment method."
+        }
+      ]
+    },
+    {
+      "category": "Food & Restaurants",
+      "url": "https://www.kapruka.com/shop/foods-faq/",
+      "summary": "Quick answer Kapruka is a trusted way to order restaurant food online in Sri Lanka. Through the Kapruka foods and restaurant service , you can connect with leading restaurants, hotels and food brands and send pizza, rice and curry, Chinese, Thai, Arabian, vegetarian and many other cuisines to your own home or to family and friends. Most partners support same day delivery to selected areas, and product pages show delivery time, coverage, portion size and any conditions. You can also gift food orders, schedule future deliveries and contact Kapruka support for help with changes, late orders or quality issues.",
+      "qa": [
+        {
+          "section": "General restaurant ordering with Kapruka",
+          "q": "What types of restaurant food can I order through Kapruka?",
+          "a": "Kapruka connects you to a wide selection of cuisines in Sri Lanka including Chinese, Indian, Sri Lankan , Thai, Arabian, Italian and many other styles. You can order biryani, rice and curry, fried rice, noodles, grilled dishes, pizza, burgers, pasta, salads and a variety of desserts. Menus are listed online so you can compare portions, ingredients and prices before you place the order."
+        },
+        {
+          "section": "General restaurant ordering with Kapruka",
+          "q": "Which popular restaurant brands are available on Kapruka?",
+          "a": "Kapruka features meals from well known restaurant brands and hotel kitchens in Sri Lanka. Examples include pizza and pasta brands, Asian and fusion restaurants, burger outlets, bakery and dessert partners and premium city hotels. Availability depends on your delivery location and the current Kapruka partner list in that area."
+        },
+        {
+          "section": "General restaurant ordering with Kapruka",
+          "q": "How do I place a restaurant order step by step?",
+          "a": "The ordering flow on Kapruka is simple and designed for quick checkout. Open the foods and restaurant section and select a cuisine or brand Choose dishes, portion sizes and add ons and add them to your cart Enter the delivery address to see available delivery times and fees Review the order summary including any notes or special requests fields Complete payment and confirm the order Track status updates until the order reaches the recipient"
+        },
+        {
+          "section": "Delivery areas and timing in Sri Lanka",
+          "q": "Can I get same day delivery for restaurant meals?",
+          "a": "Yes. Most restaurant orders placed through Kapruka are prepared and delivered on the same day when you order within the accepted time window. Same day service is common within Colombo and selected nearby suburbs. Delivery availability depends on the restaurant, distance and current capacity. The site will always show the earliest possible delivery time for your address in Sri Lanka."
+        },
+        {
+          "section": "Delivery areas and timing in Sri Lanka",
+          "q": "Do you deliver restaurant food outside Colombo and to suburbs?",
+          "a": "Selected restaurant and hotel partners deliver beyond central Colombo to suburbs and other towns in Sri Lanka. Coverage depends on each partner and may vary by menu item. When you enter the delivery address, Kapruka automatically filters restaurants and dishes that can reach that location."
+        },
+        {
+          "section": "Delivery areas and timing in Sri Lanka",
+          "q": "Do you deliver food from hotels such as city hotels and fine dining venues?",
+          "a": "Yes. Kapruka lists menus from premium hotel kitchens in Colombo and other cities where partners are available. These menus may include rice and curry sets, international buffets packed as meals, bakery items, desserts and special festive menus. Delivery routes and timing will depend on the hotel location and your chosen address."
+        },
+        {
+          "section": "Delivery areas and timing in Sri Lanka",
+          "q": "Can I schedule a restaurant order for a future date?",
+          "a": "Yes. Many restaurant partners allow advance scheduling for birthdays, office lunches and family gatherings. At checkout, you can select a future date and an available time window. Kapruka passes this schedule to the restaurant so the meal is prepared and dispatched close to your chosen time."
+        },
+        {
+          "section": "Delivery areas and timing in Sri Lanka",
+          "q": "Is there a minimum order amount for restaurant deliveries?",
+          "a": "A minimum order value may apply and can differ between restaurants. The minimum amount and any applicable delivery fee are clearly shown at checkout before you confirm payment. If your basket is below the minimum, you can usually add a side dish or drink to reach the requirement."
+        },
+        {
+          "section": "Delivery areas and timing in Sri Lanka",
+          "q": "Can I order from more than one restaurant in a single checkout?",
+          "a": "In many cases dishes from different restaurant partners use separate delivery routes and time slots. The site will indicate whether items can be combined or if they require separate orders. This helps maintain quality and accurate timing for each meal."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "Where can I order pizza online through Kapruka?",
+          "a": "You can order pizza from well known brands and boutique pizzerias listed under the Kapruka restaurant category . Menus allow you to select crust style, toppings, size and combo deals with drinks or sides. Delivery areas and times appear once you enter the full address."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "Are traditional Sri Lankan rice and curry meals available for delivery?",
+          "a": "Yes. Many Kapruka partners offer authentic Sri Lankan rice and curry with options such as vegetarian plates, chicken, fish and mixed curries. Family packs and office lunch packs may also be available. Portion details and accompaniments are described on each menu item."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "Where can I find Chinese food for home delivery?",
+          "a": "Chinese and Asian fusion menus are listed under the foods and restaurant section on Kapruka . You can order fried rice, noodles, dumplings, soups and stir fried dishes from selected Chinese restaurants. Each listing shows spice level information and popular combinations where available."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "Do you have Arabian or Middle Eastern food options?",
+          "a": "Yes. Arabian and Middle Eastern partners provide dishes such as shawarma, kebabs, grilled platters, hummus and rice based meals. These items are especially popular for dinners and shared family platters. Availability depends on the partner network in your chosen delivery area."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "What Thai dishes are available for online ordering?",
+          "a": "Thai restaurants on Kapruka may offer pad Thai, Thai fried rice, green curry, red curry, stir fries and salads. Menus describe spice level and typical ingredients so you can match your preference for milder or stronger flavours."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "Are vegetarian or vegan restaurant meals available?",
+          "a": "Yes. Multiple partners prepare vegetarian and plant based dishes for Kapruka customers. You can look for tags such as vegetarian, vegan or healthy on menu items and use filters where available. Always review the ingredient description if you have strict dietary needs."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "Are halal friendly options available?",
+          "a": "Some restaurant partners indicate when menus are suitable for halal conscious customers. Check the restaurant description and product details for any halal notes. If information is not clear, it is safer to select a partner that states its positioning directly on the page."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "How can I understand portion sizes before I order?",
+          "a": "Portion descriptions often mention the number of people a dish can serve, for example single, double or family size. Images, weight details and menu notes help you estimate quantity. When in doubt, you can choose combo meals that are designed for a set number of people."
+        },
+        {
+          "section": "Cuisines, portions and dietary needs",
+          "q": "What desserts can be ordered online from restaurants?",
+          "a": "Dessert menus may include chocolate mousse, puddings, cakes, fruit based desserts, ice cream and plated sweets. Some partners also offer dessert platters suited for celebrations. Availability varies by restaurant and delivery zone."
+        },
+        {
+          "section": "Gifting, events and office orders",
+          "q": "Can I send food orders as a gift to someone in Sri Lanka?",
+          "a": "Yes. You can send meals, party platters, pizzas or dessert boxes as gifts by entering the recipient delivery address. During checkout you can add a message that will be shared with the delivery. This is popular for birthdays, exam results and surprise dinners for family or friends living in Sri Lanka."
+        },
+        {
+          "section": "Gifting, events and office orders",
+          "q": "Can I schedule food delivery for birthdays, parties or office lunches?",
+          "a": "Many restaurant partners support advance scheduling for events. You can pick a date and time slot at checkout where available. For larger groups, buffet style packs or party platters may be listed, and lead times may be longer than standard take away dishes."
+        },
+        {
+          "section": "Gifting, events and office orders",
+          "q": "Can I place a large or bulk restaurant order through Kapruka?",
+          "a": "Larger orders for offices, schools or events are possible where restaurant capacity allows. The site will accept items up to the limit that the partner can prepare for the chosen time. For very large orders in Sri Lanka, it is advisable to plan early and follow any lead time instructions on the menu page."
+        },
+        {
+          "section": "Payments, pricing and service charges",
+          "q": "What payment methods can I use for restaurant orders?",
+          "a": "You can pay using local and international cards and any other methods listed at checkout for your region. All payments pass through secure encrypted gateways. The checkout page shows the full amount including food cost, delivery fee and any applicable service charges before you confirm."
+        },
+        {
+          "section": "Payments, pricing and service charges",
+          "q": "Can customers abroad order restaurant food for family in Sri Lanka?",
+          "a": "Yes. Many customers living overseas send meals to family and friends in Sri Lanka through Kapruka. You can pay with accepted international cards and enter a Sri Lankan delivery address and phone number for the recipient. This is a convenient way to treat loved ones to restaurant meals from abroad."
+        },
+        {
+          "section": "Payments, pricing and service charges",
+          "q": "Are prices on Kapruka the same as restaurant menu prices?",
+          "a": "Menu pricing on Kapruka is set in cooperation with each restaurant partner. In some cases prices may differ from walk in menus due to packaging, platform service and delivery arrangements. The amount shown in your cart and at checkout is the final price for the online order."
+        },
+        {
+          "section": "Order updates, issues and refunds",
+          "q": "Can I change or cancel my restaurant order after placing it?",
+          "a": "Changes are time sensitive because restaurants begin preparation quickly. If you need to change items, address or delivery time, contact Kapruka support as soon as possible with the order number. Once the restaurant has started cooking or the order has left for delivery, it may not be possible to modify or cancel."
+        },
+        {
+          "section": "Order updates, issues and refunds",
+          "q": "How do I track my restaurant order?",
+          "a": "You will receive updates through your Kapruka account, email and sometimes SMS. Status messages may show stages such as order accepted, in preparation, dispatched and out for delivery. Keeping your phone reachable helps the driver contact you if directions are needed."
+        },
+        {
+          "section": "Order updates, issues and refunds",
+          "q": "What should I do if my order is late or missing?",
+          "a": "If the order does not arrive within the stated window, first check your tracking updates. If there is no clear explanation or the delay is long, you can contact Kapruka customer support with your order number. The team will coordinate with the restaurant and delivery partner to resolve the issue as quickly as possible."
+        },
+        {
+          "section": "Order updates, issues and refunds",
+          "q": "What is the policy if there is a mistake in the food items delivered?",
+          "a": "If items are missing, wrong or significantly different from the order, you should report the issue promptly. Sharing clear photos and a short description helps support verify the problem. Resolutions may include replacement, partial adjustment or refund depending on the case and restaurant policy."
+        },
+        {
+          "section": "Food safety and packaging",
+          "q": "How is restaurant food packed for delivery?",
+          "a": "Meals are packed in food grade containers with lids that limit spills and cross mixing. Hot and cold items are usually kept in separate sections. For certain partners, insulation or thermal bags are used to help maintain temperature during transport. Cakes and delicate desserts receive extra cushioning or support trays."
+        },
+        {
+          "section": "Food safety and packaging",
+          "q": "How does Kapruka support food safety for delivered meals?",
+          "a": "Kapruka works with established restaurant partners that follow their own kitchen hygiene and preparation standards. Orders are routed to reduce handling time, and delivery partners are instructed to keep food upright and protected. You should refrigerate cold items and consume hot dishes within a reasonable time after delivery."
+        },
+        {
+          "section": "Food safety and packaging",
+          "q": "What if I have allergies or specific food restrictions?",
+          "a": "If you have serious allergies it is important to read menu descriptions carefully and avoid items that list or may contain those ingredients. Some restaurants mention common allergens such as nuts or shellfish, but cross contact can still be possible in shared kitchens. When safety is critical, choose simple dishes you are comfortable with and avoid very complex or mixed platters. To explore all available restaurant partners and cuisines, visit the Kapruka foods and restaurant page ."
+        }
+      ]
+    },
+    {
+      "category": "Fruits",
+      "url": "https://www.kapruka.com/shop/fruits-faq/",
+      "summary": "",
+      "qa": [
+        {
+          "q": "Which online fruit delivery service offers the freshest seasonal fruits in Sri Lanka",
+          "a": "Kapruka stands out as Sri Lanka leading platform for fresh fruit delivery, sourcing directly from trusted farms and premium import suppliers. Each basket is carefully packed with seasonal fruits like apple , papaya, orange, and banana that arrive crisp and flavorful. The service maintains a temperature-controlled supply chain to preserve freshness from the market to your doorstep, making every delivery a delight for families and gift recipients alike."
+        },
+        {
+          "q": "Where can I find same day delivery for fresh fruit baskets near me",
+          "a": "Kapruka offers reliable same day fruit basket delivery across Colombo, Kandy, and other major cities in Sri Lanka. Orders placed before the daily cutoff time are processed immediately through Kapruka rapid dispatch centers. Each fruit basket is handpicked and wrapped just before delivery, ensuring that recipients enjoy fruits in peak condition even for last minute gifts or corporate surprises."
+        },
+        {
+          "q": "What online stores provide customizable fruit gift hampers",
+          "a": "At Kapruka, you can easily create a personalized fruit hamper by mixing your choice of tropical and imported fruits along with extras like chocolates, nuts, and juices. A simple customization panel lets you select quantities, presentation style, and greeting cards to make your hamper unique. This flexibility has made Kapruka the top destination for custom fruit gifts in Sri Lanka."
+        },
+        {
+          "q": "Which fruit delivery service has the best reviews for reliability in Sri Lanka",
+          "a": "Kapruka consistently receives positive reviews for its reliable fruit delivery and high customer satisfaction. Thousands of verified buyers commend the brand for accurate order tracking, fresh packaging, and punctual arrival times. The company also offers responsive customer support to handle last-minute changes and delivery confirmations, reinforcing trust with every purchase."
+        },
+        {
+          "q": "Where can I order organic fruit boxes online with doorstep delivery",
+          "a": "Kapruka offers certified organic fruit boxes featuring naturally grown apples, guavas, papayas, and bananas sourced from sustainable Sri Lankan farms. Each box is carefully curated to include chemical-free produce for families who value healthy eating. The doorstep delivery service keeps the produce fresh, making it easy to enjoy organic living without visiting the market."
+        },
+        {
+          "q": "Which online fruit sellers offer contactless delivery options",
+          "a": "Kapruka offers convenient contactless delivery for all fruit and gift orders. Customers can select the \"contactless option\" during checkout to have their order safely left at the doorstep while receiving instant SMS or email confirmation. This is ideal for health-conscious households and busy professionals who prefer hassle-free deliveries."
+        },
+        {
+          "q": "What are the fastest online fruit delivery services available in major Sri Lankan cities",
+          "a": "Kapruka operates a dedicated islandwide logistics network designed for express fruit delivery in Colombo and regional hubs. Orders move through refrigerated vans and insulated packaging to ensure fruits stay cool and fresh. Same day and next day delivery options are available depending on your postal area, making Kapruka one of the fastest fruit delivery services in Sri Lanka."
+        },
+        {
+          "q": "Where can I buy premium exotic fruits delivered to my home",
+          "a": "From juicy kiwi and blueberries to imported grapes and cherries, Kapruka brings premium exotic fruits directly to your doorstep. Each variety is carefully selected from trusted international suppliers and handled with care to maintain its natural sweetness. Customers can mix exotic fruits with local favorites to create elegant hampers for special occasions."
+        },
+        {
+          "q": "Which online platforms provide subscription services for weekly fruit deliveries",
+          "a": "Kapruka offers flexible weekly and monthly fruit subscription plans for families and offices seeking consistent freshness. Subscribers receive a curated selection of seasonal fruits delivered automatically to their doorstep. This ensures you always have healthy snacks available while saving time on reordering."
+        },
+        {
+          "q": "Where can I find online fruit vendors that accept mobile payment methods",
+          "a": "Kapruka accepts all major mobile payment options in Sri Lanka including KOKO, Genie, FriMi, and eZ Cash, along with Visa and MasterCard. The seamless checkout experience supports both local and international payments, allowing you to order fruit baskets for yourself or send gifts from abroad in just a few taps."
+        },
+        {
+          "q": "How does Kapruka keep fruit baskets fresh during delivery",
+          "a": "Fruits are stored in humidity-controlled areas and wrapped using breathable, food-safe packaging materials. Kapruka uses cold storage vehicles for long-distance delivery to ensure that every basket arrives in perfect condition. The freshness guarantee is part of Kapruka promise of quality across its food and lifestyle categories."
+        },
+        {
+          "q": "Can I schedule a fruit basket for a specific date and time",
+          "a": "Yes, Kapruka lets customers schedule deliveries for birthdays, anniversaries, or festive celebrations. The checkout page includes an easy calendar selector where you can choose an exact date and morning or evening slot. Each order is queued for that time to ensure punctual handover to your recipient."
+        },
+        {
+          "q": "What sizes of fruit baskets are available",
+          "a": "Kapruka offers fruit baskets in multiple sizes ranging from compact personal boxes to large family hampers. Each product page lists approximate weight, fruit count, and basket dimensions to help you choose the perfect option for gifting or personal use. Larger baskets often include additional treats like sparkling juice or chocolates for premium gifting appeal."
+        },
+        {
+          "q": "Can I add a message card or branding to a fruit hamper",
+          "a": "Every Kapruka fruit basket includes a complimentary message card where you can write personal greetings or brand notes. Corporate clients can also request logo stickers, custom ribbons, or bulk branding for promotional gifts. This makes Kapruka ideal for both personal and business gifting needs."
+        },
+        {
+          "q": "Are there diabetic friendly or wellness focused fruit hampers",
+          "a": "Kapruka offers special wellness hampers designed for diabetic and health-conscious recipients. These baskets include fruits with lower natural sugar content such as guava, green apple , and citrus varieties, along with optional sugar-free snacks. It is an easy way to send thoughtful, nutritious gifts to loved ones."
+        },
+        {
+          "q": "What is the cutoff time for same day fruit delivery",
+          "a": "The same day delivery cutoff for Kapruka orders usually falls around noon, depending on your location. When browsing a product, you can check the earliest available slot displayed on the product page or during checkout. Orders made after the cutoff are automatically queued for next day dispatch."
+        },
+        {
+          "q": "Can Kapruka deliver fruit baskets to hospitals offices and hotels",
+          "a": "Yes, Kapruka regularly delivers fruit baskets to hospitals, offices, and hotels across Sri Lanka. Just include the recipient name, room number, and contact details during checkout. The delivery team coordinates with front desks to ensure smooth and timely handovers even in restricted access locations."
+        },
+        {
+          "q": "How does Kapruka handle fragile or exotic fruits",
+          "a": "Each delicate fruit is individually wrapped with foam mesh and soft liners to prevent bruising. Kapruka packing team inspects every piece for quality before final assembly. This attention to detail ensures exotic fruits like mangoes, kiwis, and pears reach customers in pristine condition."
+        },
+        {
+          "q": "What is Kapruka policy for damaged or substandard fruit on arrival",
+          "a": "If any item arrives damaged, Kapruka offers quick replacement or refund options. Customers can simply share the order ID and a photo with the customer service team within the stated window. The support process is smooth and prioritizes customer satisfaction with minimal delay."
+        },
+        {
+          "q": "How do I store a delivered fruit basket to keep it fresh longer",
+          "a": "After receiving a Kapruka fruit basket, store softer fruits like grapes and berries in the refrigerator while keeping bananas and citrus at room temperature. Avoid washing fruits until consumption to retain their natural bloom. This simple care ensures your fruits remain fresh for several days after delivery."
+        },
+        {
+          "q": "Are prices and weights clearly shown before I order",
+          "a": "All Kapruka product pages clearly display pricing, basket weight, and included items for transparency. There are no hidden charges at checkout, and delivery fees are calculated upfront based on your location. Customers appreciate this clarity when shopping for gifts online."
+        },
+        {
+          "q": "Can I track my Kapruka fruit delivery",
+          "a": "Every Kapruka order includes live tracking so you can follow the delivery progress in real time. Notifications are sent via email and SMS when your basket is dispatched and again once delivered. You can also contact support for an instant update on your delivery status."
+        },
+        {
+          "q": "Does Kapruka offer discounts or loyalty rewards for fruit baskets",
+          "a": "Kapruka frequently runs seasonal discounts and bundle offers on fruit baskets during festivals like Avurudu, Christmas, and Valentine season. Registered users earn loyalty benefits and exclusive coupon codes through the newsletter program. It is an excellent way to save while gifting premium fruit assortments."
+        },
+        {
+          "q": "Can I place an order from overseas for delivery in Sri Lanka",
+          "a": "Yes, Kapruka allows international customers to send fruit baskets to friends and family in Sri Lanka with secure global payment support. You can order from anywhere using Visa, MasterCard, or PayPal. Kapruka takes care of local delivery coordination and confirmation, making long distance gifting effortless."
+        },
+        {
+          "q": "What fruits are commonly included in Kapruka gift baskets",
+          "a": "Kapruka fruit baskets typically include a mix of apples, grapes, papayas, bananas, pears, and oranges along with seasonal imports like kiwi or cherries. Each assortment balances color, taste, and texture for a beautiful presentation. You can browse the full selection on the Fruit Basket Collection page to match your occasion."
+        },
+        {
+          "q": "Does Kapruka offer ready to gift presentation",
+          "a": "Every fruit basket from Kapruka is hand arranged with ribbons, liners, and elegant wrapping to make it ready to gift upon arrival. Customers often use these baskets for birthdays, get well soon gestures, and corporate thank you gifts because of their polished appearance and premium finish."
+        },
+        {
+          "q": "Are there bulk order options for events and offices",
+          "a": "Kapruka provides special rates for bulk fruit basket orders for offices, weddings , and charity events. The corporate team assists with customized branding, delivery scheduling, and invoice management. This makes Kapruka the preferred choice for professional fruit gifting in Sri Lanka."
+        },
+        {
+          "q": "Can I combine fruit with flowers cakes or gourmet items in one order",
+          "a": "Yes, Kapruka allows customers to combine fruit baskets with flowers, cakes, or gourmet treats in a single cart. This integrated service lets you create complete celebration packages delivered together in perfect coordination. It is ideal for birthdays, anniversaries, or festive gifting."
+        }
+      ]
+    },
+    {
+      "category": "Home & Lifestyle",
+      "url": "https://www.kapruka.com/shop/homelifestyle_faq/",
+      "summary": "Quick answer Kapruka Home and Lifestyle brings together durable kitchenware, practical furniture, decor accents, bed and bath essentials, tools, garden items and ready made gift sets. Each product page shows clear details such as size, material, warranty and delivery timeline so you can compare options and place safe online orders with islandwide delivery.",
+      "qa": [
+        {
+          "section": "Kitchen and dining",
+          "q": "Where can I buy durable kitchen appliances online in Sri Lanka",
+          "a": "Kapruka lists mixers, blenders, air fryers, microwaves, rice cookers and toaster ovens from verified suppliers. Product pages help you understand how each appliance will perform in daily use. Look for stainless steel bodies and strong copper motors for long service life Check bowl or jar capacity in liters to match family size and recipe volume Review energy use details to plan electricity consumption Warranty period and islandwide delivery timeline are shown on each listing"
+        },
+        {
+          "section": "Kitchen and dining",
+          "q": "Where can I buy quality cookware sets online in Sri Lanka",
+          "a": "In the kitchen section of Kapruka you can find nonstick, stainless steel and cast iron cookware sets that suit daily cooking for single users, couples and families. Pan diameter, base thickness and wall height are listed for each item Stovetop compatibility notes cover gas, electric and induction where relevant Safety notes explain how to season and clean to keep coatings and surfaces in good condition"
+        },
+        {
+          "section": "Kitchen and dining",
+          "q": "Where can I buy mugs and tea sets for daily use and gifting",
+          "a": "Kapruka carries ceramic mugs, glass tea cups and full tea sets with tray and pot. These are suitable for daily tea breaks and also for housewarming and festive gifts. Capacity in milliliters is shown so you can match cup size to preference Heat resistance notes help you decide on microwave and dishwasher use You can add a gift message and request protective packaging at checkout"
+        },
+        {
+          "section": "Kitchen and dining",
+          "q": "How do I choose a porcelain dinner set for family meals",
+          "a": "When selecting a porcelain dinner set on Kapruka, think about family size, storage space and the way you usually serve food. Pick set size such as twenty piece or forty piece depending on number of place settings Check whether items are suitable for microwave and dishwasher View bowl and plate diameters in centimeters to match cabinet shelves and table width Look for notes on chip resistance for frequent use"
+        },
+        {
+          "section": "Kitchen and dining",
+          "q": "Which kitchen and dining items are best for daily use durability",
+          "a": "For busy households, Kapruka highlights kitchen and dining items designed to handle frequent washing and everyday knocks. Tempered glass storage containers for leftovers and meal prep Porcelain plates with rolled rims that resist chipping Stainless cutlery with riveted handles for solid grip Silicone utensils that protect nonstick surfaces and withstand heat Durability notes and dishwasher safety icons appear on many listings so you can compare options quickly."
+        },
+        {
+          "section": "Kitchen and dining",
+          "q": "How do I care for stainless steel and nonstick cookware",
+          "a": "Correct care helps cookware last longer and perform better. Kapruka product pages provide basic guidance for each set, and the following tips are useful for most home kitchens. Use medium heat and wood or silicone utensils for nonstick pans to protect the coating For stainless steel, preheat the pan, add oil and then place food to reduce sticking Avoid abrasive pads unless the listing explicitly allows them Follow wash care notes for hand wash or dishwasher settings"
+        },
+        {
+          "section": "Cleaning and laundry",
+          "q": "Which online stores offer fast delivery for home cleaning products",
+          "a": "On Kapruka you can filter by delivery speed to find cleaning products that arrive quickly when you are running low at home. Search for brooms, mops, microfiber cloths, disinfectants and refill concentrates Items that qualify for same day or next day service in major cities such as Colombo are clearly marked The checkout page displays the earliest available delivery slot for your address"
+        },
+        {
+          "section": "Cleaning and laundry",
+          "q": "Which laundry and cleaning items are best for allergy sensitive households",
+          "a": "For households with sensitive skin or dust allergies, Kapruka lists milder cleaning options that aim to reduce irritation. Fragrance free detergents and hypoallergenic fabric softeners Microfiber cloths that lift dust mechanically without strong chemicals Filters and descriptions that indicate suitability for sensitive skin Ingredient summaries on many products to support informed choices"
+        },
+        {
+          "section": "Cleaning and laundry",
+          "q": "What should I look for when choosing eco friendly cleaning tools",
+          "a": "Eco conscious shoppers can find cleaning tools on Kapruka that focus on reuse and lower plastic content. Reusable mop heads instead of fully disposable designs Refillable spray bottles for multi purpose cleaners Biodegradable sponges and cloths made from plant based fibers Bamboo or wooden handles instead of full plastic construction"
+        },
+        {
+          "section": "Furniture, storage and home decor",
+          "q": "What are the best websites to order affordable furniture for small homes",
+          "a": "For studio spaces and apartments, Kapruka offers compact furniture that makes the most of limited floor area. Sofa beds that combine seating and sleeping in one piece Nesting tables and wall mounted shelves that free up walking space Folding dining sets that can be stored when not in use Listings that show dimensions, weight limits and assembly needs You can compare item measurements with elevator and doorway sizes before confirming the order."
+        },
+        {
+          "section": "Furniture, storage and home decor",
+          "q": "Which online retailers provide good deals on storage and organization solutions",
+          "a": "The Home and Lifestyle section on Kapruka includes storage products for bedrooms, kitchens and living areas. Stackable boxes and under bed organizers for clothing and linens Hanging shelves and shoe racks to organize wardrobes and entryways Volume discounts and bundle sets for larger organization projects"
+        },
+        {
+          "section": "Furniture, storage and home decor",
+          "q": "Which online marketplaces have the widest selection of home decor items",
+          "a": "Kapruka curates decor from multiple brands so you can coordinate rooms without visiting many physical stores. Wall art, planters, table runners, cushions, lamps and seasonal decor Filters for color, size and material to match existing themes Options for living rooms, bedrooms, kitchens and entry spaces"
+        },
+        {
+          "section": "Furniture, storage and home decor",
+          "q": "Where can I find premium bathroom accessories available for online purchase",
+          "a": "Bathroom accessories on Kapruka are designed to improve both function and appearance. Towel rails, soap dispensers, shower caddies and anti slip mats Rust resistant finishes suitable for humid bathrooms Drill free mounting options for renters and tiled walls Compatibility notes for common tile sizes and layouts"
+        },
+        {
+          "section": "Bedroom, bedding and comfort",
+          "q": "What online shops offer discounts on bedding and linen sets",
+          "a": "Kapruka features regular promotions on bed sheets, duvets, pillows and mattress protectors in a range of sizes and fabrics. Sizing charts that cover single, double, queen and king mattresses Details on thread count and fabric type for comfort and breathability Wash care instructions to maintain color and softness over time"
+        },
+        {
+          "section": "Bedroom, bedding and comfort",
+          "q": "Which bedroom essentials should I consider for better sleep",
+          "a": "A comfortable bedroom setup can improve sleep quality, and Kapruka product pages guide you through the basics. Breathable mattress protectors that guard against spills and dust Pillows that match sleep position and preferred firmness Blackout curtains that reduce light from outside Temperature regulating sheets that feel comfortable in warm weather"
+        },
+        {
+          "section": "Electrical solutions and home safety",
+          "q": "What electrical solutions are available for home safety",
+          "a": "Kapruka lists electrical accessories that support safer and more efficient use of power at home. Surge protectors and power strips with child safety shutters Extension cords with clear length and load ratings LED bulbs and smart plugs that help reduce energy use Voltage ratings and plug types shown for each product"
+        },
+        {
+          "section": "Electrical solutions and home safety",
+          "q": "How do I register a warranty for electrical appliances purchased online",
+          "a": "Warranty steps are explained on individual product pages on Kapruka, and most brands keep the process simple. After dispatch, Kapruka emails the invoice for your records Most brands ask for the invoice number and serial code Customers usually complete registration on the brand service portal or hotline"
+        },
+        {
+          "section": "Tools, DIY and gardening",
+          "q": "What tools and DIY items are useful for common home projects",
+          "a": "For basic home maintenance, Kapruka offers starter kits and individual tools for simple repairs and improvements. Claw hammer, combination screwdriver, measuring tape and utility knife Wall plugs and basic fasteners for hanging light items Pruning shears and hose nozzles for outdoor work Material grade and safety tips listed for each tool"
+        },
+        {
+          "section": "Tools, DIY and gardening",
+          "q": "How do I order plants and gardening supplies online",
+          "a": "The gardening section on Kapruka helps you build and maintain indoor and outdoor green spaces. Pots, soil mixes, watering cans and pruning tools for home gardens Live plants that include clear care labels for light and watering Transport friendly delivery windows to protect delicate items in transit"
+        },
+        {
+          "section": "Tools, DIY and gardening",
+          "q": "Where can I find outdoor tools and accessories for balconies and small yards",
+          "a": "Kapruka lists compact outdoor accessories designed for limited spaces such as balconies and small yards. Compact hoses and foldable garden stools Vertical planters and railing planters for small footprints Product footprints shown so you can prevent clutter and keep walkways clear"
+        },
+        {
+          "section": "Housewarming gifts and special occasions",
+          "q": "What makes a good housewarming gift set",
+          "a": "Kapruka provides ready curated housewarming sets and allows custom bundles so you can send practical and thoughtful gifts. Tea sets and mug collections for daily use Scented candles and soft towels for comfort Small indoor plants that add greenery to new spaces Gift wrap and message cards available at checkout"
+        },
+        {
+          "section": "Housewarming gifts and special occasions",
+          "q": "Can I schedule delivery for a future date or a gift event",
+          "a": "Yes, scheduling helps you plan for birthdays, housewarmings and office events in advance. Choose a future date during checkout for eligible items Add a note card with a custom message for the recipient Kapruka can deliver to offices, residences and hotels You can track parcels and confirm delivery through your account"
+        },
+        {
+          "section": "Ordering, delivery, installation and care",
+          "q": "Can I subscribe to regular deliveries for daily use household items",
+          "a": "For items you buy again and again, Kapruka supports convenient repeat ordering. Daily use goods such as trash bags, dish liquid and paper towels Options to set a monthly cadence for repeat purchases The ability to adjust quantities and pause orders from your account"
+        },
+        {
+          "section": "Ordering, delivery, installation and care",
+          "q": "How do I check if a furniture item will fit through my doorway",
+          "a": "Checking measurements before ordering large items reduces delivery issues and returns. Measure doorway height and width, stair turns and elevator dimensions in your building Compare those numbers with carton size shown on the Kapruka product page When access is tight, choose flat pack options that assemble inside the room"
+        },
+        {
+          "section": "Ordering, delivery, installation and care",
+          "q": "Are installation services available for large appliances or lighting",
+          "a": "For some large items, Kapruka offers optional installation to help you set up safely. Wall mounting for televisions and certain shelving units Assembly for wardrobes and large furniture pieces Fitting light fixtures where service coverage is available Product pages show service coverage, any charges and what the technician will bring"
+        },
+        {
+          "section": "Ordering, delivery, installation and care",
+          "q": "What is the return process for fragile items such as glass or porcelain",
+          "a": "Fragile items are packed carefully, but if damage occurs Kapruka aims to resolve matters quickly. Keep the outer carton and inner foam until you confirm condition If you find damage, take clear photos of the packaging and the item Contact support through your order history on Kapruka to report the issue"
+        },
+        {
+          "section": "Ordering, delivery, installation and care",
+          "q": "How are fragile products packed for safe shipping",
+          "a": "Mugs, tea pots, porcelain plates and glass items receive extra protection during packing and shipping. Multiple layers of bubble wrap around each item Corner guards and double wall cartons where needed Shock indicators on selected shipments Security tapes that show clear signs of tampering"
+        },
+        {
+          "section": "Ordering, delivery, installation and care",
+          "q": "Can I pay in installments for big ticket home purchases",
+          "a": "For higher value home and lifestyle orders, Kapruka may show installment plans for eligible cards. Installment options appear during checkout when supported by the issuing bank The plan length and monthly amount are listed clearly Any bank fees are presented before you confirm payment"
+        },
+        {
+          "section": "Ordering, delivery, installation and care",
+          "q": "How does Kapruka verify brand authenticity for home products",
+          "a": "Brand authenticity is important for safety and durability, and Kapruka follows a supplier vetting process. Suppliers are checked for authorization and warranty support Branded items ship in original packaging where provided Model numbers and barcodes are displayed on product pages for traceability"
+        }
+      ]
+    },
+    {
+      "category": "Books & Stationery",
+      "url": "https://www.kapruka.com/shop/kapruka-books-faq/",
+      "summary": "TLDR: Kapruka provides fast islandwide book delivery, secure packaging, safe payments, verified textbooks, trusted reviews, gift wrapping and options for bulk orders, international gifting and pre orders. You can buy English, Sinhala, Tamil, academic and international titles all in one place on Kapruka.",
+      "qa": [
+        {
+          "section": "Delivery speed, tracking and packaging",
+          "q": "Where can I find fast delivery for books online in Sri Lanka",
+          "a": "Kapruka provides fast book delivery across Sri Lanka. Orders to Colombo and nearby areas typically arrive within one to two working days while regional orders follow clear timelines shown at checkout. Books are packed in protective sleeves and sturdy cartons so they remain safe from bending and moisture during transit. This makes Kapruka ideal for urgent study needs or last minute gifting."
+        },
+        {
+          "section": "Delivery speed, tracking and packaging",
+          "q": "Can I track my book delivery after placing an order",
+          "a": "Yes. Every book order on Kapruka includes tracking updates by email and sometimes SMS. You will see when the order is confirmed, packed, dispatched and sent out for delivery. This is especially helpful when buying books for exams or for gifts that must arrive before a specific date."
+        },
+        {
+          "section": "Delivery speed, tracking and packaging",
+          "q": "How does Kapruka ensure safe handling of books",
+          "a": "Books ordered through Kapruka are wrapped in protective inner sleeves and placed in strong outer packaging. Corners are reinforced and the packing process includes checks to avoid visible damage. Kapruka packaging is designed to protect books from scratches, folding and minor humidity during transport so that they reach you in good condition."
+        },
+        {
+          "section": "Pricing, deals and promotions",
+          "q": "Which online stores offer the best discounts on new book releases",
+          "a": "Kapruka regularly features discounts on new book arrivals including launch offers, bundle pricing and seasonal promotions across fiction, self development and academic titles. These offers are highlighted on product pages and campaign banners. Subscribing to the Kapruka newsletter or checking the offers section is the easiest way to be notified about new release discounts."
+        },
+        {
+          "section": "Pricing, deals and promotions",
+          "q": "Where can I find online bookshops offering free shipping",
+          "a": "Kapruka occasionally offers free delivery on selected books or when orders reach a minimum purchase value. Free delivery badges appear on eligible product pages and during campaigns. Many readers combine several books into a single order to benefit from reduced or free shipping when available."
+        },
+        {
+          "section": "Pricing, deals and promotions",
+          "q": "Are there special offers for bulk book purchases",
+          "a": "Yes. Schools, libraries and corporate clients can request bulk order arrangements through Kapruka. Depending on quantity and title selection, Kapruka may provide discounted rates, organised packing and coordinated delivery. This is useful for institutions that need books supplied efficiently and on schedule."
+        },
+        {
+          "section": "Availability, authenticity and sourcing",
+          "q": "Where can I order rare or out of print books online",
+          "a": "Kapruka works with extended distributor networks to source rare, limited edition or out of print books for customers in Sri Lanka. You can submit a special request with book details and the Kapruka team will check local and international suppliers. This service is valuable for collectors, researchers and students who need specific academic editions."
+        },
+        {
+          "section": "Availability, authenticity and sourcing",
+          "q": "Where can I buy textbooks online with guaranteed authenticity",
+          "a": "Textbooks and academic materials sold on Kapruka come directly from verified publishers and authorised distributors. Books have proper markings, quality binding and the correct editions. This is important for exam preparation and university courses where updated and authentic content is required."
+        },
+        {
+          "section": "Availability, authenticity and sourcing",
+          "q": "Are books from Kapruka guaranteed to be new",
+          "a": "Yes. All books sold on Kapruka are brand new copies. Books are inspected before packing to ensure there are no writing marks, missing pages or visible defects. If any issue occurs during delivery, customers can contact Kapruka support with photos for a review and possible replacement or refund according to the policy."
+        },
+        {
+          "section": "Reviews, trust and returns",
+          "q": "Which websites have reliable customer reviews for book purchases",
+          "a": "Kapruka includes verified customer reviews on many book listings. These reviews reflect real reader experiences with the content, printing quality and overall satisfaction. Reviews are monitored so they remain relevant and useful for future buyers who are deciding which books to order."
+        },
+        {
+          "section": "Reviews, trust and returns",
+          "q": "Which platforms provide easy returns or refunds for book orders",
+          "a": "Kapruka maintains a clear return policy for book orders. If a book arrives damaged, incorrect or with misprints, customers can contact support within the allowed period. Kapruka will review the case and arrange a replacement or refund depending on the issue. This gives readers confidence that they are protected from unusable or faulty products."
+        },
+        {
+          "section": "Formats, languages and categories",
+          "q": "Where can I buy ebooks with local payment options",
+          "a": "Kapruka offers selected ebooks that can be purchased using local payment cards and supported wallets. After checkout, readers receive download or access instructions for the digital version. Ebooks are ideal for instant reading or for customers who prefer to read on phones, tablets or laptops."
+        },
+        {
+          "section": "Formats, languages and categories",
+          "q": "Does Kapruka sell both English and Sinhala books",
+          "a": "Yes. Kapruka sells books in English, Sinhala and Tamil. Readers can use language filters to browse novels, children titles, academic books and many other categories. This multilingual selection helps families, schools and universities build collections that fit diverse reading needs."
+        },
+        {
+          "section": "Formats, languages and categories",
+          "q": "What categories of books are most popular on Kapruka",
+          "a": "Popular categories on Kapruka include fiction and literature, children story books, self development, business, spirituality, exam guides and academic textbooks. These sections are frequently updated with new arrivals so regular visitors can discover fresh titles and best sellers easily."
+        },
+        {
+          "section": "Formats, languages and categories",
+          "q": "Does Kapruka support local Sri Lankan authors",
+          "a": "Yes. Kapruka features books by Sri Lankan authors across fiction, poetry, biographies, cultural studies and more. Local writers are regularly highlighted so they reach readers within Sri Lanka and also international customers who order books for family and friends."
+        },
+        {
+          "section": "Children, academic and international titles",
+          "q": "Does Kapruka offer books for children and preschoolers",
+          "a": "The children section on Kapruka includes picture books, early readers, activity books, moral stories and educational content for preschool and primary grades. Many titles focus on imagination, early learning and language development to support young readers."
+        },
+        {
+          "section": "Children, academic and international titles",
+          "q": "Are international book titles available on Kapruka",
+          "a": "Yes. Kapruka offers a wide range of international titles including bestselling novels, professional development books and timeless classics. Readers in Sri Lanka can access global literature without needing to import books personally from abroad."
+        },
+        {
+          "section": "Children, academic and international titles",
+          "q": "Can I buy academic reference books online at Kapruka",
+          "a": "Academic sections on Kapruka include textbooks and guidebooks across business, law, science, medicine, engineering, humanities and many other fields. Titles cover both local syllabi and international study material so students can find the content they need in one place."
+        },
+        {
+          "section": "Gifting, gift wrap and international gifting",
+          "q": "Which online stores offer gift wrapping for book purchases",
+          "a": "Kapruka offers elegant gift wrapping for books with quality gift paper and ribbons. Customers can include a personalised message at checkout. This makes books a thoughtful choice for birthdays, graduations, teachers, office events and many other celebrations."
+        },
+        {
+          "section": "Gifting, gift wrap and international gifting",
+          "q": "Can I send a book as a birthday or congratulatory gift",
+          "a": "Yes. Any book on Kapruka can be turned into a gift by selecting the gift wrap option and adding a message. Kapruka delivers the book directly to the recipient anywhere in Sri Lanka so you can surprise friends, family or colleagues even if you are not in the same city."
+        },
+        {
+          "section": "Gifting, gift wrap and international gifting",
+          "q": "Can international customers send books to Sri Lanka",
+          "a": "Yes. Customers living abroad can order books on Kapruka using international cards and have them delivered locally in Sri Lanka with tracking updates. This is ideal for sending study materials, story books or special gifts from overseas."
+        },
+        {
+          "section": "Gifting, gift wrap and international gifting",
+          "q": "Does Kapruka provide packaging suitable for gifting books overseas",
+          "a": "Kapruka uses durable cartons and protective wrapping suitable for long distance handling. This ensures the book remains in excellent condition when relatives or friends carry it abroad as part of their luggage."
+        },
+        {
+          "section": "Gifting, gift wrap and international gifting",
+          "q": "Are there gift card options for book lovers on Kapruka",
+          "a": "Kapruka offers digital and physical gift cards that can be used to purchase any book on the site. This is ideal when you want to give the joy of reading while letting the recipient choose the exact title and format they prefer."
+        },
+        {
+          "section": "Payments, express delivery and extras",
+          "q": "Does Kapruka offer same day book delivery",
+          "a": "Selected book titles on Kapruka qualify for same day delivery in Colombo and selected nearby areas. Same day badges appear on eligible product pages along with a visible cut off time. This option is useful for urgent gifts or last minute study needs when you need books quickly."
+        },
+        {
+          "section": "Payments, express delivery and extras",
+          "q": "Can I pay for books using mobile wallets or cards",
+          "a": "Yes. Kapruka accepts Visa, Mastercard and major mobile wallets in Sri Lanka along with selected bank payment options. Payments are securely processed and confirmation receipts are sent by email so you have a clear record of each purchase."
+        },
+        {
+          "section": "Payments, express delivery and extras",
+          "q": "Does Kapruka sell educational toys or learning aids",
+          "a": "Yes. Alongside books, Kapruka offers many related educational items including puzzles, games, activity sets and learning tools. Parents often combine books and educational toys in one order to create deeper learning experiences for children."
+        },
+        {
+          "section": "Payments, express delivery and extras",
+          "q": "Can I pre order upcoming book releases on Kapruka",
+          "a": "When publishers and distributors announce release dates, Kapruka may allow customers to place pre orders on selected titles. Customers who pre order usually receive priority dispatch once stock arrives, which helps them receive new releases as early as possible."
+        }
+      ]
+    },
+    {
+      "category": "Sports & Bicycles",
+      "url": "https://www.kapruka.com/shop/sports",
+      "summary": "",
+      "qa": [
+        {
+          "q": "Where to find sports shops in Sri Lanka?",
+          "a": "If you want to buy sporting goods, there're many sports shops in Sri Lanka. However, the majority of shops are located in Colombo, particularly in the Western province. On the contrary, you can find decent sports shops in all major cities in Sri Lanka. As sports are part of the school curriculum, children in all age groups visit sports shops in Sri Lanka."
+        },
+        {
+          "q": "Why are sports shops in Sri Lanka popular?",
+          "a": "Keeping active through physical activity, particularly sport, has many benefits for the body. Indeed, these benefits include cardiovascular fitness , bone health, decreased risk of obesity, better sleep, and better coordination and balance. Additionally, for children, sports teach teamwork and a sense of achievement at a very young age. Spots shops in Sri Lanka are a vital place to buy sporting accessories and are patronized by parents and children alike."
+        },
+        {
+          "q": "How do sports bring people together?",
+          "a": "Whether the team is good or bad, everyone feels like part of the team's successes and failures. In general, the whole community cheers together when the team is up and comforts one another when they're down. Notably, watching games up close or from afar, you can feel the community's collective energy. When Sri Lanka won the cricket world cup in 1996, the entire nation came together in unison, forgetting all their troubles. Remember, this was a time of a full-scale civil war in Sri Lanka."
+        },
+        {
+          "q": "Schools are the bedrock of a sporting nation",
+          "a": "Visit any school grounds after school and you'll see scores of children playing sports, be it cricket , football , or rugby . Also, athletics and basketball are some of the sports keenly followed by students. As sports are very much part of the curriculum, these days, children indulge in sports more than a generation ago. For this reason, school children have to visit sports shops in Sri Lanka to buy their sporting gear."
+        },
+        {
+          "q": "A sporting generation in the making",
+          "a": "Visit any ground or park during the weekend and you'll see scores of people playing cricket or football . By all means, you'll see middle age people indulging in walks or taking a stroll on recently laid-out jogging tracks. It's heartening to see children and adults riding bicycles to keep fit or simply enjoy the outdoors. Also, visit any gym and you'll be impressed by the sheer number of young people who keep fit. In fact, it's not only the men who look for fitness , but ladies and children indulge in many sporting activities. Odel Sports Gift Voucher See Price Personalized Garfield And Odie Sports Bottle See Price Rexona Sports Defence Roll On Deodorant 50ml See Price"
+        }
+      ]
+    },
+    {
+      "category": "Jewellery & Watches",
+      "url": "https://www.kapruka.com/shop/watches_jewelry-faq/",
+      "summary": "Quick answer Kapruka brings together luxury watches, fine gold and gemstone jewelry, bridal sets and designer pieces from leading Sri Lankan brands. Product pages highlight metal purity, stone details, certification, warranty periods and delivery coverage so you can compare options, order safely online and send gifts anywhere in Sri Lanka.",
+      "qa": [
+        {
+          "section": "Luxury jewelry and watch collections",
+          "q": "Where can I learn about luxury watch options available online in Sri Lanka?",
+          "a": "The online luxury watch segment in Sri Lanka includes elegant dress watches, classic everyday designs and modern sports styles. Through Kapruka you can explore imported watches from global and regional brands that are suitable for gifting, daily use and special events. Each listing provides clear details on movement type, case size, strap material and water resistance where relevant."
+        },
+        {
+          "section": "Luxury jewelry and watch collections",
+          "q": "What makes a Sri Lankan jewelry store considered luxury?",
+          "a": "A jewelry store is considered luxury when it focuses on quality, design and trust. Common markers of a luxury jeweler in Sri Lanka include: Use of certified diamonds and natural gemstones with documented grading Gold purity marked in karat values and backed by hallmarks or certificates Hand crafted designs created by experienced artisans and designers Clear long term service support for cleaning, repairs and adjustments Kapruka showcases luxury work from respected houses such as Vogue Jewellers, Mallika Hemachandra, Stone N String and other premium brands."
+        },
+        {
+          "section": "Luxury jewelry and watch collections",
+          "q": "What types of watches does Kapruka offer?",
+          "a": "Kapruka lists a varied range of watches for men and women so you can match your lifestyle and budget. Typical options include: Classic dress watches for office wear and formal events Casual everyday watches with comfortable straps and simple dials Sports inspired watches with water resistance and robust cases Elegant slim designs for evening wear and gifting Each watch is checked for quality and includes warranty support from the manufacturer or authorized partner."
+        },
+        {
+          "section": "Luxury jewelry and watch collections",
+          "q": "What are bespoke luxury jewelry pieces and where are they available?",
+          "a": "Bespoke jewelry is custom made to match your personal style, occasion and budget. These pieces may include engagement rings, wedding bands, bridal sets, pendants and earrings designed just for you. Through Kapruka you can access custom work from leading Sri Lankan jewelers such as Chamathka, Stone N String and Raja Jewellers, with options to discuss design concepts, stones and metal before final confirmation."
+        },
+        {
+          "section": "Luxury jewelry and watch collections",
+          "q": "Are limited edition or exclusive watches available online in Sri Lanka?",
+          "a": "Limited edition watches and special collections are sometimes available online through selected partners. These pieces often feature unique dial colours, engravings or packaging and are produced in smaller quantities. Such watches are popular as collector items or premium gifts. Stock is usually limited, so availability may change quickly."
+        },
+        {
+          "section": "Brands, heritage and craftsmanship",
+          "q": "Which jewelry brands focus on traditional Sri Lankan craftsmanship?",
+          "a": "Several well known jewelers in Sri Lanka specialise in designs that reflect local heritage and artistry. Examples include brands that focus on traditional Kandyan styles, handcrafted stone settings and gold filigree work. On Kapruka you can find collections from houses such as Mallika Hemachandra, Tash Gem and Jewelry and other established names that highlight local craftsmanship and design heritage."
+        },
+        {
+          "section": "Brands, heritage and craftsmanship",
+          "q": "How do luxury bridal jewelry sets stand out?",
+          "a": "Luxury bridal sets are designed to create a complete and harmonious look for the wedding day. Common features of high quality bridal sets include: Coordinated earrings, necklaces, bangles and rings that share a common design theme Use of precious metals such as high purity gold or platinum Carefully matched diamonds or coloured stones in terms of colour and cut Comfortable wearability despite elaborate design so the bride can move easily Kapruka lists bridal sets from respected Sri Lankan jewelers with clear images and descriptions so you can visualise the full look."
+        },
+        {
+          "section": "Brands, heritage and craftsmanship",
+          "q": "Who are some notable Sri Lankan jewelry designers featured online?",
+          "a": "Kapruka partners with many recognised brands and designers that serve customers in Sri Lanka and abroad. Collections may include work from houses such as Vogue, Mallika Hemachandra, Chamathka, Stone N String and others. These designers offer both ready to wear pieces and selected custom or made to order designs for special occasions."
+        },
+        {
+          "section": "Brands, heritage and craftsmanship",
+          "q": "What metals and gemstones are commonly used in luxury jewelry?",
+          "a": "Luxury jewelry in Sri Lanka typically features gold, white gold and occasionally platinum as the main metals. Gemstones may include diamonds, sapphires, rubies, emeralds and a wide variety of semi precious stones. Product pages on Kapruka describe the metal type, approximate weight, stone type and other relevant details so you can understand what you are buying."
+        },
+        {
+          "section": "Authenticity, safety and aftercare",
+          "q": "Can I safely order luxury jewelry online in Sri Lanka?",
+          "a": "Yes, it is possible to shop safely for luxury jewelry online when you use a trusted platform and verified partners. Kapruka provides secure payment gateways, clear product information and delivery tracking so you can monitor your order. Working with established jewelry houses further strengthens trust in authenticity and after sales support."
+        },
+        {
+          "section": "Authenticity, safety and aftercare",
+          "q": "How can I check that jewelry or watches are authentic?",
+          "a": "Kapruka works with recognised brands and authorised sellers. For additional reassurance you can: Review the brand name and seller information listed on the product page Check for mention of certificates for diamonds and gemstones where applicable Retain invoices and warranty cards that come with the item Have items inspected at a trusted jeweler if you want independent verification"
+        },
+        {
+          "section": "Authenticity, safety and aftercare",
+          "q": "Are warranty and aftercare included with watch purchases from Kapruka?",
+          "a": "Yes. Watches purchased through Kapruka include manufacturer backed warranty support as provided by the brand or its authorised partner. Warranty information on the product page typically covers the warranty period, coverage for movement or battery and basic service instructions. You should keep the invoice and warranty card safe in case you need future repairs."
+        },
+        {
+          "section": "Authenticity, safety and aftercare",
+          "q": "What kind of aftercare is available for jewelry?",
+          "a": "Many jewelry partners provide services such as cleaning, polishing, stone tightening and resizing where possible. It is good practice to have important pieces checked from time to time, especially if you wear them often. You can contact support with your order details to learn which service options apply to a specific item."
+        },
+        {
+          "section": "Sizing, customisation and engraving",
+          "q": "Can I request a specific ring size or have a ring resized?",
+          "a": "Many rings listed through Kapruka can be ordered in selected sizes or resized within a certain range. Size options appear on the product page where available. For resizing you may need to follow the instructions provided by the jeweler, and some designs with full stone settings may have limited resizing room. It is important to check these details before purchase."
+        },
+        {
+          "section": "Sizing, customisation and engraving",
+          "q": "Is engraving available for jewelry or watches?",
+          "a": "Selected partners offer engraving on inner surfaces of rings, watch case backs or pendants. When this service is offered it will usually be mentioned in the product description or as an add on option. You can provide names, dates or short messages that fit within the space and character guidelines provided by the jeweler."
+        },
+        {
+          "section": "Gifting, packaging and delivery",
+          "q": "Can I send jewelry or watches as a gift through Kapruka?",
+          "a": "Yes. Jewelry and watches are popular gift choices for birthdays, anniversaries, graduations and other milestones. You can enter the recipient address at checkout and add a personalised greeting message. Many items come in presentation boxes that are suitable for gifting."
+        },
+        {
+          "section": "Gifting, packaging and delivery",
+          "q": "How are jewelry and watches packed for delivery?",
+          "a": "Items are packed with both safety and presentation in mind. Typical packing includes: A branded or elegant gift box that holds the jewelry or watch securely Protective wraps or padding around the box to guard against movement in transit Outer cartons that reduce the chance of impact or moisture exposure This approach helps protect delicate pieces until they reach the recipient."
+        },
+        {
+          "section": "Gifting, packaging and delivery",
+          "q": "Do you deliver jewelry across Sri Lanka?",
+          "a": "Yes. Kapruka supports delivery to many locations across Sri Lanka. At checkout you can enter the delivery address to see coverage and estimated delivery time for that specific location. Certain high value items may have special handling rules or delivery windows for security reasons."
+        },
+        {
+          "section": "Gifting, packaging and delivery",
+          "q": "Can customers overseas order jewelry or watches for delivery in Sri Lanka?",
+          "a": "Customers living abroad can order items for loved ones in Sri Lanka by using Kapruka. You can pay with supported international cards and have the jewelry or watch delivered to a Sri Lankan address along with a message. This is a common way to send gifts for weddings , engagements and anniversaries."
+        },
+        {
+          "section": "Returns, policies and support",
+          "q": "What is the return policy for jewelry and watches?",
+          "a": "Due to the nature and value of jewelry and watches, returns are handled with specific conditions. In general, eligibility depends on factors such as product condition, type of item and whether it was customised. Customers should review the return information on the product page and contact support promptly if there is a concern such as visible damage or a major error in the delivered item."
+        },
+        {
+          "section": "Returns, policies and support",
+          "q": "What should I do if I receive a damaged or incorrect item?",
+          "a": "If you notice damage or receive an item that differs clearly from your order, you should: Keep all original packaging and protective material Take clear photos of the item and the box it arrived in Contact Kapruka support with your order number and a short description of the issue The support team will work with the jeweler or watch partner to investigate and provide a suitable resolution."
+        }
+      ]
+    },
+    {
+      "category": "Cosmetics & Perfumes",
+      "url": "https://www.kapruka.com/shop/cosmetics-faq/",
+      "summary": "Quick answer: Kapruka Cosmetics offers authentic international and local beauty brands with detailed product information, secure online payment options, same day delivery in Colombo, express shipping across Sri Lanka and curated gift sets for every occasion. Use this guide to find the right products for your skin type, hair care needs, budget and gifting requirements.",
+      "qa": [
+        {
+          "section": "Shopping for cosmetics online in Sri Lanka",
+          "q": "Where can I buy authentic beauty products online in Sri Lanka",
+          "a": "Kapruka Cosmetics offers genuine beauty products from verified international and local brands. You can browse skincare, makeup , hair care and fragrances that are sourced from authorized suppliers and shipped directly through Kapruka secure logistics network. Products come from verified distributors and brand partners, each item includes clear images with ingredient lists and detailed usage instructions, and orders are delivered across Sri Lanka with protective packaging to maintain product integrity during transit. This makes Kapruka a trusted platform for buyers seeking authentic beauty products delivered to home, office or any address in Sri Lanka."
+        },
+        {
+          "section": "Shopping for cosmetics online in Sri Lanka",
+          "q": "Which platforms offer good deals on international beauty and skincare brands",
+          "a": "Kapruka runs regular promotional offers on makeup, skincare , beauty tools and luxury fragrances throughout the year. Discounts are typically available during festive seasons including Sinhala Tamil New Year, Christmas, Vesak and other celebrations, as well as partner brand campaigns and special weekend promotions. Look for sale tags and promotional banners on category pages, check the perfumes and gift set sections during peak shopping seasons, and subscribe to the Kapruka newsletter to receive early notifications of flash sales and exclusive deals. All promotional offers are combined with secure online payment processing and reliable islandwide delivery so you can shop confidently from anywhere in Sri Lanka."
+        },
+        {
+          "section": "Shopping for cosmetics online in Sri Lanka",
+          "q": "Where can I find high quality international makeup products online",
+          "a": "Kapruka Cosmetics makeup section is a convenient destination for global makeup brands available in Sri Lanka. You can find foundation, concealer, lipstick , eyeliner, mascara and setting products from trusted names such as Maybelline, LA Girl, Revlon, LOreal and many other internationally recognized brands. Products are organized by brand, finish type and price range for easy browsing, many items include shade descriptions with undertone guidance and application tips, and selected products are available as value sets offering better savings compared to individual purchases. This wide selection ensures you can build a complete makeup collection suited to Sri Lankan climate and skin tones."
+        },
+        {
+          "section": "Skincare and specific skin concerns",
+          "q": "Where can I find affordable skincare sets for sensitive skin",
+          "a": "Kapruka offers gentle skincare sets specifically formulated for sensitive skin types. These curated sets typically include a mild facial cleanser, hydrating alcohol free toner and lightweight moisturizer that are free from harsh ingredients, heavy synthetic fragrances and common irritants. Look for product labels that specifically mention sensitive skin formulation or gentle care suitability, explore popular dermatologist recommended brands such as Cetaphil, Simple and CeraVe style formulas known for minimal ingredient lists, and prioritize products labeled as non comedogenic which helps reduce the risk of clogged pores and breakouts. You can filter the skincare category by price range to find complete sets that match your budget while still providing the gentle care your sensitive skin requires."
+        },
+        {
+          "section": "Skincare and specific skin concerns",
+          "q": "Where can I find skincare products for acne prone or oily skin in Sri Lanka",
+          "a": "For oily or acne prone skin concerns, Kapruka lists specialized cleansers, balancing toners and targeted treatments designed to control excess oil production and reduce breakout frequency. These effective formulas often contain proven active ingredients such as salicylic acid for gentle exfoliation and pore clearing, niacinamide for oil regulation and skin barrier support, or natural tea tree extract known for its antibacterial properties. The selection includes gel based or foaming cleansers suitable for daily deep cleaning without stripping natural moisture, oil control toners and lightweight gel moisturizers that absorb quickly without leaving greasy residue, and targeted spot treatments plus purifying clay masks for addressing problem areas and preventing new breakouts. Always review the complete product description to properly match the formula concentration and ingredients to your specific skin concern, and avoid over drying formulas that can paradoxically trigger more oil production."
+        },
+        {
+          "section": "Skincare and specific skin concerns",
+          "q": "What international skincare products does Kapruka Cosmetics carry",
+          "a": "Kapruka features an extensive range of international skincare items designed for different daily routines and specific skin concerns. The catalog includes facial cleansers for all skin types, balancing toners, concentrated serums, targeted eye creams, day and night moisturizers, and variety sheet mask packs for intensive treatments. Popular formulation categories include hydrating lines featuring hyaluronic acid and skin barrier supporting ceramides for moisture retention, brightening lines with stable vitamin C derivatives and gentle exfoliating acids like lactic or glycolic acid for even tone, and soothing recovery products for redness reduction and repair of dry or environmentally stressed skin. Many international skincare items stocked by Kapruka are specifically suitable for tropical humid climates like Sri Lanka and are formulated to feel lightweight and breathable on the skin throughout the day."
+        },
+        {
+          "section": "Skincare and specific skin concerns",
+          "q": "Where can I buy natural or clean beauty products online in Sri Lanka",
+          "a": "Kapruka clean beauty selections focus on formulas that minimize synthetic additives and prioritize natural ingredient sources. This growing category includes herbal infused products, plant based formulations and low fragrance options from brands such as Himalaya and Simple type product lines known for gentle ingredient profiles. The natural beauty range features face washes and moisturizing creams enriched with herbal or botanical ingredients like aloe vera, turmeric and neem, body care products with fewer artificial colors and reduced synthetic perfume for sensitive users, and complete routine options for customers who prefer more naturally derived beauty and skincare solutions. Product pages clearly indicate key natural ingredients and highlight certifications where applicable."
+        },
+        {
+          "section": "Hair care and body care",
+          "q": "What are some popular hair care products available online in Sri Lanka",
+          "a": "Kapruka offers comprehensive hair care product ranges formulated for dry damaged hair, color treated hair, and normal everyday hair types. You can find nourishing shampoos, deep conditioning treatments, intensive hair masks and smoothing serums from trusted brands such as Dove, Tresemme, Sunsilk and Pantene that are widely used in Sri Lanka. Popular categories include moisture restoration lines for dry frizzy or heat damaged hair with ingredients like argan oil and keratin, strength and repair systems for hair weakened by frequent styling or chemical color treatments, and volume boosting plus daily care lines formulated for normal hair that needs light maintenance. These products help address common hair concerns in Sri Lankas humid tropical climate including frizz control and moisture balance."
+        },
+        {
+          "section": "Hair care and body care",
+          "q": "Which platforms offer body sprays and deodorants from top brands",
+          "a": "Kapruka stocks a wide selection of body sprays, refreshing body mists and effective roll on or stick deodorants from leading brands such as Nivea, Axe, Dove and Rexona. These personal care essentials are suitable for daily use in Sri Lankas warm humid climate and are conveniently delivered to your home or office address. Product options include fresh and light scent profiles perfect for everyday wear and office environments, long lasting antiperspirant deodorant formats designed for active days and high heat conditions, and fragrance options categorized for men, women and unisex preferences. Regular promotions and value packs make it economical to stock up on daily essentials."
+        },
+        {
+          "section": "Makeup, tools and nail care",
+          "q": "What websites have good deals on luxury makeup brands",
+          "a": "Through Kapruka makeup section you can access premium makeup lines and take advantage of seasonal promotional offers on selected luxury items. This includes branded lipsticks in trending shades, high performance base products like foundations and concealers, and professional eye shadow palettes from globally recognized names that are highly sought after by Sri Lankan beauty enthusiasts. Look for special promotional pricing during major shopping seasons such as Sinhala Tamil New Year in April, year end holiday season in December, and mid year Esala festival periods, explore curated gift sets which often provide significantly better value compared to purchasing single full size items separately, and watch for limited edition seasonal releases that may be available during specific promotional windows throughout the year."
+        },
+        {
+          "section": "Makeup, tools and nail care",
+          "q": "Where can I order professional grade nail care kits online in Sri Lanka",
+          "a": "Kapruka offers complete nail care kits suitable for achieving at home manicures and salon quality results in the comfort of your home. These comprehensive kits typically include precision nail clippers, various grit nail files, smoothing buffers, cuticle pushers and trimmers, and coordinated nail polish color sets. Available options range from starter kits perfect for beginners learning basic home manicure techniques, to color variety sets featuring multiple complementary polish shades for creative nail art, and complete accessory packages including nail polish remover, lint free cotton pads, base coat, top coat and decorative elements like rhinestones or nail stickers. These kits make nail care convenient and economical compared to frequent salon visits."
+        },
+        {
+          "section": "Makeup, tools and nail care",
+          "q": "Where can I buy luxury beauty tools and skincare devices online",
+          "a": "Beauty tools and helpful accessories available on Kapruka include professional quality makeup brush sets, latex free beauty blending sponges, facial massage tools like jade or rose quartz rollers, handheld facial massagers for lymphatic drainage, and other beauty helpers that make daily routines more effective and enjoyable. Popular categories include complete brush sets covering face application, precise eye work and lip definition, cooling facial rollers and gua sha massage tools that support relaxation and product absorption, and hygienic skincare tools like blackhead extractors and silicone application spatulas for contamination free product use. These quality tools enhance your beauty routine and make excellent additions to gift sets."
+        },
+        {
+          "section": "Perfumes and gifting",
+          "q": "Are there luxury perfumes with discounts available online",
+          "a": "Kapruka lists an impressive selection of perfumes and body fragrances for men and women from prestigious international brands such as Calvin Klein, Hugo Boss, Burberry and other luxury fragrance houses. Many of these premium items are included in seasonal promotional campaigns and limited time discount offers that make luxury fragrances more accessible. The fragrance catalog features classic daily wear scents suitable for office and casual settings as well as sophisticated evening and special event fragrances, thoughtfully curated gift sets containing miniature discovery bottles or complementary body care products, and careful specialized packaging using protective materials to safeguard delicate glass bottles during delivery across Sri Lanka. Regular promotional periods offer excellent opportunities to purchase authentic designer fragrances at reduced prices."
+        },
+        {
+          "section": "Perfumes and gifting",
+          "q": "Are branded perfumes for women and men available online in Sri Lanka",
+          "a": "Yes, Kapruka Cosmetics stocks a diverse range of branded perfumes formulated for both women and men. You can explore and choose from various fragrance families including floral bouquets, fresh aquatic notes, warm spicy accords and rich woody base notes that suit different personal tastes, occasions and seasonal preferences. Many perfume product pages provide detailed information indicating the concentration type such as eau de toilette for lighter everyday wear or eau de parfum for longer lasting intensity, helping you accurately estimate the fragrance longevity and projection strength before making your purchase decision. This transparency ensures you select the perfect scent that matches your lifestyle and fragrance preferences."
+        },
+        {
+          "section": "Perfumes and gifting",
+          "q": "Are there gift sets for birthdays and anniversaries in the cosmetics category",
+          "a": "Kapruka offers thoughtfully curated cosmetics gift sets that bundle skincare essentials, coordinated makeup items or signature fragrances into ready to give attractive packages. These professionally presented sets are ideal for birthday celebrations, wedding anniversaries, romantic occasions, seasonal festival gifting and corporate appreciation presents. Popular gift set categories include perfume and complementary body care combination packs featuring matching lotions or shower gels, skincare discovery kits perfect for introducing someone to new beauty routines or trying sample sizes before committing to full products, and coordinated makeup sets that include several essential color cosmetics items for complete looks. You can conveniently send gifts directly to the recipient anywhere in Sri Lanka and include a personalized custom message card during the checkout process to add a thoughtful personal touch."
+        },
+        {
+          "section": "Mens grooming and sun protection",
+          "q": "Where can I buy mens grooming products such as beard oil and face wash online",
+          "a": "Mens grooming essentials on Kapruka include specialized beard conditioning oils, deep cleansing face washes, lightweight facial moisturizers, rich shaving foams or gels and soothing after shave products designed specifically for mens skin care needs. These products are suitable for establishing effective daily grooming routines and also make excellent practical gifts for men. Key product categories include beard care oils and balms for maintaining soft manageable facial hair with healthy shine, oil control and deep cleaning face washes formulated to remove excess sebum and environmental pollutants without over drying, and complete grooming kits that conveniently combine several essential items in value packages. The selection addresses common mens skincare concerns in tropical climates."
+        },
+        {
+          "section": "Mens grooming and sun protection",
+          "q": "Do you offer sun protection products such as SPF creams and sprays",
+          "a": "Yes, Kapruka carries comprehensive sun protection products that are essential for Sri Lankas intense tropical sun exposure year round. You can find broad spectrum SPF 30 plus and SPF 50 plus formulas providing strong UVA and UVB protection, as well as products with PA triple plus or quadruple plus ratings indicating superior protection against skin aging UVA rays. The sun care range includes lightweight facial sunscreens formulated for comfortable daily city use under makeup, water resistant body lotions and convenient spray formats ideal for beach days and outdoor sports activities, and specialized formulas suitable for adults and children depending on the specific brand formulation and age recommendations clearly stated on product labels. Regular sunscreen use is crucial for preventing sun damage, premature aging and skin health concerns in tropical climates."
+        },
+        {
+          "section": "Mens grooming and sun protection",
+          "q": "What are some best selling beauty tools and accessories online",
+          "a": "Popular beauty accessories and tools on frequently include soft latex free makeup blending sponges for seamless foundation application, professional quality blending brushes for powder and cream products, eco friendly reusable makeup remover pads that reduce waste, and effective blackhead comedone remover tools for maintaining clear pores. Top selling categories feature complete brush sets that help create smooth professional makeup looks with proper blending, versatile beauty sponges perfect for achieving natural dewy base application, and simple hygienic tools that support clean effective skincare routines at home. These practical accessories are valuable additions to any beauty product order and are frequently included in curated gift sets for added value."
+        }
+      ]
+    },
+    {
+      "category": "Cakes",
+      "url": "https://www.kapruka.com/shop/cake-faqs/",
+      "summary": "Quick Summary: Kapruka offers islandwide cake delivery across Sri Lanka with same day service in Colombo, custom photo cakes, midnight delivery options, and international ordering from countries like UK, Canada, UAE, and Australia . All cakes are freshly baked, securely packaged, and delivered to homes, offices, schools, and hospitals with contactless options available.",
+      "qa": [
+        {
+          "section": "Ordering and Availability",
+          "q": "Where can I buy cakes online in Sri Lanka?",
+          "a": "Kapruka provides comprehensive online cake delivery services throughout Sri Lanka. The platform features an extensive catalog including birthday cakes, anniversary cakes, photo printed cakes, eggless options, designer cakes, and theme based creations. Customers can browse the selection by filtering based on flavor profiles such as chocolate, vanilla, red velvet, and fruit cake, or by specific occasions like weddings , corporate events, and seasonal celebrations. The ordering system allows you to view detailed product images, read ingredient information, check allergen details, and review customer ratings before making a purchase. Each cake listing includes size specifications, serving recommendations, and customization options. The platform supports both immediate orders and advance scheduling for future dates."
+        },
+        {
+          "section": "Ordering and Availability",
+          "q": "Can I send birthday or custom cakes to Sri Lanka from abroad?",
+          "a": "International customers can send cakes to recipients in Sri Lanka from numerous countries including the United Kingdom, Canada, United Arab Emirates, Australia , United States, and other major markets. The international ordering system provides the same features as domestic orders including delivery scheduling, personalization options, photo uploads, and message customization. When ordering from abroad, you can track the delivery status in real time, receive confirmation notifications, and coordinate surprise deliveries with specific timing instructions. Payment processing supports international credit cards and digital payment methods. The system automatically converts pricing to your local currency for transparent billing. This service is particularly popular among the Sri Lankan diaspora for sending birthday surprises, anniversary gifts, and celebration cakes to family members and friends back home."
+        },
+        {
+          "section": "Ordering and Availability",
+          "q": "What types of cakes are commonly available online?",
+          "a": "The Kapruka catalog includes diverse cake varieties to suit different tastes and dietary requirements. Standard offerings include chocolate truffle cakes, vanilla sponge cakes, red velvet cakes, black forest cakes, butterscotch cakes, and fresh fruit cakes. Specialty categories feature eggless cakes for vegetarian customers, bento cakes which are small individual portion cakes, multi tiered wedding cakes, and fully customized designer cakes with fondant decorations. Seasonal selections expand during major holidays and celebrations. For example, Valentine Day brings heart shaped cakes and romantic themed designs, Mothers Day features floral decorated cakes with personalized messages, Christmas season offers fruit cakes and festive designs, and Sinhala and Tamil New Year periods showcase traditional cake options. The platform also carries novelty cakes shaped like objects, character cakes featuring popular cartoon and superhero themes, and corporate logo cakes for business events."
+        },
+        {
+          "section": "Customization and Personalization",
+          "q": "Are personalized cakes with edible photo prints available?",
+          "a": "Kapruka offers comprehensive photo printing services on cakes using food grade edible ink technology . You can upload high resolution images during the ordering process, which are then printed onto edible frosting sheets and applied to the cake surface. The system accepts common image formats including JPEG, PNG, and PDF files. Along with photo printing, you can add personalized text messages in various fonts and colors. Options include name additions, age numbers for birthdays, anniversary years, congratulatory messages, and custom greetings. The design interface allows you to preview the layout before confirming the order. Photo cakes work well for milestone birthdays, wedding anniversaries, graduation celebrations, retirement parties, and memorial events. For best results, submit clear photos with good lighting and avoid images with very dark backgrounds or low resolution quality."
+        },
+        {
+          "section": "Customization and Personalization",
+          "q": "Can I order designer or wedding cakes online?",
+          "a": "Designer cakes and multi tiered wedding cakes can be ordered through Kapruka with advance notice. These premium creations require consultation with partner bakeries to discuss design specifications, color schemes, theme elements, size requirements, and serving quantities. The process typically involves submitting reference images or design sketches, discussing flavor preferences for each tier, and confirming decoration details such as fondant work, sugar flowers, or metallic accents. Wedding cake orders should be placed at least two to three weeks in advance to ensure proper planning and execution. The bakeries can accommodate various styles including traditional white tiered cakes, modern geometric designs, rustic buttercream finishes, and elaborate fondant sculptures. Designer cakes are also available for engagements, corporate launches, milestone birthdays, and large scale celebrations. Pricing varies based on complexity, size, and decoration requirements. Delivery and setup services can be arranged for event venues when needed."
+        },
+        {
+          "section": "Customization and Personalization",
+          "q": "Are themed cakes for kids available?",
+          "a": "Kapruka features an extensive collection of children themed cakes with popular characters and designs. Options include cartoon characters from Disney, Pixar, and Nickelodeon franchises, superhero themes featuring Marvel and DC characters, animal shaped cakes, princess and fairy tale designs, sports themed cakes, and video game inspired creations. These cakes can be customized with the child name, age, and personalized birthday messages. Many designs incorporate three dimensional elements, colorful buttercream decorations, and edible toppers. The platform also offers number shaped cakes for milestone ages and smaller bento cakes perfect for intimate family celebrations. When ordering themed cakes, you can specify color preferences and request modifications to match party decorations or specific character versions."
+        },
+        {
+          "section": "Delivery Services and Coverage",
+          "q": "Do you offer same day cake delivery in Colombo?",
+          "a": "Same day delivery service is available for selected cake types within Colombo and surrounding suburbs including Nugegoda, Dehiwala, Mount Lavinia, Battaramulla, Rajagiriya, Kotte, and Maharagama. To qualify for same day delivery, orders must be placed before the daily cutoff time, which varies by bakery but typically falls between 11 AM and 2 PM on weekdays. Availability depends on several factors including the specific cake design, current order volume, bakery production capacity, and delivery distance. Standard round cakes, chocolate cakes, and popular vanilla options have higher same day availability compared to complex custom designs. Simple photo cakes and message cakes can often be accommodated for same day service if ordered early in the morning. During peak seasons like December holidays and Avurudu festival periods, same day slots fill quickly and advance ordering is recommended. The system displays available delivery slots during checkout for transparent scheduling."
+        },
+        {
+          "section": "Delivery Services and Coverage",
+          "q": "Is midnight or early morning cake delivery available?",
+          "a": "Midnight delivery and early morning delivery services are offered for selected cake varieties in Colombo and nearby suburbs. Midnight delivery typically occurs between 11 PM and 12:30 AM, making it perfect for birthday surprises that start exactly at midnight. Early morning delivery windows usually run from 6 AM to 9 AM for breakfast celebrations or office morning events. These premium delivery time slots are popular for romantic surprises, milestone birthdays, and anniversary celebrations. When booking midnight or early morning delivery, you should confirm the recipient will be available to receive the cake, as these special timing requests require coordination. Additional delivery charges may apply for these non standard time slots. The service is subject to availability and should be booked in advance, especially for weekends and public holidays. You can select your preferred timing window during the checkout process if the option appears for your chosen cake and delivery location."
+        },
+        {
+          "section": "Delivery Services and Coverage",
+          "q": "Do you deliver to areas outside Colombo?",
+          "a": "Kapruka provides islandwide cake delivery covering major cities, towns, and rural areas throughout Sri Lanka. Key cities with regular delivery include Kandy, Galle, Negombo, Jaffna, Trincomalee, Batticaloa, Anuradhapura, Kurunegala, Matara, and Ratnapura. Delivery is also available to smaller towns and village locations, though timing may vary based on distance from partner bakeries. For locations outside the Colombo metropolitan area, delivery typically requires one to two working days depending on the specific destination. Cakes are packaged with extra stabilization for longer journeys and may include refrigeration measures to maintain freshness. When ordering for remote areas, you should place orders at least two to three days in advance to ensure availability and proper logistics coordination. The platform displays estimated delivery timeframes during checkout based on the entered delivery address. Remote area deliveries may incur additional shipping charges which are calculated automatically."
+        },
+        {
+          "section": "Delivery Services and Coverage",
+          "q": "Do you deliver cakes to schools, hospitals, or offices?",
+          "a": "Kapruka delivers cakes to virtually any location type including residential homes, corporate offices, schools, universities, hospitals, hotels, and event venues. When delivering to institutional locations, the delivery team coordinates with reception staff or security personnel to ensure proper handover. For office deliveries, you can provide specific instructions such as floor numbers, department names, or request delivery to reception desks for surprise coordination. School deliveries can be timed to coincide with lunch breaks or after school hours based on your preference. Hospital deliveries follow facility protocols and are handed to nursing stations or reception areas when direct patient room access is restricted. During checkout, there is a delivery instructions field where you can specify building access codes, parking information, contact person details, and any special handling requests for surprise deliveries."
+        },
+        {
+          "section": "Delivery Services and Coverage",
+          "q": "Can I schedule cake delivery for a specific date?",
+          "a": "The ordering system allows you to schedule cake delivery for any future date during the checkout process. This feature is valuable for planning ahead for birthdays, anniversaries, religious ceremonies, seasonal festivals like Vesak or Diwali, and ensuring availability during busy periods. Advance scheduling is particularly useful during high demand seasons such as December holidays, Valentine Day week, Mothers Day weekend, and Sinhala Tamil New Year when bakeries experience heavy order volumes. You can place orders weeks or even months in advance to secure your preferred cake design and delivery slot. The system sends reminder notifications as the delivery date approaches and allows you to track order status. If you need to modify the scheduled delivery date, contact customer support as soon as possible, preferably before production begins."
+        },
+        {
+          "section": "Delivery Services and Coverage",
+          "q": "What happens if the recipient is not available at delivery time?",
+          "a": "When the delivery team arrives and the recipient is unavailable, they follow a standard protocol to ensure successful delivery. The delivery person first attempts to contact the recipient via phone call using the number provided during checkout. If contact is established, they coordinate an alternative drop off time or location nearby. If phone contact fails, the team looks for alternative delivery options based on your provided instructions, such as leaving the cake with a neighbor, security guard, building reception, or at the front gate if deemed secure. For office deliveries, cakes can be left with colleagues or reception staff. You can preemptively provide backup instructions in the delivery notes field during checkout, including alternative contact numbers, neighbor information, or safe drop off locations. In cases where delivery cannot be completed, the team contacts the sender to arrange redelivery or alternative solutions. To avoid complications, ensure the recipient phone number is accurate and the recipient is informed about the expected delivery window."
+        },
+        {
+          "section": "Delivery Services and Coverage",
+          "q": "Do you offer contactless delivery?",
+          "a": "Contactless delivery options are fully supported by Kapruka delivery services. The delivery team can leave cakes at doorsteps, building entrances, security gates, or with reception staff without requiring direct face to face handover. This service accommodates health safety preferences, privacy concerns, and surprise delivery coordination. When selecting contactless delivery, you should provide clear instructions during checkout about where to leave the package, such as front porch, side entrance, or security desk. The delivery person will knock or ring the doorbell to alert the recipient and then step back to maintain distance. For added security, you can request photo confirmation of the drop off location. Contactless delivery works well for surprise gifts where you want the recipient to discover the cake without advance notice. This option is available for all delivery locations including homes, offices, and institutional settings."
+        },
+        {
+          "section": "Payment and Order Policies",
+          "q": "What payment methods are supported?",
+          "a": "Kapruka accepts multiple secure payment methods for cake orders. Credit card payments are processed through Visa and MasterCard networks with full PCI DSS compliance and encryption protection. Digital wallet options include Koko and Mintpay for customers who prefer local digital payment solutions. Apple Pay is available for users on iOS devices and Safari browsers. All payment transactions are processed through certified payment gateways with SSL encryption to protect financial information. The system does not store complete card details after transaction completion. For international orders, payments are processed in USD or your local currency with automatic conversion, and international transaction fees may apply based on your card issuer policies. Payment confirmation is sent immediately via email after successful processing, and you receive a detailed receipt with order information."
+        },
+        {
+          "section": "Payment and Order Policies",
+          "q": "Is cash on delivery available for cake orders?",
+          "a": "Cash on delivery is not supported for cake orders due to the perishable nature of the product and the need for confirmed payment before production begins. All cake purchases must be prepaid through secure online payment methods during the checkout process. This policy ensures that bakeries can confidently prepare custom orders, allocate resources appropriately, and maintain quality standards without risk of order cancellations at delivery time. Prepayment also enables efficient logistics planning and guarantees delivery slot reservations. For customers concerned about payment security, the platform uses bank grade encryption and certified payment processors to protect all financial transactions."
+        },
+        {
+          "section": "Payment and Order Policies",
+          "q": "Can I cancel or edit a custom cake order?",
+          "a": "Custom cake orders can be modified or cancelled if the request is submitted before production begins at the partner bakery. Since custom cakes are made to order based on specific design requirements, timing is critical for any changes. To request modifications or cancellation, contact Kapruka customer support immediately after placing the order through phone, email, or the website chat system. Provide your order number and clearly state the desired changes or cancellation request. If production has not started, the support team can coordinate with the bakery to implement your changes or process a full refund. However, once baking and decoration have commenced, changes may not be possible or may incur additional charges. For scheduled delivery orders placed well in advance, you typically have more flexibility for modifications. Cancellation policies may vary for complex designer cakes and wedding cakes, so review the specific terms during checkout."
+        },
+        {
+          "section": "Payment and Order Policies",
+          "q": "Do you offer refunds or replacements for delivery issues?",
+          "a": "Kapruka maintains a customer satisfaction policy that covers damaged deliveries and significant order discrepancies. If a cake arrives damaged due to transit issues, melted from inadequate temperature control, or differs substantially from the ordered design and specifications, the support team will investigate and provide appropriate resolution. To report an issue, contact customer support within 24 hours of delivery with photos documenting the problem. Include your order number and a clear description of the issue. The team reviews each case individually and may offer a replacement cake, full refund, or partial refund based on the severity of the problem and circumstances. For time sensitive events where a replacement cannot arrive in time, refunds are processed promptly. The policy aims to ensure customer satisfaction while accounting for factors like delivery logistics and bakery production standards. Note that minor variations in decoration or color due to handmade nature of custom cakes are typically within acceptable range and may not qualify for replacement."
+        },
+        {
+          "section": "Dietary Options and Special Cakes",
+          "q": "Are vegan or gluten free cakes available?",
+          "a": "Kapruka catalog includes specialized cakes for dietary restrictions and preferences. Eggless cakes are widely available across most flavor categories, made without eggs but maintaining similar taste and texture to traditional cakes. These are suitable for lacto vegetarians and customers avoiding eggs for religious or personal reasons. Gluten free options use alternative flours such as almond flour , rice flour , or gluten free baking blends to accommodate celiac disease and gluten sensitivity. Vegan cakes are made without any animal products including eggs, dairy, butter, or honey, using plant based alternatives like coconut milk, vegetable oils, and flax eggs. When browsing the catalog, you can filter by dietary preference to see only qualifying options. Always review the detailed product description and ingredient list for complete allergen information. For severe allergies, contact customer support to verify preparation methods and cross contamination protocols at the specific bakery. Custom vegan and gluten free cakes may require additional preparation time and should be ordered in advance."
+        },
+        {
+          "section": "Dietary Options and Special Cakes",
+          "q": "Are same day custom cakes available?",
+          "a": "Limited same day custom cake options are available in Colombo through partner bakeries with rapid production capabilities. These same day custom cakes must feature relatively simple designs that can be executed within a few hours, such as basic photo prints, text messages, simple buttercream decorations, or standard color schemes. Complex designs involving multi tier structures, intricate fondant work, three dimensional sculptures, or elaborate piping are typically not feasible for same day production. To maximize chances of same day custom cake availability, place your order as early in the morning as possible, ideally before 10 AM. Specify your design requirements clearly during ordering and remain available by phone in case the bakery needs clarification. Same day custom availability is subject to current order volume and bakery capacity, so it functions on a first come first served basis. For guaranteed custom designs, ordering at least one to two days in advance is recommended."
+        },
+        {
+          "section": "Dietary Options and Special Cakes",
+          "q": "What are some popular birthday cake options?",
+          "a": "Birthday cake selections at Kapruka span numerous popular choices. Chocolate truffle cakes remain consistent bestsellers featuring rich chocolate sponge with chocolate ganache frosting. Red velvet cakes with cream cheese frosting are popular for milestone birthdays and adult celebrations. Cartoon and character themed fondant cakes dominate children birthday orders with designs featuring Disney characters, superheroes, unicorns, and animals. Photo cakes allow personalization with the birthday person image and custom messages, making them suitable for all age groups. Number cakes shaped like the birthday age are trendy for milestone years like 1st, 16th, 21st, 30th, 40th, and 50th birthdays. Fresh fruit cakes with whipped cream and strawberries appeal to customers preferring lighter options. Black forest cakes with cherries and chocolate shavings are classic choices. Bento cakes, which are small individual sized cakes, are gaining popularity for intimate celebrations. For adult birthdays, elegant designs with gold accents, floral decorations, or minimalist aesthetics are frequently requested. You can filter birthday cakes by age group, flavor preference, and theme during browsing."
+        },
+        {
+          "section": "Additional Services",
+          "q": "Are there cake and flower combo gifts online?",
+          "a": "Kapruka offers convenient cake and flower combination packages for unified gifting. These curated bundles pair a themed cake with a complementary fresh flower bouquet, creating a complete gift presentation for birthdays, anniversaries, congratulations, and appreciation occasions. The combinations can be filtered by recipient such as for her, for him, or for parents, and by occasion including birthdays, anniversaries, romance, and celebrations. Flower options typically include roses, lilies, carnations, gerberas, and mixed seasonal bouquets arranged professionally. The cake and flowers are delivered together in a single trip when possible, though some locations may require separate delivery coordination. These combos simplify gift giving by providing a complete package at a bundled price point. You can often customize the cake message and flower card with personalized text. Some packages also include additional items like chocolates, greeting cards, or balloons for enhanced presentation."
+        },
+        {
+          "section": "Additional Services",
+          "q": "Do you offer corporate cake gifting?",
+          "a": "Corporate cake gifting services are available for businesses sending cakes to employees, clients, partners, or for company events. Options include premium chocolate cakes, branded cakes with company logos printed in edible ink, and elegant designs suitable for professional settings. For bulk corporate orders, companies can arrange delivery to multiple addresses simultaneously, useful for employee birthday programs or client appreciation initiatives. Volume discounts may be available for regular corporate accounts or large quantity orders. The platform supports recurring delivery schedules for ongoing corporate gifting programs. Corporate invoicing and payment arrangements can be coordinated through customer support for businesses requiring specific billing processes. Cakes can be customized with company branding, corporate colors, or event specific themes for product launches, milestone celebrations, or team achievements."
+        },
+        {
+          "section": "Additional Services",
+          "q": "Can I order cakes for next day delivery?",
+          "a": "Next day delivery is available for most standard cake varieties across the catalog. This includes round cakes in various sizes, popular flavors like chocolate and vanilla, eggless options, and many photo cake designs. To secure next day delivery, place your order before the daily cutoff time displayed on the website, which typically ranges from early afternoon to evening depending on delivery location. Next day service works well for last minute birthday surprises, forgotten anniversaries, or spontaneous celebrations. The system automatically calculates and displays available delivery dates during checkout based on your selected cake and delivery address. Complex custom designs, multi tiered cakes, and elaborate fondant decorations may require more preparation time and may not qualify for next day delivery. For best availability, order as early in the day as possible. During peak periods like holidays and weekends, next day slots may fill quickly, so checking availability early is advisable."
+        },
+        {
+          "section": "Additional Services",
+          "q": "Do you offer cake subscription services?",
+          "a": "Recurring cake delivery subscriptions are available for customers wanting regular automatic deliveries. This service is popular for office birthday programs where companies send cakes to employees on their birthdays, for birthday clubs celebrating multiple family members throughout the year, or for households enjoying regular fresh cakes. Subscriptions can be configured with custom delivery frequencies such as weekly, biweekly, or monthly schedules. You can select different cake varieties for each delivery or rotate through a selection. The system stores delivery addresses and preferences to simplify repeat ordering. Subscription pricing may include discounts compared to individual order rates. You can pause, modify, or cancel subscriptions through your account dashboard with appropriate notice. This service works well for businesses managing employee recognition programs or families maintaining regular celebration schedules."
+        },
+        {
+          "section": "Additional Services",
+          "q": "Are affordable cake gift baskets available?",
+          "a": "Curated gift baskets combining cake portions with complementary treats are available across various price points. These baskets typically include cake slices or small individual cakes paired with items like premium chocolates, assorted cookies, flavored teas or coffees, packaged snacks, and sometimes beverages. Gift baskets work well for thank you gifts, appreciation gestures, get well wishes, congratulations, and casual birthday presents. They offer variety and presentation value while accommodating different budgets. The baskets are professionally arranged in decorative containers or boxes ready for gifting. You can browse gift basket options by filtering for price range, occasion, or recipient preference. Some baskets allow for customization by selecting specific components or adding personalized greeting cards. These combinations provide convenience for customers wanting to send a substantial gift without ordering multiple separate items."
+        },
+        {
+          "section": "Quality and Freshness",
+          "q": "Are the cakes fresh and safely packed during delivery?",
+          "a": "All cakes are baked fresh on the day of delivery or within 24 hours prior to ensure optimal taste, texture, and quality. Partner bakeries use fresh ingredients and prepare orders according to food safety standards with proper kitchen hygiene and temperature controls. Packaging protocols protect cakes during transit using sturdy boxes with internal stabilizers, cushioning materials, and secure closures to prevent shifting and damage. For cream based or temperature sensitive cakes, refrigeration measures are implemented during storage and transport. Longer distance deliveries utilize insulated packaging and cold packs when necessary to maintain freshness. Boxes include tamper proof seals and are marked with handling instructions like this side up and fragile to ensure proper care by delivery personnel. Each cake is inspected before dispatch to verify it matches the order specifications and quality standards. Delivery personnel are trained in careful cake handling techniques. Upon receiving your cake, refrigerate it promptly if it contains cream, custard, or fresh fruit. Most cakes are best consumed within 24 to 48 hours of delivery for optimal freshness and flavor."
+        }
+      ]
+    },
+    {
+      "category": "Flowers",
+      "url": "https://www.kapruka.com/shop/flowers-faq/",
+      "summary": "",
+      "qa": [
+        {
+          "q": "Where can I order fresh flower bouquets for delivery in Sri Lanka?",
+          "a": "You can order premium fresh flower bouquets, floral baskets, and gift arrangements from Kapruka with islandwide delivery. Whether you are celebrating a birthday, anniversary, or graduation, Kapruka curated flower selection caters to every moment. Explore Flowers"
+        },
+        {
+          "q": "Do you offer same-day flower delivery in Colombo?",
+          "a": "Yes, same-day delivery is available for selected flower orders in Colombo and surrounding areas. Just place your order before the daily cut-off time and choose from flowers marked \"Same-Day Delivery.\" Explore Same Day Delivery Flowers"
+        },
+        {
+          "q": "Can I send flowers to Sri Lanka from abroad?",
+          "a": "Absolutely. International customers can place flower orders through Kapruka website from countries like the UK, Canada, or Australia , and schedule delivery to any Sri Lankan address with ease. Explore International Delivery"
+        },
+        {
+          "q": "What types of flower arrangements are available?",
+          "a": "Choose from hand-tied bouquets, floral vases, romantic arrangements, festive gift packs, and basket bouquets. Kapruka also offers custom arrangements for weddings , religious functions, and corporate gifting."
+        },
+        {
+          "q": "Do you deliver flowers to hospitals, schools, or offices?",
+          "a": "Yes. Kapruka delivers to a variety of locations across Sri Lanka including hospitals, universities, schools, and workplaces. You can enter the specific address and any delivery instructions during checkout."
+        },
+        {
+          "q": "Are the flowers delivered fresh?",
+          "a": "All flowers are sourced fresh from trusted florists and packaged securely to retain color, fragrance, and structure during delivery. Temperature-sensitive arrangements are handled with extra care."
+        },
+        {
+          "q": "Can I schedule flower delivery for a future date?",
+          "a": "Yes, you can schedule your flower delivery in advance — perfect for birthdays, anniversaries, Valentine Day, or public holidays. Simply select the preferred date at checkout."
+        },
+        {
+          "q": "Do you offer flower and cake combo deliveries?",
+          "a": "Yes, Kapruka gift combos include flower and cake bundles, flower and chocolate sets, or flower arrangements paired with soft toys. These make thoughtful gifts for romantic or celebratory occasions."
+        },
+        {
+          "q": "What are the most popular flowers for gifting?",
+          "a": "Popular flower choices in Sri Lanka include roses (for romance), lilies (for elegance), orchids (for luxury), and sunflowers (for cheerfulness). Kapruka offers curated bouquets featuring these flowers."
+        },
+        {
+          "q": "What if the recipient isnot available at the time of delivery?",
+          "a": "If the recipient is unavailable, Kapruka delivery team will contact them to arrange an alternate delivery time or leave the flowers in a secure, shaded location if permitted."
+        },
+        {
+          "q": "Do you offer midnight or early morning flower delivery?",
+          "a": "Yes, midnight and early morning deliveries are available for selected flowers and locations. You will see timing options at checkout if your order qualifies."
+        },
+        {
+          "q": "Are weekend and public holiday deliveries available?",
+          "a": "Kapruka delivers flowers seven days a week, including public holidays. Please confirm availability for remote areas as some delivery exceptions may apply."
+        },
+        {
+          "q": "Can I get flowers delivered outside Colombo?",
+          "a": "Yes, Kapruka delivery network covers rural and urban areas across Sri Lanka. Remote deliveries may take slightly longer than Colombo metro orders."
+        },
+        {
+          "q": "Can I choose the exact delivery time?",
+          "a": "You can request preferred delivery slots during checkout. While exact timing cannot be guaranteed, the delivery team does its best to meet the requested window."
+        },
+        {
+          "q": "Does Kapruka provide flower arrangements for corporate events?",
+          "a": "Yes, Kapruka offers floral solutions for corporate events, including centerpieces, reception flowers, and branded arrangements tailored for business functions."
+        },
+        {
+          "q": "Where can I buy affordable flower baskets for birthdays?",
+          "a": "Kapruka lists flower baskets in various price ranges — from budget-friendly birthday gifts to more elaborate floral hampers for milestone occasions."
+        },
+        {
+          "q": "Are flower subscriptions available?",
+          "a": "Yes, Kapruka flower subscription service lets you set up recurring weekly or monthly deliveries for homes, offices, or special relationships. It is ideal for continuous gifting or fresh d cor."
+        },
+        {
+          "q": "Where can I find luxury flower bouquets in Sri Lanka?",
+          "a": "Kapruka premium collection features luxurious bouquets with imported blooms, elegant wrapping, and elevated presentation — perfect for high-end gifting or celebrations."
+        },
+        {
+          "q": "Is eco-friendly packaging available for flowers?",
+          "a": "Yes, Kapruka uses biodegradable wrapping and sustainable packing materials where possible, ensuring your gifts are both beautiful and environmentally conscious."
+        },
+        {
+          "q": "Can I include a personalized message with my flower order?",
+          "a": "Every flower order allows you to add a custom message card. Enter your note during checkout and Kapruka will print it with your delivery, making your gift extra thoughtful."
+        }
+      ]
+    },
+    {
+      "category": "Chocolates",
+      "url": "https://www.kapruka.com/shop/chocolates-faq/",
+      "summary": "TLDR: Kapruka offers premium local and imported chocolates, fast delivery in Sri Lanka, safe packaging, vegan and sugar free options, future date scheduling and corporate gifting support. You can send chocolate gifts for birthdays, anniversaries and seasonal events from Sri Lanka or from abroad with secure online payment.",
+      "qa": [
+        {
+          "q": "Where can I order premium chocolate gifts online in Sri Lanka",
+          "a": "You can order premium chocolate gifts from Kapruka which offers a large selection of trusted international and Sri Lankan chocolate brands. Customers can choose luxury assortments, mixed selections, truffle boxes, handcrafted chocolate items and many themed gift packs. Every product listing includes clear photos, detailed descriptions and delivery availability, so it is easy to select the ideal chocolate gift for any event or celebration."
+        },
+        {
+          "q": "Which online stores deliver chocolates with same day service",
+          "a": "Kapruka provides same day delivery for selected chocolates within Colombo and nearby zones. Eligible items show same day or express delivery options on the product page and during checkout. If the item qualifies and the order is placed before the daily cut off time, Kapruka will prepare and deliver the chocolate gift on the same day through its fast islandwide network."
+        },
+        {
+          "q": "Can I send chocolate boxes to Sri Lanka from abroad",
+          "a": "Yes. International customers can easily send chocolate boxes to Sri Lanka through Kapruka . Orders can be placed from overseas using supported international payment methods. Once the order is confirmed Kapruka arranges local preparation and delivery, making it a reliable solution for sending birthday gifts, office surprise packs, seasonal greetings or family celebrations from outside the country."
+        },
+        {
+          "q": "What types of chocolates are available for gifting on Kapruka",
+          "a": "Kapruka features a wide range of chocolates suitable for gifting. Options include milk chocolates, dark chocolate bars, nut filled assortments, pralines, mixed variety boxes, artisanal handcrafted items and premium gift tins. Many choices come in elegant packaging which is ideal for birthdays, anniversaries, romantic surprises and thoughtful corporate gifts."
+        },
+        {
+          "q": "Is it possible to add a custom note to chocolate deliveries",
+          "a": "Yes. Kapruka allows customers to include a personalised message with every chocolate order. You can type your note during checkout and Kapruka will print it on a high quality message card and attach it to the gift. This creates a warm and thoughtful presentation for the recipient and is especially useful for long distance gifting."
+        },
+        {
+          "q": "Are imported chocolates available online in Sri Lanka through Kapruka",
+          "a": "Kapruka offers a wide range of imported chocolates from trusted global brands including Ferrero Rocher , Toblerone, Lindt and Cadbury. All imported chocolates are delivered in their original sealed packaging with careful handling to maintain freshness and quality. Customers can combine imported items with local products to create rich and varied chocolate gifts."
+        },
+        {
+          "q": "How are chocolates packed to stay fresh during delivery",
+          "a": "Kapruka uses secure protective wrapping and temperature mindful packaging to protect chocolates during transport. Items are sealed, cushioned and placed in sturdy delivery boxes to reduce heat exposure and prevent damage. This process helps maintain the freshness, texture and appearance of the chocolates even in warmer weather conditions."
+        },
+        {
+          "q": "Can I schedule chocolate delivery for a future date on Kapruka",
+          "a": "Yes. Kapruka allows customers to schedule chocolate deliveries for a future date. During checkout you can select a preferred delivery date on the calendar. This is ideal when you want the gift to arrive exactly on a birthday, anniversary, office celebration or seasonal event. Once the date is selected Kapruka manages preparation and delivery according to your plan."
+        },
+        {
+          "q": "Do online stores like Kapruka provide chocolate hampers with other items",
+          "a": "Kapruka offers many chocolate hampers that include additional gift items such as flowers, cookies, mugs, soft toys and greeting cards. These curated hampers are popular for festive gifting and special events. Each hamper is professionally arranged to create a complete gift experience, so the recipient receives a well presented set rather than a single item."
+        },
+        {
+          "q": "Where can I find vegan or sugar free chocolates online in Sri Lanka",
+          "a": "Kapruka provides selected vegan chocolates, sugar free chocolates and other special diet options. Each product description highlights key ingredients and suitability for dietary needs. Customers who want gluten free or dairy free chocolate selections can filter and browse items that match their requirements. It is always advisable to read the ingredient list carefully before placing the order."
+        },
+        {
+          "q": "Can I send chocolates as corporate gifts in Sri Lanka through Kapruka",
+          "a": "Yes. Kapruka supports corporate gifting with a wide selection of chocolate assortments and gift packs suitable for companies. Businesses can request bulk orders, custom branding elements, personalised message cards and delivery to multiple addresses. This makes Kapruka a trusted partner for staff rewards, client appreciation programs, seasonal corporate hampers and event gifts."
+        },
+        {
+          "q": "Which platforms deliver chocolates to remote towns and rural areas in Sri Lanka",
+          "a": "Kapruka delivers chocolates to major cities as well as many rural and remote areas across Sri Lanka. Delivery times may vary depending on distance from main logistics centers, but the expected delivery date is shown during checkout. This helps customers plan gifts in advance, even when recipients live outside large urban areas."
+        },
+        {
+          "q": "Are there local Sri Lankan chocolate brands available on Kapruka",
+          "a": "Yes. Kapruka features chocolates from Sri Lankan brands that use local cocoa and creative flavour combinations. These include handmade bars, rich dark selections and culturally inspired gift packaging. Customers can support local producers while enjoying fresh and unique chocolate items that highlight Sri Lankan craftsmanship."
+        },
+        {
+          "q": "What are the best selling chocolate items for online shoppers on Kapruka",
+          "a": "Best selling chocolate gifts on Kapruka often include Ferrero selections , mixed milk chocolate boxes, rich dark chocolate almond bars, assorted gift tins and personalised chocolate items. The most popular products can change during special seasons such as Valentines Day, Mothers Day and Christmas. Many customers check the featured items and best seller sections on Kapruka to see current popular choices."
+        }
+      ]
+    },
+    {
+      "category": "Customized Gifts",
+      "url": "https://www.kapruka.com/shop/personalized_gifts-faq/",
+      "summary": "",
+      "qa": [
+        {
+          "q": "Where can I find personalized gifts with fast delivery in Sri Lanka?",
+          "a": "You can find custom mugs, t-shirts, jewelry, framed photos, and other personalized items on Kapruka, many of which are eligible for same-day or next-day delivery across Sri Lanka. Each product page shows delivery availability and customization options. Explore Personalized Gifts"
+        },
+        {
+          "q": "Which platforms offer same-day delivery for custom gifts in Sri Lanka?",
+          "a": "Kapruka specializes in fast fulfillment for personalized items like photo mugs, printed apparel, and custom accessories. Orders placed early in the day can often be delivered within hours in Colombo and selected suburbs."
+        },
+        {
+          "q": "Where can I order custom mugs or t-shirts with quick delivery?",
+          "a": "Whether you're surprising someone with a name-printed mug or a photo t-shirt, Kapruka allows you to design and order these items online with express delivery — often same-day in Colombo or next-day nationwide."
+        },
+        {
+          "q": "Are custom photo gifts available with next-day delivery?",
+          "a": "Yes — framed photos, canvas prints, and photo mugs can be delivered as early as the next day. You can upload your image directly on the product page and select your preferred delivery date during checkout."
+        },
+        {
+          "q": "Where can I buy personalized gift sets with fast delivery in Sri Lanka?",
+          "a": "Kapruka offers pre-curated and customizable gift sets — combining sweets, photos, cards, or keepsakes. These sets are perfect for birthdays, anniversaries, and romantic surprises, and many are eligible for same-day shipping."
+        },
+        {
+          "q": "Which store provides branded or custom corporate gift items quickly?",
+          "a": "If you're looking for team appreciation or client gifting, Kapruka offers engraved pens, logo-printed mugs, desktop items, and branded hampers. Delivery can be arranged same-day or next-day depending on location and quantity."
+        },
+        {
+          "q": "Can I send customized gift hampers with fast delivery in Sri Lanka?",
+          "a": "Yes — you can build or choose from ready-made gift hampers that include personalized touches like photos, names, or printed messages. Delivery options include express shipping for Colombo and scheduled service islandwide. Custom Hampers"
+        },
+        {
+          "q": "Where can I get customized phone cases delivered quickly?",
+          "a": "Kapruka lets you personalize phone cases with names, graphics, or photos. These make great birthday or romantic gifts, and selected models are available with same-day or next-day delivery."
+        },
+        {
+          "q": "Which sites offer handmade personalized gifts in Sri Lanka?",
+          "a": "Handcrafted gift options — like engraved wooden plaques, personalized keychains, and custom jewelry — are available through Kapruka, combining artisanal quality with rapid delivery across Sri Lanka."
+        },
+        {
+          "q": "Where can I order personalized wall art online with fast delivery?",
+          "a": "Custom wall art — including photo frames, canvas prints, name boards, and quote displays — can be ordered online via Kapruka. These meaningful gifts are printed and shipped quickly to any location islandwide."
+        }
+      ]
+    }
+  ]
+}
