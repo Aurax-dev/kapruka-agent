@@ -753,10 +753,10 @@ export default function KaprukaChatUI() {
           setState(prev => ({ ...prev, status: null, streaming: false, headerState: 'show', avSeq: prev.avSeq + 1 }));
           revealTimeoutRef.current = setTimeout(() => setAvatar('idle'), 10000);
         } else {
-          // Nothing to reveal — don't leave the avatar stuck mid-search.
+          // Nothing to reveal — don't leave the avatar stuck mid-search or mid-thinking.
           setState(prev => ({
             ...prev, status: null, streaming: false,
-            ...(prev.headerState === 'search' ? { headerState: 'idle', avSeq: prev.avSeq + 1 } : {}),
+            ...(prev.headerState === 'search' || prev.headerState === 'thinking' ? { headerState: 'idle', avSeq: prev.avSeq + 1 } : {}),
           }));
         }
         break;
@@ -773,7 +773,7 @@ export default function KaprukaChatUI() {
     clearTimeout(revealTimeoutRef.current);
     productsShownRef.current = false;
     setState(prev => ({ ...prev, streaming: true, status: 'Thinking' }));
-    setAvatar('idle');
+    setAvatar('thinking');
 
     try {
       // Auto-create conversation
@@ -1055,9 +1055,9 @@ export default function KaprukaChatUI() {
 
   const submitSender = (mid: string) => {
     const f = state.forms['sn_' + mid] || {};
-    if (!f.name || !f.phone || !f.email) { showToast('Fill all sender fields', 'user'); return; }
+    if (!f.name) { showToast('Enter the sender name', 'user'); return; }
     completeMsg(mid);
-    const text = `Sender: ${String(f.name)} | ${String(f.phone)} | ${String(f.email)}`;
+    const text = `Sender: ${String(f.name)}`;
     pushUser(text);
     sendMessage(text);
   };
@@ -1604,12 +1604,11 @@ export default function KaprukaChatUI() {
     return (
       <Card>
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="user" size={16} color="#7B5BD6" /> Your details (sender)</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="user" size={16} color="#7B5BD6" /> Your name (sender)</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <Field label="Your name" fieldKey="name" formKey={k} ph={userName} half />
-            <Field label="Phone" fieldKey="phone" formKey={k} type="tel" ph="07X XXX XXXX" half />
-            <Field label="Email" fieldKey="email" formKey={k} type="email" ph="you@email.com" />
+            <Field label="Your name" fieldKey="name" formKey={k} ph={userName} />
           </div>
+          <div style={{ fontSize: 11.5, color: '#9389AE', marginTop: 8 }}>Shown on the gift card.</div>
           <button onClick={() => submitSender(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Saved' : 'Continue'}</button>
         </div>
       </Card>

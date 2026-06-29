@@ -60,13 +60,16 @@ export async function checkDelivery(city: string, date?: string, productId?: str
 
 export type CartItemInput = { product_id: string; quantity: number; variant_id?: string };
 export type OrderRecipient = { name: string; phone: string };
-export type OrderSender = { name: string; phone: string; email: string };
+// The Kapruka MCP Sender model only carries the gift-card name (+ an optional
+// anonymous flag) and is declared `extra="forbid"`. Any phone/email collected
+// from the sender is for our own contact UI only and must NOT be forwarded.
+export type OrderSender = { name: string; anonymous?: boolean };
 
 export async function createOrder(args: {
   cart: CartItemInput[];
   recipient: OrderRecipient;
   delivery: { date: string; address: string; city: string; instructions?: string };
-  sender: OrderSender;
+  sender: OrderSender & { phone?: string; email?: string };
   gift_message?: string;
   currency?: string;
 }): Promise<{
@@ -75,7 +78,16 @@ export async function createOrder(args: {
   summary: { items_total: number; delivery_fee: number; addons_total: number; grand_total: number; currency: string };
   expires_at: string;
 }> {
-  const raw = await callTool("kapruka_create_order", { ...args, response_format: "json" }, { cache: false });
+  // Strip any extra sender fields (phone/email) the model may have collected —
+  // the server rejects them with a validation error.
+  const sender: OrderSender = { name: args.sender.name };
+  if (args.sender.anonymous !== undefined) sender.anonymous = args.sender.anonymous;
+
+  const raw = await callTool(
+    "kapruka_create_order",
+    { ...args, sender, response_format: "json" },
+    { cache: false },
+  );
   return JSON.parse(raw);
 }
 

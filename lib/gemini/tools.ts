@@ -89,12 +89,12 @@ export const GEMINI_TOOLS: Tool[] = [
             },
             sender: {
               type: Type.OBJECT,
+              description: "Who the gift is from. Only the name reaches Kapruka (for the gift card); any phone/email collected is for our contact records and must not be sent here.",
               properties: {
                 name: { type: Type.STRING },
-                phone: { type: Type.STRING },
-                email: { type: Type.STRING },
+                anonymous: { type: Type.BOOLEAN, description: "If true, the gift card shows 'Anonymous' instead of the name." },
               },
-              required: ["name", "phone", "email"],
+              required: ["name"],
             },
             gift_message: { type: Type.STRING },
             currency: { type: Type.STRING },
