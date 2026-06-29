@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 
 // Persisted across requests on a warm instance — avoids re-summarising the same
 // product (one MCP fetch + one LLM call) every time its detail card is opened.
-const cache = new Map<string, { bullets: string[]; images: string[] }>();
+const cache = new Map<string, { bullets: string[]; images: string[]; description: string }>();
 
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json" } });
@@ -30,12 +30,15 @@ export async function POST(request: Request) {
     product = await getProduct(id);
   } catch {
     // Let the client fall back to its existing snippet summary.
-    return json({ bullets: [], images: [] });
+    return json({ bullets: [], images: [], description: "" });
   }
 
   const images = (product.images ?? []).filter(
     (u): u is string => typeof u === "string" && u.length > 0,
   );
+  // The full MCP description (cleaned upstream) — returned verbatim so the chat
+  // model gets the real product copy, not just the distilled bullets.
+  const description = (product.description || "").trim();
   const source = (product.description || product.summary || "").slice(0, 4000);
 
   let bullets: string[] = [];
@@ -70,7 +73,7 @@ export async function POST(request: Request) {
     }
   }
 
-  const result = { bullets, images };
-  if (bullets.length || images.length) cache.set(id, result);
+  const result = { bullets, images, description };
+  if (bullets.length || images.length || description) cache.set(id, result);
   return json(result);
 }

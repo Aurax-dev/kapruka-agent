@@ -61,17 +61,21 @@ export async function* runAgentLoop(
 
   let round = 0;
   let searchRound = 0;
+  let productsEmitted = false;
   const SEARCH_LABELS = ["Searching", "Exploring", "Browsing", "Expanding search"];
 
   while (round < MAX_ROUNDS) {
     round++;
+    // On the final allowed round, withhold tools so the model is forced to wrap
+    // up in plain text rather than looping into the error fallback below.
+    const lastRound = round === MAX_ROUNDS;
 
     const stream = await ai.models.generateContentStream({
       model: MODEL,
       contents: contents as never,
       config: {
         systemInstruction: SYSTEM_PROMPT + cartSection + addressesSection,
-        tools: GEMINI_TOOLS,
+        tools: lastRound ? undefined : GEMINI_TOOLS,
       },
     });
 
@@ -140,7 +144,10 @@ export async function* runAgentLoop(
       if (name === "search_products") {
         const products = extractProducts(result);
         const productLabel = (args.label as string | undefined) ?? (args.q as string);
-        if (products.length > 0) yield { type: "products", products, label: productLabel };
+        if (products.length > 0) {
+          productsEmitted = true;
+          yield { type: "products", products, label: productLabel };
+        }
       }
 
       responseParts.push({
@@ -151,6 +158,11 @@ export async function* runAgentLoop(
     contents.push({ role: "user", parts: responseParts });
   }
 
-  yield { type: "text_delta", text: "I ran into a loop — please try again." };
+  // Reached only if every round (including the tool-free final one) kept going.
+  // If products were already shown, end quietly rather than alarming the user
+  // with an error over results that are actually fine.
+  if (!productsEmitted) {
+    yield { type: "text_delta", text: "I ran into a loop — please try again." };
+  }
   yield { type: "done" };
 }

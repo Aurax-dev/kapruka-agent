@@ -54,7 +54,9 @@ export async function POST(request: Request) {
 
   let assistantText = "";
   let assistantWidget: unknown = null;
-  let assistantProducts: unknown = null;
+  // Capture every products event with its tab label so conversations reload with
+  // the full multi-tab carousel intact, not just the last search's results.
+  const assistantProductTabs: { label?: string; products: unknown }[] = [];
 
   const stream = new ReadableStream({
     async start(controller) {
@@ -64,15 +66,26 @@ export async function POST(request: Request) {
         for await (const event of runAgentLoop(history, message, cartSection, addressesSection, context)) {
           controller.enqueue(encoder.encode(JSON.stringify(event) + "\n"));
           if (event.type === "text_delta") assistantText += (event as { text: string }).text;
+          // The client resets its buffer on clear_text (preamble before a tool call,
+          // or pre-widget text); mirror that so the persisted message matches what
+          // the user actually saw rather than accumulating cleared-out preambles.
+          if (event.type === "clear_text") assistantText = "";
           if (event.type === "widget") assistantWidget = event;
-          if (event.type === "products") assistantProducts = (event as { products: unknown }).products;
+          if (event.type === "products") {
+            const ev = event as { products: unknown; label?: string };
+            assistantProductTabs.push({ label: ev.label, products: ev.products });
+          }
           if (event.type === "done" && conversationId && session?.user?.id) {
+            const cleanText = assistantText
+              .replace(/PRODUCTS:\s*(\{[\s\S]*?\}|\[[\s\S]*?\])/g, "")
+              .replace(/\n{3,}/g, "\n\n")
+              .trim();
             db.insert(messages).values({
               conversationId,
               role: "assistant",
-              content: assistantText,
+              content: cleanText,
               widgets: assistantWidget,
-              products: assistantProducts,
+              products: assistantProductTabs.length ? assistantProductTabs : null,
             }).catch(() => {});
           }
         }

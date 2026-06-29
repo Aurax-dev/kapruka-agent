@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, KeyboardEvent, CSSProperties, useCallback } from 'react';
-import { useSession, signIn } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import KaprukaAdminUI from './KaprukaAdminUI';
 
 // ─────────────────────────────────────────────
@@ -108,7 +108,7 @@ interface AppState {
   avSeq: number;
   products: Record<string, RealProduct>;
   selectedTabs: Record<string, number>;
-  productDetails: Record<string, { bullets: string[]; images: string[] } | 'error'>;
+  productDetails: Record<string, { bullets: string[]; images: string[]; description?: string } | 'error'>;
   detailImageIdx: Record<string, number>;
   conversationId: string | null;
   savedAddrs: SavedAddress[];
@@ -327,6 +327,13 @@ export default function KaprukaChatUI() {
     loadingDrawers: {},
   });
 
+  // Mirror the latest state into a stable ref. sendMessage is a useCallback that
+  // doesn't depend on state, so the buildHistory/buildCartPayload closures it
+  // captures would otherwise read stale (post-login, empty) cart/messages —
+  // making the model think the cart is empty and lose conversation memory.
+  const stateRef = useRef(state);
+  stateRef.current = state;
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const uidRef = useRef(1);
   const ttRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -496,10 +503,13 @@ export default function KaprukaChatUI() {
     if (!msgId) return;
     streamingMsgIdRef.current = null;
     streamingProductsMsgIdRef.current = null;
-    // Strip any PRODUCTS tag the model may have appended
+    // Strip any stray PRODUCTS tag the model may emit — object or array form,
+    // anywhere in the text (not just trailing). Products render from tool
+    // results, so this tag is never meant to reach the user.
     const text = streamingTextRef.current
-      .replace(/\s*PRODUCTS:\s*\[[\s\S]*?\]\s*$/, '')
-      .trimEnd();
+      .replace(/PRODUCTS:\s*(\{[\s\S]*?\}|\[[\s\S]*?\])/g, '')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
     streamingTextRef.current = '';
     setState(prev => ({
       ...prev,
@@ -510,13 +520,49 @@ export default function KaprukaChatUI() {
   };
 
   // ── build history for API ──
-  const buildHistory = () => {
-    return state.messages
-      .filter(m => !m.streaming && m.kind === 'text' && m.text)
-      .map(m => ({ role: m.role === 'user' ? 'user' as const : 'ruki' as const, text: m.text as string }));
+  // Carries not just chat text but a compact reference of the products & detail
+  // cards already shown, so the model can resolve follow-ups like "the first one",
+  // "can I send my own photo?", or "tell me more about this frame".
+  const buildHistory = (msgs: Message[] = stateRef.current.messages) => {
+    const { products, productDetails } = stateRef.current;
+    const fmtPrice = (p?: { amount: number | null; currency: string }) =>
+      p && p.amount != null ? `Rs ${p.amount.toLocaleString('en-LK')}` : 'price n/a';
+    const out: { role: 'user' | 'ruki'; text: string }[] = [];
+    for (const m of msgs) {
+      if (m.streaming) continue;
+      if (m.role === 'user') {
+        if (m.text) out.push({ role: 'user', text: m.text });
+        continue;
+      }
+      if (m.kind === 'text' && m.text) {
+        out.push({ role: 'ruki', text: m.text });
+      } else if (m.kind === 'products') {
+        const ids = m.tabs ? m.tabs.flatMap(t => t.ids) : (m.items ?? []);
+        const lines = ids.slice(0, 12)
+          .map(id => products[id])
+          .filter((p): p is RealProduct => Boolean(p))
+          .map(p => `• ${p.name} (id: ${p.id}, ${fmtPrice(p.price)})${p.summary ? ` — ${p.summary}` : ''}`);
+        if (lines.length) {
+          out.push({ role: 'ruki', text: `[Products shown to the user just now — reference for follow-ups; do not paste this list back verbatim]\n${lines.join('\n')}` });
+        }
+      } else if (m.kind === 'detail' && m.productId) {
+        const p = products[m.productId];
+        const det = productDetails[m.productId];
+        const loaded = det && det !== 'error' ? det : undefined;
+        // Prefer the exact full MCP description; fall back to the card summary.
+        const fullDesc = loaded?.description?.trim() || p?.summary || '';
+        const bullets = loaded?.bullets ?? [];
+        const facts = [
+          fullDesc ? `Description: ${fullDesc.slice(0, 2000)}` : '',
+          bullets.length ? `Highlights: ${bullets.join('; ')}` : '',
+        ].filter(Boolean).join('\n');
+        out.push({ role: 'ruki', text: `[Product detail card shown to the user — id: ${m.productId}, ${p?.name ?? 'product'}, ${fmtPrice(p?.price)}]${facts ? `\n${facts}` : ''}` });
+      }
+    }
+    return out;
   };
 
-  const buildCartPayload = () => state.cart.map(i => ({
+  const buildCartPayload = () => stateRef.current.cart.map(i => ({
     product_id: i.id,
     name: i.name,
     image_url: i.imageUrl ?? null,
@@ -752,10 +798,7 @@ export default function KaprukaChatUI() {
     if (userMsgIdx === -1) return;
     const userText = msgs[userMsgIdx].text ?? '';
     if (!userText) return;
-    const historyOverride = msgs
-      .slice(0, userMsgIdx)
-      .filter(m => !m.streaming && m.kind === 'text' && m.text)
-      .map(m => ({ role: m.role === 'user' ? 'user' as const : 'ruki' as const, text: m.text as string }));
+    const historyOverride = buildHistory(msgs.slice(0, userMsgIdx));
     setState(prev => ({ ...prev, messages: prev.messages.slice(0, userMsgIdx + 1) }));
     sendMessage(userText, historyOverride);
   };
@@ -770,33 +813,74 @@ export default function KaprukaChatUI() {
   };
 
   // ── product actions ──
+  type ProductDetailData = { bullets: string[]; images: string[]; description: string };
   // Fetch the AI summary bullets + full image list for a product's detail card.
-  const loadProductDetails = useCallback(async (id: string) => {
+  const loadProductDetails = useCallback(async (id: string): Promise<ProductDetailData | undefined> => {
     try {
       const r = await fetch('/api/product-details', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ product_id: id }),
       });
-      const d = await r.json() as { bullets?: string[]; images?: string[] };
-      setState(prev => ({
-        ...prev,
-        productDetails: { ...prev.productDetails, [id]: { bullets: d.bullets ?? [], images: d.images ?? [] } },
-      }));
+      const d = await r.json() as { bullets?: string[]; images?: string[]; description?: string };
+      const det: ProductDetailData = { bullets: d.bullets ?? [], images: d.images ?? [], description: d.description ?? '' };
+      setState(prev => ({ ...prev, productDetails: { ...prev.productDetails, [id]: det } }));
+      return det;
     } catch {
       setState(prev => ({ ...prev, productDetails: { ...prev.productDetails, [id]: 'error' } }));
+      return undefined;
     }
   }, []);
+
+  // Detail cards are opened client-side (no /api/chat round-trip), so persist the
+  // interaction explicitly — otherwise it vanishes when the conversation reloads.
+  const persistDetailInteraction = useCallback((p: RealProduct, userText: string, botText: string, det?: { bullets: string[]; images: string[]; description?: string }) => {
+    const convId = convIdRef.current;
+    if (!convId || sessionStatus !== 'authenticated') return;
+    const snippet = {
+      id: p.id,
+      name: p.name,
+      price: p.price,
+      compare_at_price: p.comparePrice != null ? { amount: p.comparePrice, currency: p.price.currency } : null,
+      image_url: p.image_url,
+      in_stock: p.in_stock,
+      url: p.url,
+      summary: p.summary,
+    };
+    fetch(`/api/conversations/${convId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: [
+          { role: 'user', content: userText },
+          {
+            role: 'assistant',
+            content: '',
+            widgets: { kind: 'detail', productId: p.id, bullets: det?.bullets ?? [], description: det?.description ?? '', images: det?.images ?? [] },
+            products: [snippet],
+          },
+          { role: 'assistant', content: botText },
+        ],
+      }),
+    }).catch(() => {});
+  }, [sessionStatus]);
 
   const openDetail = (id: string) => {
     const p = getProduct(id);
     if (!p) return;
-    pushUser(`Tell me more about the ${p.name}`);
+    const userText = `Tell me more about the ${p.name}`;
+    const botText = `Here are the full details for ${p.name}! Add it to your cart, or ask me anything about it. 🛍️`;
+    pushUser(userText);
     pushBot({ kind: 'detail', productId: id });
-    pushBot({ kind: 'text', text: `Here are the full details for ${p.name}! Add it to your cart, or ask me anything about it. 🛍️` });
+    pushBot({ kind: 'text', text: botText });
     setState(prev => ({ ...prev, detailImageIdx: { ...prev.detailImageIdx, [id]: 0 } }));
     setAvatar('detail');
-    if (!state.productDetails[id]) loadProductDetails(id);
+    const existing = state.productDetails[id];
+    if (existing && existing !== 'error') {
+      persistDetailInteraction(p, userText, botText, existing);
+    } else {
+      loadProductDetails(id).then(det => persistDetailInteraction(p, userText, botText, det));
+    }
   };
 
   const toggleWish = (id: string) => {
@@ -993,19 +1077,81 @@ export default function KaprukaChatUI() {
     setState(prev => ({ ...prev, drawer: null }));
     try {
       const r = await fetch(`/api/conversations/${id}`);
-      const d = await r.json() as { conversation: { id: string; title: string }; messages: Array<{ role: string; content: string }> };
+      const d = await r.json() as { conversation: { id: string; title: string }; messages: Array<{ role: string; content: string; products?: unknown; widgets?: unknown }> };
       convIdRef.current = id;
-      const msgs: Message[] = d.messages.map(m => ({
-        id: String(++uidRef.current),
-        role: m.role === 'user' ? 'user' : 'bot',
-        kind: 'text',
-        text: m.content,
-      }));
+
+      // Stored products are either the new shape [{ label?, products: Snippet[] }]
+      // or the legacy flat Snippet[]. Normalise both to labelled tabs.
+      type Snippet = {
+        id: string; name: string; price: { amount: number | null; currency: string };
+        compare_at_price?: { amount: number | null; currency: string } | null;
+        image_url: string | null; in_stock: boolean; url: string; summary: string;
+      };
+      const normaliseTabs = (raw: unknown): { label?: string; products: Snippet[] }[] => {
+        if (!Array.isArray(raw) || raw.length === 0) return [];
+        const first = raw[0] as Record<string, unknown>;
+        if (first && Array.isArray(first.products)) {
+          return (raw as { label?: string; products: Snippet[] }[]).filter(t => Array.isArray(t.products) && t.products.length);
+        }
+        return [{ products: raw as Snippet[] }]; // legacy flat array → one unlabelled tab
+      };
+
+      const msgs: Message[] = [];
+      const restoredProducts: Record<string, RealProduct> = {};
+      const restoredDetails: Record<string, { bullets: string[]; images: string[]; description: string }> = {};
+      for (const m of d.messages) {
+        const role = m.role === 'user' ? 'user' as const : 'bot' as const;
+
+        // Persisted detail-card interaction → rebuild the card + rehydrate its details.
+        const w = (m.widgets ?? null) as { kind?: string; productId?: string; bullets?: string[]; description?: string; images?: string[] } | null;
+        if (role === 'bot' && w?.kind === 'detail' && w.productId) {
+          const snippet = Array.isArray(m.products) ? (m.products as Snippet[])[0] : undefined;
+          if (snippet) {
+            restoredProducts[snippet.id] = {
+              ...snippet,
+              comparePrice: snippet.compare_at_price?.amount ?? null,
+              tone: TONES[0],
+              glyph: 'gift',
+            };
+          }
+          restoredDetails[w.productId] = { bullets: w.bullets ?? [], images: w.images ?? [], description: w.description ?? '' };
+          msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'detail', productId: w.productId });
+          continue;
+        }
+
+        if (m.content) {
+          msgs.push({ id: String(++uidRef.current), role, kind: 'text', text: m.content });
+        }
+        if (role === 'bot' && m.products) {
+          const tabs = normaliseTabs(m.products);
+          const labelledTabs: ProductTab[] = [];
+          const flatIds: string[] = [];
+          for (const t of tabs) {
+            const ids: string[] = [];
+            t.products.forEach((p, i) => {
+              restoredProducts[p.id] = {
+                ...p,
+                comparePrice: p.compare_at_price?.amount ?? null,
+                tone: TONES[i % TONES.length],
+                glyph: 'gift',
+              };
+              ids.push(p.id);
+            });
+            if (t.label) labelledTabs.push({ label: t.label, ids });
+            else flatIds.push(...ids);
+          }
+          if (labelledTabs.length) msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'products', tabs: labelledTabs });
+          if (flatIds.length) msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'products', items: flatIds });
+        }
+      }
+
       setState(prev => ({
         ...prev,
         conversationId: id,
         started: msgs.length > 0,
         messages: msgs,
+        products: { ...prev.products, ...restoredProducts },
+        productDetails: { ...prev.productDetails, ...restoredDetails },
         headerState: 'idle',
       }));
     } catch {
@@ -1948,19 +2094,13 @@ export default function KaprukaChatUI() {
       );
     } else if (state.drawer === 'settings') {
       title = 'Settings';
-      const trackOrder = (orderId: string) => {
-        setState(prev => ({ ...prev, drawer: null }));
-        const msg = 'Track order ' + orderId;
-        pushUser(msg);
-        sendMessage(msg);
-      };
       const SectionHeader = ({ icon, label }: { icon: string; label: string }) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 800, fontSize: 13, color: '#402970', textTransform: 'uppercase', letterSpacing: '.4px', margin: '4px 0 12px' }}>
           <Icon name={icon} size={15} color="#7B5BD6" /> {label}
         </div>
       );
       body = (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, minHeight: '100%' }}>
           {/* ── Saved addresses ── */}
           <div>
             <SectionHeader icon="pin" label="Saved addresses" />
@@ -1994,9 +2134,57 @@ export default function KaprukaChatUI() {
             ) : <EmptyState icon="pin" title="No saved addresses" sub="Tick “Save this address” at checkout to store it here." />}
           </div>
 
+          {/* ── Account ── */}
+          <div style={{ marginTop: 'auto', paddingTop: 8 }}>
+            <SectionHeader icon="user" label="Account" />
+            <div style={{ background: '#fff', border: '1px solid rgba(64,41,112,.09)', borderRadius: 14, padding: 14, display: 'flex', alignItems: 'center', gap: 13 }}>
+              {!isAnon && session?.user?.image
+                ? <img src={session.user.image} alt="" style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover', flex: '0 0 auto' }} />
+                : <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#5C3FB0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 18, color: '#fff', flex: '0 0 auto' }}>{isAnon ? <Icon name="user" size={22} color="#fff" /> : userInitial}</div>
+              }
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 11, color: '#9389AE', fontWeight: 600 }}>{isAnon ? 'Browsing as' : 'Signed in as'}</div>
+                <div style={{ fontWeight: 700, fontSize: 14.5, color: '#2A1E4A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{isAnon ? 'Guest' : session?.user?.name}</div>
+                {!isAnon && session?.user?.email && <div style={{ fontSize: 12, color: '#9389AE', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{session.user.email}</div>}
+              </div>
+            </div>
+            {isAnon ? (
+              <button onClick={() => signIn('google')} style={{ width: '100%', marginTop: 12, padding: 12, borderRadius: 13, border: '1.5px solid #E2D9F3', background: '#fff', color: '#2A1E4A', fontWeight: 700, fontSize: 13.5, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/google-logo-48.png" alt="" style={{ width: 18, height: 18, display: 'block' }} /> Sign in with Google
+              </button>
+            ) : (
+              <button onClick={() => signOut()} style={{ width: '100%', marginTop: 12, padding: 12, borderRadius: 13, border: '1.5px solid #F2C2C2', background: '#fff', color: '#C0392B', fontWeight: 700, fontSize: 13.5, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                <Icon name="back" size={16} color="#C0392B" /> Log out
+              </button>
+            )}
+          </div>
+        </div>
+      );
+    } else if (state.drawer === 'orders') {
+      title = 'Orders';
+      const trackFormKey = 'orders_track';
+      const trackOrderNo = String(state.forms[trackFormKey]?.orderNo || '');
+      const handleTrack = () => {
+        if (!trackOrderNo.trim()) { showToast('Enter your order number', 'box'); return; }
+        setState(prev => ({ ...prev, drawer: null }));
+        const msg = 'Track order ' + trackOrderNo.trim();
+        pushUser(msg);
+        sendMessage(msg);
+      };
+      const trackOrder = (orderId: string) => {
+        setState(prev => ({ ...prev, drawer: null }));
+        const msg = 'Track order ' + orderId;
+        pushUser(msg);
+        sendMessage(msg);
+      };
+      body = (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           {/* ── Recent orders ── */}
           <div>
-            <SectionHeader icon="box" label="Recent orders" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 800, fontSize: 13, color: '#402970', textTransform: 'uppercase', letterSpacing: '.4px', marginBottom: 12 }}>
+              <Icon name="box" size={15} color="#7B5BD6" /> Recent orders
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {DUMMY_ORDERS.map(o => {
                 const cfg = STATUS_CONFIG[o.status] ?? { color: '#6B5B93', bg: '#F5F0FF', icon: '📦' };
@@ -2018,21 +2206,7 @@ export default function KaprukaChatUI() {
               })}
             </div>
           </div>
-        </div>
-      );
-    } else if (state.drawer === 'orders') {
-      title = 'Track Order';
-      const trackFormKey = 'orders_track';
-      const trackOrderNo = String(state.forms[trackFormKey]?.orderNo || '');
-      const handleTrack = () => {
-        if (!trackOrderNo.trim()) { showToast('Enter your order number', 'box'); return; }
-        setState(prev => ({ ...prev, drawer: null }));
-        const msg = 'Track order ' + trackOrderNo.trim();
-        pushUser(msg);
-        sendMessage(msg);
-      };
-      body = (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+
           <div style={{ background: 'linear-gradient(135deg,#EEE7FB,#F8F4FE)', border: '1px solid rgba(64,41,112,.1)', borderRadius: 16, padding: '20px 18px', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{ width: 42, height: 42, borderRadius: 13, background: 'linear-gradient(135deg,#402970,#5C3FB0)', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}>
@@ -2354,7 +2528,7 @@ export default function KaprukaChatUI() {
                 <Icon name="send" size={19} color="#fff" />
               </button>
             </div>
-            <div style={{ textAlign: 'center', fontSize: 11, color: '#9389AE', marginTop: 9 }}>Ruki can place orders, check delivery & track shipments · Powered by Kapruka</div>
+            <div style={{ textAlign: 'center', fontSize: 11, color: '#9389AE', marginTop: 9 }}>Talk to me in සිංහල, தமிழ் or English · Powered by Kapruka</div>
           </div>
         </div>
 
