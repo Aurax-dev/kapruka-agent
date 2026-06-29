@@ -292,6 +292,48 @@ function Card({ children, accent, lush }: { children: React.ReactNode; accent?: 
   return <div style={{ background: bg, border, borderRadius: 20, boxShadow: shadow, overflow: 'hidden', animation: 'widgetIn .5s cubic-bezier(.2,.9,.3,1) both' }}>{children}</div>;
 }
 
+// City autocomplete — owns its own local fetch state. Module-scope so it keeps a
+// stable identity (no remount on every parent render) and its hooks stay isolated.
+function CityAutocomplete({ value, hasCity, onChange, onPick }: {
+  value: string; hasCity: boolean; onChange: (q: string) => void; onPick: (city: string) => void;
+}) {
+  const [apiCities, setApiCities] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (value.length < 2 || hasCity) { setApiCities([]); return; }
+    const timeout = setTimeout(() => {
+      fetch(`/api/cities?q=${encodeURIComponent(value)}`)
+        .then(r => r.json())
+        .then((d: { cities?: { name: string }[] }) => setApiCities((d.cities || []).map((c: { name: string }) => c.name)))
+        .catch(() => setApiCities([]));
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [value, hasCity]);
+
+  return (
+    <div style={{ marginBottom: 14, position: 'relative' }}>
+      <label style={{ fontSize: 11, fontWeight: 700, color: '#9389AE', textTransform: 'uppercase', letterSpacing: '.4px' }}>Deliver to city</label>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 6, border: '1.5px solid ' + (hasCity ? '#C9B8ED' : '#E6DEF5'), borderRadius: 12, padding: '10px 13px', background: hasCity ? '#F7F3FE' : '#fff' }}>
+        <Icon name="pin" size={16} color="#7B5BD6" />
+        <input value={value} placeholder="Start typing… e.g. Colombo" onChange={e => onChange(e.target.value)}
+          style={{ flex: 1, border: 'none', outline: 'none', fontSize: 14, background: 'transparent', color: '#241C3D' }} />
+        {hasCity && <Icon name="check" size={16} color="#1F9D6B" />}
+      </div>
+      {apiCities.length > 0 && (
+        <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 4, background: '#fff', border: '1px solid rgba(64,41,112,.12)', borderRadius: 12, boxShadow: '0 10px 26px rgba(64,41,112,.16)', overflow: 'hidden', zIndex: 5 }}>
+          {apiCities.map(c => (
+            <div key={c} onClick={() => onPick(c)} style={{ padding: '10px 14px', fontSize: 13.5, cursor: 'pointer', color: '#3A2E5C', display: 'flex', alignItems: 'center', gap: 8 }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#F3EEFC')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#fff')}>
+              <Icon name="pin" size={14} color="#B7AECB" /> {c}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─────────────────────────────────────────────
 // Main component
 // ─────────────────────────────────────────────
@@ -1455,22 +1497,6 @@ export default function KaprukaChatUI() {
     const key = 'cd_' + m.id;
     const f = state.forms[key] || {};
     const done = m.done;
-    const q = String(f.q || '');
-    const matches = q.length > 0 && !f.city ? [] : []; // cities from API
-    const [apiCities, setApiCities] = useState<string[]>([]);
-
-    useEffect(() => {
-      if (q.length < 2 || f.city) { setApiCities([]); return; }
-      const timeout = setTimeout(() => {
-        fetch(`/api/cities?q=${encodeURIComponent(q)}`)
-          .then(r => r.json())
-          .then((d: { cities?: { name: string }[] }) => setApiCities((d.cities || []).map((c: { name: string }) => c.name)))
-          .catch(() => setApiCities([]));
-      }, 300);
-      return () => clearTimeout(timeout);
-    }, [q, f.city]);
-
-    void matches;
     const today = new Date();
     const days = Array.from({ length: 14 }, (_, i) => { const d = new Date(today); d.setDate(today.getDate() + i + 1); return d; });
 
@@ -1480,26 +1506,12 @@ export default function KaprukaChatUI() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 12 }}>
             <Icon name="truck" size={16} color="#7B5BD6" /> Delivery details
           </div>
-          <div style={{ marginBottom: 14, position: 'relative' }}>
-            <label style={{ fontSize: 11, fontWeight: 700, color: '#9389AE', textTransform: 'uppercase', letterSpacing: '.4px' }}>Deliver to city</label>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 6, border: '1.5px solid ' + (f.city ? '#C9B8ED' : '#E6DEF5'), borderRadius: 12, padding: '10px 13px', background: f.city ? '#F7F3FE' : '#fff' }}>
-              <Icon name="pin" size={16} color="#7B5BD6" />
-              <input value={String(f.city || f.q || '')} placeholder="Start typing… e.g. Colombo" onChange={e => setForm(key, { q: e.target.value, city: '' })}
-                style={{ flex: 1, border: 'none', outline: 'none', fontSize: 14, background: 'transparent', color: '#241C3D' }} />
-              {!!f.city && <Icon name="check" size={16} color="#1F9D6B" />}
-            </div>
-            {apiCities.length > 0 && (
-              <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 4, background: '#fff', border: '1px solid rgba(64,41,112,.12)', borderRadius: 12, boxShadow: '0 10px 26px rgba(64,41,112,.16)', overflow: 'hidden', zIndex: 5 }}>
-                {apiCities.map(c => (
-                  <div key={c} onClick={() => setForm(key, { city: c, q: c })} style={{ padding: '10px 14px', fontSize: 13.5, cursor: 'pointer', color: '#3A2E5C', display: 'flex', alignItems: 'center', gap: 8 }}
-                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#F3EEFC')}
-                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#fff')}>
-                    <Icon name="pin" size={14} color="#B7AECB" /> {c}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <CityAutocomplete
+            value={String(f.city || f.q || '')}
+            hasCity={!!f.city}
+            onChange={v => setForm(key, { q: v, city: '' })}
+            onPick={c => setForm(key, { city: c, q: c })}
+          />
           <label style={{ fontSize: 11, fontWeight: 700, color: '#9389AE', textTransform: 'uppercase', letterSpacing: '.4px' }}>Delivery date</label>
           <div style={{ display: 'flex', gap: 8, overflowX: 'auto', padding: '9px 0 4px', marginBottom: 6 }}>
             {days.map((d, i) => {
