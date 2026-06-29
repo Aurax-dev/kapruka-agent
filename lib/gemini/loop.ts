@@ -63,7 +63,6 @@ export async function* runAgentLoop(
   let round = 0;
   let searchRound = 0;
   let productsEmitted = false;
-  let emptyRetries = 0;
   const SEARCH_LABELS = ["Searching", "Exploring", "Browsing", "Expanding search"];
 
   while (round < MAX_ROUNDS) {
@@ -109,24 +108,14 @@ export async function* runAgentLoop(
       }
     }
 
-    // Diagnostic: a round that yields neither text nor a tool call is the source
-    // of the "retry button, no response" drop. Log why so it can be traced, and
-    // recover instead of letting the client silently remove the empty bubble.
+    // A round that yields neither text nor a tool call is an empty turn — the
+    // source of the "retry button, no response" drop. Emit a bare `done` so the
+    // client detects it and auto-retries (up to 3×, mirroring the retry button).
+    // Logged for tracing.
     if (pendingFunctionCalls.length === 0 && !fullText) {
       console.warn(
-        `[runAgentLoop] empty round ${round}/${MAX_ROUNDS}: chunks=${chunkCount}, finishReason=${finishReason ?? "none"}, retries=${emptyRetries}, productsEmitted=${productsEmitted}`,
+        `[runAgentLoop] empty round ${round}/${MAX_ROUNDS}: chunks=${chunkCount}, finishReason=${finishReason ?? "none"}, productsEmitted=${productsEmitted}`,
       );
-      // Transient empty responses from the model are common — retry the round
-      // once without consuming the budget before giving up.
-      if (emptyRetries < 1 && !lastRound) {
-        emptyRetries++;
-        round--;
-        continue;
-      }
-      // Don't vanish: give the user a real message they can respond to.
-      if (!productsEmitted) {
-        yield { type: "text_delta", text: "Sorry, I didn't catch that — could you try again?" };
-      }
       yield { type: "done" };
       return;
     }

@@ -413,6 +413,11 @@ export default function KaprukaChatUI() {
   const convIdRef = useRef<string | null>(null);
   const revealTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const productsShownRef = useRef(false);
+  // Empty-turn auto-retry: did this turn render anything (text/products/widget/
+  // track card)? If not, replay the user's message automatically up to 3× —
+  // the same action as the manual retry button — before giving up.
+  const turnProducedOutputRef = useRef(false);
+  const autoRetryRef = useRef(0);
 
   // Auto-scroll on new messages
   useEffect(() => {
@@ -580,11 +585,7 @@ export default function KaprukaChatUI() {
       .replace(/\n{3,}/g, '\n\n')
       .trim();
     streamingTextRef.current = '';
-    if (!text && !productsShownRef.current) {
-      // Empty bot turn — the bubble is about to be removed, leaving only the
-      // user message + retry button. Log it so dropped turns are traceable.
-      console.warn('[finalizeStreamingMsg] dropping empty bot turn', msgId);
-    }
+    if (text) turnProducedOutputRef.current = true;
     setState(prev => ({
       ...prev,
       messages: text
@@ -723,6 +724,7 @@ export default function KaprukaChatUI() {
         // Don't reveal yet — keep the searching animation until the whole
         // operation finishes (see the 'done' handler). Just record that we have products.
         productsShownRef.current = true;
+        turnProducedOutputRef.current = true;
         break;
       }
       case 'widget': {
@@ -764,6 +766,7 @@ export default function KaprukaChatUI() {
             extra.text = `[${widgetType}]`;
         }
         pushBot({ kind, ...extra });
+        turnProducedOutputRef.current = true;
         // Purchase complete — invite the customer to rate the experience.
         if (kind === 'pay_url') {
           const ref = extra.orderRef as string | undefined;
@@ -778,6 +781,7 @@ export default function KaprukaChatUI() {
           status: null,
           messages: [...prev.messages, { id: msgId, role: 'bot', kind: 'track_result', trackData: event.data as import('@/lib/chat/types').TrackResult }],
         }));
+        turnProducedOutputRef.current = true;
         setAvatar('delivery');
         break;
       }
@@ -810,6 +814,10 @@ export default function KaprukaChatUI() {
     createStreamingMsg();
     clearTimeout(revealTimeoutRef.current);
     productsShownRef.current = false;
+    turnProducedOutputRef.current = false;
+    // A fresh user message (no historyOverride) starts a new retry budget;
+    // manual/auto retries pass historyOverride and keep the running count.
+    if (!historyOverride) autoRetryRef.current = 0;
     setState(prev => ({ ...prev, streaming: true, status: 'Thinking' }));
     setAvatar('thinking');
 
@@ -861,10 +869,42 @@ export default function KaprukaChatUI() {
       clearStreamingMsg();
       pushBot({ kind: 'text', text: 'Something went wrong. Please try again.' });
       setAvatar('idle');
+      autoRetryRef.current = 0;
+      return;
     } finally {
       finalizeStreamingMsg();
       setState(prev => ({ ...prev, streaming: false, status: null }));
     }
+
+    // ── empty-turn auto-retry ──
+    // The agent finished but rendered nothing (no text/products/widget/track).
+    // Replay the last user message automatically — same as the retry button —
+    // up to 3× before giving up, so the user isn't left with a lone retry button.
+    if (!turnProducedOutputRef.current) {
+      if (autoRetryRef.current < 3) {
+        autoRetryRef.current++;
+        console.warn(`[sendMessage] empty agent turn — auto-retry ${autoRetryRef.current}/3`);
+        const msgs = stateRef.current.messages;
+        let userIdx = -1;
+        for (let i = msgs.length - 1; i >= 0; i--) {
+          if (msgs[i].role === 'user') { userIdx = i; break; }
+        }
+        const userText = userIdx === -1 ? '' : (msgs[userIdx].text ?? '');
+        if (userText) {
+          const historyOverride = buildHistory(msgs.slice(0, userIdx));
+          // Drop any stray bot turns after the user message before replaying.
+          setState(prev => ({ ...prev, messages: prev.messages.slice(0, userIdx + 1) }));
+          sendMessage(userText, historyOverride);
+          return;
+        }
+      }
+      // Out of retries (or nothing to replay) — leave a message so the turn
+      // isn't a silent dead-end; the manual retry button remains available.
+      console.warn('[sendMessage] empty agent turn — auto-retry exhausted');
+      pushBot({ kind: 'text', text: "I'm having trouble responding right now — please try again." });
+      setAvatar('idle');
+    }
+    autoRetryRef.current = 0;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionStatus, handleStreamEvent, setAvatar]);
 
