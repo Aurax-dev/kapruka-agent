@@ -457,6 +457,10 @@ export default function KaprukaChatUI() {
   const convIdRef = useRef<string | null>(null);
   const revealTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const productsShownRef = useRef(false);
+  // Gift-message helpers: typewriter reveal interval + a guard so each gift widget
+  // auto-drafts exactly once.
+  const giftRevealRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+  const giftAutoRef = useRef<Set<string>>(new Set());
   // Empty-turn auto-retry: did this turn render anything (text/products/widget/
   // track card)? If not, replay the user's message automatically up to 3× —
   // the same action as the manual retry button — before giving up.
@@ -1214,10 +1218,28 @@ export default function KaprukaChatUI() {
     sendMessage(text);
   };
 
+  // Type the drafted note in character-by-character so the card feels like Ruki is
+  // writing it live, rather than the text snapping in all at once.
+  const revealGiftMessage = (k: string, full: string) => {
+    clearInterval(giftRevealRef.current);
+    let i = 0;
+    const step = Math.max(1, Math.round(full.length / 48)); // ~48 frames ≈ 1s
+    giftRevealRef.current = setInterval(() => {
+      i = Math.min(full.length, i + step);
+      if (i >= full.length) {
+        clearInterval(giftRevealRef.current);
+        setForm(k, { message: full, writing: false });
+      } else {
+        setForm(k, { message: full.slice(0, i) });
+      }
+    }, 22);
+  };
+
   const helpWrite = async (mid: string) => {
     const k = 'gf_' + mid;
-    if (state.forms[k]?.writing) return;
-    setForm(k, { writing: true });
+    if (stateRef.current.forms[k]?.writing) return;
+    clearInterval(giftRevealRef.current);
+    setForm(k, { writing: true, message: '' });
     try {
       const r = await fetch('/api/gift-message', {
         method: 'POST',
@@ -1230,13 +1252,24 @@ export default function KaprukaChatUI() {
       if (!r.ok) throw new Error('bad response');
       const d = await r.json() as { message?: string };
       if (!d.message) throw new Error('empty');
-      setForm(k, { message: d.message, writing: false });
+      revealGiftMessage(k, d.message);
       showToast('Drafted a message for you ✨', 'spark');
     } catch {
       setForm(k, { writing: false });
       showToast("Couldn't draft one — give it another try", 'spark');
     }
   };
+
+  // Auto-draft the gift note the moment its card appears — the customer shouldn't
+  // have to ask or press "Help me write". Guarded so each card drafts only once
+  // (a cleared/edited message won't be overwritten).
+  useEffect(() => {
+    const gift = state.messages.find(m => m.role === 'bot' && m.kind === 'gift' && !m.done);
+    if (!gift || giftAutoRef.current.has(gift.id)) return;
+    giftAutoRef.current.add(gift.id);
+    helpWrite(gift.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.messages]);
 
   const submitGift = (mid: string, skip: boolean) => {
     const f = state.forms['gf_' + mid] || {};
@@ -1840,13 +1873,36 @@ export default function KaprukaChatUI() {
             </button>
           </div>
           <div style={{ position: 'relative' }}>
-            <textarea value={msg} maxLength={200} placeholder="Write a heartfelt note… (optional)" onChange={e => setForm(k, { message: e.target.value })}
-              style={{ width: '100%', minHeight: 84, border: '1.5px solid ' + (msg ? '#C9B8ED' : '#E6DEF5'), borderRadius: 13, padding: '12px 14px', fontSize: 14, lineHeight: 1.5, outline: 'none', resize: 'vertical', color: '#241C3D', background: msg ? '#FAF8FE' : '#fff', boxSizing: 'border-box' }} />
+            {writing ? (
+              // While drafting, show a read-only "live writing" surface: a shimmering
+              // placeholder until the first characters arrive, then the note typing
+              // in with a blinking caret.
+              <div style={{ width: '100%', minHeight: 84, border: '1.5px solid #C9B8ED', borderRadius: 13, padding: '12px 14px', fontSize: 14, lineHeight: 1.5, color: '#241C3D', background: '#FAF8FE', boxSizing: 'border-box', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+                {msg ? (
+                  <>
+                    {msg}
+                    <span style={{ display: 'inline-block', width: 2, height: '1.05em', background: '#7B5BD6', marginLeft: 1, verticalAlign: 'text-bottom', animation: 'caretBlink 1s step-end infinite' }} />
+                  </>
+                ) : (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#9389AE', fontStyle: 'italic' }}>
+                    <Icon name="spark" size={14} color="#A855D6" /> Ruki is writing a heartfelt note
+                    <span style={{ display: 'inline-flex', gap: 4, marginLeft: 1 }}>
+                      {[0, 150, 300].map(d => (
+                        <span key={d} style={{ width: 5, height: 5, borderRadius: '50%', background: '#C9B8ED', display: 'inline-block', animation: 'dotBounce .9s ease infinite', animationDelay: d + 'ms' }} />
+                      ))}
+                    </span>
+                  </span>
+                )}
+              </div>
+            ) : (
+              <textarea value={msg} maxLength={200} placeholder="Write a heartfelt note… (optional)" onChange={e => setForm(k, { message: e.target.value })}
+                style={{ width: '100%', minHeight: 84, border: '1.5px solid ' + (msg ? '#C9B8ED' : '#E6DEF5'), borderRadius: 13, padding: '12px 14px', fontSize: 14, lineHeight: 1.5, outline: 'none', resize: 'vertical', color: '#241C3D', background: msg ? '#FAF8FE' : '#fff', boxSizing: 'border-box' }} />
+            )}
             <span style={{ position: 'absolute', bottom: 10, right: 14, fontSize: 11, color: len > 180 ? '#D98818' : '#B7AECB', fontWeight: 600 }}>{len}/200</span>
           </div>
           <div style={{ display: 'flex', gap: 10, marginTop: 13 }}>
-            <button onClick={() => submitGift(m.id, true)} style={{ flex: '0 0 auto', padding: '13px 18px', borderRadius: 13, border: '1.5px solid #E2D9F3', background: '#fff', color: '#7B7398', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>Skip</button>
-            <button onClick={() => submitGift(m.id, false)} disabled={!msg} style={{ flex: 1, padding: 13, borderRadius: 13, border: 'none', cursor: msg ? 'pointer' : 'default', background: msg ? 'linear-gradient(135deg,#402970,#5C3FB0)' : '#D8CEEC', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: msg ? '0 6px 18px rgba(64,41,112,.3)' : 'none' }}>Add message & continue</button>
+            <button onClick={() => submitGift(m.id, true)} disabled={writing} style={{ flex: '0 0 auto', padding: '13px 18px', borderRadius: 13, border: '1.5px solid #E2D9F3', background: '#fff', color: '#7B7398', fontWeight: 700, fontSize: 14, cursor: writing ? 'default' : 'pointer', opacity: writing ? 0.6 : 1 }}>Skip</button>
+            <button onClick={() => submitGift(m.id, false)} disabled={!msg || writing} style={{ flex: 1, padding: 13, borderRadius: 13, border: 'none', cursor: (msg && !writing) ? 'pointer' : 'default', background: (msg && !writing) ? 'linear-gradient(135deg,#402970,#5C3FB0)' : '#D8CEEC', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: (msg && !writing) ? '0 6px 18px rgba(64,41,112,.3)' : 'none' }}>Add message & continue</button>
           </div>
         </div>
       </Card>

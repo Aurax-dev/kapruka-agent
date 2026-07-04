@@ -12,6 +12,7 @@ From the conversation, infer what you can: the recipient, the occasion, the rela
 
 Rules:
 - 1–2 short sentences, UNDER 180 characters total — it must fit a small card.
+- Ground EVERY detail in the conversation. Use the recipient, relationship, and occasion the customer actually indicated — e.g. if they searched "gifts for father" or said it's for their dad, the note is for a father. NEVER switch to a different recipient (do not write to a mother when the customer is shopping for a father) and never invent a relationship, gender, or occasion the conversation doesn't support. When the recipient is unclear, keep it warm but non-specific rather than guessing.
 - Make it feel personal, never generic filler. Reflect the occasion and recipient when they're known (birthday, anniversary, thank-you, get-well, congratulations, etc.). If nothing specific is known, write a warm all-purpose note.
 - Sign off with the sender's first name if you can tell it; otherwise leave it unsigned.
 - At most one light emoji, and only if it fits — optional.
@@ -46,7 +47,9 @@ export async function POST(request: Request) {
     const res = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: [{ role: "user", parts: [{ text: prompt }] }],
-      config: { systemInstruction: SYSTEM, temperature: 0.9 },
+      // thinkingBudget: 0 disables 2.5-flash's default "thinking" pass — a one-line
+      // gift note doesn't need it, and it roughly halves the response latency.
+      config: { systemInstruction: SYSTEM, temperature: 0.8, thinkingConfig: { thinkingBudget: 0 } },
     });
     let message = (res.text ?? "").trim().replace(/^["'“”\s]+|["'“”\s]+$/g, "");
     if (message.length > 200) message = message.slice(0, 200).trim();

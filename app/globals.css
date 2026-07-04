@@ -29,6 +29,7 @@ textarea, input, button { font-family: inherit; }
 @keyframes shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
 @keyframes shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
 @keyframes spin { to { transform: rotate(360deg) } }
+@keyframes caretBlink { 0%,100% { opacity: 1 } 50% { opacity: 0 } }
 /* Ruki's markdown bubble: trim the last block's trailing margin so the bubble stays tight. */
 .ruki-md > :last-child { margin-bottom: 0 !important; }
 @keyframes heroIn { 0% { opacity: 0; transform: translateY(20px) } 100% { opacity: 1; transform: translateY(0) } }
