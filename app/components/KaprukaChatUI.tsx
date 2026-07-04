@@ -523,19 +523,38 @@ export default function KaprukaChatUI() {
 
     fetch('/api/cart').then(r => r.json()).then(d => {
       if (!Array.isArray(d.items)) return;
-      setState(prev => ({
-        ...prev,
-        cart: d.items.map((i: { product_id: string; name: string; price: { amount: number }; quantity: number }) => ({
-          id: i.product_id,
-          name: i.name,
-          price: i.price.amount,
-          qty: i.quantity,
-          imageUrl: null,
-          tone: 'violet',
-          glyph: 'gift',
-        })),
-        loadingDrawers: { ...prev.loadingDrawers, cart: false },
+      const loaded = (d.items as { product_id: string; name: string; price: { amount: number }; quantity: number }[]).map(i => ({
+        id: i.product_id,
+        name: i.name,
+        price: i.price.amount,
+        qty: i.quantity,
+        imageUrl: null as string | null,
+        tone: 'violet',
+        glyph: 'gift',
       }));
+      setState(prev => ({ ...prev, cart: loaded, loadingDrawers: { ...prev.loadingDrawers, cart: false } }));
+
+      // Cart items persisted from a previous session don't carry their product image,
+      // so the cart drawer and the final payment card (which snapshots the cart's
+      // imageUrls at checkout) would show blank tiles. Hydrate each item's image from
+      // the product endpoint (cached server-side) and mirror it into `products` so
+      // both surfaces render it.
+      loaded.forEach(it => {
+        fetch(`/api/product/${encodeURIComponent(it.id)}`)
+          .then(r => (r.ok ? r.json() : null))
+          .then((p: { image_url?: string | null; images?: string[] } | null) => {
+            const img = p?.image_url ?? p?.images?.[0] ?? null;
+            if (!img) return;
+            setState(prev => ({
+              ...prev,
+              cart: prev.cart.map(c => (c.id === it.id ? { ...c, imageUrl: img } : c)),
+              products: prev.products[it.id]
+                ? { ...prev.products, [it.id]: { ...prev.products[it.id], image_url: img } }
+                : { ...prev.products, [it.id]: { id: it.id, name: it.name, price: { amount: it.price, currency: 'LKR' }, comparePrice: null, image_url: img, in_stock: true, url: '', summary: '', tone: 'violet', glyph: 'gift' } },
+            }));
+          })
+          .catch(() => {});
+      });
     }).catch(() => setState(prev => ({ ...prev, loadingDrawers: { ...prev.loadingDrawers, cart: false } })));
 
     fetch('/api/addresses').then(r => r.json()).then(d => {
@@ -1167,16 +1186,32 @@ export default function KaprukaChatUI() {
   };
 
   const submitRecipient = (mid: string) => {
-    const f = state.forms['rc_' + mid] || {};
+    const k = 'rc_' + mid;
+    const f = state.forms[k] || {};
+    const addrs = state.savedAddrs;
+    const hasSaved = addrs.length > 0;
+    // No saved addresses → the widget only shows the new-address fields.
+    const addingNew = hasSaved ? Boolean(f.addingNew) : true;
+
+    if (!addingNew) {
+      // A saved address is selected — default to the default/first when untouched.
+      const selId = (f.selectedAddrId as string) || addrs.find(a => a.isDefault)?.id || addrs[0]?.id;
+      const a = addrs.find(x => x.id === selId);
+      if (!a) { showToast('Pick an address', 'pin'); return; }
+      completeMsg(mid);
+      const text = `Recipient: ${a.recipientName} | ${a.phone} | ${a.address || a.city}`;
+      pushUser(text);
+      sendMessage(text);
+      return;
+    }
+
+    // Entering a brand-new address.
     if (!f.name || !f.phone || !f.address) { showToast('Fill all recipient fields', 'user'); return; }
     completeMsg(mid);
     if (f.save) {
       // Save to local state only (for the Settings view). We deliberately do NOT
-      // persist to /api/addresses here: the chat route reads saved addresses from
-      // the DB on every turn and, per the system prompt, shows the "choose a saved
-      // address" picker while collecting recipient details. Writing mid-order would
-      // make the agent turn around and ask for the address the user just entered —
-      // an infinite recipient → saved-address loop.
+      // persist to /api/addresses — saved addresses are no longer fed to the agent
+      // (that flow looped/misfired); the recipient card surfaces them client-side.
       const addr: SavedAddress = {
         id: 'local-' + (++uidRef.current),
         label: 'Saved address',
@@ -1806,24 +1841,72 @@ export default function KaprukaChatUI() {
 
   const WRecipient = ({ m }: { m: Message }) => {
     const k = 'rc_' + m.id;
-    const saveChecked = Boolean(state.forms[k]?.save);
+    const f = state.forms[k] || {};
+    const addrs = state.savedAddrs;
+    const hasSaved = addrs.length > 0;
+    // With no saved addresses the widget is just the three fields; otherwise show a
+    // selectable list of saved addresses plus an "add a new address" option.
+    const addingNew = hasSaved ? Boolean(f.addingNew) : true;
+    const defaultId = addrs.find(a => a.isDefault)?.id ?? addrs[0]?.id;
+    const selectedId = addingNew ? null : (String(f.selectedAddrId || '') || defaultId);
+    const saveChecked = Boolean(f.save);
+
+    const radio = (on: boolean) => (
+      <span style={{ width: 20, height: 20, borderRadius: '50%', flex: '0 0 auto', marginTop: 1, border: '2px solid ' + (on ? '#5C3FB0' : '#D8CEEC'), display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all .15s' }}>
+        {on && <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'linear-gradient(135deg,#402970,#5C3FB0)' }} />}
+      </span>
+    );
+
     return (
       <Card>
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="user" size={16} color="#7B5BD6" /> Recipient details</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <Field label="Full name" value={String(state.forms[k]?.name || '')} onChange={v => setForm(k, { name: v })} ph="Recipient name" />
-            <Field label="Phone" value={String(state.forms[k]?.phone || '')} onChange={v => setForm(k, { phone: v })} type="tel" ph="07X XXX XXXX" />
-            <Field label="Street address" value={String(state.forms[k]?.address || '')} onChange={v => setForm(k, { address: v })} ph="House no, street, area" />
-          </div>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 9, marginTop: 14, cursor: 'pointer', userSelect: 'none' }}>
-            <span style={{ width: 20, height: 20, borderRadius: 6, flex: '0 0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1.5px solid ' + (saveChecked ? '#5C3FB0' : '#D8CEEC'), background: saveChecked ? 'linear-gradient(135deg,#402970,#5C3FB0)' : '#fff', transition: 'all .15s' }}>
-              {saveChecked && <Icon name="check" size={13} color="#fff" />}
-            </span>
-            <input type="checkbox" checked={saveChecked} onChange={e => setForm(k, { save: e.target.checked })} style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }} />
-            <span style={{ fontSize: 13, fontWeight: 600, color: '#5C5276' }}>Save this address for next time</span>
-          </label>
-          <button onClick={() => submitRecipient(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Saved' : 'Continue'}</button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="user" size={16} color="#7B5BD6" /> {hasSaved ? 'Deliver to' : 'Recipient details'}</div>
+
+          {hasSaved && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: addingNew ? 14 : 0 }}>
+              {addrs.map(a => {
+                const sel = a.id === selectedId;
+                return (
+                  <button key={a.id} onClick={() => setForm(k, { selectedAddrId: a.id, addingNew: false })}
+                    style={{ textAlign: 'left', display: 'flex', gap: 12, alignItems: 'flex-start', border: '1.5px solid ' + (sel ? '#5C3FB0' : '#E6DEF5'), background: sel ? '#F8F4FE' : '#fff', borderRadius: 14, padding: '12px 14px', cursor: 'pointer', transition: 'all .15s' }}>
+                    {radio(sel)}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <span style={{ fontWeight: 700, fontSize: 13.5, color: '#2A1E4A' }}>{a.recipientName}</span>
+                        {a.isDefault && <span style={{ fontSize: 10, fontWeight: 700, color: '#7B5BD6', background: '#EEE7FB', padding: '2px 7px', borderRadius: 6 }}>Default</span>}
+                      </div>
+                      <div style={{ fontSize: 12.5, color: '#7B7398', marginTop: 2 }}>{a.address || a.city}</div>
+                      <div style={{ fontSize: 12, color: '#9389AE', marginTop: 1 }}>{a.phone}</div>
+                    </div>
+                  </button>
+                );
+              })}
+              <button onClick={() => setForm(k, { addingNew: true })}
+                style={{ textAlign: 'left', display: 'flex', gap: 12, alignItems: 'center', border: '1.5px ' + (addingNew ? 'solid #5C3FB0' : 'dashed #C9B8ED'), background: addingNew ? '#F8F4FE' : '#FBF9FF', borderRadius: 14, padding: '12px 14px', cursor: 'pointer' }}>
+                {radio(addingNew)}
+                <span style={{ display: 'flex', alignItems: 'center', gap: 7, color: '#5C3FB0', fontWeight: 700, fontSize: 13 }}><Icon name="plus" size={16} color="#5C3FB0" /> Add a new address</span>
+              </button>
+            </div>
+          )}
+
+          {addingNew && (
+            <div style={hasSaved ? { animation: 'widgetIn .3s cubic-bezier(.2,.9,.3,1) both' } : undefined}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                <Field label="Full name" value={String(f.name || '')} onChange={v => setForm(k, { name: v })} ph="Recipient name" />
+                <Field label="Phone" value={String(f.phone || '')} onChange={v => setForm(k, { phone: v })} type="tel" ph="07X XXX XXXX" />
+                <Field label="Street address" value={String(f.address || '')} onChange={v => setForm(k, { address: v })} ph="House no, street, area" />
+              </div>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 9, marginTop: 14, cursor: 'pointer', userSelect: 'none' }}>
+                <span style={{ width: 20, height: 20, borderRadius: 6, flex: '0 0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1.5px solid ' + (saveChecked ? '#5C3FB0' : '#D8CEEC'), background: saveChecked ? 'linear-gradient(135deg,#402970,#5C3FB0)' : '#fff', transition: 'all .15s' }}>
+                  {saveChecked && <Icon name="check" size={13} color="#fff" />}
+                </span>
+                <input type="checkbox" checked={saveChecked} onChange={e => setForm(k, { save: e.target.checked })} style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }} />
+                <span style={{ fontSize: 13, fontWeight: 600, color: '#5C5276' }}>Save this address for next time</span>
+              </label>
+            </div>
+          )}
+
+          <button onClick={() => submitRecipient(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Confirmed' : 'Continue'}</button>
         </div>
       </Card>
     );
