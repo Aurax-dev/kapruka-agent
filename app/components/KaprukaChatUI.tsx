@@ -1004,6 +1004,32 @@ export default function KaprukaChatUI() {
     }
   };
 
+  // "Added to cart" is triggered client-side (no /api/chat round-trip), so
+  // persist it explicitly — otherwise it vanishes when the conversation reloads.
+  const persistCartConfirm = useCallback((p: RealProduct) => {
+    const convId = convIdRef.current;
+    if (!convId || sessionStatus !== 'authenticated') return;
+    const snippet = {
+      id: p.id,
+      name: p.name,
+      price: p.price,
+      compare_at_price: p.comparePrice != null ? { amount: p.comparePrice, currency: p.price.currency } : null,
+      image_url: p.image_url,
+      in_stock: p.in_stock,
+      url: p.url,
+      summary: p.summary,
+    };
+    fetch(`/api/conversations/${convId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: [
+          { role: 'assistant', content: '', widgets: { kind: 'cartconfirm', productId: p.id }, products: [snippet] },
+        ],
+      }),
+    }).catch(() => {});
+  }, [sessionStatus]);
+
   const toggleWish = (id: string) => {
     const has = state.wishlist.includes(id);
     setState(prev => ({ ...prev, wishlist: has ? prev.wishlist.filter(x => x !== id) : [...prev.wishlist, id] }));
@@ -1040,6 +1066,7 @@ export default function KaprukaChatUI() {
     }).catch(() => {});
     showToast(`Added · ${money(amount)}`, 'cart');
     pushBot({ kind: 'cartconfirm', productId: id });
+    persistCartConfirm(p);
     setAvatar('cart');
   };
 
@@ -1241,11 +1268,12 @@ export default function KaprukaChatUI() {
       for (const m of d.messages) {
         const role = m.role === 'user' ? 'user' as const : 'bot' as const;
 
-        // Stored widget payload — either a client-persisted detail card ({kind:'detail'})
-        // or a bot-emitted widget event ({widget, data}) such as the payment link.
+        // Stored widget payload — either a client-persisted detail/cart card
+        // ({kind, productId}) or a bot-emitted event ({type/widget, data}) such
+        // as the payment link or a track-order result.
         const w = (m.widgets ?? null) as {
           kind?: string; productId?: string; bullets?: string[]; description?: string; images?: string[];
-          widget?: string; data?: Record<string, unknown>;
+          type?: string; widget?: string; data?: Record<string, unknown>;
         } | null;
 
         // Persisted detail-card interaction → rebuild the card + rehydrate its details.
@@ -1261,6 +1289,27 @@ export default function KaprukaChatUI() {
           }
           restoredDetails[w.productId] = { bullets: w.bullets ?? [], images: w.images ?? [], description: w.description ?? '' };
           msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'detail', productId: w.productId });
+          continue;
+        }
+
+        // Persisted "added to cart" confirmation → rebuild the card.
+        if (role === 'bot' && w?.kind === 'cartconfirm' && w.productId) {
+          const snippet = Array.isArray(m.products) ? (m.products as Snippet[])[0] : undefined;
+          if (snippet) {
+            restoredProducts[snippet.id] = {
+              ...snippet,
+              comparePrice: snippet.compare_at_price?.amount ?? null,
+              tone: TONES[0],
+              glyph: 'gift',
+            };
+          }
+          msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'cartconfirm', productId: w.productId });
+          continue;
+        }
+
+        // Order-tracking result → rebuild the track_result card.
+        if (role === 'bot' && w?.type === 'track_result' && w.data) {
+          msgs.push({ id: String(++uidRef.current), role: 'bot', kind: 'track_result', trackData: w.data as unknown as import('@/lib/chat/types').TrackResult });
           continue;
         }
 
@@ -1280,6 +1329,9 @@ export default function KaprukaChatUI() {
             itemsCount: typeof data.items_count === 'number' ? data.items_count : undefined,
             orderRef: typeof data.order_ref === 'string' ? data.order_ref : undefined,
             expiresAt: typeof data.expires_at === 'string' ? data.expires_at : undefined,
+            payItems: Array.isArray(data.payItems)
+              ? data.payItems as { name: string; qty: number; price: number; imageUrl: string | null }[]
+              : undefined,
           });
           continue;
         }

@@ -70,7 +70,23 @@ export async function POST(request: Request) {
           // or pre-widget text); mirror that so the persisted message matches what
           // the user actually saw rather than accumulating cleared-out preambles.
           if (event.type === "clear_text") assistantText = "";
-          if (event.type === "widget") assistantWidget = event;
+          if (event.type === "widget") {
+            const w = event as { widget?: string; data?: Record<string, unknown> };
+            assistantWidget = w.widget === "pay_url"
+              ? {
+                  ...event,
+                  data: {
+                    ...(w.data ?? {}),
+                    // Snapshot the cart itemisation so the payment card can still show
+                    // photos/line items after a reload, not just the order totals.
+                    payItems: cart.map(i => ({ name: i.name, qty: i.quantity, price: i.price.amount ?? 0, imageUrl: i.image_url })),
+                  },
+                }
+              : event;
+          }
+          // track_result doesn't come through the "widget" event type, but still
+          // needs to survive a reload the same way (see loadConversation on the client).
+          if (event.type === "track_result") assistantWidget = event;
           if (event.type === "products") {
             const ev = event as { products: unknown; label?: string };
             assistantProductTabs.push({ label: ev.label, products: ev.products });
