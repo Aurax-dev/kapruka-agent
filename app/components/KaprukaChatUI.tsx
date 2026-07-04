@@ -1122,6 +1122,12 @@ export default function KaprukaChatUI() {
     if (!f.name || !f.phone || !f.address) { showToast('Fill all recipient fields', 'user'); return; }
     completeMsg(mid);
     if (f.save) {
+      // Save to local state only (for the Settings view). We deliberately do NOT
+      // persist to /api/addresses here: the chat route reads saved addresses from
+      // the DB on every turn and, per the system prompt, shows the "choose a saved
+      // address" picker while collecting recipient details. Writing mid-order would
+      // make the agent turn around and ask for the address the user just entered —
+      // an infinite recipient → saved-address loop.
       const addr: SavedAddress = {
         id: 'local-' + (++uidRef.current),
         label: 'Saved address',
@@ -1132,13 +1138,6 @@ export default function KaprukaChatUI() {
         isDefault: false,
       };
       setState(prev => ({ ...prev, savedAddrs: [...prev.savedAddrs, addr] }));
-      if (sessionStatus === 'authenticated') {
-        fetch('/api/addresses', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ label: addr.label, recipient_name: addr.recipientName, city: addr.city, phone: addr.phone }),
-        }).catch(() => {});
-      }
       showToast('Address saved', 'pin');
     }
     const text = `Recipient: ${String(f.name)} | ${String(f.phone)} | ${String(f.address)}`;

@@ -2,6 +2,7 @@ import { getGeminiClient } from "./client";
 import { SYSTEM_PROMPT } from "./system-prompt";
 import { GEMINI_TOOLS } from "./tools";
 import { executeTool } from "./executor";
+import { normalizeSinhalaScript } from "@/lib/text/sinhala";
 import type { AgentEvent, ChatMessage, ProductSummarySnippet } from "@/lib/chat/types";
 import type { SearchResponse } from "@/lib/mcp/types";
 import type { FunctionCall, Part } from "@google/genai";
@@ -93,7 +94,8 @@ export async function* runAgentLoop(
 
     for await (const chunk of stream) {
       chunkCount++;
-      const text = (chunk as { text?: string }).text;
+      const rawText = (chunk as { text?: string }).text;
+      const text = rawText ? normalizeSinhalaScript(rawText) : rawText;
       const functionCalls = (chunk as { functionCalls?: FunctionCall[] }).functionCalls;
       const fr = (chunk as { candidates?: { finishReason?: string }[] }).candidates?.[0]?.finishReason;
       if (fr) finishReason = fr;
