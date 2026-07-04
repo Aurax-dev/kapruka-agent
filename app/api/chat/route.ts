@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { conversations, messages, savedAddresses } from "@/db/schema";
-import { eq, and, desc } from "drizzle-orm";
+import { conversations, messages } from "@/db/schema";
+import { eq, and } from "drizzle-orm";
 import { runAgentLoop } from "@/lib/gemini/loop";
-import { buildCartSection, buildSavedAddressesSection } from "@/lib/gemini/system-prompt";
+import { buildCartSection } from "@/lib/gemini/system-prompt";
 import type { ChatMessage, CartItem } from "@/lib/chat/types";
 
 export const runtime = "nodejs";
@@ -33,13 +33,12 @@ export async function POST(request: Request) {
   const conversationId = typeof body.conversationId === "string" && UUID_RE.test(body.conversationId)
     ? body.conversationId : undefined;
 
-  let addressesSection = "";
-  if (session?.user?.id) {
-    const addrs = await db.select().from(savedAddresses)
-      .where(eq(savedAddresses.userId, session.user.id))
-      .orderBy(desc(savedAddresses.isDefault));
-    addressesSection = buildSavedAddressesSection(addrs);
-  }
+  // Saved addresses are intentionally NOT injected into the agent. The model-driven
+  // "choose a saved address" flow repeatedly misfired — looping on recipient entry
+  // and surfacing the picker mid-flow (e.g. while collecting the sender). Saved
+  // addresses now live client-side (the Settings view) only; checkout always collects
+  // a fresh address via the recipient card, which is reliable.
+  const addressesSection = "";
 
   if (conversationId && session?.user?.id) {
     const [conv] = await db.select().from(conversations)

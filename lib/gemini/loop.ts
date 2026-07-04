@@ -31,6 +31,25 @@ function extractProducts(result: unknown): ProductSummarySnippet[] {
   }));
 }
 
+// Pull a `WIDGET: {…}` tag out of the model's reply, wherever it lands. The model
+// is told to END its reply with the tag, but it sometimes emits it mid-reply with
+// prose after it (e.g. `WIDGET: {…}Who should we say this is from?`). A trailing-
+// anchored match misses those and leaks the raw JSON into the chat bubble. Balanced-
+// brace scanning captures nested JSON (e.g. saved_address arrays) exactly.
+function extractWidgetTag(text: string): { json: string; start: number; end: number } | null {
+  const m = text.match(/WIDGET:\s*\{/);
+  if (m?.index === undefined) return null;
+  const braceStart = text.indexOf("{", m.index);
+  let depth = 0;
+  for (let i = braceStart; i < text.length; i++) {
+    if (text[i] === "{") depth++;
+    else if (text[i] === "}" && --depth === 0) {
+      return { json: text.slice(braceStart, i + 1), start: m.index, end: i + 1 };
+    }
+  }
+  return null;
+}
+
 function toolStatusLabel(toolName: string): string {
   switch (toolName) {
     case "search_products":      return "Searching";
@@ -127,12 +146,17 @@ export async function* runAgentLoop(
     }
 
     if (pendingFunctionCalls.length === 0) {
-      const widgetMatch = fullText.match(/\s*WIDGET:\s*(\{[\s\S]*\})\s*$/);
-      if (widgetMatch) {
+      const tag = extractWidgetTag(fullText);
+      if (tag) {
         try {
-          const parsed = JSON.parse(widgetMatch[1]) as { type: string; [key: string]: unknown };
+          const parsed = JSON.parse(tag.json) as { type: string; [key: string]: unknown };
           const widgetType = parsed.type as import("@/lib/chat/types").WidgetType;
-          const cleanText = fullText.slice(0, fullText.length - widgetMatch[0].length).trimEnd();
+          // Strip the whole tag (wherever it sat) so its raw JSON never leaks; keep
+          // any prose that came before or after it as the visible bubble text.
+          const cleanText = (fullText.slice(0, tag.start) + fullText.slice(tag.end))
+            .replace(/[ \t]{2,}/g, " ")
+            .replace(/\n{3,}/g, "\n\n")
+            .trim();
           yield { type: "clear_text" };
           if (cleanText) yield { type: "text_delta", text: cleanText };
           yield { type: "widget", widget: widgetType, data: parsed };
