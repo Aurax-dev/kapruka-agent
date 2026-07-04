@@ -180,9 +180,10 @@ export function buildCartSection(items: CartItem[]): string {
   const lkr = new Intl.NumberFormat("en-LK", { maximumFractionDigits: 0 });
   const lines = items.map((i) => {
     const safeName = i.name.replace(/[\r\n]/g, " ").slice(0, 200);
-    const safeVariant = i.variant_id ? ` (${i.variant_id.replace(/[\r\n]/g, " ").slice(0, 100)})` : "";
-    return `[${safeName}${safeVariant} ×${i.quantity} – Rs ${lkr.format((i.price.amount ?? 0) * i.quantity)}]`;
+    const safeId = i.product_id.replace(/[\r\n]/g, " ").slice(0, 100);
+    const safeVariant = i.variant_id ? ` (variant: ${i.variant_id.replace(/[\r\n]/g, " ").slice(0, 100)})` : "";
+    return `[id: ${safeId}${safeVariant} — ${safeName} ×${i.quantity} – Rs ${lkr.format((i.price.amount ?? 0) * i.quantity)}]`;
   });
   const total = items.reduce((s, i) => s + (i.price.amount ?? 0) * i.quantity, 0);
-  return `\n\n## Current cart\n${lines.join(", ")}\nTotal: Rs ${lkr.format(total)}`;
+  return `\n\n## Current cart\n${lines.join(", ")}\nTotal: Rs ${lkr.format(total)}\nWhen calling create_order, use these exact "id" values as product_id — do not guess or reconstruct them from earlier search results.`;
 }

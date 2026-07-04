@@ -457,10 +457,8 @@ export default function KaprukaChatUI() {
   const convIdRef = useRef<string | null>(null);
   const revealTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const productsShownRef = useRef(false);
-  // Gift-message helpers: typewriter reveal interval + a guard so each gift widget
-  // auto-drafts exactly once.
+  // Gift-message helper: typewriter reveal interval for the "Help me write" draft.
   const giftRevealRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
-  const giftAutoRef = useRef<Set<string>>(new Set());
   // Empty-turn auto-retry: did this turn render anything (text/products/widget/
   // track card)? If not, replay the user's message automatically up to 3× —
   // the same action as the manual retry button — before giving up.
@@ -1235,6 +1233,7 @@ export default function KaprukaChatUI() {
     }, 22);
   };
 
+  // Draft the gift note — only when the user presses "Help me write".
   const helpWrite = async (mid: string) => {
     const k = 'gf_' + mid;
     if (stateRef.current.forms[k]?.writing) return;
@@ -1259,17 +1258,6 @@ export default function KaprukaChatUI() {
       showToast("Couldn't draft one — give it another try", 'spark');
     }
   };
-
-  // Auto-draft the gift note the moment its card appears — the customer shouldn't
-  // have to ask or press "Help me write". Guarded so each card drafts only once
-  // (a cleared/edited message won't be overwritten).
-  useEffect(() => {
-    const gift = state.messages.find(m => m.role === 'bot' && m.kind === 'gift' && !m.done);
-    if (!gift || giftAutoRef.current.has(gift.id)) return;
-    giftAutoRef.current.add(gift.id);
-    helpWrite(gift.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.messages]);
 
   const submitGift = (mid: string, skip: boolean) => {
     const f = state.forms['gf_' + mid] || {};

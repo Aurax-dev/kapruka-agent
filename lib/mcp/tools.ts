@@ -49,13 +49,17 @@ export async function checkDelivery(city: string, date?: string, productId?: str
   if (date) params.delivery_date = date;
   if (productId) params.product_id = productId;
   const raw = await callTool("kapruka_check_delivery", params, { cache: false });
-  return JSON.parse(raw) as {
-    available: boolean;
-    rate: number;
-    reason: string | null;
-    next_available_date: string | null;
-    perishable_warning: string | null;
-  };
+  try {
+    return JSON.parse(raw) as {
+      available: boolean;
+      rate: number;
+      reason: string | null;
+      next_available_date: string | null;
+      perishable_warning: string | null;
+    };
+  } catch {
+    throw new Error(`check_delivery returned a non-JSON response: ${raw.slice(0, 200)}`);
+  }
 }
 
 export type CartItemInput = { product_id: string; quantity: number; variant_id?: string };
