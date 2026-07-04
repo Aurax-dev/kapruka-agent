@@ -319,6 +319,39 @@ function Card({ children, accent, lush }: { children: React.ReactNode; accent?: 
   return <div style={{ background: bg, border, borderRadius: 20, boxShadow: shadow, overflow: 'hidden', animation: 'widgetIn .5s cubic-bezier(.2,.9,.3,1) both' }}>{children}</div>;
 }
 
+// Labelled text input. Module-scope so its identity is stable across parent
+// renders — defining it inside the component remounts the <input> on every
+// keystroke (setForm → re-render), which drops focus mid-typing.
+function Field({ label, value, onChange, type = 'text', ph, half }: { label: string; value: string; onChange: (v: string) => void; type?: string; ph?: string; half?: boolean }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: half ? '1 1 45%' : '1 1 100%' }}>
+      <label style={{ fontSize: 11, fontWeight: 700, color: '#9389AE', textTransform: 'uppercase', letterSpacing: '.4px' }}>{label}</label>
+      <input type={type} value={value} placeholder={ph} onChange={e => onChange(e.target.value)}
+        style={{ border: '1.5px solid ' + (value ? '#C9B8ED' : '#E6DEF5'), borderRadius: 11, padding: '11px 13px', fontSize: 14, outline: 'none', color: '#241C3D', background: value ? '#FAF8FE' : '#fff' }} />
+    </div>
+  );
+}
+
+// City lookups hit the Kapruka MCP tool, whose first call per serverless instance
+// pays a cold connection handshake (~seconds). These module-level singletons warm
+// that connection before the user types and cache results client-side, so lookups
+// feel instant from the very first keystroke. Cache survives for the tab's lifetime.
+const cityQueryCache = new Map<string, string[]>();
+let cityWarmStarted = false;
+
+function warmCityLookup() {
+  if (cityWarmStarted) return;
+  cityWarmStarted = true;
+  // Fire-and-forget: establishes the MCP connection and primes a common prefix.
+  fetch('/api/cities?q=co')
+    .then(r => r.json())
+    .then((d: { cities?: { name: string }[] }) => {
+      const names = (d.cities || []).map((c) => c.name);
+      if (names.length) cityQueryCache.set('co', names);
+    })
+    .catch(() => { cityWarmStarted = false; }); // allow a retry if warming failed
+}
+
 // City autocomplete — owns its own local fetch state. Module-scope so it keeps a
 // stable identity (no remount on every parent render) and its hooks stay isolated.
 function CityAutocomplete({ value, hasCity, onChange, onPick }: {
@@ -326,12 +359,23 @@ function CityAutocomplete({ value, hasCity, onChange, onPick }: {
 }) {
   const [apiCities, setApiCities] = useState<string[]>([]);
 
+  // Warm the MCP connection as soon as the delivery card mounts — before the user
+  // has finished reading it and started typing — so the first lookup isn't cold.
+  useEffect(() => { warmCityLookup(); }, []);
+
   useEffect(() => {
     if (value.length < 2 || hasCity) { setApiCities([]); return; }
+    const q = value.trim().toLowerCase();
+    const cached = cityQueryCache.get(q);
+    if (cached) { setApiCities(cached); return; }
     const timeout = setTimeout(() => {
       fetch(`/api/cities?q=${encodeURIComponent(value)}`)
         .then(r => r.json())
-        .then((d: { cities?: { name: string }[] }) => setApiCities((d.cities || []).map((c: { name: string }) => c.name)))
+        .then((d: { cities?: { name: string }[] }) => {
+          const names = (d.cities || []).map((c: { name: string }) => c.name);
+          if (names.length) cityQueryCache.set(q, names);
+          setApiCities(names);
+        })
         .catch(() => setApiCities([]));
     }, 300);
     return () => clearTimeout(timeout);
@@ -1087,6 +1131,9 @@ export default function KaprukaChatUI() {
   const beginCheckout = () => {
     if (state.cart.length === 0) { showToast('Your cart is empty', 'cart'); return; }
     setState(prev => ({ ...prev, drawer: null }));
+    // Warm the city lookup now — the delivery card (with its autocomplete) is a few
+    // agent turns away, giving the MCP connection time to establish before the user types.
+    warmCityLookup();
     const text = "I'd like to check out";
     pushUser(text);
     sendMessage(text);
@@ -1418,18 +1465,6 @@ export default function KaprukaChatUI() {
   };
 
 
-  const Field = ({ label, fieldKey, formKey, type = 'text', ph, half }: { label: string; fieldKey: string; formKey: string; type?: string; ph?: string; half?: boolean }) => {
-    const f = state.forms[formKey] || {};
-    const val = String(f[fieldKey] || '');
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flex: half ? '1 1 45%' : '1 1 100%' }}>
-        <label style={{ fontSize: 11, fontWeight: 700, color: '#9389AE', textTransform: 'uppercase', letterSpacing: '.4px' }}>{label}</label>
-        <input type={type} value={val} placeholder={ph} onChange={e => setForm(formKey, { [fieldKey]: e.target.value })}
-          style={{ border: '1.5px solid ' + (val ? '#C9B8ED' : '#E6DEF5'), borderRadius: 11, padding: '11px 13px', fontSize: 14, outline: 'none', color: '#241C3D', background: val ? '#FAF8FE' : '#fff' }} />
-      </div>
-    );
-  };
-
   // ── widget renderers ──
 
   const ProductCard = ({ id, i }: { id: string; i: number }) => {
@@ -1756,9 +1791,9 @@ export default function KaprukaChatUI() {
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="user" size={16} color="#7B5BD6" /> Recipient details</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <Field label="Full name" fieldKey="name" formKey={k} ph="Recipient name" />
-            <Field label="Phone" fieldKey="phone" formKey={k} type="tel" ph="07X XXX XXXX" />
-            <Field label="Street address" fieldKey="address" formKey={k} ph="House no, street, area" />
+            <Field label="Full name" value={String(state.forms[k]?.name || '')} onChange={v => setForm(k, { name: v })} ph="Recipient name" />
+            <Field label="Phone" value={String(state.forms[k]?.phone || '')} onChange={v => setForm(k, { phone: v })} type="tel" ph="07X XXX XXXX" />
+            <Field label="Street address" value={String(state.forms[k]?.address || '')} onChange={v => setForm(k, { address: v })} ph="House no, street, area" />
           </div>
           <label style={{ display: 'flex', alignItems: 'center', gap: 9, marginTop: 14, cursor: 'pointer', userSelect: 'none' }}>
             <span style={{ width: 20, height: 20, borderRadius: 6, flex: '0 0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1.5px solid ' + (saveChecked ? '#5C3FB0' : '#D8CEEC'), background: saveChecked ? 'linear-gradient(135deg,#402970,#5C3FB0)' : '#fff', transition: 'all .15s' }}>
@@ -1780,7 +1815,7 @@ export default function KaprukaChatUI() {
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="user" size={16} color="#7B5BD6" /> Your name (sender)</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <Field label="Your name" fieldKey="name" formKey={k} ph={session?.user?.name?.split(' ')[0] || 'e.g. Sahan'} />
+            <Field label="Your name" value={String(state.forms[k]?.name || '')} onChange={v => setForm(k, { name: v })} ph={session?.user?.name?.split(' ')[0] || 'e.g. Sahan'} />
           </div>
           <div style={{ fontSize: 11.5, color: '#9389AE', marginTop: 8 }}>Shown on the gift card.</div>
           <button onClick={() => submitSender(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Saved' : 'Continue'}</button>
@@ -2050,7 +2085,7 @@ export default function KaprukaChatUI() {
       <Card>
         <div style={{ padding: '16px 18px', opacity: m.done ? 0.65 : 1, pointerEvents: m.done ? 'none' : 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13, color: '#402970', marginBottom: 13 }}><Icon name="truck" size={16} color="#7B5BD6" /> Track your order</div>
-          <Field label="Order number" fieldKey="orderNo" formKey={k} ph="e.g. VIMP34456CB2 (from your email)" />
+          <Field label="Order number" value={String(state.forms[k]?.orderNo || '')} onChange={v => setForm(k, { orderNo: v })} ph="e.g. VIMP34456CB2 (from your email)" />
           <button onClick={() => submitTrackInput(m.id)} style={{ width: '100%', marginTop: 14, padding: 13, borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)' }}>{m.done ? '✓ Tracking…' : 'Track order'}</button>
         </div>
       </Card>
@@ -2447,7 +2482,7 @@ export default function KaprukaChatUI() {
                 <div style={{ fontSize: 12.5, color: '#7B7398', marginTop: 1 }}>Enter your order number to get live updates</div>
               </div>
             </div>
-            <Field label="Order number" fieldKey="orderNo" formKey={trackFormKey} ph="e.g. KPR-2026-12345" />
+            <Field label="Order number" value={String(state.forms[trackFormKey]?.orderNo || '')} onChange={v => setForm(trackFormKey, { orderNo: v })} ph="e.g. KPR-2026-12345" />
             <button onClick={handleTrack}
               style={{ width: '100%', padding: '13px 0', borderRadius: 13, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#402970,#5C3FB0)', color: '#fff', fontWeight: 800, fontSize: 14, boxShadow: '0 6px 18px rgba(64,41,112,.3)', transition: 'opacity .15s' }}>
               Track order →
