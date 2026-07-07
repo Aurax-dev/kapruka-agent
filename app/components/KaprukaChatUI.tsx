@@ -2184,7 +2184,7 @@ export default function KaprukaChatUI() {
               )}
             </div>
           )}
-          <a href={url} target="_blank" rel="noopener noreferrer"
+          <a href={url} target="_blank" rel="noopener noreferrer" onClick={clearCart}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9, width: '100%', padding: 15, borderRadius: 14, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#1F9D6B,#16855A)', color: '#fff', fontWeight: 800, fontSize: 15, textDecoration: 'none', boxShadow: '0 8px 22px rgba(31,157,107,.36)' }}>
             <Icon name="check" size={18} color="#fff" /> Complete Purchase {amount > 0 && `· ${money(amount)}`}
           </a>
